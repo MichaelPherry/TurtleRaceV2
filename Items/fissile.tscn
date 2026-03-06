@@ -1,0 +1,56 @@
+[gd_scene load_steps=11 format=3 uid="uid://b51scr60twmv0"]
+
+[ext_resource type="Script" uid="uid://chpqdrtaajbku" path="res://Items/fissile.gd" id="1_mpkbx"]
+[ext_resource type="Texture2D" uid="uid://nxl5e72hqlvm" path="res://Art/AlexArt/Items/Fishile/Fissile Path0001.png" id="2_anssm"]
+[ext_resource type="Texture2D" uid="uid://bo7v8vidl0544" path="res://Art/AlexArt/Items/Fishile/Fissile Path0002.png" id="3_rup6g"]
+[ext_resource type="Texture2D" uid="uid://dmnjngm5cxh63" path="res://Art/AlexArt/Items/Fishile/Fissile Path0003.png" id="4_ohtq0"]
+[ext_resource type="Texture2D" uid="uid://ouqi1ripfex6" path="res://Art/AlexArt/Items/Fishile/Fissile Path0004.png" id="5_kmvr5"]
+[ext_resource type="Texture2D" uid="uid://cvvbon6gwoq6u" path="res://Art/AlexArt/Items/Fishile/Fissile Path0005.png" id="6_k4cvs"]
+[ext_resource type="Texture2D" uid="uid://c37s62ll0hoid" path="res://Art/AlexArt/Items/Fishile/Fissile Path0006.png" id="7_0lv26"]
+[ext_resource type="Texture2D" uid="uid://dpuinanxr0fl" path="res://Art/AlexArt/Items/Fishile/Fissile Path0007.png" id="8_ro4sc"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x52to"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_anssm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rup6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ohtq0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kmvr5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_k4cvs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0lv26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ro4sc")
+}],
+"loop": true,
+"name": &"Swim",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmy6h"]
+size = Vector2(259, 174)
+
+[node name="Fissile" type="Area2D"]
+script = ExtResource("1_mpkbx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x52to")
+animation = &"Swim"
+frame_progress = 0.501383
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-27.5, 27)
+shape = SubResource("RectangleShape2D_pmy6h")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
