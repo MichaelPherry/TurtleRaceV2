@@ -25,6 +25,7 @@ func _process(delta):
 	var x_pos = 4720
 	#lobal_position = global_position.lerp(center, delta * 5)
 	global_position = Vector2(x_pos, y_pos)
+
 	var width = max_pos.x - min_pos.x
 	var height = max_pos.y - min_pos.y + 300
 	var largest_distance = max(width, height)
