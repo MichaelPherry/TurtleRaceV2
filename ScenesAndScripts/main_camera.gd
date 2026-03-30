@@ -30,6 +30,6 @@ func _process(delta):
 	var height = max_pos.y - min_pos.y + 300
 	var largest_distance = max(width, height)
 	var target_zoom =  clamp(1 / (largest_distance / 500.0), min_zoom, max_zoom)
-	print(target_zoom)
+	#print(target_zoom)
 	zoom = zoom.lerp(Vector2(target_zoom, target_zoom), delta * zoom_speed)
 	

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dnldi3r4grybk"]
+
+[ext_resource type="Script" uid="uid://cqkhn8ptyrps3" path="res://Items/item.gd" id="1_ntqg1"]
+[ext_resource type="PackedScene" uid="uid://dg67f8lg61i8g" path="res://Items/eel_spit.tscn" id="1_ulyb1"]
+
+[resource]
+script = ExtResource("1_ntqg1")
+name = "eel_spit"
+description = ""
+cooldown = 5
+item_scene = ExtResource("1_ulyb1")
+metadata/_custom_type_script = "uid://cqkhn8ptyrps3"
