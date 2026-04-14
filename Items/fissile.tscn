@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://c37s62ll0hoid" path="res://Art/AlexArt/Items/Fishile/Fissile Path0006.png" id="7_0lv26"]
 [ext_resource type="Texture2D" uid="uid://dpuinanxr0fl" path="res://Art/AlexArt/Items/Fishile/Fissile Path0007.png" id="8_ro4sc"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmy6h"]
+size = Vector2(259, 174)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x52to"]
 animations = [{
 "frames": [{
@@ -38,19 +41,16 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pmy6h"]
-size = Vector2(259, 174)
-
 [node name="Fissile" type="Area2D"]
 script = ExtResource("1_mpkbx")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_x52to")
-animation = &"Swim"
-frame_progress = 0.501383
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-27.5, 27)
 shape = SubResource("RectangleShape2D_pmy6h")
+
+[node name="Fish" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_x52to")
+animation = &"Swim"
+frame_progress = 0.501383
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://d1kd5rmwq3ux5"]
+
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/Coffee Mug 001 16x161.png" id="1_64gxr"]
+[ext_resource type="Script" uid="uid://cqkhn8ptyrps3" path="res://Items/item.gd" id="1_ed48e"]
+[ext_resource type="PackedScene" uid="uid://bmmar1rvis8ll" path="res://Items/mystery_item.tscn" id="1_uqdqi"]
+
+[resource]
+script = ExtResource("1_ed48e")
+name = "mystery_item"
+description = ""
+icon = ExtResource("1_64gxr")
+cooldown = 3
+item_scene = ExtResource("1_uqdqi")
+metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

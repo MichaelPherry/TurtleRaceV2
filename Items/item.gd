@@ -9,6 +9,7 @@ class_name Item
 
 func apply(user, target):
 	if item_scene:
+		name = "left_arm_item"
 		user.call(name, user, target, item_scene)
 
 

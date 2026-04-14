@@ -6,7 +6,7 @@ var turn_speed = 200
 var damage = 1
 var user
 var mult
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite = $Fish
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -3,9 +3,6 @@
 [ext_resource type="Script" uid="uid://bnbgtduurjh5p" path="res://Items/eel_spit.gd" id="1_a1p7t"]
 [ext_resource type="Texture2D" uid="uid://co357ykwwcxqx" path="res://Art/boomerang.png" id="2_402xs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_org0w"]
-size = Vector2(412.5, 377.625)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ve68j"]
 atlas = ExtResource("2_402xs")
 region = Rect2(0, 0, 32, 32)
@@ -70,17 +67,14 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_org0w"]
+size = Vector2(412.5, 377.625)
+
 [node name="eel_spit" type="Area2D"]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-238, -197)
-collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_a1p7t")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(217, 207)
-shape = SubResource("RectangleShape2D_org0w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -88,3 +82,9 @@ position = Vector2(231, 197)
 scale = Vector2(14.7187, 13.3594)
 sprite_frames = SubResource("SpriteFrames_wnsit")
 animation = &"EelSpit"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(217, 207)
+shape = SubResource("RectangleShape2D_org0w")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

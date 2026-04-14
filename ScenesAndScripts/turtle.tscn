@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://csjw8kp18folb"]
+[gd_scene load_steps=59 format=3 uid="uid://csjw8kp18folb"]
 
 [ext_resource type="Script" uid="uid://cvj77qbfyswks" path="res://ScenesAndScripts/turtle.gd" id="1_fhre7"]
 [ext_resource type="Texture2D" uid="uid://bwci6osr6o3nu" path="res://Art/AlexArt/Items/Fishile/Turtle Fishile Start0001.png" id="2_d0tqk"]
@@ -48,6 +48,8 @@
 [ext_resource type="Texture2D" uid="uid://bkyreeiqba0ly" path="res://Art/AlexArt/green_turt/Turtle Walk0007.png" id="36_wlv6k"]
 [ext_resource type="Texture2D" uid="uid://865ywlsbl28t" path="res://Art/AlexArt/green_turt/Turtle Walk0008.png" id="37_7gqyw"]
 [ext_resource type="Texture2D" uid="uid://bs03vw8vq3tgx" path="res://Art/AlexArt/green_turt/Turtle Walk0009.png" id="38_rhhlq"]
+[ext_resource type="Texture2D" uid="uid://ddi1fhbl0vl3i" path="res://Art/AlexArt/Items/Fishile/Fishile Start0003.png" id="49_2nn0g"]
+[ext_resource type="Texture2D" uid="uid://citkr6p1y8els" path="res://Art/AlexArt/Items/Propeller/Idle ProHat/ProHat Idle0001.png" id="50_ir1pt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_d1b3m"]
 animations = [{
@@ -88,6 +90,9 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("10_1ji4k")
+}, {
+"duration": 1.0,
 "texture": ExtResource("2_lfner")
 }, {
 "duration": 1.0,
@@ -110,15 +115,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("9_lpsm1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_1ji4k")
 }],
 "loop": true,
 "name": &"Jogging",
-"speed": 12.0
+"speed": 10.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_l3j6y")
+}, {
 "duration": 1.0,
 "texture": ExtResource("11_d0tqk")
 }, {
@@ -142,15 +147,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("18_83a2k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_l3j6y")
 }],
 "loop": true,
 "name": &"Running",
-"speed": 15.0
+"speed": 16.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_yrgoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_pihyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_x4xi7")
+}, {
 "duration": 1.0,
 "texture": ExtResource("20_hs72v")
 }, {
@@ -171,21 +182,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("26_whnpr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_yrgoa")
-}, {
-"duration": 1.0,
-"texture": ExtResource("28_pihyx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("29_x4xi7")
 }],
 "loop": true,
 "name": &"Standing",
 "speed": 15.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": ExtResource("38_rhhlq")
+}, {
 "duration": 1.0,
 "texture": ExtResource("30_5eblf")
 }, {
@@ -209,26 +214,222 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("37_7gqyw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("38_rhhlq")
 }],
 "loop": true,
 "name": &"Walking",
-"speed": 15.0
+"speed": 16.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_knrj5"]
 radius = 166.0
 height = 480.0
 
+[sub_resource type="Animation" id="Animation_i5rv1"]
+resource_name = "Jogging"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turtle_Body/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-241, 148), Vector2(-254, 128), Vector2(-254, 108), Vector2(-258, 84), Vector2(-261, 61), Vector2(-259, 79), Vector2(-258, 98), Vector2(-253, 115), Vector2(-250, 132)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turtle_Body/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.825541, -0.825541, -0.733038, -0.706858, -0.521853, -0.614356, -0.706858, -0.799361, -0.799361]
+}
+
+[sub_resource type="Animation" id="Animation_2nn0g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turtle_Body/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-288, -61)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turtle_Body/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.185005]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turtle_Body/Hat:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.551524]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Turtle_Body/Hat:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-118, -219)]
+}
+
+[sub_resource type="Animation" id="Animation_80d1x"]
+resource_name = "Running"
+length = 0.5625
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turtle_Body/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-323, -81), Vector2(-316, -29), Vector2(-288, 23), Vector2(-244, 64), Vector2(-184, 100), Vector2(-231, 71), Vector2(-274, 37), Vector2(-304, 1), Vector2(-320, -42)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turtle_Body/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.359538, 0.0, -0.263545, -0.579449, -0.890118, -0.626573, -0.354302, -0.174533, 0.0523599]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Turtle_Body/Hat:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-52, -196), Vector2(-76, -196), Vector2(-48, -200), Vector2(-13, -204), Vector2(15, -202), Vector2(53, -206), Vector2(22, -203), Vector2(-2, -200), Vector2(-28, -200)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Turtle_Body/Hat:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.31765, -0.387463, -0.258309, -0.0977384, -0.0279253, 0.328122, 0.00349066, -0.0453786, -0.228638]
+}
+
+[sub_resource type="Animation" id="Animation_ir1pt"]
+resource_name = "Walking"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_d0tqk"]
+resource_name = "Walking"
+length = 0.5625
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Turtle_Body/LeftHand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-148, 146), Vector2(-157, 147), Vector2(-166, 144), Vector2(-164.548, 144.161), Vector2(-182, 134), Vector2(-178.731, 135.154), Vector2(-166, 144), Vector2(-161, 145), Vector2(-154, 148)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Turtle_Body/LeftHand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0625, 0.125, 0.1875, 0.25, 0.3125, 0.375, 0.4375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.28456, -1.19206, -1.18159, -1.17112, -1.16588, -1.1589, -1.24617, -1.22871, -1.30376]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ir1pt"]
+_data = {
+&"Jogging": SubResource("Animation_i5rv1"),
+&"RESET": SubResource("Animation_2nn0g"),
+&"Running": SubResource("Animation_80d1x"),
+&"Standing": SubResource("Animation_ir1pt"),
+&"Walking": SubResource("Animation_d0tqk")
+}
+
 [node name="Turtle" type="CharacterBody2D"]
 script = ExtResource("1_fhre7")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(46, 6)
+[node name="Turtle_Body" type="AnimatedSprite2D" parent="."]
+position = Vector2(12, 6)
 sprite_frames = SubResource("SpriteFrames_d1b3m")
-animation = &"Standing"
+animation = &"Running"
+
+[node name="LeftHand" type="Marker2D" parent="Turtle_Body"]
+position = Vector2(-288, -61)
+rotation = 0.185005
+
+[node name="LeftWeapon" type="Sprite2D" parent="Turtle_Body/LeftHand"]
+position = Vector2(-138.069, -103.913)
+texture = ExtResource("49_2nn0g")
+flip_h = true
+
+[node name="Hat" type="Marker2D" parent="Turtle_Body"]
+position = Vector2(-118, -219)
+rotation = -0.551524
+
+[node name="Headwear" type="Sprite2D" parent="Turtle_Body/Hat"]
+position = Vector2(48, -73)
+texture = ExtResource("50_ir1pt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_knrj5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ir1pt")
+}
+autoplay = "Running"
