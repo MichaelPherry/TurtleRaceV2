@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://csjw8kp18folb"]
+[gd_scene format=3 uid="uid://csjw8kp18folb"]
 
 [ext_resource type="Script" uid="uid://cvj77qbfyswks" path="res://ScenesAndScripts/turtle.gd" id="1_fhre7"]
 [ext_resource type="Texture2D" uid="uid://bwci6osr6o3nu" path="res://Art/AlexArt/Items/Fishile/Turtle Fishile Start0001.png" id="2_d0tqk"]
@@ -399,37 +399,35 @@ _data = {
 &"Walking": SubResource("Animation_d0tqk")
 }
 
-[node name="Turtle" type="CharacterBody2D"]
+[node name="Turtle" type="CharacterBody2D" unique_id=901564997]
 script = ExtResource("1_fhre7")
 
-[node name="Turtle_Body" type="AnimatedSprite2D" parent="."]
+[node name="Turtle_Body" type="AnimatedSprite2D" parent="." unique_id=1795675125]
 position = Vector2(12, 6)
 sprite_frames = SubResource("SpriteFrames_d1b3m")
 animation = &"Running"
 
-[node name="LeftHand" type="Marker2D" parent="Turtle_Body"]
+[node name="LeftHand" type="Marker2D" parent="Turtle_Body" unique_id=553402089]
 position = Vector2(-288, -61)
 rotation = 0.185005
 
-[node name="LeftWeapon" type="Sprite2D" parent="Turtle_Body/LeftHand"]
+[node name="LeftWeapon" type="Sprite2D" parent="Turtle_Body/LeftHand" unique_id=186247357]
 position = Vector2(-138.069, -103.913)
 texture = ExtResource("49_2nn0g")
 flip_h = true
 
-[node name="Hat" type="Marker2D" parent="Turtle_Body"]
+[node name="Hat" type="Marker2D" parent="Turtle_Body" unique_id=1888248462]
 position = Vector2(-118, -219)
 rotation = -0.551524
 
-[node name="Headwear" type="Sprite2D" parent="Turtle_Body/Hat"]
+[node name="Headwear" type="Sprite2D" parent="Turtle_Body/Hat" unique_id=2131643900]
 position = Vector2(48, -73)
 texture = ExtResource("50_ir1pt")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=660605507]
 visible = false
 shape = SubResource("CapsuleShape2D_knrj5")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ir1pt")
-}
-autoplay = "Running"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1788226391]
+libraries/ = SubResource("AnimationLibrary_ir1pt")
+autoplay = &"Running"

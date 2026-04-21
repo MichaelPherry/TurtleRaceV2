@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dt6qfrb7lvrqr"
-path="res://.godot/imported/Turtle Run0007.png-99e3d79a7ee295aedbbeb11c93b0fa93.ctex"
+uid="uid://cl41mpli8q747"
+path="res://.godot/imported/dumpster.webp-ccaf1c84e56f1c007aeaa449823b4593.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/AlexArt/green_turt/Turtle Run0007.png"
-dest_files=["res://.godot/imported/Turtle Run0007.png-99e3d79a7ee295aedbbeb11c93b0fa93.ctex"]
+source_file="res://Art/TempArt/dumpster.webp"
+dest_files=["res://.godot/imported/dumpster.webp-ccaf1c84e56f1c007aeaa449823b4593.ctex"]
 
 [params]
 

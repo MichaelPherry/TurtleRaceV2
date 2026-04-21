@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://croetv5l82fpm"]
+
+[ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
+[ext_resource type="Texture2D" uid="uid://cl41mpli8q747" path="res://Art/TempArt/dumpster.webp" id="2_gyq1v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u13sh"]
+size = Vector2(63, 47)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyq1v"]
+size = Vector2(65, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_heiyn"]
+size = Vector2(41, 56)
+
+[node name="Shop" type="Node2D" unique_id=1330682826]
+script = ExtResource("1_u13sh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1443403314]
+texture_filter = 1
+position = Vector2(576, 321.5)
+scale = Vector2(2.6527777, 2.4022555)
+texture = ExtResource("2_gyq1v")
+
+[node name="One" type="Marker2D" parent="." unique_id=339163123]
+position = Vector2(396, 267)
+gizmo_extents = 40.0
+
+[node name="Sprite2D" type="Sprite2D" parent="One" unique_id=210190516]
+
+[node name="Area2D" type="Area2D" parent="One" unique_id=1237704019]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="One/Area2D" unique_id=260808558]
+position = Vector2(2, -10)
+shape = SubResource("RectangleShape2D_u13sh")
+
+[node name="Two" type="Marker2D" parent="." unique_id=181491770]
+position = Vector2(567, 266)
+gizmo_extents = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="Two" unique_id=1304516870]
+
+[node name="Area2D" type="Area2D" parent="Two" unique_id=1510107128]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Two/Area2D" unique_id=2061286071]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_gyq1v")
+
+[node name="Three" type="Marker2D" parent="." unique_id=544196910]
+position = Vector2(774, 264)
+gizmo_extents = 64.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Three" unique_id=119677537]
+
+[node name="Area2D" type="Area2D" parent="Three" unique_id=1108542261]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Three/Area2D" unique_id=542697460]
+position = Vector2(-1.5, -12)
+shape = SubResource("RectangleShape2D_heiyn")
+
+[node name="Button" type="Button" parent="." unique_id=1439181597]
+offset_left = 892.0
+offset_top = 544.0
+offset_right = 1141.0
+offset_bottom = 633.0
+text = "Ready
+"
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

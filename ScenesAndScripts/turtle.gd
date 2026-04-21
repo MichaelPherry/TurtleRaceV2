@@ -1,16 +1,17 @@
 extends CharacterBody2D
-var SPEED = 100
+var SPEED = 800
 #100
 var multiplier
 var finished = false
 var invincible = false
 var id
 var projectile = 1
-var left_arm = load("res://Items/fissile.tres")
+var left_arm = load("res://Items/eel_spit.tres")
 #var left_arm = load("res://Items/mystery_item.tres")
 var cooldown = 0
 var hit = false
-var finish_time = 45
+var finish_time = "N/A"
+var place = "N/A"
 
 @onready var sprite = $Turtle_Body
 @onready var animation = $AnimationPlayer
