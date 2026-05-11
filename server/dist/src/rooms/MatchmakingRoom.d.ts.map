@@ -1,0 +1,1 @@
+{"version":3,"file":"MatchmakingRoom.d.ts","sourceRoot":"","sources":["../../../src/rooms/MatchmakingRoom.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,IAAI,EAAE,MAAM,UAAU,CAAC;AAChC,OAAO,KAAK,EAAE,MAAM,EAAE,MAAM,UAAU,CAAC;AAIvC,qBAAa,eAAgB,SAAQ,IAAI,CAAC,GAAG,CAAC;IAE1C,KAAK,EAAE,GAAG,EAAE,CAAM;IAElB,QAAQ;IAkCR,MAAM,CAAC,MAAM,EAAE,MAAM;IAIrB,OAAO,CAAC,MAAM,EAAE,MAAM;CAIxB"}

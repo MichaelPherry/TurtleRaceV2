@@ -1,17 +1,18 @@
 extends CharacterBody2D
-var SPEED = 800
+var SPEED = 600
 #100
 var multiplier
 var finished = false
 var invincible = false
 var id
 var projectile = 1
-var left_arm = load("res://Items/eel_spit.tres")
-#var left_arm = load("res://Items/mystery_item.tres")
+#var left_arm = load("res://Items/eel_spit.tres")
+var left_arm = load("res://Items/mystery_item.tres")
 var cooldown = 0
 var hit = false
 var finish_time = "N/A"
 var place = "N/A"
+var score
 
 @onready var sprite = $Turtle_Body
 @onready var animation = $AnimationPlayer
@@ -19,6 +20,7 @@ var place = "N/A"
 
 func _ready():
 	var temp = left_arm.name
+	score = ItemPassivePool.turt_score[id]
 	left_arm = ItemPassivePool.arm(left_arm)
 	add_to_group(id)
 	add_to_group("players")
@@ -130,6 +132,7 @@ func equip_left_item(item):
 
 func equip_hat(hat):
 	hat.texture = "res://Art/AlexArt/Items/Propeller/Idle ProHat/ProHat Idle0001.png"
+	
 func invin_frames():
 	invincible = true
 	hit = true

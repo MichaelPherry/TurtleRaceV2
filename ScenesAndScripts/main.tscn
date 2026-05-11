@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c6yamh062j32t"]
+[gd_scene load_steps=6 format=3 uid="uid://c6yamh062j32t"]
 
 [ext_resource type="Script" uid="uid://c34q83jwq2ufi" path="res://ScenesAndScripts/main.gd" id="1_f6nm2"]
 [ext_resource type="Texture2D" uid="uid://bjghsep8234jf" path="res://Art/AlexArt/Forest Stage v2 (no turtles).png" id="2_jx7lm"]
@@ -8,24 +8,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6nm2"]
 size = Vector2(6148.5, 274.25)
 
-[node name="main" type="Node2D" unique_id=1845305121]
+[node name="main" type="Node2D"]
 script = ExtResource("1_f6nm2")
 
-[node name="ForestStageV2(noTurtles)" type="Sprite2D" parent="." unique_id=1674945686]
+[node name="ForestStageV2(noTurtles)" type="Sprite2D" parent="."]
 position = Vector2(4792, 4750)
 texture = ExtResource("2_jx7lm")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=2084610313]
+[node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(4850, 3227)
 zoom = Vector2(0.07, 0.07)
 script = ExtResource("3_txa5d")
 
-[node name="FinishLine" type="Area2D" parent="." unique_id=294694941]
+[node name="FinishLine" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine" unique_id=673280553]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishLine"]
 position = Vector2(4932.75, 7813.88)
 shape = SubResource("RectangleShape2D_f6nm2")
 
-[node name="Results" parent="." unique_id=1299005582 instance=ExtResource("4_jx7lm")]
+[node name="Results" parent="." instance=ExtResource("4_jx7lm")]
 
 [connection signal="body_exited" from="FinishLine" to="." method="_on_finish_line_body_exited"]

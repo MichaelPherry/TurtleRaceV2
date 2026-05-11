@@ -1,5 +1,12 @@
 extends Node
 
+var turt_score = {
+	"1" : 0,
+	"2" : 0,
+	"3" : 0,
+	"4" : 0
+}
+
 func arm(item):
 	match item.name:
 		"fissile":

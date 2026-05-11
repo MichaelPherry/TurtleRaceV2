@@ -6,6 +6,7 @@ class_name Item
 @export var icon: Texture2D
 @export var cooldown: int
 @export var item_scene: PackedScene
+@export var animation: bool
 
 func apply(user, target):
 	if item_scene:

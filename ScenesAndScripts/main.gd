@@ -10,6 +10,7 @@ var start_pos = [[Vector2(2700,820)],[Vector2(4050,820)],[Vector2(5380,820)],[Ve
 var time_elapsed = 0.0
 
 func _ready():
+	NetworkManager.connect_to_matchmaking()
 	spawn_player(amount_of_players)
 	var finished = get_tree().get_nodes_in_group("finished")
 	for turt in finished:
