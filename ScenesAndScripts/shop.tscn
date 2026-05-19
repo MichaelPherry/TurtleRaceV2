@@ -91,7 +91,23 @@ offset_right = 973.0
 offset_bottom = 317.0
 text = "mystery"
 
+[node name="leftArm" type="Button" parent="."]
+offset_left = 63.0
+offset_top = 48.0
+offset_right = 336.0
+offset_bottom = 143.0
+text = "Left Arm"
+
+[node name="rightArm" type="Button" parent="."]
+offset_left = 716.0
+offset_top = 48.0
+offset_right = 989.0
+offset_bottom = 143.0
+text = "Right Arm"
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="fissile" to="." method="_on_fissile"]
 [connection signal="button_down" from="eel" to="." method="_on_eel"]
 [connection signal="button_down" from="mystery" to="." method="_on_mystery"]
+[connection signal="button_down" from="leftArm" to="." method="_on_left_arm"]
+[connection signal="button_down" from="rightArm" to="." method="_on_right_arm"]

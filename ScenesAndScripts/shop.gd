@@ -4,6 +4,7 @@ extends Node2D
 @onready var two = $Two
 @onready var three = $Three
 
+var body_part = "leftArm"
 func _ready():
 	pass
 
@@ -19,10 +20,16 @@ func _on_button_button_down():
 	get_tree().change_scene_to_file("res://ScenesAndScripts/main.tscn")
 
 func _on_fissile():
-	Inventory.turtle_items[NetworkManager.sessionID]["leftArm"] = "fissile"
+	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "fissile"
 
 func _on_eel():
-	Inventory.turtle_items[NetworkManager.sessionID]["leftArm"] = "eel_spit"
+	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "eel_spit"
 
 func _on_mystery(): 
-	Inventory.turtle_items[NetworkManager.sessionID]["leftArm"] = "mystery_item"
+	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "mystery_item"
+
+func _on_left_arm():
+	body_part = "leftArm"
+	
+func _on_right_arm():
+	body_part = "rightArm"

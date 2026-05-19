@@ -8,4 +8,4 @@ var target
 func _ready():
 	var chosen = possible_items.pick_random()
 	#var temp = ItemPassivePool.arm(chosen.name)
-	chosen.apply(user, target)
+	chosen.apply(user, target, name)

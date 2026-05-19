@@ -8,7 +8,7 @@ class_name Item
 @export var item_scene: PackedScene
 @export var animation: bool
 
-func apply(user, target):
+func apply(user, target, name):
 	if item_scene:
 		name = "left_arm_item"
 		user.call(name, user, target, item_scene)

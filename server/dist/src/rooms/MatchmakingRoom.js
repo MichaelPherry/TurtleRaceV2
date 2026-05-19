@@ -18,14 +18,14 @@ export class MatchmakingRoom extends Room {
         super(...arguments);
         this.turtles = {
         "abcdef" : {"leftArm" : "fissile",
-		"rightArm" : null,
+		"rightArm" : "eel_spit",
 		"head" : null,
 		"shell" : null,
 		"legs" : null
         },
 
         "ghijkl" : {"leftArm" : "eel_spit",
-		"rightArm" : null,
+		"rightArm" : "fissile",
 		"head" : null,
 		"shell" : null,
 		"legs" : null
