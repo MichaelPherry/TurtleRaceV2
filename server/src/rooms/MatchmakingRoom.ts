@@ -5,31 +5,38 @@ import { timeStamp } from "node:console";
 
 export class MatchmakingRoom extends Room<any> {
 
-    teams: any[] = [];
+    turtles: any[] = [];
 
     onCreate()  {
         try{
             console.log("Matchmaking room created");
+            console.log("every time?");
 
-            this.onMessage("save_team", (client, message) => {
-                console.log("Saving team: ", message.team);
+            this.onMessage("save_turt", (client, message) => {
+                console.log("Saving turt: ", message.turt);
 
-                this.teams.push({
-                    team: message.team,
+                this.turtles.push({
+                    turt: message.turt,
                     timeStamp: Date.now()
+
                 });
+
+                client.send("turt_saved", {
+                    success: true
+                });
+                console.log("sent!");
             });
 
             this.onMessage("find_match", (client) => {
-                if (this.teams.length == 0) {
+                if (this.turtles.length == 0) {
                     client.send("match_found", null);
                     return;
                 }
 
-                const randomIndex = Math.floor(Math.random() * this.teams.length);
-                const opponent = this.teams[randomIndex];
+                const randomIndex = Math.floor(Math.random() * this.turtles.length);
+                const opponent = this.turtles[randomIndex];
                 
-                client.send("match_found", opponent.team);
+                client.send("match_found", opponent.turt);
             });
 
             this.onMessage("battle_result", (client, message) => {

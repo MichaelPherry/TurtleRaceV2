@@ -13,7 +13,6 @@ const gameServer = new Server({
 });
 console.log("REGISTERING ROOM");
 gameServer.define("matchmaking", MatchmakingRoom);
-console.log("AAAAAAA");
 gameServer.listen(port);
 console.log(`Server running on ws://localhost:${port}`);
 gameServer.onShutdown(() => {

@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="ShellShocked"
-run/main_scene="uid://c6yamh062j32t"
+run/main_scene="uid://croetv5l82fpm"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 ItemPassivePool="*res://ScenesAndScripts/item_passive_pool.gd"
 Net="*uid://de3luefqvt2om"
 NetworkManager="*res://Client/NetworkManager.gd"
+Inventory="*res://ScenesAndScripts/inventory.gd"
 
 [editor_plugins]
 

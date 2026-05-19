@@ -14,5 +14,15 @@ func _process(delta):
 
 
 func _on_button_button_down():
-	await get_tree().create_timer(0.3).timeout
+	NetworkManager.send_message()
+	
 	get_tree().change_scene_to_file("res://ScenesAndScripts/main.tscn")
+
+func _on_fissile():
+	Inventory.turtle_items[NetworkManager.sessionID]["leftArm"] = "fissile"
+
+func _on_eel():
+	Inventory.turtle_items[NetworkManager.sessionID]["leftArm"] = "eel_spit"
+
+func _on_mystery(): 
+	Inventory.turtle_items[NetworkManager.sessionID]["leftArm"] = "mystery_item"

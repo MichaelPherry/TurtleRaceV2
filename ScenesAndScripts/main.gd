@@ -5,12 +5,11 @@ extends Node2D
 
 var finished_turts = []
 var amount_of_players = 4
-var id_names = ["1","2","3","4",]
+var id_names = [NetworkManager.sessionID ,"2","3","4",]
 var start_pos = [[Vector2(2700,820)],[Vector2(4050,820)],[Vector2(5380,820)],[Vector2(6750,820)]]
 var time_elapsed = 0.0
 
 func _ready():
-	NetworkManager.connect_to_matchmaking()
 	spawn_player(amount_of_players)
 	var finished = get_tree().get_nodes_in_group("finished")
 	for turt in finished:
@@ -24,8 +23,8 @@ func _process(delta):
 func spawn_player(num_of_players):
 	for i in range(num_of_players):
 		var player = turtle_scene.instantiate()
-		player.id = id_names[i - 1]
-		player.global_position = start_pos[i - 1][0]
+		player.id = id_names[i]
+		player.global_position = start_pos[i][0]
 		add_child(player)
 
 func _on_finish_line_body_exited(body):

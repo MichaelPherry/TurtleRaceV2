@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://croetv5l82fpm"]
+[gd_scene load_steps=6 format=3 uid="uid://croetv5l82fpm"]
 
 [ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
 [ext_resource type="Texture2D" uid="uid://cl41mpli8q747" path="res://Art/TempArt/dumpster.webp" id="2_gyq1v"]
@@ -12,52 +12,55 @@ size = Vector2(65, 58)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_heiyn"]
 size = Vector2(41, 56)
 
-[node name="Shop" type="Node2D" unique_id=1330682826]
+[node name="Shop" type="Node2D"]
 script = ExtResource("1_u13sh")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1443403314]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(576, 321.5)
-scale = Vector2(2.6527777, 2.4022555)
+scale = Vector2(2.65278, 2.40226)
 texture = ExtResource("2_gyq1v")
 
-[node name="One" type="Marker2D" parent="." unique_id=339163123]
+[node name="One" type="Marker2D" parent="."]
+visible = false
 position = Vector2(396, 267)
 gizmo_extents = 40.0
 
-[node name="Sprite2D" type="Sprite2D" parent="One" unique_id=210190516]
+[node name="Sprite2D" type="Sprite2D" parent="One"]
 
-[node name="Area2D" type="Area2D" parent="One" unique_id=1237704019]
+[node name="Area2D" type="Area2D" parent="One"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="One/Area2D" unique_id=260808558]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="One/Area2D"]
 position = Vector2(2, -10)
 shape = SubResource("RectangleShape2D_u13sh")
 
-[node name="Two" type="Marker2D" parent="." unique_id=181491770]
+[node name="Two" type="Marker2D" parent="."]
+visible = false
 position = Vector2(567, 266)
 gizmo_extents = 50.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Two" unique_id=1304516870]
+[node name="Sprite2D" type="Sprite2D" parent="Two"]
 
-[node name="Area2D" type="Area2D" parent="Two" unique_id=1510107128]
+[node name="Area2D" type="Area2D" parent="Two"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Two/Area2D" unique_id=2061286071]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Two/Area2D"]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_gyq1v")
 
-[node name="Three" type="Marker2D" parent="." unique_id=544196910]
+[node name="Three" type="Marker2D" parent="."]
+visible = false
 position = Vector2(774, 264)
 gizmo_extents = 64.5
 
-[node name="Sprite2D" type="Sprite2D" parent="Three" unique_id=119677537]
+[node name="Sprite2D" type="Sprite2D" parent="Three"]
 
-[node name="Area2D" type="Area2D" parent="Three" unique_id=1108542261]
+[node name="Area2D" type="Area2D" parent="Three"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Three/Area2D" unique_id=542697460]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Three/Area2D"]
 position = Vector2(-1.5, -12)
 shape = SubResource("RectangleShape2D_heiyn")
 
-[node name="Button" type="Button" parent="." unique_id=1439181597]
+[node name="Button" type="Button" parent="."]
 offset_left = 892.0
 offset_top = 544.0
 offset_right = 1141.0
@@ -65,4 +68,30 @@ offset_bottom = 633.0
 text = "Ready
 "
 
+[node name="fissile" type="Button" parent="."]
+offset_left = 126.0
+offset_top = 209.0
+offset_right = 302.0
+offset_bottom = 325.0
+text = "Fissile
+"
+
+[node name="eel" type="Button" parent="."]
+offset_left = 411.0
+offset_top = 230.0
+offset_right = 624.0
+offset_bottom = 339.0
+text = "eel
+"
+
+[node name="mystery" type="Button" parent="."]
+offset_left = 805.0
+offset_top = 228.0
+offset_right = 973.0
+offset_bottom = 317.0
+text = "mystery"
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
+[connection signal="button_down" from="fissile" to="." method="_on_fissile"]
+[connection signal="button_down" from="eel" to="." method="_on_eel"]
+[connection signal="button_down" from="mystery" to="." method="_on_mystery"]
