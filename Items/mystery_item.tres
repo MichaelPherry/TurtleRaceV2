@@ -10,6 +10,7 @@ name = "mystery_item"
 description = ""
 icon = ExtResource("1_64gxr")
 cooldown = 3
+ground_trap = false
 item_scene = ExtResource("1_uqdqi")
 animation = false
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

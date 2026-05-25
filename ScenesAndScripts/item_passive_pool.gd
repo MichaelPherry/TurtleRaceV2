@@ -8,3 +8,9 @@ func arm(item):
 			return load("res://Items/eel_spit.tres")
 		"mystery_item":
 			return load("res://Items/mystery_item.tres")
+		"bear_trap":
+			return load("res://Items/bear_trap.tres")
+
+func head(item):
+	match head:
+		pass

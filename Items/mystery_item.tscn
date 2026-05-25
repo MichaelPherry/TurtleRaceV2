@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmmar1rvis8ll"]
+[gd_scene load_steps=6 format=3 uid="uid://bmmar1rvis8ll"]
 
 [ext_resource type="Script" uid="uid://cxnjtxu7ugn3w" path="res://Items/mystery_item.gd" id="1_oanxa"]
 [ext_resource type="Script" uid="uid://cqkhn8ptyrps3" path="res://Items/item.gd" id="2_n5lhj"]
 [ext_resource type="Resource" uid="uid://d2uwndmbv8ate" path="res://Items/fissile.tres" id="3_veqm3"]
 [ext_resource type="Resource" uid="uid://dnldi3r4grybk" path="res://Items/eel_spit.tres" id="4_8bnag"]
+[ext_resource type="Resource" uid="uid://dbp3mb2bvnqjp" path="res://Items/bear_trap.tres" id="5_n5lhj"]
 
 [node name="MysterItem" type="Node2D"]
 script = ExtResource("1_oanxa")
-possible_items = Array[ExtResource("2_n5lhj")]([ExtResource("3_veqm3"), ExtResource("4_8bnag")])
+possible_items = Array[ExtResource("2_n5lhj")]([ExtResource("3_veqm3"), ExtResource("4_8bnag"), ExtResource("5_n5lhj")])

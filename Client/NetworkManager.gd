@@ -27,7 +27,8 @@ func _on_room_joined():
 		"rightArm" : null,
 		"head" : null,
 		"shell" : null,
-		"legs" : null
+		"legs" : null,
+		"id" : sessionID
 		}
 
 	callbacks = Colyseus.Callbacks.of(room)

@@ -10,7 +10,8 @@ var turtle_items = {
 		"rightArm" : null,
 		"head" : null,
 		"shell" : null,
-		"legs" : null
+		"legs" : null,
+		"id" : null
 	},
 	
 	"3" : {
@@ -18,7 +19,8 @@ var turtle_items = {
 		"rightArm" : null,
 		"head" : null,
 		"shell" : null,
-		"legs" : null
+		"legs" : null,
+		"id" : null
 	},
 	
 	"4" : {
@@ -26,9 +28,11 @@ var turtle_items = {
 		"rightArm" : null,
 		"head" : null,
 		"shell" : null,
-		"legs" : null
+		"legs" : null,
+		"id" : null
 	}
 }
+
 
 func reset_turtles():
 	for id in turtle_keys:
@@ -43,4 +47,5 @@ func set_turtles(server_turtles):
 			counter += 1
 		for body_part in appendages:
 			turtle_items[id][body_part] = server_turtles[server_keys[counter]][body_part]
+		turtle_items[id]["id"] = server_keys[counter]
 		counter += 1

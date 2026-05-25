@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://byxhoun65iif3"]
+
+[ext_resource type="Script" uid="uid://fes1a2hc370t" path="res://Items/bear_trap.gd" id="1_6hm6t"]
+[ext_resource type="Texture2D" uid="uid://b7thyn3k5dho7" path="res://Art/TempArt/beartrap.jpeg" id="1_n8mpq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6hm6t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_n8mpq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pw57n"]
+size = Vector2(622, 39)
+
+[node name="BearTrap" type="Area2D"]
+script = ExtResource("1_6hm6t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, -2)
+scale = Vector2(5.29661, 2.40211)
+sprite_frames = SubResource("SpriteFrames_6hm6t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 1.5)
+shape = SubResource("RectangleShape2D_pw57n")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

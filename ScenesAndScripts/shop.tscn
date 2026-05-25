@@ -92,18 +92,42 @@ offset_bottom = 317.0
 text = "mystery"
 
 [node name="leftArm" type="Button" parent="."]
-offset_left = 63.0
+offset_left = 15.0
 offset_top = 48.0
-offset_right = 336.0
-offset_bottom = 143.0
+offset_right = 217.0
+offset_bottom = 127.0
 text = "Left Arm"
 
 [node name="rightArm" type="Button" parent="."]
-offset_left = 716.0
+offset_left = 240.0
 offset_top = 48.0
-offset_right = 989.0
-offset_bottom = 143.0
+offset_right = 441.0
+offset_bottom = 127.0
 text = "Right Arm"
+
+[node name="head" type="Button" parent="."]
+offset_left = 468.0
+offset_top = 50.0
+offset_right = 670.0
+offset_bottom = 129.0
+text = "Head
+"
+
+[node name="shell" type="Button" parent="."]
+offset_left = 698.0
+offset_top = 51.0
+offset_right = 900.0
+offset_bottom = 130.0
+text = "Shell
+"
+
+[node name="legs" type="Button" parent="."]
+offset_left = 922.0
+offset_top = 51.0
+offset_right = 1124.0
+offset_bottom = 130.0
+text = "Legs
+"
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="fissile" to="." method="_on_fissile"]
@@ -111,3 +135,6 @@ text = "Right Arm"
 [connection signal="button_down" from="mystery" to="." method="_on_mystery"]
 [connection signal="button_down" from="leftArm" to="." method="_on_left_arm"]
 [connection signal="button_down" from="rightArm" to="." method="_on_right_arm"]
+[connection signal="button_down" from="head" to="." method="_on_head"]
+[connection signal="button_down" from="shell" to="." method="_on_shell"]
+[connection signal="button_down" from="legs" to="." method="_on_legs"]

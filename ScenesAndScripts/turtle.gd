@@ -22,13 +22,14 @@ var shell_cooldown = 0
 var legs
 var legs_cooldown = 0
 
-const SPEED = 300
+const SPEED = 100
 var speed
 #100
 var multiplier
 var finished = false
 var invincible = false
 var id
+var temp_id
 var projectile = 1
 var hit = false
 var finish_time = "N/A"
@@ -37,6 +38,7 @@ var place = "N/A"
 
 func _ready():
 	speed = SPEED
+	temp_id = Inventory.turtle_items[id]["id"]
 	equip()
 	add_to_group(id)
 	add_to_group("players")
@@ -65,7 +67,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func equip():
-	for body_part in Inventory.turtle_items[id].keys():
+	for body_part in Inventory.appendages:
 		if Inventory.turtle_items[id][body_part] != null:
 			#instead of using arm below you will eventually have to use the 
 			#call function similarly how you do it in the item script

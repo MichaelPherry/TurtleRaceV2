@@ -26,10 +26,19 @@ func _on_eel():
 	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "eel_spit"
 
 func _on_mystery(): 
-	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "mystery_item"
+	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "bear_trap"
 
 func _on_left_arm():
 	body_part = "leftArm"
 	
 func _on_right_arm():
 	body_part = "rightArm"
+
+func _on_head():
+	body_part = "head"
+
+func _on_shell():
+	body_part = "shell"
+
+func _on_legs():
+	body_part = "legs"
