@@ -8,8 +8,11 @@ var max
 var turn_speed = 200
 var speed = 2500
 var close_enough = 100
+var ground_trap = true
+var active = false
 
 func _ready():
+	
 	max = 7500
 	if (target.global_position.y + min) > max:
 		final_position = Vector2(target.global_position.x, max)
@@ -20,6 +23,7 @@ func _process(delta):
 	if self.position.distance_to(final_position) < close_enough:
 		speed = 0
 		rotation = 0
+		active = true
 		return
 		
 
@@ -29,10 +33,12 @@ func _process(delta):
 	self.position += transform.x * speed * delta
 
 
-func _on_body_entered(body: Node2D) -> void:
+func _on_body_entered(body):
 	if body == target:
-		queue_free()
-		if body.invincible == false:
-			pass
-			#body.take_damage(damage)
-			body.invin_frames()
+		if active == true:
+			if body.grounded == true:
+				queue_free()
+				if body.invincible == false:
+					pass
+					#body.take_damage(damage)
+					body.invin_frames()

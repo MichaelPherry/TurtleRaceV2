@@ -23,7 +23,7 @@ func _on_fissile():
 	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "fissile"
 
 func _on_eel():
-	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "eel_spit"
+	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "propreller"
 
 func _on_mystery(): 
 	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "bear_trap"

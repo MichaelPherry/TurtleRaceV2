@@ -5,9 +5,10 @@ class_name Passive
 @export var description: String
 @export var price: int
 @export var icon: Texture2D
+@export var passive_scene: PackedScene
 
-func apply(turt, tree):
-	push_warning("apply() not implemented for %s" % name)
+func apply(user, name):
+	user.call(name, user, passive_scene)
 
 
 # Called when the node enters the scene tree for the first time.

@@ -8,9 +8,11 @@
 script = ExtResource("2_08h6u")
 name = "fissile"
 description = ""
+body_part = ""
 icon = ExtResource("1_08h6u")
 cooldown = 3
-ground_trap = false
 item_scene = ExtResource("1_oclcc")
+ground_trap = false
+active = true
 animation = false
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

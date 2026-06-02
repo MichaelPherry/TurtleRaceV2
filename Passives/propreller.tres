@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=2 format=3 uid="uid://drfxvq87jb1sc"]
+
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_qx16p"]
+
+[resource]
+script = ExtResource("1_qx16p")
+name = ""
+description = ""
+price = 0
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

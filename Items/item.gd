@@ -8,6 +8,7 @@ class_name Item
 @export var cooldown: int
 @export var item_scene: PackedScene
 @export var ground_trap: bool
+@export var active: bool
 @export var animation: bool
 
 

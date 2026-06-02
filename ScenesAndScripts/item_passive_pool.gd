@@ -13,4 +13,5 @@ func arm(item):
 
 func head(item):
 	match head:
-		pass
+		"propreller":
+			return load("res://Passives/propreller.tres")

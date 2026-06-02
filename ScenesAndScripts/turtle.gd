@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-@onready var shell_anim = $Turtle_Body
-@onready var rightLeg_anim = $Turtle_Body/rightLeg/AnimatedSprite2D
-@onready var leftLeg_anim = $Turtle_Body/leftLeg/AnimatedSprite2D
-@onready var rightArm_anim = $Turtle_Body/rightArm/AnimatedSprite2D
-@onready var leftArm_anim = $Turtle_Body/leftArm/AnimatedSprite2D
-@onready var head_anim = $Turtle_Body/head/AnimatedSprite2D
-@onready var face_anim = $Turtle_Body/face/AnimatedSprite2D
-@onready var belly_anim = $Turtle_Body/belly/AnimatedSprite2D
+@onready var shell_anim = $Visuals/Turtle_Body
+@onready var rightLeg_anim = $Visuals/rightLeg/AnimatedSprite2D
+@onready var leftLeg_anim = $Visuals/leftLeg/AnimatedSprite2D
+@onready var rightArm_anim = $Visuals/rightArm/AnimatedSprite2D
+@onready var leftArm_anim = $Visuals/leftArm/AnimatedSprite2D
+@onready var head_anim = $Visuals/head/AnimatedSprite2D
+@onready var face_anim = $Visuals/face/AnimatedSprite2D
+@onready var belly_anim = $Visuals/belly/AnimatedSprite2D
 @onready var animation = $AnimationPlayer
-@onready var left_hand_sprite = $Turtle_Body/LeftHand/LeftWeapon
+@onready var left_hand_sprite = $Visuals/LeftHand/LeftWeapon
 
 var left_arm
 var left_arm_cooldown = 0
@@ -35,6 +35,7 @@ var hit = false
 var finish_time = "N/A"
 var place = "N/A"
 
+var grounded = true
 
 func _ready():
 	speed = SPEED
@@ -43,7 +44,7 @@ func _ready():
 	add_to_group(id)
 	add_to_group("players")
 	add_to_group("racing")
-	multiplier = randi_range(2,5)
+	multiplier = randi_range(3,3.1)
 	moving_animations()
 	
 func _process(delta):
@@ -81,7 +82,7 @@ func equip():
 					right_arm_cooldown = right_arm.cooldown
 					equip_right_item(right_arm)
 				"head":
-					pass
+					head = ItemPassivePool.head(Inventory.turtle_items[id][body_part])
 				"shell":
 					pass
 				"legs":
@@ -97,23 +98,9 @@ func cooldowns(delta):
 		if right_arm_cooldown <= 0.0:
 			use_item(right_arm, "right_arm_item")
 			right_arm_cooldown = right_arm.cooldown
-	if Inventory.turtle_items[id]["head"] != null:
-		if head_cooldown <= 0.0:
-			use_item(head, "head_item")
-			head_cooldown = head.cooldown
-	if Inventory.turtle_items[id]["shell"] != null:
-		if shell_cooldown <= 0.0:
-			use_item(shell, "shell_item")
-			shell_cooldown = shell.cooldown
-	if Inventory.turtle_items[id]["legs"] != null:
-		if legs_cooldown <= 0.0:
-			use_item(legs, "legs_item")
-			legs_cooldown = legs.cooldown
 	left_arm_cooldown -= delta
 	right_arm_cooldown -= delta
-	head_cooldown -= delta
-	shell_cooldown -= delta
-	legs_cooldown -= delta
+
 
 func use_item(body_part, name):
 	var players = get_tree().get_nodes_in_group("racing")
@@ -175,7 +162,7 @@ func invin_frames():
 	hit = true
 	var sped = velocity.y
 	velocity.y = -50
-	var sprite = $Turtle_Body
+	var sprite = $Visuals
 	sprite.modulate = Color(1, 1, 1, 0.2)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1) 
@@ -205,6 +192,7 @@ func moving_animations():
 		#animation.play("Running")
 
 func animation_controller(action):
+	animation.play(action)
 	shell_anim.play(action)
 	rightLeg_anim.animation = action
 	leftLeg_anim.animation = action
@@ -215,9 +203,9 @@ func animation_controller(action):
 	belly_anim.animation = action
 
 	if action == "Running":
-		$Turtle_Body/leftArm.position = Vector2(-185, -50)
-		$Turtle_Body/rightArm.position = Vector2(80,-140)
+		$Visuals/leftArm.position = Vector2(-185, -50)
+		$Visuals/rightArm.position = Vector2(80,-140)
 		
 	else:
-		$Turtle_Body/leftArm.position = Vector2(-124, -41)
-		$Turtle_Body/rightArm.position = Vector2(49,-90)
+		$Visuals/leftArm.position = Vector2(-124, -41)
+		$Visuals/rightArm.position = Vector2(49,-90)
