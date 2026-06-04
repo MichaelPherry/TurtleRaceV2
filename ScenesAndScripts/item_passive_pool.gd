@@ -12,6 +12,6 @@ func arm(item):
 			return load("res://Items/bear_trap.tres")
 
 func head(item):
-	match head:
+	match item:
 		"propreller":
 			return load("res://Passives/propreller.tres")

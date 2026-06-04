@@ -6,9 +6,7 @@ class_name Passive
 @export var price: int
 @export var icon: Texture2D
 @export var passive_scene: PackedScene
-
-func apply(user, name):
-	user.call(name, user, passive_scene)
+@export var cooldown: int
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,3 +17,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	

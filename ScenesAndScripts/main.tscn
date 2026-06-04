@@ -12,6 +12,7 @@ size = Vector2(6148.5, 274.25)
 script = ExtResource("1_f6nm2")
 
 [node name="ForestStageV2(noTurtles)" type="Sprite2D" parent="."]
+z_index = -100
 position = Vector2(4792, 4750)
 texture = ExtResource("2_jx7lm")
 

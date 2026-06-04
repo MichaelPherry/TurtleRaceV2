@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var visuals = $Visuals
+@onready var shadow = $Shadow
+@onready var collision = $CollisionShape2D
 @onready var shell_anim = $Visuals/Turtle_Body
 @onready var rightLeg_anim = $Visuals/rightLeg/AnimatedSprite2D
 @onready var leftLeg_anim = $Visuals/leftLeg/AnimatedSprite2D
@@ -10,12 +13,14 @@ extends CharacterBody2D
 @onready var belly_anim = $Visuals/belly/AnimatedSprite2D
 @onready var animation = $AnimationPlayer
 @onready var left_hand_sprite = $Visuals/LeftHand/LeftWeapon
+@onready var hat_marker = $Visuals/Hat
 
 var left_arm
 var left_arm_cooldown = 0
 var right_arm
 var right_arm_cooldown = 0
 var head
+var head_instance
 var head_cooldown = 0
 var shell
 var shell_cooldown = 0
@@ -24,6 +29,8 @@ var legs_cooldown = 0
 
 const SPEED = 100
 var speed
+var height = 0
+var max_height = -500
 #100
 var multiplier
 var finished = false
@@ -40,11 +47,11 @@ var grounded = true
 func _ready():
 	speed = SPEED
 	temp_id = Inventory.turtle_items[id]["id"]
+	multiplier = randi_range(2,5)
 	equip()
 	add_to_group(id)
 	add_to_group("players")
 	add_to_group("racing")
-	multiplier = randi_range(3,3.1)
 	moving_animations()
 	
 func _process(delta):
@@ -60,9 +67,18 @@ func _process(delta):
 func _physics_process(delta):
 	if hit == true:
 		return
+		
+	if grounded:
+		height = 0
+	else:
+		height = max_height
+	visuals.position.y = height
+	collision.position.y = height
+	
 	if finished == true:
 		velocity.y = 0
 		return
+
 	velocity.y = speed * multiplier
 	cooldowns(delta)
 	move_and_slide()
@@ -83,6 +99,11 @@ func equip():
 					equip_right_item(right_arm)
 				"head":
 					head = ItemPassivePool.head(Inventory.turtle_items[id][body_part])
+					head_cooldown = head.cooldown
+					head_instance = head.passive_scene.instantiate()
+					head_instance.user = self
+					hat_marker.add_child(head_instance)
+					equip_hat(head)
 				"shell":
 					pass
 				"legs":
@@ -98,9 +119,14 @@ func cooldowns(delta):
 		if right_arm_cooldown <= 0.0:
 			use_item(right_arm, "right_arm_item")
 			right_arm_cooldown = right_arm.cooldown
+	if Inventory.turtle_items[id]["head"] != null:
+		if head_cooldown <= 0.0:
+			if is_instance_valid(head_instance):
+				head_instance.activate_effect()
+				head_cooldown = head.cooldown
 	left_arm_cooldown -= delta
 	right_arm_cooldown -= delta
-
+	head_cooldown -= delta
 
 func use_item(body_part, name):
 	var players = get_tree().get_nodes_in_group("racing")
@@ -113,6 +139,9 @@ func use_item(body_part, name):
 	if target == null:
 		return
 	body_part.apply(self, target, name)
+	
+func use_passive(body_part, name):
+	body_part.apply(self, name)
 
 func left_arm_item(user, target, scene):
 	var instance = scene.instantiate()
@@ -155,7 +184,8 @@ func equip_right_item(item):
 	pass
 
 func equip_hat(hat):
-	hat.texture = hat
+	#hat.texture = hat
+	pass
 	
 func invin_frames():
 	invincible = true

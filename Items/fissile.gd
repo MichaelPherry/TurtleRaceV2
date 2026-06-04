@@ -20,7 +20,7 @@ func _process(delta):
 	else:
 		sprite.flip_v = false
 		
-	var to_target = (target.global_position - global_position).normalized()
+	var to_target = ((target.global_position + Vector2(0, target.height)) - global_position).normalized()
 	var target_angle = to_target.angle()
 	rotation = lerp_angle(rotation, target_angle, turn_speed * delta)
 	position += transform.x * speed * delta *  user.projectile

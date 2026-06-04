@@ -1,4 +1,4 @@
-[gd_scene load_steps=294 format=3 uid="uid://csjw8kp18folb"]
+[gd_scene load_steps=269 format=3 uid="uid://csjw8kp18folb"]
 
 [ext_resource type="Script" uid="uid://cvj77qbfyswks" path="res://ScenesAndScripts/turtle.gd" id="1_fhre7"]
 [ext_resource type="Texture2D" uid="uid://bwci6osr6o3nu" path="res://Art/AlexArt/Items/Fishile/Turtle Fishile Start0001.png" id="2_d0tqk"]
@@ -252,32 +252,12 @@
 [ext_resource type="Texture2D" uid="uid://dgv6p51sc6bv3" path="res://Art/AlexArt/green_turt/T Run/1. Face/T. Face Run0008.png" id="241_mqy10"]
 [ext_resource type="Texture2D" uid="uid://0serfmgxm1yo" path="res://Art/AlexArt/green_turt/T Run/1. Face/T. Face Run0009.png" id="242_kd6j4"]
 [ext_resource type="Texture2D" uid="uid://dkcytktc4pvkx" path="res://Art/AlexArt/green_turt/T Run/1. Face/T. Face Run0010.png" id="243_wqnit"]
-[ext_resource type="Texture2D" uid="uid://pbyhrbdd5i5u" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0001.png" id="253_bn8t0"]
 [ext_resource type="Texture2D" uid="uid://bl53i3vm2duwj" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0001.png" id="253_sfcqm"]
-[ext_resource type="Texture2D" uid="uid://cfcfx65udftgf" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0002.png" id="254_h2oxy"]
-[ext_resource type="Texture2D" uid="uid://bhoep7t4cxa3s" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0002.png" id="254_ol2ix"]
-[ext_resource type="Texture2D" uid="uid://dkvfhle8atcl7" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0003.png" id="255_n1txc"]
-[ext_resource type="Texture2D" uid="uid://c3573o5plckgp" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0004.png" id="256_d1bfo"]
-[ext_resource type="Texture2D" uid="uid://c8iefuk686f54" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0004.png" id="256_k4e6j"]
-[ext_resource type="Texture2D" uid="uid://da40fhgwkua3x" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0005.png" id="257_6w42v"]
-[ext_resource type="Texture2D" uid="uid://b7g5swesxleun" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0005.png" id="257_b4ymr"]
-[ext_resource type="Texture2D" uid="uid://1wycc6qd2f0h" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0006.png" id="258_0cybg"]
-[ext_resource type="Texture2D" uid="uid://ddw1msq1ri1t1" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0006.png" id="258_hphnm"]
-[ext_resource type="Texture2D" uid="uid://kxqprojcnksa" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0007.png" id="259_d084g"]
-[ext_resource type="Texture2D" uid="uid://f4l02qp7xiwk" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0007.png" id="259_rnwwk"]
-[ext_resource type="Texture2D" uid="uid://c6d8v6bwgn1el" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0008.png" id="260_4eujk"]
-[ext_resource type="Texture2D" uid="uid://cbbwlfgu52nb5" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0008.png" id="260_kprok"]
-[ext_resource type="Texture2D" uid="uid://bnuaif7ebym3" path="res://Art/AlexArt/Items/Propeller/ProHat Walk/ProHat Walk0009.png" id="261_rr1x8"]
-[ext_resource type="Texture2D" uid="uid://fnl8ft10nrqs" path="res://Art/AlexArt/Items/Propeller/Pro Hat Jog/ProHat Jog0009.png" id="261_tma6q"]
-[ext_resource type="Texture2D" uid="uid://br1eo8kuy8h51" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0001.png" id="262_ogpm1"]
-[ext_resource type="Texture2D" uid="uid://2xqelfssd3tv" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0002.png" id="263_ny4cq"]
-[ext_resource type="Texture2D" uid="uid://dcrxcn8iq0maf" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0003.png" id="264_jjx2u"]
-[ext_resource type="Texture2D" uid="uid://fela7x6chh73" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0004.png" id="265_lw5eh"]
-[ext_resource type="Texture2D" uid="uid://cnxxcckwdcb7l" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0005.png" id="266_ddtqv"]
-[ext_resource type="Texture2D" uid="uid://dlcaectarymrj" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0006.png" id="267_1culg"]
-[ext_resource type="Texture2D" uid="uid://dmont7lf620an" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0007.png" id="268_8mvrc"]
-[ext_resource type="Texture2D" uid="uid://cjha01ifx25mj" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0008.png" id="269_o4by6"]
-[ext_resource type="Texture2D" uid="uid://dycxr86ed70bf" path="res://Art/AlexArt/Items/Propeller/ProHat Run/ProHat Run0009.png" id="270_c2b00"]
+[ext_resource type="Texture2D" uid="uid://dbespwijcr1yi" path="res://Art/TempArt/shadow.png" id="254_ne40m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_knrj5"]
+radius = 166.0
+height = 480.0
 
 [sub_resource type="Animation" id="Animation_o1bvj"]
 resource_name = "Walking"
@@ -337,6 +317,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_bn8t0"]
 resource_name = "Jogging"
 loop_mode = 1
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -347,7 +328,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-57, -184), Vector2(-39, -184), Vector2(-21, -184), Vector2(-3, -184), Vector2(15, -184), Vector2(33, -184), Vector2(15, -184), Vector2(-3, -184), Vector2(-21, -184), Vector2(-39, -184)]
+"values": [Vector2(-42, -184), Vector2(-44, -184), Vector2(-14, -184), Vector2(4, -184), Vector2(28, -184), Vector2(50, -184), Vector2(28, -184), Vector2(4, -184), Vector2(-14, -184), Vector2(-44, -184)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -359,11 +340,36 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-0.279253, -0.244346, -0.20944, -0.174533, -0.139626, -0.10472, -0.139626, -0.174533, -0.20944, -0.244346]
+"values": [-0.279253, -0.20944, -0.139626, -0.0698132, 0.0, 0.0698132, 0.0, -0.0698132, -0.139626, -0.20944]
 }
 
 [sub_resource type="Animation" id="Animation_h2oxy"]
 resource_name = "Running"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Hat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-50, -192), Vector2(-35, -192), Vector2(-16, -192), Vector2(0.999999, -192), Vector2(21, -190), Vector2(43, -190), Vector2(23, -190), Vector2(1, -192), Vector2(-16, -192), Vector2(-35, -192)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals/Hat:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.279253, -0.244346, -0.20944, -0.174533, -0.10472, -0.0349066, -0.10472, -0.174533, -0.20944, -0.244346]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y27n7"]
 _data = {
@@ -845,222 +851,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_oin8y"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("134_blvdf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("135_dsq8k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("136_re3jx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("137_isrpf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("138_s6ij1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("139_6n7os")
-}, {
-"duration": 1.0,
-"texture": ExtResource("140_m8wmn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("141_83tdr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("142_w5hsb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("143_0brkf")
-}],
-"loop": true,
-"name": &"Jogging",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("144_c8kf4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("145_qyhus")
-}, {
-"duration": 1.0,
-"texture": ExtResource("146_jxl2s")
-}, {
-"duration": 1.0,
-"texture": ExtResource("147_hh7fm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("148_on03d")
-}, {
-"duration": 1.0,
-"texture": ExtResource("149_4gjt5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("150_hkbno")
-}, {
-"duration": 1.0,
-"texture": ExtResource("151_ncbbc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("152_g6ei2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("153_5axyl")
-}],
-"loop": true,
-"name": &"Running",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("82_66o6b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("83_ftsmg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("84_bo1t0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("85_smqxi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("86_qrumh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("87_0jjg6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("88_y6tkx")
-}, {
-"duration": 1.0,
-"texture": ExtResource("89_2vac2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("90_pom1b")
-}, {
-"duration": 1.0,
-"texture": ExtResource("91_qu83y")
-}],
-"loop": true,
-"name": &"Walking",
-"speed": 10.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_sdu0q"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("164_ijhy2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("165_wxdxp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("166_hmldi")
-}, {
-"duration": 1.0,
-"texture": ExtResource("167_oims1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("168_tatl6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("169_3uo4m")
-}, {
-"duration": 1.0,
-"texture": ExtResource("170_xgm0f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("171_yw5jp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("172_wsa48")
-}, {
-"duration": 1.0,
-"texture": ExtResource("173_okw8j")
-}],
-"loop": true,
-"name": &"Jogging",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("174_tpkpn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("175_a4d7u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("176_u4v43")
-}, {
-"duration": 1.0,
-"texture": ExtResource("177_0kheo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("178_dquvh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("179_ku2p6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("180_gpqft")
-}, {
-"duration": 1.0,
-"texture": ExtResource("181_yj141")
-}, {
-"duration": 1.0,
-"texture": ExtResource("182_332g8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("183_qt7vo")
-}],
-"loop": true,
-"name": &"Running",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("92_s8kjp")
-}, {
-"duration": 1.0,
-"texture": ExtResource("93_dynju")
-}, {
-"duration": 1.0,
-"texture": ExtResource("94_3dcat")
-}, {
-"duration": 1.0,
-"texture": ExtResource("95_cl5fo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("96_gnb0y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("97_dx8xy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("98_vivu7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("99_uffwb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("100_hvjto")
-}, {
-"duration": 1.0,
-"texture": ExtResource("101_wwjbw")
-}],
-"loop": true,
-"name": &"Walking",
-"speed": 10.0
-}]
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_wohdf"]
 animations = [{
 "frames": [{
@@ -1277,35 +1067,38 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_iehqb"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_oin8y"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("253_bn8t0")
+"texture": ExtResource("134_blvdf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("254_h2oxy")
+"texture": ExtResource("135_dsq8k")
 }, {
 "duration": 1.0,
-"texture": ExtResource("255_n1txc")
+"texture": ExtResource("136_re3jx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("256_d1bfo")
+"texture": ExtResource("137_isrpf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("257_6w42v")
+"texture": ExtResource("138_s6ij1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("258_hphnm")
+"texture": ExtResource("139_6n7os")
 }, {
 "duration": 1.0,
-"texture": ExtResource("259_rnwwk")
+"texture": ExtResource("140_m8wmn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("260_4eujk")
+"texture": ExtResource("141_83tdr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("261_tma6q")
+"texture": ExtResource("142_w5hsb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_0brkf")
 }],
 "loop": true,
 "name": &"Jogging",
@@ -1313,31 +1106,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("262_ogpm1")
+"texture": ExtResource("144_c8kf4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("263_ny4cq")
+"texture": ExtResource("145_qyhus")
 }, {
 "duration": 1.0,
-"texture": ExtResource("264_jjx2u")
+"texture": ExtResource("146_jxl2s")
 }, {
 "duration": 1.0,
-"texture": ExtResource("265_lw5eh")
+"texture": ExtResource("147_hh7fm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("266_ddtqv")
+"texture": ExtResource("148_on03d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("267_1culg")
+"texture": ExtResource("149_4gjt5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("268_8mvrc")
+"texture": ExtResource("150_hkbno")
 }, {
 "duration": 1.0,
-"texture": ExtResource("269_o4by6")
+"texture": ExtResource("151_ncbbc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("270_c2b00")
+"texture": ExtResource("152_g6ei2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("153_5axyl")
 }],
 "loop": true,
 "name": &"Running",
@@ -1345,46 +1141,154 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("253_sfcqm")
+"texture": ExtResource("82_66o6b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("254_ol2ix")
+"texture": ExtResource("83_ftsmg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("256_k4e6j")
+"texture": ExtResource("84_bo1t0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("256_k4e6j")
+"texture": ExtResource("85_smqxi")
 }, {
 "duration": 1.0,
-"texture": ExtResource("257_b4ymr")
+"texture": ExtResource("86_qrumh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("258_0cybg")
+"texture": ExtResource("87_0jjg6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("259_d084g")
+"texture": ExtResource("88_y6tkx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("260_kprok")
+"texture": ExtResource("89_2vac2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("261_rr1x8")
+"texture": ExtResource("90_pom1b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("253_sfcqm")
+"texture": ExtResource("91_qu83y")
 }],
 "loop": true,
 "name": &"Walking",
 "speed": 10.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_knrj5"]
-radius = 166.0
-height = 480.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_sdu0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("164_ijhy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_wxdxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_hmldi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_oims1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_tatl6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_3uo4m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_xgm0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_yw5jp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_wsa48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_okw8j")
+}],
+"loop": true,
+"name": &"Jogging",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("174_tpkpn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("175_a4d7u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("176_u4v43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("177_0kheo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("178_dquvh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("179_ku2p6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("180_gpqft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("181_yj141")
+}, {
+"duration": 1.0,
+"texture": ExtResource("182_332g8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_qt7vo")
+}],
+"loop": true,
+"name": &"Running",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("92_s8kjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("93_dynju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("94_3dcat")
+}, {
+"duration": 1.0,
+"texture": ExtResource("95_cl5fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("96_gnb0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("97_dx8xy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("98_vivu7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("99_uffwb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("100_hvjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_wwjbw")
+}],
+"loop": true,
+"name": &"Walking",
+"speed": 10.0
+}]
 
 [node name="Turtle" type="CharacterBody2D"]
 script = ExtResource("1_fhre7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_knrj5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1396,7 +1300,7 @@ libraries = {
 [node name="Turtle_Body" type="AnimatedSprite2D" parent="Visuals"]
 position = Vector2(12, 6)
 sprite_frames = SubResource("SpriteFrames_d1b3m")
-animation = &"Jogging"
+animation = &"Walking"
 
 [node name="rightLeg" type="Marker2D" parent="Visuals"]
 position = Vector2(55, 120)
@@ -1404,7 +1308,7 @@ position = Vector2(55, 120)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/rightLeg"]
 position = Vector2(9, 52)
 sprite_frames = SubResource("SpriteFrames_je5b4")
-animation = &"Jogging"
+animation = &"Walking"
 
 [node name="leftLeg" type="Marker2D" parent="Visuals"]
 position = Vector2(-50, 98)
@@ -1412,7 +1316,7 @@ position = Vector2(-50, 98)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/leftLeg"]
 position = Vector2(-0.999969, 73)
 sprite_frames = SubResource("SpriteFrames_kv71o")
-animation = &"Jogging"
+animation = &"Walking"
 
 [node name="LeftHand" type="Marker2D" parent="Visuals"]
 visible = false
@@ -1431,7 +1335,30 @@ position = Vector2(1, -3)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/belly"]
 position = Vector2(12, 15)
 sprite_frames = SubResource("SpriteFrames_gdt2n")
-animation = &"Jogging"
+animation = &"Walking"
+
+[node name="head" type="Marker2D" parent="Visuals"]
+position = Vector2(6, -146)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/head"]
+sprite_frames = SubResource("SpriteFrames_wohdf")
+animation = &"Walking"
+
+[node name="face" type="Marker2D" parent="Visuals"]
+position = Vector2(0, -136)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/face"]
+sprite_frames = SubResource("SpriteFrames_rskbg")
+animation = &"Walking"
+
+[node name="Hat" type="Marker2D" parent="Visuals"]
+position = Vector2(-4, -44)
+rotation = -0.275762
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals/Hat"]
+visible = false
+position = Vector2(45.8069, -69.0487)
+texture = ExtResource("253_sfcqm")
 
 [node name="leftArm" type="Marker2D" parent="Visuals"]
 position = Vector2(-112, -35)
@@ -1439,7 +1366,7 @@ position = Vector2(-112, -35)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/leftArm"]
 position = Vector2(-26, 67)
 sprite_frames = SubResource("SpriteFrames_oin8y")
-animation = &"Jogging"
+animation = &"Walking"
 
 [node name="rightArm" type="Marker2D" parent="Visuals"]
 position = Vector2(61, -84)
@@ -1447,31 +1374,12 @@ position = Vector2(61, -84)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/rightArm"]
 position = Vector2(96, 110)
 sprite_frames = SubResource("SpriteFrames_sdu0q")
-animation = &"Jogging"
-
-[node name="head" type="Marker2D" parent="Visuals"]
-position = Vector2(6, -146)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/head"]
-sprite_frames = SubResource("SpriteFrames_wohdf")
-animation = &"Jogging"
-
-[node name="face" type="Marker2D" parent="Visuals"]
-position = Vector2(0, -136)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/face"]
-sprite_frames = SubResource("SpriteFrames_rskbg")
-animation = &"Jogging"
-
-[node name="Hat" type="Marker2D" parent="Visuals"]
-position = Vector2(-4, -44)
-rotation = -0.275762
-
-[node name="Headwear" type="AnimatedSprite2D" parent="Visuals/Hat"]
-position = Vector2(48, -73)
-sprite_frames = SubResource("SpriteFrames_iehqb")
 animation = &"Walking"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CapsuleShape2D_knrj5")
+[node name="Shadow" type="Sprite2D" parent="."]
+visibility_layer = 4
+z_index = -50
+y_sort_enabled = true
+position = Vector2(4, 241)
+scale = Vector2(0.341471, 0.321289)
+texture = ExtResource("254_ne40m")

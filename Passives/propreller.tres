@@ -1,10 +1,13 @@
-[gd_resource type="Resource" script_class="Passive" load_steps=2 format=3 uid="uid://drfxvq87jb1sc"]
+[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://dtxoic1n1cp0e"]
 
+[ext_resource type="PackedScene" uid="uid://dnev33l8x4gf" path="res://Passives/propreller.tscn" id="1_kxxwe"]
 [ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_qx16p"]
 
 [resource]
 script = ExtResource("1_qx16p")
-name = ""
+name = "Propreller"
 description = ""
 price = 0
+passive_scene = ExtResource("1_kxxwe")
+cooldown = 5
 metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"
