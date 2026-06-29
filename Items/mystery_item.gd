@@ -18,5 +18,5 @@ func _ready():
 		body_part = "left_arm_item"
 	elif Inventory.turtle_items[id]["rightArm"] == "mystery_item":
 		body_part = "right_arm_item"
-	var chosen = possible_items.pick_random()
+	var chosen = NetworkManager.rng.pick_random(possible_items)
 	chosen.apply(user, target, body_part)

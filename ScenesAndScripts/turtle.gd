@@ -36,18 +36,26 @@ var multiplier
 var finished = false
 var invincible = false
 var id
-var temp_id
 var projectile = 1
 var hit = false
 var finish_time = "N/A"
 var place = "N/A"
 
 var grounded = true
+var moving_rng
+var targeting_rng
+
+
 
 func _ready():
+	moving_rng = RandomNumberGenerator.new()
+	moving_rng.seed = Inventory.seed
+	targeting_rng = RandomNumberGenerator.new()
+	targeting_rng.seed = Inventory.seed
+	
 	speed = SPEED
-	temp_id = Inventory.turtle_items[id]["id"]
-	multiplier = randi_range(2,5)
+	$Label.text = str(id)
+	multiplier = moving_rng.randi_range(2,5)
 	equip()
 	add_to_group(id)
 	add_to_group("players")
@@ -85,20 +93,20 @@ func _physics_process(delta):
 
 func equip():
 	for body_part in Inventory.appendages:
-		if Inventory.turtle_items[id][body_part] != null:
+		if Inventory.server_turtles[id][body_part] != null:
 			#instead of using arm below you will eventually have to use the 
 			#call function similarly how you do it in the item script
 			match body_part:
 				"leftArm":
-					left_arm = ItemPassivePool.arm(Inventory.turtle_items[id][body_part])
+					left_arm = ItemPassivePool.arm(Inventory.server_turtles[id][body_part])
 					left_arm_cooldown = left_arm.cooldown
 					equip_left_item(left_arm)
 				"rightArm":
-					right_arm = ItemPassivePool.arm(Inventory.turtle_items[id][body_part])
+					right_arm = ItemPassivePool.arm(Inventory.server_turtles[id][body_part])
 					right_arm_cooldown = right_arm.cooldown
 					equip_right_item(right_arm)
 				"head":
-					head = ItemPassivePool.head(Inventory.turtle_items[id][body_part])
+					head = ItemPassivePool.head(Inventory.server_turtles[id][body_part])
 					head_cooldown = head.cooldown
 					head_instance = head.passive_scene.instantiate()
 					head_instance.user = self
@@ -108,18 +116,18 @@ func equip():
 					pass
 				"legs":
 					pass	
-			var temp = Inventory.turtle_items[id][body_part]
+			var temp = Inventory.server_turtles[id][body_part]
 
 func cooldowns(delta):
-	if Inventory.turtle_items[id]["leftArm"] != null:
+	if Inventory.server_turtles[id]["leftArm"] != null:
 		if left_arm_cooldown <= 0.0:
 			use_item(left_arm, "left_arm_item")
 			left_arm_cooldown = left_arm.cooldown
-	if Inventory.turtle_items[id]["rightArm"] != null:
+	if Inventory.server_turtles[id]["rightArm"] != null:
 		if right_arm_cooldown <= 0.0:
 			use_item(right_arm, "right_arm_item")
 			right_arm_cooldown = right_arm.cooldown
-	if Inventory.turtle_items[id]["head"] != null:
+	if Inventory.server_turtles[id]["head"] != null:
 		if head_cooldown <= 0.0:
 			if is_instance_valid(head_instance):
 				head_instance.activate_effect()
@@ -130,7 +138,7 @@ func cooldowns(delta):
 
 func use_item(body_part, name):
 	var players = get_tree().get_nodes_in_group("racing")
-	players.shuffle()
+	rand_shuffle(players)
 	var target = null
 	for i in players:
 		if i != self:
@@ -220,6 +228,15 @@ func moving_animations():
 	else:
 		animation_controller("Running")
 		#animation.play("Running")
+
+func rand_shuffle(normal_array):
+	for i in range(normal_array.size() - 1, 0, -1):
+		var rand_number = targeting_rng.randi_range(0, i)
+		var temp = normal_array[i]
+		normal_array[i] = normal_array[rand_number]
+		normal_array[rand_number] = temp
+	if normal_array[0] == self:
+		normal_array.pop_front()
 
 func animation_controller(action):
 	animation.play(action)

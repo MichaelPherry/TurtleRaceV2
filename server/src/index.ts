@@ -3,6 +3,8 @@ import express from "express";
 import { Server } from "colyseus";
 import { WebSocketTransport } from "@colyseus/ws-transport";
 import { MatchmakingRoom } from "./rooms/MatchmakingRoom.js";
+import { RaceLobby } from "./rooms/RaceLobby.js"
+import { RaceMatch } from "./rooms/RaceMatch.js"
 
 const port = 2567;
 const app = express();
@@ -14,7 +16,8 @@ const gameServer = new Server({
 });
 
 console.log("REGISTERING ROOM");
-gameServer.define("matchmaking", MatchmakingRoom);
+gameServer.define("raceLobby", RaceLobby);
+gameServer.define("raceMatch", RaceMatch);
 console.log("AAAAAAA");
 gameServer.listen(port);
 

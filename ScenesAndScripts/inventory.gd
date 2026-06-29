@@ -1,51 +1,36 @@
 extends Node
 
-var turtle_keys = ["2", "3", "4"]
+#Format grabbed from server
+#	"id" : {
+#		"leftArm" : null,
+#		"rightArm" : null,
+#		"head" : null,
+#		"shell" : null,
+#		"legs" : null,
+#		"slot" : integer
+#	
+#	}
+var rng: RandomNumberGenerator
+
 var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
 
-var turtle_items = {
-	
-	"2" : {
-		"leftArm" : null,
-		"rightArm" : null,
-		"head" : null,
-		"shell" : null,
-		"legs" : null,
-		"id" : null
-	},
-	
-	"3" : {
-		"leftArm" : null,
-		"rightArm" : null,
-		"head" : null,
-		"shell" : null,
-		"legs" : null,
-		"id" : null
-	},
-	
-	"4" : {
-		"leftArm" : null,
-		"rightArm" : null,
-		"head" : null,
-		"shell" : null,
-		"legs" : null,
-		"id" : null
-	}
-}
+var id_list
+var seed
+var local_turtle = {}
+var server_turtles = {}
 
 
 func reset_turtles():
-	for id in turtle_keys:
-		for body_part in appendages:
-			turtle_items[id][body_part] = null
-			
-func set_turtles(server_turtles):
 	var server_keys = server_turtles.keys()
-	var counter = 0
-	for id in turtle_keys:
-		if server_keys[counter] == NetworkManager.sessionID:
-			counter += 1
+	for id in server_keys:
 		for body_part in appendages:
-			turtle_items[id][body_part] = server_turtles[server_keys[counter]][body_part]
-		turtle_items[id]["id"] = server_keys[counter]
-		counter += 1
+			server_turtles[id][body_part] = null
+		server_turtles[id]["slot"] = null
+		
+func set_turtles(turtles):
+	var server_keys = turtles.keys()
+	for id in server_keys:
+		for body_part in appendages:	
+			server_turtles.get_or_add(id, {})[body_part] = turtles[id]["build"][body_part]
+		server_turtles[id]["slot"] = turtles[id]["slot"]
+	print(server_turtles)

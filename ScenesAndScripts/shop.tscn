@@ -1,7 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://croetv5l82fpm"]
+[gd_scene load_steps=10 format=3 uid="uid://croetv5l82fpm"]
 
 [ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
-[ext_resource type="Texture2D" uid="uid://cl41mpli8q747" path="res://Art/TempArt/dumpster.webp" id="2_gyq1v"]
+[ext_resource type="Texture2D" uid="uid://1xjrtcy4hkub" path="res://Art/ShaneArt/Shop0000.png" id="2_u13sh"]
+[ext_resource type="Texture2D" uid="uid://d1n7mcfv41up3" path="res://Art/ShaneArt/Shop0001.png" id="3_4u8c6"]
+[ext_resource type="Texture2D" uid="uid://ssx7l0ws3i5p" path="res://Art/ShaneArt/Shop0002.png" id="4_tawjt"]
+[ext_resource type="Texture2D" uid="uid://c2sl3urpe8hm5" path="res://Art/ShaneArt/Shop0003.png" id="5_fnmc7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r850d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_u13sh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4u8c6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tawjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fnmc7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u13sh"]
 size = Vector2(63, 47)
@@ -15,11 +38,13 @@ size = Vector2(41, 56)
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_u13sh")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="RaccoonBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(576, 321.5)
-scale = Vector2(2.65278, 2.40226)
-texture = ExtResource("2_gyq1v")
+scale = Vector2(0.653, 0.591)
+sprite_frames = SubResource("SpriteFrames_r850d")
+frame = 3
+frame_progress = 0.0971101
 
 [node name="One" type="Marker2D" parent="."]
 visible = false
@@ -61,10 +86,10 @@ position = Vector2(-1.5, -12)
 shape = SubResource("RectangleShape2D_heiyn")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 892.0
-offset_top = 544.0
-offset_right = 1141.0
-offset_bottom = 633.0
+offset_left = 586.0
+offset_top = 480.0
+offset_right = 835.0
+offset_bottom = 569.0
 text = "Ready
 "
 

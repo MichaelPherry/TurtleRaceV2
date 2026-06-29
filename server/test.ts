@@ -1,4 +1,4 @@
-import { Client } from "@colyseus/sdk";
+import { Client } from "colyseus.js";
 
 const client = new Client("ws://localhost:2567");
 

@@ -1,13 +1,12 @@
 extends Node2D
 
-@onready var one = $One
-@onready var two = $Two
-@onready var three = $Three
-
+@onready var background = $RaccoonBackground
 var body_part = "leftArm"
-func _ready():
-	pass
 
+func _ready():
+	background.play("default")
+	await get_tree().create_timer(1.0).timeout
+	NetworkManager.send_message("enter_shop", "enter_shop")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -15,18 +14,17 @@ func _process(delta):
 
 
 func _on_button_button_down():
-	NetworkManager.send_message()
+	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
 	
-	get_tree().change_scene_to_file("res://ScenesAndScripts/main.tscn")
-
+	
 func _on_fissile():
-	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "fissile"
+	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "fissile"
 
 func _on_eel():
-	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "propreller"
+	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "propreller"
 
 func _on_mystery(): 
-	Inventory.turtle_items[NetworkManager.sessionID][body_part] = "bear_trap"
+	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "bear_trap"
 
 func _on_left_arm():
 	body_part = "leftArm"
