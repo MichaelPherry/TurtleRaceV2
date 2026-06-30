@@ -6,7 +6,7 @@ import { MatchmakingRoom } from "./rooms/MatchmakingRoom.js";
 import { RaceLobby } from "./rooms/RaceLobby.js"
 import { RaceMatch } from "./rooms/RaceMatch.js"
 
-const port = 2567;
+const port = Number(process.env.PORT) || 2567;
 const app = express();
 const server = http.createServer(app);
 const gameServer = new Server({
