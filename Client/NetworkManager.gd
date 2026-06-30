@@ -6,7 +6,7 @@ var callbacks: Colyseus.Callbacks
 var sessionID
 
 func _ready():
-	client = Colyseus.Client.new("ws://localhost:2567")
+	client = Colyseus.Client.new("ws://192.168.1.151:2567")
 	connect_to_matchmaking()
 
 func connect_to_matchmaking():

@@ -46,7 +46,6 @@ export class RaceMatch extends Room {
 
                 const startTime = Date.now() + 3000;
                 this.broadcast("race_start", {startTime: startTime});
-                //this.startRace();
             }
         });
 
