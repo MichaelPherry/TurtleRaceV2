@@ -13,8 +13,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@colyseus/ws-transport": "^0.17.13",
-    "colyseus": "^0.17.13",
+    "@colyseus/ws-transport": "^0.17.10",
+    "colyseus": "^0.17.10",
     "express": "^5.2.1",
     "ws": "^8.20.0"
   },
