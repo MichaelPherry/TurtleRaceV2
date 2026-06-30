@@ -10,15 +10,13 @@ extends Node
 #		"slot" : integer
 #	
 #	}
-var rng: RandomNumberGenerator
-
 var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
 
 var id_list
 var seed
 var local_turtle = {}
 var server_turtles = {}
-
+var start_time
 
 func reset_turtles():
 	var server_keys = server_turtles.keys()

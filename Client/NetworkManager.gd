@@ -56,5 +56,7 @@ func _on_message_received(type, message):
 		#Inventory.rng.seed = message
 	elif type == "id_list":
 		Inventory.id_list = message
+	elif type == "race_start":
+		Inventory.start_time = message
 	#Inventory.reset_turtles()
 	#Inventory.set_turtles(message)

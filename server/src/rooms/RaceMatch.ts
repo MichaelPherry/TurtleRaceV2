@@ -43,6 +43,9 @@ export class RaceMatch extends Room {
             {
                 console.log("wooo")
                 this.broadcast("send_turtles", this.players)
+
+                const startTime = Date.now() + 3000;
+                this.broadcast("race_start", {startTime: startTime});
                 //this.startRace();
             }
         });

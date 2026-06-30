@@ -10,16 +10,13 @@ var speed = 2500
 var close_enough = 100
 var ground_trap = true
 var active = false
-var rng
 
 func _ready():
-	rng = RandomNumberGenerator.new()
-	rng.seed = Inventory.seed
 	max = 7500
 	if (target.global_position.y + min) > max:
 		final_position = Vector2(target.global_position.x, max)
 	else:
-		final_position = Vector2(target.global_position.x, rng.randi_range(target.global_position.y + min, max))
+		final_position = Vector2(target.global_position.x, user.rng.randi_range(target.global_position.y + min, max))
 
 func _process(delta):
 	if self.position.distance_to(final_position) < close_enough:

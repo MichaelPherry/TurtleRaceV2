@@ -31,7 +31,6 @@ const SPEED = 100
 var speed
 var height = 0
 var max_height = -500
-#100
 var multiplier
 var finished = false
 var invincible = false
@@ -40,22 +39,16 @@ var projectile = 1
 var hit = false
 var finish_time = "N/A"
 var place = "N/A"
-
 var grounded = true
-var moving_rng
-var targeting_rng
-
-
+var rng
+var seed
 
 func _ready():
-	moving_rng = RandomNumberGenerator.new()
-	moving_rng.seed = Inventory.seed
-	targeting_rng = RandomNumberGenerator.new()
-	targeting_rng.seed = Inventory.seed
-	
+	rng = RandomNumberGenerator.new()
+	rng.seed = seed
 	speed = SPEED
 	$Label.text = str(id)
-	multiplier = moving_rng.randi_range(2,5)
+	multiplier = rng.randi_range(2,5)
 	equip()
 	add_to_group(id)
 	add_to_group("players")
@@ -72,10 +65,10 @@ func _process(delta):
 	face_anim.frame = current_frame
 	belly_anim.frame = current_frame
 
-func _physics_process(delta):
+func tick(current_tick, tick_rate):
 	if hit == true:
 		return
-		
+	
 	if grounded:
 		height = 0
 	else:
@@ -86,9 +79,17 @@ func _physics_process(delta):
 	if finished == true:
 		velocity.y = 0
 		return
-
+		
 	velocity.y = speed * multiplier
-	cooldowns(delta)
+	cooldowns(tick_rate)
+	
+func _physics_process(delta):
+	if hit == true:
+		return
+	
+	if finished == true:
+		velocity.y = 0
+		return
 	move_and_slide()
 
 func equip():
@@ -118,7 +119,7 @@ func equip():
 					pass	
 			var temp = Inventory.server_turtles[id][body_part]
 
-func cooldowns(delta):
+func cooldowns(cooldown_rate):
 	if Inventory.server_turtles[id]["leftArm"] != null:
 		if left_arm_cooldown <= 0.0:
 			use_item(left_arm, "left_arm_item")
@@ -132,9 +133,9 @@ func cooldowns(delta):
 			if is_instance_valid(head_instance):
 				head_instance.activate_effect()
 				head_cooldown = head.cooldown
-	left_arm_cooldown -= delta
-	right_arm_cooldown -= delta
-	head_cooldown -= delta
+	left_arm_cooldown -= cooldown_rate
+	right_arm_cooldown -= cooldown_rate
+	head_cooldown -= cooldown_rate
 
 func use_item(body_part, name):
 	var players = get_tree().get_nodes_in_group("racing")
@@ -231,7 +232,7 @@ func moving_animations():
 
 func rand_shuffle(normal_array):
 	for i in range(normal_array.size() - 1, 0, -1):
-		var rand_number = targeting_rng.randi_range(0, i)
+		var rand_number = rng.randi_range(0, i)
 		var temp = normal_array[i]
 		normal_array[i] = normal_array[rand_number]
 		normal_array[rand_number] = temp
