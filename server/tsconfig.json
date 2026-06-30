@@ -39,6 +39,7 @@
     // Recommended Options
     "esModuleInterop": true,
     "strict": true,
+    "skipLibCheck": true
     //"jsx": "react-jsx",
     //"verbatimModuleSyntax": true,
     //"isolatedModules": true,
