@@ -2,7 +2,6 @@ import http from "http";
 import express from "express";
 import { Server } from "colyseus";
 import { WebSocketTransport } from "@colyseus/ws-transport";
-import { MatchmakingRoom } from "./rooms/MatchmakingRoom.js";
 import { RaceLobby } from "./rooms/RaceLobby.js"
 import { RaceMatch } from "./rooms/RaceMatch.js"
 
