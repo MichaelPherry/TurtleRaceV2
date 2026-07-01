@@ -16,7 +16,7 @@
     "@colyseus/ws-transport": "^0.17.10",
     "colyseus": "^0.17.10",
     "express": "^5.2.1",
-    "ws": "^8.20.0"
+    "ws": "^8.21.0"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
