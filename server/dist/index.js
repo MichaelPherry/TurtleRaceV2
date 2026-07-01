@@ -15,7 +15,9 @@ const server = http_1.default.createServer(app);
 const gameServer = new colyseus_1.Server({
     transport: new ws_transport_1.WebSocketTransport({
         server: server
-    })
+    }),
+    presence: undefined,
+    driver: undefined
 });
 console.log("REGISTERING ROOM");
 gameServer.define("raceLobby", RaceLobby_js_1.RaceLobby);

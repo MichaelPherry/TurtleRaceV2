@@ -11,7 +11,9 @@ const server = http.createServer(app);
 const gameServer = new Server({
     transport: new WebSocketTransport({
         server: server
-    })
+    }),
+    presence: undefined,
+    driver: undefined
 });
 
 console.log("REGISTERING ROOM");

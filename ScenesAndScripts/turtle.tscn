@@ -1294,6 +1294,7 @@ shape = SubResource("CapsuleShape2D_knrj5")
 libraries = {
 &"": SubResource("AnimationLibrary_y27n7")
 }
+autoplay = "Running"
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -1356,7 +1357,6 @@ position = Vector2(-4, -44)
 rotation = -0.275762
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals/Hat"]
-visible = false
 position = Vector2(45.8069, -69.0487)
 texture = ExtResource("253_sfcqm")
 
