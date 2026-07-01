@@ -1,6 +1,9 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "engines": {
+    "node": "20.x"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@colyseus/schema": "^4.0.27",
     "@colyseus/ws-transport": "^0.17.10",
     "colyseus": "^0.17.10",
     "express": "^5.2.1",
