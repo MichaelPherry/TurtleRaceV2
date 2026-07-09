@@ -1353,6 +1353,7 @@ sprite_frames = SubResource("SpriteFrames_rskbg")
 animation = &"Walking"
 
 [node name="Hat" type="Marker2D" parent="Visuals"]
+visible = false
 position = Vector2(-4, -44)
 rotation = -0.275762
 

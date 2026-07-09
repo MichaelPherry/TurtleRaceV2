@@ -1,21 +1,12 @@
 extends Node2D
 
-@onready var turtle_scene = preload("res://ScenesAndScripts/turtle.tscn")
 @onready var results = $Results/Panel/Timelist
 
 var finished_turts = []
-var start_pos = [Vector2(2700,820),Vector2(4050,820),Vector2(5380,820),Vector2(6750,820)]
 var time_elapsed = 0.0
-var tick_rate = 0.50
-var accumulator = 0.0
-var server_start = 0
-var tick = 0
-var current_tick = 0
-var players = []
 
 func _ready():
 	NetworkManager.send_message("Unready", NetworkManager.sessionID)
-	spawn_players()
 	var finished = get_tree().get_nodes_in_group("finished")
 	for turt in finished:
 		turt.remove_from_group("finished")
@@ -24,32 +15,6 @@ func _ready():
 
 func _process(delta):
 	time_elapsed += delta
-	accumulator += delta
-	while accumulator >= tick_rate:
-		run_tick()
-		accumulator -= tick_rate
-	
-func spawn_players():
-	var counter = 0
-	for id in Inventory.id_list:
-		var player = turtle_scene.instantiate()
-		player.id = id
-		var temp = id
-		
-		player.global_position = start_pos[Inventory.server_turtles[id]["slot"] - 1]
-		player.seed = Inventory.seed
-		add_child(player)
-		counter += 1
-	players = get_tree().get_nodes_in_group("players")
-	players.sort_custom(func(a,b):
-		return a.id < b.id
-	)
-
-	
-func run_tick():
-	current_tick += 1
-	for turt in players:
-		turt.tick(current_tick, tick_rate)
 
 func _on_finish_line_body_exited(body):
 	if body.is_in_group("racing"):

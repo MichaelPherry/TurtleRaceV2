@@ -17,6 +17,7 @@ var seed
 var local_turtle = {}
 var server_turtles = {}
 var start_time
+var projectiles = []
 
 func reset_turtles():
 	var server_keys = server_turtles.keys()
@@ -31,4 +32,4 @@ func set_turtles(turtles):
 		for body_part in appendages:	
 			server_turtles.get_or_add(id, {})[body_part] = turtles[id]["build"][body_part]
 		server_turtles[id]["slot"] = turtles[id]["slot"]
-	print(server_turtles)
+	#print(server_turtles)

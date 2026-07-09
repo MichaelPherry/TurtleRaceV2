@@ -27,6 +27,12 @@ var shell_cooldown = 0
 var legs
 var legs_cooldown = 0
 
+var left_ready = false
+var right_ready = false
+var head_ready = false
+var shell_ready = false
+var legs_ready = false
+
 const SPEED = 100
 var speed
 var height = 0
@@ -42,11 +48,16 @@ var place = "N/A"
 var grounded = true
 var rng
 var seed
+var sim_position
+
+var curr_tick
+var tick_rat
 
 func _ready():
 	rng = RandomNumberGenerator.new()
 	rng.seed = seed
 	speed = SPEED
+	sim_position = global_position
 	$Label.text = str(id)
 	multiplier = rng.randi_range(2,5)
 	equip()
@@ -64,8 +75,10 @@ func _process(delta):
 	head_anim.frame = current_frame
 	face_anim.frame = current_frame
 	belly_anim.frame = current_frame
+	global_position = global_position.lerp(sim_position, 0.25)
 
 func tick(current_tick, tick_rate):
+	
 	if hit == true:
 		return
 	
@@ -73,6 +86,10 @@ func tick(current_tick, tick_rate):
 		height = 0
 	else:
 		height = max_height
+	
+	curr_tick = current_tick
+	tick_rat = tick_rate
+	
 	visuals.position.y = height
 	collision.position.y = height
 	
@@ -80,17 +97,12 @@ func tick(current_tick, tick_rate):
 		velocity.y = 0
 		return
 		
-	velocity.y = speed * multiplier
+	sim_position.y += speed * multiplier * tick_rate
 	cooldowns(tick_rate)
 	
 func _physics_process(delta):
-	if hit == true:
-		return
-	
-	if finished == true:
-		velocity.y = 0
-		return
-	move_and_slide()
+	pass
+	#move_and_slide()
 
 func equip():
 	for body_part in Inventory.appendages:
@@ -139,6 +151,9 @@ func cooldowns(cooldown_rate):
 
 func use_item(body_part, name):
 	var players = get_tree().get_nodes_in_group("racing")
+	players.sort_custom(func(a,b):
+		return a.id < b.id
+	)
 	rand_shuffle(players)
 	var target = null
 	for i in players:
@@ -158,6 +173,8 @@ func left_arm_item(user, target, scene):
 	instance.user = user
 	instance.global_position = user.global_position
 	speed = 0
+	if instance.ground_trap == true:
+		instance.final_position = target_final_position(instance.target)
 	if user.global_position.x > target.global_position.x:
 		#user.sprite.flip_h = true
 		await get_tree().create_timer(0.5).timeout
@@ -174,6 +191,8 @@ func right_arm_item(user, target, scene):
 	instance.user = user
 	instance.global_position = user.global_position
 	speed = 0
+	if instance.ground_trap == true:
+		instance.final_position = target_final_position(instance.target)
 	if user.global_position.x > target.global_position.x:
 		#user.sprite.flip_h = true
 		await get_tree().create_timer(0.5).timeout
@@ -199,8 +218,8 @@ func equip_hat(hat):
 func invin_frames():
 	invincible = true
 	hit = true
-	var sped = velocity.y
-	velocity.y = -50
+	var sped = sim_position.y
+	sim_position.y -= 50
 	var sprite = $Visuals
 	sprite.modulate = Color(1, 1, 1, 0.2)
 	await get_tree().create_timer(0.1).timeout
@@ -213,7 +232,7 @@ func invin_frames():
 	sprite.modulate = Color(1, 1, 1, 0.2)
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1) 
-	velocity.y = sped
+	sim_position.y = sped
 	moving_animations()
 	invincible = false
 	hit = false
@@ -239,6 +258,16 @@ func rand_shuffle(normal_array):
 	if normal_array[0] == self:
 		normal_array.pop_front()
 
+func target_final_position(target):
+	var max = 7500
+	var min = 1000
+	var final_position
+	if (target.sim_position.y + min) > max:
+		final_position = Vector2(target.sim_position.x, max)
+	else:
+		final_position = Vector2(target.sim_position.x, rng.randi_range(target.sim_position.y + min, max))
+	return final_position
+	
 func animation_controller(action):
 	animation.play(action)
 	shell_anim.play(action)

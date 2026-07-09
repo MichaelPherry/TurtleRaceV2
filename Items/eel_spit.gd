@@ -38,22 +38,22 @@ func _physics_process(delta):
 			homing = true
 	else:
 		#homing_arch(delta)
-		initial_arch(delta)
+		initial_arch(user.tick_rat)
 	#vertical_velocity += gravit * delta
 	#height -= vertical_velocity * delta
 	#homing_arch(delta)
 
 func initial_arch(delta):
-	velocity.y += gravit * delta
-	position += velocity * delta
+	velocity.y += gravit * user.tick_rat
+	position += velocity * user.tick_rat
 	
 func homing_arch(delta):
 	var direction = (target.global_position - global_position).normalized()
-	velocity = velocity.lerp(direction * homing_speed, 500 * delta)
+	velocity = velocity.lerp(direction * homing_speed, 500 * user.tick_rat)
 	var to_target = (target.global_position - global_position).normalized()
 	var target_angle = to_target.angle()
-	rotation = lerp_angle(rotation, target_angle, turn_speed * delta)
-	position += transform.x * speed * delta *  user.projectile
+	rotation = lerp_angle(rotation, target_angle, turn_speed * user.tick_rat)
+	position += transform.x * speed * user.tick_rat *  user.projectile
 	
 func _on_body_entered(body):
 	if body == target:

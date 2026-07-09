@@ -45,8 +45,8 @@ func send_message(code_text, message):
 	room.send_message(code_text, message)
 
 func _on_message_received(type, message):
-	print(type)
-	print("message received")
+	#print(type)
+	#print("message received")
 	
 	if type == "send_turtles":
 		Inventory.set_turtles(message)
