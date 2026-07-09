@@ -17,7 +17,7 @@ func _ready():
 	sim_position = global_position
 	sim_rotation = rotation
 	print("Tick: ", user.curr_tick)
-	print("Target Y: ", target.sim_position.y)
+	print("Target Y: ", final_position.y)
 	print("RNG state before: ", user.rng.state)
 	print("RNG state after: ", user.rng.state)
 	print("")

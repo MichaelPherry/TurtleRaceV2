@@ -40,9 +40,30 @@ func _process(delta):
 		
 func run_tick():
 	current_tick += 1
+	#player movement
 	for turt in players:
 		turt.tick(current_tick, tick_rate)
 		
+	#cooldowns
+	for turt in players:
+		cooldowns(turt)	
+		
+	#spawn projectiles and activate passives
+	for turt in players:
+		if turt.left_ready:
+			if turt.finished == false:
+				use_item(turt, turt.left_arm, "left_arm_item")
+				turt.left_ready = false
+		if turt.right_ready:
+			if turt.finished == false:
+				use_item(turt, turt.right_arm, "right_arm_item")
+				turt.right_ready = false
+		if turt.head_ready:
+			if turt.finished == false:
+				turt.head_instance.activate_effect()
+				turt.head_ready = false
+	
+	#projectile movement
 	for projectile in Inventory.projectiles:
 		projectile.tick()
 	#if current_tick % 5 == 0:
@@ -51,3 +72,52 @@ func run_tick():
 		#for player in players:
 			#if projectile.sim_position.distance_to(player.sim_position) < hit_radius:
 				#projectile.hit(player)
+
+func cooldowns(player):
+	if Inventory.server_turtles[player.id]["leftArm"] != null:
+		if player.left_arm_cooldown <= 0.0:
+			player.left_ready = true
+			#use_item(left_arm, "left_arm_item")
+			player.left_arm_cooldown = player.left_arm.cooldown
+	if Inventory.server_turtles[player.id]["rightArm"] != null:
+		if player.right_arm_cooldown <= 0.0:
+			player.right_ready = true
+			#use_item(right_arm, "right_arm_item")
+			player.right_arm_cooldown = player.right_arm.cooldown
+	if Inventory.server_turtles[player.id]["head"] != null:
+		if player.head_cooldown <= 0.0:
+			if is_instance_valid(player.head_instance):
+				player.head_ready = true
+				#head_instance.activate_effect()
+				player.head_cooldown = player.head.cooldown
+	player.left_arm_cooldown -= tick_rate
+	player.right_arm_cooldown -= tick_rate
+	player.head_cooldown -= tick_rate
+	
+func use_item(player, body_part, name):
+	var players = get_tree().get_nodes_in_group("racing")
+	players.sort_custom(func(a,b):
+		return a.id < b.id
+	)
+	rand_shuffle(player, players)
+	var target = null
+	for i in players:
+		if i != player:
+			target = i
+			break
+	if target == null:
+		return
+	body_part.apply(player, target, name)
+
+func rand_shuffle(player, normal_array):
+	for i in range(normal_array.size() - 1, 0, -1):
+		Inventory.rng_calls += 1
+		print(current_tick, " target shuffle ", Inventory.rng_calls)
+		var rand_number = player.rng.randi_range(0, i)
+		var temp = normal_array[i]
+		normal_array[i] = normal_array[rand_number]
+		normal_array[rand_number] = temp
+	if normal_array.size() <= 1:
+		return []
+	if normal_array[0] == player:
+		normal_array.pop_front()

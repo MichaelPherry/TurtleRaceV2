@@ -59,6 +59,8 @@ func _ready():
 	speed = SPEED
 	sim_position = global_position
 	$Label.text = str(id)
+	Inventory.rng_calls += 1
+	print(Inventory.rng_calls, " mult")
 	multiplier = rng.randi_range(2,5)
 	equip()
 	add_to_group(id)
@@ -96,13 +98,8 @@ func tick(current_tick, tick_rate):
 	if finished == true:
 		velocity.y = 0
 		return
-		
+	print(current_tick, id, speed, multiplier, sim_position.y)
 	sim_position.y += speed * multiplier * tick_rate
-	cooldowns(tick_rate)
-	
-func _physics_process(delta):
-	pass
-	#move_and_slide()
 
 func equip():
 	for body_part in Inventory.appendages:
@@ -130,42 +127,6 @@ func equip():
 				"legs":
 					pass	
 			var temp = Inventory.server_turtles[id][body_part]
-
-func cooldowns(cooldown_rate):
-	if Inventory.server_turtles[id]["leftArm"] != null:
-		if left_arm_cooldown <= 0.0:
-			use_item(left_arm, "left_arm_item")
-			left_arm_cooldown = left_arm.cooldown
-	if Inventory.server_turtles[id]["rightArm"] != null:
-		if right_arm_cooldown <= 0.0:
-			use_item(right_arm, "right_arm_item")
-			right_arm_cooldown = right_arm.cooldown
-	if Inventory.server_turtles[id]["head"] != null:
-		if head_cooldown <= 0.0:
-			if is_instance_valid(head_instance):
-				head_instance.activate_effect()
-				head_cooldown = head.cooldown
-	left_arm_cooldown -= cooldown_rate
-	right_arm_cooldown -= cooldown_rate
-	head_cooldown -= cooldown_rate
-
-func use_item(body_part, name):
-	var players = get_tree().get_nodes_in_group("racing")
-	players.sort_custom(func(a,b):
-		return a.id < b.id
-	)
-	rand_shuffle(players)
-	var target = null
-	for i in players:
-		if i != self:
-			target = i
-			break
-	if target == null:
-		return
-	body_part.apply(self, target, name)
-	
-func use_passive(body_part, name):
-	body_part.apply(self, name)
 
 func left_arm_item(user, target, scene):
 	var instance = scene.instantiate()
@@ -249,15 +210,6 @@ func moving_animations():
 		animation_controller("Running")
 		#animation.play("Running")
 
-func rand_shuffle(normal_array):
-	for i in range(normal_array.size() - 1, 0, -1):
-		var rand_number = rng.randi_range(0, i)
-		var temp = normal_array[i]
-		normal_array[i] = normal_array[rand_number]
-		normal_array[rand_number] = temp
-	if normal_array[0] == self:
-		normal_array.pop_front()
-
 func target_final_position(target):
 	var max = 7500
 	var min = 1000
@@ -265,7 +217,9 @@ func target_final_position(target):
 	if (target.sim_position.y + min) > max:
 		final_position = Vector2(target.sim_position.x, max)
 	else:
+		Inventory.rng_calls += 1
 		final_position = Vector2(target.sim_position.x, rng.randi_range(target.sim_position.y + min, max))
+		print(curr_tick, " final pos ", Inventory.rng_calls)
 	return final_position
 	
 func animation_controller(action):

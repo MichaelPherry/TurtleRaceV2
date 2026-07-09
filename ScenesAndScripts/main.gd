@@ -6,6 +6,7 @@ var finished_turts = []
 var time_elapsed = 0.0
 
 func _ready():
+	Inventory.rng_calls = 0
 	NetworkManager.send_message("Unready", NetworkManager.sessionID)
 	var finished = get_tree().get_nodes_in_group("finished")
 	for turt in finished:
