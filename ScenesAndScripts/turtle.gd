@@ -50,7 +50,7 @@ var rng
 var seed
 var sim_position
 
-var curr_tick
+var curr_tick = -1
 var tick_rat
 
 func _ready():
@@ -60,7 +60,6 @@ func _ready():
 	sim_position = global_position
 	$Label.text = str(id)
 	Inventory.rng_calls += 1
-	print(Inventory.rng_calls, " mult")
 	multiplier = rng.randi_range(2,5)
 	equip()
 	add_to_group(id)
@@ -80,7 +79,9 @@ func _process(delta):
 	global_position = global_position.lerp(sim_position, 0.25)
 
 func tick(current_tick, tick_rate):
-	
+	if Inventory.race_started == false:
+		return
+			
 	if hit == true:
 		return
 	
@@ -88,9 +89,8 @@ func tick(current_tick, tick_rate):
 		height = 0
 	else:
 		height = max_height
-	
-	curr_tick = current_tick
-	tick_rat = tick_rate
+	#if curr_tick != current_tick:
+		#print(current_tick, " ", id, " ", sim_position.y)
 	
 	visuals.position.y = height
 	collision.position.y = height
@@ -98,8 +98,9 @@ func tick(current_tick, tick_rate):
 	if finished == true:
 		velocity.y = 0
 		return
-	print(current_tick, id, speed, multiplier, sim_position.y)
 	sim_position.y += speed * multiplier * tick_rate
+	curr_tick = current_tick
+	tick_rat = tick_rate
 
 func equip():
 	for body_part in Inventory.appendages:
@@ -136,15 +137,15 @@ func left_arm_item(user, target, scene):
 	speed = 0
 	if instance.ground_trap == true:
 		instance.final_position = target_final_position(instance.target)
-	if user.global_position.x > target.global_position.x:
-		#user.sprite.flip_h = true
-		await get_tree().create_timer(0.5).timeout
-		#user.sprite.flip_h = false
-	else:
-		await get_tree().create_timer(0.5).timeout
+	#if user.sim_position.x > target.sim_position.x:
+		##user.sprite.flip_h = true
+		#await get_tree().create_timer(0.5).timeout
+		##user.sprite.flip_h = false
+	#else:
+		#await get_tree().create_timer(0.5).timeout
 	speed = SPEED
-	moving_animations()
-	get_tree().root.add_child(instance)
+	#moving_animations()
+	get_tree().current_scene.add_child(instance)
 	
 func right_arm_item(user, target, scene):
 	var instance = scene.instantiate()
@@ -154,15 +155,15 @@ func right_arm_item(user, target, scene):
 	speed = 0
 	if instance.ground_trap == true:
 		instance.final_position = target_final_position(instance.target)
-	if user.global_position.x > target.global_position.x:
-		#user.sprite.flip_h = true
-		await get_tree().create_timer(0.5).timeout
-		#user.sprite.flip_h = false
-	else:
-		await get_tree().create_timer(0.5).timeout
+	#if user.sim_position.x > target.sim_position.x:
+		##user.sprite.flip_h = true
+		#await get_tree().create_timer(0.5).timeout
+		##user.sprite.flip_h = false
+	#else:
+		#await get_tree().create_timer(0.5).timeout
 	speed = SPEED
-	moving_animations()
-	get_tree().root.add_child(instance)
+	#moving_animations()
+	get_tree().current_scene.add_child(instance)
 	
 func equip_left_item(item):
 	left_hand_sprite.texture = item.icon
@@ -218,8 +219,11 @@ func target_final_position(target):
 		final_position = Vector2(target.sim_position.x, max)
 	else:
 		Inventory.rng_calls += 1
-		final_position = Vector2(target.sim_position.x, rng.randi_range(target.sim_position.y + min, max))
-		print(curr_tick, " final pos ", Inventory.rng_calls)
+		var simpx = target.sim_position.x
+		var targy = target.sim_position.y + min
+		var randy_targ = rng.randi_range(targy, max)
+		final_position = Vector2(simpx, randy_targ)
+		#print(final_position.y, " final ", curr_tick, " ", rng.state, " targs ", targy, " randy targ ", randy_targ)
 	return final_position
 	
 func animation_controller(action):

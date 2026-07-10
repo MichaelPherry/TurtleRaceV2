@@ -41,10 +41,16 @@ func tick():
 
 
 func _on_body_entered(body):
+	return
 	if body == target:
 		queue_free()
 		Inventory.projectiles.erase(self)
 		if body.invincible == false:
-			pass
-			#body.take_damage(damage)
+			body.invin_frames()
+
+func hit(body):
+	if body == target:
+		queue_free()
+		Inventory.projectiles.erase(self)
+		if body.invincible == false:
 			body.invin_frames()

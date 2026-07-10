@@ -4,7 +4,9 @@ var client: Colyseus.Client
 var room: Colyseus.Room
 var callbacks: Colyseus.Callbacks
 var sessionID
- 
+var current_scene = null
+var race_scene = preload("res://ScenesAndScripts/main.tscn") 
+
 func _ready():
 	client = Colyseus.Client.new("wss://turtleracev2.onrender.com")
 	connect_to_matchmaking()
@@ -50,13 +52,14 @@ func _on_message_received(type, message):
 	
 	if type == "send_turtles":
 		Inventory.set_turtles(message)
-		get_tree().change_scene_to_file("res://ScenesAndScripts/main.tscn")
+		get_tree().change_scene_to_packed(race_scene)
 	elif type == "seed":
 		Inventory.seed = message
 		#Inventory.rng.seed = message
 	elif type == "id_list":
 		Inventory.id_list = message
 	elif type == "race_start":
-		Inventory.start_time = message
+		print(message["startTime"])
+		Inventory.start_time = message["startTime"] 
 	#Inventory.reset_turtles()
 	#Inventory.set_turtles(message)

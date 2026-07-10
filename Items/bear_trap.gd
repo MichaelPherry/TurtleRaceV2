@@ -16,19 +16,17 @@ func _ready():
 	Inventory.projectiles.append(self)
 	sim_position = global_position
 	sim_rotation = rotation
-	print("Tick: ", user.curr_tick)
-	print("Target Y: ", final_position.y)
-	print("RNG state before: ", user.rng.state)
-	print("RNG state after: ", user.rng.state)
-	print("")
+	#print("Tick: ", user.curr_tick)
+	#print("Target Y: ", final_position.y)
+	#print("RNG state before: ", user.rng.state)
+	#print("RNG state after: ", user.rng.state)
+	#print("")
 	
 func _process(delta):
 	if sim_position.distance_to(final_position) < close_enough:
 		speed = 0
 		rotation = 0
 		active = true
-		if self in Inventory.projectiles:
-			Inventory.projectiles.erase(self)
 		return
 		
 
@@ -45,11 +43,21 @@ func tick():
 
 
 func _on_body_entered(body):
+	return
 	if body == target:
 		if active == true:
 			if body.grounded == true:
 				queue_free()
 				if body.invincible == false:
-					pass
+					#body.take_damage(damage)
+					body.invin_frames()
+
+func hit(body):
+	if body == target:
+		if active == true:
+			if body.grounded == true:
+				queue_free()
+				Inventory.projectiles.erase(self)
+				if body.invincible == false:
 					#body.take_damage(damage)
 					body.invin_frames()

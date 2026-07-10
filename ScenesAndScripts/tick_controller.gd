@@ -15,6 +15,7 @@ var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
 
 func _ready():
 	spawn_players()
+	Inventory.projectiles = []
 
 func spawn_players():
 	var counter = 0
@@ -31,8 +32,16 @@ func spawn_players():
 	players.sort_custom(func(a,b):
 		return a.id < b.id
 	)
+	
 
 func _process(delta):
+	if Inventory.race_started == false:
+		print(Time.get_unix_time_from_system(), "  ", Inventory.start_time)
+		if Time.get_unix_time_from_system() >= Inventory.start_time:
+			Inventory.race_started = true
+		else:
+			Inventory.start_time /= 1.05 
+			return
 	accumulator += delta
 	while accumulator >= tick_rate:
 		run_tick()
@@ -66,12 +75,11 @@ func run_tick():
 	#projectile movement
 	for projectile in Inventory.projectiles:
 		projectile.tick()
-	#if current_tick % 5 == 0:
-		#print("current tick", current_tick)
-	#for projectile in Inventory.projectiles:
-		#for player in players:
-			#if projectile.sim_position.distance_to(player.sim_position) < hit_radius:
-				#projectile.hit(player)
+	
+	#collision
+	for projectile in Inventory.projectiles:
+		if projectile.sim_position.distance_to(projectile.target.sim_position) < hit_radius:
+			projectile.hit(projectile.target)
 
 func cooldowns(player):
 	if Inventory.server_turtles[player.id]["leftArm"] != null:
@@ -112,7 +120,7 @@ func use_item(player, body_part, name):
 func rand_shuffle(player, normal_array):
 	for i in range(normal_array.size() - 1, 0, -1):
 		Inventory.rng_calls += 1
-		print(current_tick, " target shuffle ", Inventory.rng_calls)
+
 		var rand_number = player.rng.randi_range(0, i)
 		var temp = normal_array[i]
 		normal_array[i] = normal_array[rand_number]

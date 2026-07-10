@@ -35,10 +35,8 @@ func _on_finish_line_body_exited(body):
 		for turt in get_tree().get_nodes_in_group("players"):
 			var temp = results.get_children()
 			var wanted_label = results.get_child(int(turt.place))
-			wanted_label.text = turt.id + "     " + turt.finish_time
+			wanted_label.text = turt.id + "     " + turt.finish_time + "     " + str(turt.curr_tick) 
 			 
-		await get_tree().create_timer(0.3).timeout
-		#get_tree().paused = true
 		await get_tree().create_timer(0.1).timeout
 		$Results.visible = true
 		

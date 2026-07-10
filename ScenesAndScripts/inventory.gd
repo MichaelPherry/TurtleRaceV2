@@ -18,6 +18,7 @@ var local_turtle = {}
 var server_turtles = {}
 var start_time
 var projectiles = []
+var race_started = false
 
 func reset_turtles():
 	var server_keys = server_turtles.keys()
@@ -33,3 +34,6 @@ func set_turtles(turtles):
 			server_turtles.get_or_add(id, {})[body_part] = turtles[id]["build"][body_part]
 		server_turtles[id]["slot"] = turtles[id]["slot"]
 	#print(server_turtles)
+	
+func seconds_to_ticks(seconds, tick_rate):
+	return round (seconds / tick_rate)
