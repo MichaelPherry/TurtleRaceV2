@@ -39,15 +39,6 @@ func tick():
 	var direction = Vector2.RIGHT.rotated(sim_rotation)
 	sim_position += direction * speed * user.tick_rat * user.projectile
 
-
-func _on_body_entered(body):
-	return
-	if body == target:
-		queue_free()
-		Inventory.projectiles.erase(self)
-		if body.invincible == false:
-			body.invin_frames()
-
 func hit(body):
 	if body == target:
 		queue_free()

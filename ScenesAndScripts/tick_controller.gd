@@ -36,7 +36,6 @@ func spawn_players():
 
 func _process(delta):
 	if Inventory.race_started == false:
-		print(Time.get_unix_time_from_system(), "  ", Inventory.start_time)
 		if Time.get_unix_time_from_system() >= Inventory.start_time:
 			Inventory.race_started = true
 		else:
@@ -78,7 +77,9 @@ func run_tick():
 	
 	#collision
 	for projectile in Inventory.projectiles:
-		if projectile.sim_position.distance_to(projectile.target.sim_position) < hit_radius:
+		var simx = projectile.target.sim_position.x
+		var simy_with_height = projectile.target.sim_position.y + projectile.target.height
+		if projectile.sim_position.distance_to(Vector2(simx, simy_with_height)) < hit_radius:
 			projectile.hit(projectile.target)
 
 func cooldowns(player):
