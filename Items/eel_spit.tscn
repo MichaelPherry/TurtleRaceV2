@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dg67f8lg61i8g"]
+[gd_scene format=3 uid="uid://dg67f8lg61i8g"]
 
 [ext_resource type="Script" uid="uid://bnbgtduurjh5p" path="res://Items/eel_spit.gd" id="1_a1p7t"]
 [ext_resource type="Texture2D" uid="uid://co357ykwwcxqx" path="res://Art/boomerang.png" id="2_402xs"]
@@ -70,20 +70,20 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_org0w"]
 size = Vector2(412.5, 377.625)
 
-[node name="eel_spit" type="Area2D"]
+[node name="eel_spit" type="Area2D" unique_id=74064769]
 light_mask = 2
 visibility_layer = 2
 position = Vector2(-238, -197)
 script = ExtResource("1_a1p7t")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=789930044]
 texture_filter = 1
 position = Vector2(231, 197)
 scale = Vector2(14.7187, 13.3594)
 sprite_frames = SubResource("SpriteFrames_wnsit")
 animation = &"EelSpit"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1799400236]
 position = Vector2(217, 207)
 shape = SubResource("RectangleShape2D_org0w")
 

@@ -1,64 +1,74 @@
 extends Area2D
 
-@export var speed := 500
-@export var gravit := 800
-@export var homing_speed := 100
 
-var distance
 var target
 var user
-var velocity := Vector2.ZERO
-var homing
-var height := 0
-var vertical_velocity
-var init_pos
-var turn_speed = 50
+var initial_speed
+var throw_angle_degrees
+const gravit = 9.8
+var start_tick 
+
+var start_position
+var final_position
+var throw_direction
+var sim_position
+var distance
+var ground_trap = true
+var z_axis = 0
+var is_launch = false
+var rotation_speed = PI * 2
 @onready var sprite = $AnimatedSprite2D
 
 func _ready():
+	Inventory.projectiles.append(self)
+	start_position = global_position
+	sim_position = global_position
+	distance = start_position.distance_to(final_position)
+	start_tick = user.curr_tick
 	#print("Target", target.id, " User ", user.id)
-	init_pos = global_position.x
-	distance = target.global_position.x - init_pos
-	vertical_velocity = - global_position.y + target.global_position.y
-	if vertical_velocity > -800:
-		vertical_velocity = -800
-	sprite.play("EelSpit")
-	velocity = Vector2(distance / 2, vertical_velocity )
+	pass
 #	set_collision_mask_value(coll_id, true)
 
-func _physics_process(delta):
+func launchProjectile(initial_pos, direction, desired_distance, desired_angle_deg):
+	print(initial_pos, " ", sim_position, " ", direction, " ", desired_distance)
+	start_position = initial_pos
+	throw_direction = direction.normalized()
+	throw_angle_degrees = desired_angle_deg
+	
+	initial_speed = pow(desired_distance * gravit / sin(2 * deg_to_rad(desired_angle_deg)), 0.5)
+	
+	sim_position = start_position
+	z_axis =  0
+	is_launch = true
+	
+func _process(delta):
+	if z_axis > 0:
+		$AnimatedSprite2D.rotation += rotation_speed * delta
+		
 	if transform.x.x < 0:
 		sprite.flip_v = true
 	else:
 		sprite.flip_v = false
+	position = position.lerp(sim_position, 0.25)
 	
-	if not homing:
-		initial_arch(delta)
-		if abs(init_pos - global_position.x) > (abs(distance) / 2):
-			homing = true
-	else:
-		#homing_arch(delta)
-		initial_arch(user.tick_rat)
-	#vertical_velocity += gravit * delta
-	#height -= vertical_velocity * delta
-	#homing_arch(delta)
-
-func initial_arch(delta):
-	velocity.y += gravit * user.tick_rat
-	position += velocity * user.tick_rat
-	
-func homing_arch(delta):
-	var direction = (target.global_position - global_position).normalized()
-	velocity = velocity.lerp(direction * homing_speed, 500 * user.tick_rat)
-	var to_target = (target.global_position - global_position).normalized()
-	var target_angle = to_target.angle()
-	rotation = lerp_angle(rotation, target_angle, turn_speed * user.tick_rat)
-	position += transform.x * speed * user.tick_rat *  user.projectile
-	
-func _on_body_entered(body):
-	if body == target:
-		queue_free()
-		if body.invincible == false:
-			pass
-			#body.take_damage(damage)
-			body.invin_frames()
+func tick():
+	if is_launch == false:
+		launchProjectile(sim_position, final_position - start_position, distance, 60)
+		
+	if is_launch == true:
+		z_axis = initial_speed * sin(deg_to_rad(throw_angle_degrees)) * (user.curr_tick - start_tick) - 0.5 * gravit * pow((user.curr_tick - start_tick), 2)
+		
+		if z_axis > 0:
+			var x_axis = initial_speed * cos(deg_to_rad(throw_angle_degrees)) * (user.curr_tick - start_tick)
+			sim_position = start_position + throw_direction * x_axis
+			$AnimatedSprite2D.position.y = -z_axis
+			
+func hit(body):
+	return
+#func _on_body_entered(body):
+	#if body == target:
+		#queue_free()
+		#if body.invincible == false:
+			#pass
+			##body.take_damage(damage)
+			#body.invin_frames()
