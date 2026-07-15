@@ -8,9 +8,11 @@
 script = ExtResource("1_o0vsc")
 name = "Bear Trap"
 description = ""
+body_part = ""
 icon = ExtResource("1_8w8hu")
-cooldown = 4
-ground_trap = true
+cooldown = 6
 item_scene = ExtResource("2_xm588")
+ground_trap = true
+active = false
 animation = false
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

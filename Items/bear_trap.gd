@@ -37,13 +37,11 @@ func _ready():
 	start_tick = user.curr_tick
 	
 func _process(delta):
-	if z_axis > 0:
-		$AnimatedSprite2D.rotation += rotation_speed * delta
-		
 	position = position.lerp(sim_position, 0.25)
+	if sim_position.distance_to(final_position) < 100:
+		active = true
 
 func launchProjectile(initial_pos, direction, desired_distance, desired_angle_deg):
-	print(initial_pos, " ", sim_position, " ", direction, " ", desired_distance)
 	start_position = initial_pos
 	throw_direction = direction.normalized()
 	throw_angle_degrees = desired_angle_deg
@@ -62,10 +60,14 @@ func tick():
 		z_axis = initial_speed * sin(deg_to_rad(throw_angle_degrees)) * (user.curr_tick - start_tick) - 0.5 * gravit * pow((user.curr_tick - start_tick), 2)
 		
 		if z_axis > 0:
-			active = true
 			var x_axis = initial_speed * cos(deg_to_rad(throw_angle_degrees)) * (user.curr_tick - start_tick)
 			sim_position = start_position + throw_direction * x_axis
+			$AnimatedSprite2D.rotation += rotation_speed * (user.tick_rat / 2)
 			$AnimatedSprite2D.position.y = -z_axis
+		
+		else:
+			$AnimatedSprite2D.rotation = 0
+
 	
 func hit(body):
 	if body == target:

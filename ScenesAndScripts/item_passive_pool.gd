@@ -15,3 +15,8 @@ func head(item):
 	match item:
 		"propreller":
 			return load("res://Passives/propreller.tres")
+
+func legs(item):
+	match item:
+		"rollerskates":
+			return load("res://Passives/rollerskates.tres")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=269 format=3 uid="uid://csjw8kp18folb"]
+[gd_scene load_steps=273 format=3 uid="uid://csjw8kp18folb"]
 
 [ext_resource type="Script" uid="uid://cvj77qbfyswks" path="res://ScenesAndScripts/turtle.gd" id="1_fhre7"]
 [ext_resource type="Texture2D" uid="uid://bwci6osr6o3nu" path="res://Art/AlexArt/Items/Fishile/Turtle Fishile Start0001.png" id="2_d0tqk"]
@@ -83,6 +83,7 @@
 [ext_resource type="Texture2D" uid="uid://bhbdu1x7g1pjy" path="res://Art/AlexArt/green_turt/T Walk/7. Left Leg/T Left Leg Walk0009.png" id="68_6yd8d"]
 [ext_resource type="Texture2D" uid="uid://c60b2nvkrr0ho" path="res://Art/AlexArt/green_turt/T Walk/7. Left Leg/T Left Leg Walk0010.png" id="69_m24sx"]
 [ext_resource type="Texture2D" uid="uid://bw56vab4nb6qs" path="res://Art/AlexArt/green_turt/T Jog/7. Left Leg/T. Left Leg Jog0001.png" id="72_1culg"]
+[ext_resource type="Texture2D" uid="uid://bjqrvpd5qc7uv" path="res://Art/AlexArt/Items/Rollerskates/Roller_Skate.png" id="72_r07ws"]
 [ext_resource type="Texture2D" uid="uid://dq7jo0c6a7bma" path="res://Art/AlexArt/green_turt/T Walk/5. Belly/T Belly Walk0001.png" id="72_u3jnw"]
 [ext_resource type="Texture2D" uid="uid://e8a1jhilh1oy" path="res://Art/AlexArt/green_turt/T Walk/5. Belly/T Belly Walk0002.png" id="73_0aeki"]
 [ext_resource type="Texture2D" uid="uid://4foro4x5kpkb" path="res://Art/AlexArt/green_turt/T Jog/7. Left Leg/T. Left Leg Jog0002.png" id="73_8mvrc"]
@@ -134,6 +135,7 @@
 [ext_resource type="Texture2D" uid="uid://deddrobx6xsxq" path="res://Art/AlexArt/green_turt/T Walk/3. Right Arm/T Right Arm Walk0010.png" id="101_wwjbw"]
 [ext_resource type="Texture2D" uid="uid://c05m8vi3x615" path="res://Art/AlexArt/green_turt/T Walk/2. Head/T Head Walk0001.png" id="102_l6aba"]
 [ext_resource type="Texture2D" uid="uid://cd5lqjvbpx70u" path="res://Art/AlexArt/green_turt/T Walk/2. Head/T Head Walk0002.png" id="103_8e1mc"]
+[ext_resource type="Texture2D" uid="uid://botm7latm7k41" path="res://Art/AlexArt/Items/Rollerskates/Roller_Skate_Flipped.png" id="103_hwwge"]
 [ext_resource type="Texture2D" uid="uid://brjgs46ldf8hb" path="res://Art/AlexArt/green_turt/T Jog/5. Belly/T. Belly Jog0001.png" id="104_m4vvc"]
 [ext_resource type="Texture2D" uid="uid://b88dq4ul6bdqj" path="res://Art/AlexArt/green_turt/T Walk/2. Head/T Head Walk0003.png" id="104_yt0lj"]
 [ext_resource type="Texture2D" uid="uid://bkyjattv7cl5s" path="res://Art/AlexArt/green_turt/T Jog/5. Belly/T. Belly Jog0002.png" id="105_mjg7u"]
@@ -635,6 +637,22 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_u1udn"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"None",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("72_r07ws")
+}],
+"loop": true,
+"name": &"Rollerskates",
+"speed": 5.0
+}]
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_kv71o"]
 animations = [{
 "frames": [{
@@ -741,6 +759,22 @@ animations = [{
 "loop": true,
 "name": &"Walking",
 "speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_abrrx"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"None",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("103_hwwge")
+}],
+"loop": true,
+"name": &"Rollerskates",
+"speed": 5.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gdt2n"]
@@ -1311,6 +1345,14 @@ position = Vector2(9, 52)
 sprite_frames = SubResource("SpriteFrames_je5b4")
 animation = &"Walking"
 
+[node name="rightShoe" type="Marker2D" parent="Visuals/rightLeg/AnimatedSprite2D"]
+visible = false
+position = Vector2(11, 67)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/rightLeg/AnimatedSprite2D/rightShoe"]
+sprite_frames = SubResource("SpriteFrames_u1udn")
+animation = &"None"
+
 [node name="leftLeg" type="Marker2D" parent="Visuals"]
 position = Vector2(-50, 98)
 
@@ -1318,6 +1360,14 @@ position = Vector2(-50, 98)
 position = Vector2(-0.999969, 73)
 sprite_frames = SubResource("SpriteFrames_kv71o")
 animation = &"Walking"
+
+[node name="leftShoe" type="Marker2D" parent="Visuals/leftLeg/AnimatedSprite2D"]
+visible = false
+position = Vector2(-13, 46)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/leftLeg/AnimatedSprite2D/leftShoe"]
+sprite_frames = SubResource("SpriteFrames_abrrx")
+animation = &"None"
 
 [node name="LeftHand" type="Marker2D" parent="Visuals"]
 visible = false

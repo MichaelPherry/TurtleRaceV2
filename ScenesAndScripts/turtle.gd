@@ -14,7 +14,10 @@ extends CharacterBody2D
 @onready var animation = $AnimationPlayer
 @onready var left_hand_sprite = $Visuals/LeftHand/LeftWeapon
 @onready var hat_marker = $Visuals/Hat
-
+@onready var left_shoe_marker = $Visuals/leftLeg/AnimatedSprite2D/leftShoe
+@onready var right_shoe_marker = $Visuals/rightLeg/AnimatedSprite2D/rightShoe
+@onready var left_shoe = $Visuals/leftLeg/AnimatedSprite2D/leftShoe/AnimatedSprite2D
+@onready var right_shoe = $Visuals/rightLeg/AnimatedSprite2D/rightShoe/AnimatedSprite2D
 var left_arm
 var left_arm_cooldown = 0
 var right_arm
@@ -26,6 +29,7 @@ var shell
 var shell_cooldown = 0
 var legs
 var legs_cooldown = 0
+var legs_instance
 
 var left_ready = false
 var right_ready = false
@@ -33,11 +37,13 @@ var head_ready = false
 var shell_ready = false
 var legs_ready = false
 
-const SPEED = 100
-var speed
+var acceleration = 5
+var resilience = 0.15
+var max_speed = 300
+var current_speed = 0
 var height = 0
 var max_height = -500
-var multiplier
+var multiplier = 1
 var finished = false
 var invincible = false
 var id
@@ -56,11 +62,10 @@ var tick_rat
 func _ready():
 	rng = RandomNumberGenerator.new()
 	rng.seed = seed
-	speed = SPEED
+	current_speed = 0
 	sim_position = global_position
 	$Label.text = str(id)
 	Inventory.rng_calls += 1
-	multiplier = rng.randi_range(2,5)
 	equip()
 	add_to_group(id)
 	add_to_group("players")
@@ -85,6 +90,12 @@ func tick(current_tick, tick_rate):
 	if hit == true:
 		return
 	
+	if grounded == false and height == 0:
+		start_flying()
+	
+	if grounded == true and height == max_height:
+		stop_flying()
+	
 	if grounded:
 		height = 0
 	else:
@@ -92,15 +103,19 @@ func tick(current_tick, tick_rate):
 	#if curr_tick != current_tick:
 		#print(current_tick, " ", id, " ", sim_position.y)
 	
-	visuals.position.y = height
+	#visuals.position.y = height
 	collision.position.y = height
 	
 	if finished == true:
 		velocity.y = 0
 		return
-	sim_position.y += speed * multiplier * tick_rate
+	
+	print(current_speed, " ", acceleration)
+	current_speed = min(current_speed + acceleration, max_speed)
+	sim_position.y += current_speed * multiplier * tick_rate
 	curr_tick = current_tick
 	tick_rat = tick_rate
+	moving_animations()
 
 func equip():
 	for body_part in Inventory.appendages:
@@ -120,21 +135,31 @@ func equip():
 					head = ItemPassivePool.head(Inventory.server_turtles[id][body_part])
 					head_cooldown = head.cooldown
 					head_instance = head.passive_scene.instantiate()
+					hat_marker.visible = true
 					head_instance.user = self
 					hat_marker.add_child(head_instance)
 					equip_hat(head)
 				"shell":
 					pass
 				"legs":
-					pass	
+					legs = ItemPassivePool.legs(Inventory.server_turtles[id][body_part])
+					legs_cooldown = legs.cooldown
+					legs_instance = legs.passive_scene.instantiate()
+					legs_instance.user = self
+					left_shoe_marker.visible = true
+					left_shoe.play(legs_instance.name)
+					right_shoe_marker.visible = true
+					right_shoe.play(legs_instance.name)
+					right_shoe_marker.add_child(legs_instance)
+					
 			var temp = Inventory.server_turtles[id][body_part]
 
 func left_arm_item(user, target, scene):
 	var instance = scene.instantiate()
 	instance.target = target
 	instance.user = user
-	instance.global_position = user.global_position
-	speed = 0
+	instance.global_position = user.global_position + Vector2(0, height)
+	current_speed = 0
 	if instance.ground_trap == true:
 		instance.final_position = target_final_position(instance.target)
 	#if user.sim_position.x > target.sim_position.x:
@@ -143,7 +168,7 @@ func left_arm_item(user, target, scene):
 		##user.sprite.flip_h = false
 	#else:
 		#await get_tree().create_timer(0.5).timeout
-	speed = SPEED
+	current_speed = max_speed
 	#moving_animations()
 	get_tree().current_scene.add_child(instance)
 	
@@ -151,8 +176,8 @@ func right_arm_item(user, target, scene):
 	var instance = scene.instantiate()
 	instance.target = target
 	instance.user = user
-	instance.global_position = user.global_position
-	speed = 0
+	instance.global_position = user.global_position + Vector2(0, height)
+	current_speed = 0
 	if instance.ground_trap == true:
 		instance.final_position = target_final_position(instance.target)
 	#if user.sim_position.x > target.sim_position.x:
@@ -161,7 +186,7 @@ func right_arm_item(user, target, scene):
 		##user.sprite.flip_h = false
 	#else:
 		#await get_tree().create_timer(0.5).timeout
-	speed = SPEED
+	current_speed = max_speed
 	#moving_animations()
 	get_tree().current_scene.add_child(instance)
 	
@@ -181,7 +206,8 @@ func invin_frames():
 	invincible = true
 	hit = true
 	var sped = sim_position.y
-	sim_position.y -= 50
+	current_speed = current_speed * resilience
+	sim_position.y -= current_speed * tick_rat
 	var sprite = $Visuals
 	sprite.modulate = Color(1, 1, 1, 0.2)
 	await get_tree().create_timer(0.1).timeout
@@ -200,11 +226,11 @@ func invin_frames():
 	hit = false
 
 func moving_animations():
-	if SPEED * multiplier <= 250:
+	if current_speed * multiplier <= 250:
 		animation_controller("Walking")
 		#animation.play("Walking")
 		
-	elif SPEED * multiplier <= 350:
+	elif current_speed * multiplier <= 350:
 		animation_controller("Jogging")
 		#animation.play("Jogging")
 	else:
@@ -244,3 +270,13 @@ func animation_controller(action):
 	else:
 		$Visuals/leftArm.position = Vector2(-124, -41)
 		$Visuals/rightArm.position = Vector2(49,-90)
+
+func start_flying():
+	var tween = create_tween()
+	tween.tween_property($Visuals, "position:y", max_height, 1.0)\
+	.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
+	
+func stop_flying():
+	var tween = create_tween()
+	tween.tween_property($Visuals, "position:y", 0, 1.0)\
+	.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)

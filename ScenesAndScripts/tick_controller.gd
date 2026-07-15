@@ -70,6 +70,10 @@ func run_tick():
 			if turt.finished == false:
 				turt.head_instance.activate_effect()
 				turt.head_ready = false
+		if turt.legs_ready:
+			if turt.finished == false:
+				turt.legs_instance.activate_effect()
+				turt.legs_ready = false
 	
 	#projectile movement
 	for projectile in Inventory.projectiles:
@@ -85,23 +89,31 @@ func run_tick():
 func cooldowns(player):
 	if Inventory.server_turtles[player.id]["leftArm"] != null:
 		if player.left_arm_cooldown <= 0.0:
-			player.left_ready = true
-			#use_item(left_arm, "left_arm_item")
-			player.left_arm_cooldown = player.left_arm.cooldown
+			if player.sim_position.y < 7350:
+				player.left_ready = true
+				#use_item(left_arm, "left_arm_item")
+				player.left_arm_cooldown = player.left_arm.cooldown
 	if Inventory.server_turtles[player.id]["rightArm"] != null:
 		if player.right_arm_cooldown <= 0.0:
-			player.right_ready = true
-			#use_item(right_arm, "right_arm_item")
-			player.right_arm_cooldown = player.right_arm.cooldown
+			if player.sim_position.y < 7350:
+				player.right_ready = true
+				#use_item(right_arm, "right_arm_item")
+				player.right_arm_cooldown = player.right_arm.cooldown
 	if Inventory.server_turtles[player.id]["head"] != null:
 		if player.head_cooldown <= 0.0:
-			if is_instance_valid(player.head_instance):
+			if player.head_instance.effect == true:
 				player.head_ready = true
 				#head_instance.activate_effect()
 				player.head_cooldown = player.head.cooldown
+	if Inventory.server_turtles[player.id]["legs"] != null:
+		if player.legs_cooldown <= 0.0:
+			if player.legs_instance.effect == true:
+				player.legs_ready = true
+				player.legs_cooldwon = player.legs.cooldown
 	player.left_arm_cooldown -= tick_rate
 	player.right_arm_cooldown -= tick_rate
 	player.head_cooldown -= tick_rate
+	player.legs_cooldown -= tick_rate
 	
 func use_item(player, body_part, name):
 	var players = get_tree().get_nodes_in_group("racing")

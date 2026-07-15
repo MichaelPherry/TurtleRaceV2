@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://byxhoun65iif3"]
+[gd_scene load_steps=8 format=3 uid="uid://byxhoun65iif3"]
 
 [ext_resource type="Script" uid="uid://fes1a2hc370t" path="res://Items/bear_trap.gd" id="1_6hm6t"]
 [ext_resource type="Texture2D" uid="uid://dikb26sw1jhsv" path="res://Art/AlexArt/Items/BearTrap/Bear_Trap0001.webp" id="2_sqwdd"]
@@ -29,23 +29,24 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw57n"]
 size = Vector2(520, 80.5)
 
-[node name="BearTrap" type="Area2D" unique_id=893588321]
+[node name="BearTrap" type="Area2D"]
 z_index = -10
 script = ExtResource("1_6hm6t")
 
-[node name="Shadow" type="Sprite2D" parent="." unique_id=969790869]
-position = Vector2(10.000001, 77.00001)
-scale = Vector2(0.4361979, 0.087890625)
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(10, 77)
+scale = Vector2(0.436198, 0.0878906)
 texture = ExtResource("2_t8s55")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=996652430]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(2, -2)
 scale = Vector2(1.5, 0.681)
 sprite_frames = SubResource("SpriteFrames_6hm6t")
 animation = &"snap"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1091836118]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 44.75)
 shape = SubResource("RectangleShape2D_pw57n")
 

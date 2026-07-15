@@ -18,10 +18,10 @@ func _on_button_button_down():
 	
 	
 func _on_fissile():
-	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "fissile"
+	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "propreller"
 
 func _on_eel():
-	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "eel_spit"
+	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "rollerskates"
 
 func _on_mystery(): 
 	Inventory.local_turtle[NetworkManager.sessionID][body_part] = "bear_trap"
