@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://jhp0bbdq66fu"]
+
+[ext_resource type="PackedScene" uid="uid://5ydm1jisjyvo" path="res://Passives/Head/m1_helmet.tscn" id="1_53ekr"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_qw44n"]
+
+[resource]
+script = ExtResource("1_qw44n")
+name = "M1 Helmet"
+description = ""
+price = 0
+passive_scene = ExtResource("1_53ekr")
+cooldown = 0
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

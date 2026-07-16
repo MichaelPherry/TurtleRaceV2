@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://b7dhnx53qr1g1"]
+
+[ext_resource type="PackedScene" uid="uid://dimjjjy3jr6xc" path="res://Passives/Head/dunce_hat.tscn" id="1_gus2c"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_wspat"]
+
+[resource]
+script = ExtResource("1_wspat")
+name = "Dunce Hat"
+description = ""
+price = 0
+passive_scene = ExtResource("1_gus2c")
+cooldown = 2
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

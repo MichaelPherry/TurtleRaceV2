@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://wjy1y172b14i"]
+
+[ext_resource type="PackedScene" uid="uid://w1e3y6mg6y5q" path="res://Passives/Head/bunny_ears.tscn" id="1_nbn4d"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="2_1e82l"]
+
+[resource]
+script = ExtResource("2_1e82l")
+name = "Bunny Ears"
+description = ""
+price = 0
+passive_scene = ExtResource("1_nbn4d")
+cooldown = 1
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

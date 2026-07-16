@@ -7,7 +7,7 @@ class_name Passive
 @export var icon: Texture2D
 @export var passive_scene: PackedScene
 @export var cooldown: int
-
+@export var type: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

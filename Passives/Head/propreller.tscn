@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dnev33l8x4gf"]
 
 [ext_resource type="Texture2D" uid="uid://citkr6p1y8els" path="res://Art/AlexArt/Items/Propeller/Idle ProHat/ProHat Idle0001.png" id="1_8exde"]
-[ext_resource type="Script" uid="uid://dko2c4y4b7mcq" path="res://Passives/propreller.gd" id="1_kkmjs"]
+[ext_resource type="Script" uid="uid://dko2c4y4b7mcq" path="res://Passives/Head/propreller.gd" id="1_kkmjs"]
 
 [node name="Propreller" type="Node2D"]
 script = ExtResource("1_kkmjs")

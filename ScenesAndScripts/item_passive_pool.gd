@@ -14,9 +14,15 @@ func arm(item):
 func head(item):
 	match item:
 		"propreller":
-			return load("res://Passives/propreller.tres")
-
+			return load("res://Passives/Head/propreller.tres")
+		"bunny_ears":
+			return load("res://Passives/Head/bunny_ears.tres")
+		"dunce_hat":
+			return load("res://Passives/Head/dunce_hat.tres")
+		"m1_helmet":
+			return load("res://Passives/Head/m1_helmet.tres")
+		
 func legs(item):
 	match item:
 		"rollerskates":
-			return load("res://Passives/rollerskates.tres")
+			return load("res://Passives/Legs/rollerskates.tres")

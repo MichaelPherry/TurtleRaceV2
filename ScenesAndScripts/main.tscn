@@ -34,6 +34,6 @@ shape = SubResource("RectangleShape2D_f6nm2")
 script = ExtResource("5_txa5d")
 
 [node name="positionTester" type="Node2D" parent="."]
-position = Vector2(-711, 6793)
+position = Vector2(-1328, 3035)
 
 [connection signal="body_exited" from="FinishLine" to="." method="_on_finish_line_body_exited"]

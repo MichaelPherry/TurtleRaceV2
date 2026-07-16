@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w1e3y6mg6y5q"]
+
+[ext_resource type="Script" uid="uid://cue4bh83gk45g" path="res://Passives/Head/bunny_ears.gd" id="1_jajo6"]
+
+[node name="Bunnyears" type="Node2D"]
+script = ExtResource("1_jajo6")

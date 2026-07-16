@@ -10,7 +10,7 @@ class_name Item
 @export var ground_trap: bool
 @export var active: bool
 @export var animation: bool
-
+@export var type: String
 
 func apply(user, target, name):
 	if item_scene:

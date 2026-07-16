@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bps3q4tusmord"]
 
-[ext_resource type="Script" uid="uid://djvskv7sjshs" path="res://Passives/rollerskates.gd" id="1_8fpnv"]
+[ext_resource type="Script" uid="uid://djvskv7sjshs" path="res://Passives/Legs/rollerskates.gd" id="1_8fpnv"]
 [ext_resource type="Texture2D" uid="uid://botm7latm7k41" path="res://Art/AlexArt/Items/Rollerskates/Roller_Skate_Flipped.png" id="3_8hadp"]
 
 [node name="Rollerskates" type="Node2D"]

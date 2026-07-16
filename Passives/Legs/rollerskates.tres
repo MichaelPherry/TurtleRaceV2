@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://dgpko1a5ki5ni"]
 
 [ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_66lq1"]
-[ext_resource type="PackedScene" uid="uid://bps3q4tusmord" path="res://Passives/rollerskates.tscn" id="1_wl1mu"]
+[ext_resource type="PackedScene" uid="uid://bps3q4tusmord" path="res://Passives/Legs/rollerskates.tscn" id="1_wl1mu"]
 
 [resource]
 script = ExtResource("1_66lq1")

@@ -18,18 +18,29 @@ extends CharacterBody2D
 @onready var right_shoe_marker = $Visuals/rightLeg/AnimatedSprite2D/rightShoe
 @onready var left_shoe = $Visuals/leftLeg/AnimatedSprite2D/leftShoe/AnimatedSprite2D
 @onready var right_shoe = $Visuals/rightLeg/AnimatedSprite2D/rightShoe/AnimatedSprite2D
+
 var left_arm
+var left_arm_cooldown_max: float
 var left_arm_cooldown = 0
+var left_arm_type = null
 var right_arm
+var right_arm_cooldown_max: float
 var right_arm_cooldown = 0
+var right_arm_type = null
 var head
 var head_instance
+var head_cooldown_max: float
 var head_cooldown = 0
+var head_type = null
 var shell
+var shell_cooldown_max: float
 var shell_cooldown = 0
+var shell_type = null
 var legs
+var legs_cooldown_max: float
 var legs_cooldown = 0
 var legs_instance
+var legs_type = null
 
 var left_ready = false
 var right_ready = false
@@ -38,7 +49,7 @@ var shell_ready = false
 var legs_ready = false
 
 var acceleration = 5
-var resilience = 0.15
+var resilience = 0.1
 var max_speed = 300
 var current_speed = 0
 var height = 0
@@ -56,6 +67,7 @@ var rng
 var seed
 var sim_position
 
+var direction = 1
 var curr_tick = -1
 var tick_rat
 
@@ -110,9 +122,11 @@ func tick(current_tick, tick_rate):
 		velocity.y = 0
 		return
 	
-	print(current_speed, " ", acceleration)
 	current_speed = min(current_speed + acceleration, max_speed)
-	sim_position.y += current_speed * multiplier * tick_rate
+	if sim_position.y < 50 and direction == -1:
+		sim_position.y += 0
+	else:
+		sim_position.y += current_speed * multiplier * tick_rate * direction
 	curr_tick = current_tick
 	tick_rat = tick_rate
 	moving_animations()
@@ -125,15 +139,20 @@ func equip():
 			match body_part:
 				"leftArm":
 					left_arm = ItemPassivePool.arm(Inventory.server_turtles[id][body_part])
-					left_arm_cooldown = left_arm.cooldown
+					left_arm_cooldown_max = left_arm.cooldown
+					left_arm_cooldown = left_arm_cooldown_max
+					left_arm_type = left_arm.type
 					equip_left_item(left_arm)
 				"rightArm":
 					right_arm = ItemPassivePool.arm(Inventory.server_turtles[id][body_part])
-					right_arm_cooldown = right_arm.cooldown
+					right_arm_cooldown_max = right_arm.cooldown
+					right_arm_cooldown = right_arm_cooldown_max
+					right_arm_type = right_arm.type
 					equip_right_item(right_arm)
 				"head":
 					head = ItemPassivePool.head(Inventory.server_turtles[id][body_part])
-					head_cooldown = head.cooldown
+					head_cooldown_max = head.cooldown
+					head_cooldown = head_cooldown_max
 					head_instance = head.passive_scene.instantiate()
 					hat_marker.visible = true
 					head_instance.user = self
@@ -143,7 +162,8 @@ func equip():
 					pass
 				"legs":
 					legs = ItemPassivePool.legs(Inventory.server_turtles[id][body_part])
-					legs_cooldown = legs.cooldown
+					legs_cooldown_max = legs.cooldown
+					legs_cooldown = legs_cooldown_max
 					legs_instance = legs.passive_scene.instantiate()
 					legs_instance.user = self
 					left_shoe_marker.visible = true

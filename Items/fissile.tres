@@ -15,4 +15,5 @@ item_scene = ExtResource("1_oclcc")
 ground_trap = false
 active = true
 animation = false
+type = "gun"
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

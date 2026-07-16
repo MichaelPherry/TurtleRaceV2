@@ -92,24 +92,24 @@ func cooldowns(player):
 			if player.sim_position.y < 7350:
 				player.left_ready = true
 				#use_item(left_arm, "left_arm_item")
-				player.left_arm_cooldown = player.left_arm.cooldown
+				player.left_arm_cooldown = player.left_arm_cooldown_max
 	if Inventory.server_turtles[player.id]["rightArm"] != null:
 		if player.right_arm_cooldown <= 0.0:
 			if player.sim_position.y < 7350:
 				player.right_ready = true
 				#use_item(right_arm, "right_arm_item")
-				player.right_arm_cooldown = player.right_arm.cooldown
+				player.right_arm_cooldown = player.right_arm_cooldown_max
 	if Inventory.server_turtles[player.id]["head"] != null:
 		if player.head_cooldown <= 0.0:
 			if player.head_instance.effect == true:
 				player.head_ready = true
 				#head_instance.activate_effect()
-				player.head_cooldown = player.head.cooldown
+				player.head_cooldown = player.head_cooldown_max
 	if Inventory.server_turtles[player.id]["legs"] != null:
 		if player.legs_cooldown <= 0.0:
 			if player.legs_instance.effect == true:
 				player.legs_ready = true
-				player.legs_cooldwon = player.legs.cooldown
+				player.legs_cooldwon = player.legs_cooldown_max
 	player.left_arm_cooldown -= tick_rate
 	player.right_arm_cooldown -= tick_rate
 	player.head_cooldown -= tick_rate
