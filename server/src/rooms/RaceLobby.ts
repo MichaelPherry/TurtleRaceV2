@@ -98,6 +98,7 @@ name_list: string[] = [];
 
 
         const raceRoom = await matchMaker.createRoom("raceMatch", [this.maxClients, this.name_list]);
+        console.log(this.name_list)
         this.broadcast("load_race", { roomId: raceRoom.roomId})
         this.seed = Math.floor(Math.random() * 1000000);
         console.log("Starting race with seed:", this.seed);

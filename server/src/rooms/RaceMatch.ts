@@ -73,7 +73,6 @@ export class RaceMatch extends Room {
 
         onJoin(client: any) {
         try{
-            console.log(client.sessionId + " is in the race!");
             var race_slot = Number(this.availableRaceStarts.shift());
             var name_remaining = String(this.name_list.shift());
             this.players[client.sessionId] = {
@@ -90,6 +89,7 @@ export class RaceMatch extends Room {
             ready: false,
             name: name_remaining
         };
+        console.log(this.players[client.sessionId].name + " is in the race!");
         this.id_list.push(client.sessionId)
         }
 
