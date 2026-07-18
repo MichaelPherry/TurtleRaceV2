@@ -90,6 +90,7 @@ export class RaceMatch extends Room {
             ready: false,
             name: name_remaining
         };
+        client.sessionId = this.players[client.sessionId].name
         console.log(this.players[client.sessionId].name + " is in the race!");
         this.id_list.push(client.sessionId)
         }
