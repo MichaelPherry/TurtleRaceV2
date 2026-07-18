@@ -12,6 +12,7 @@ var current_tick = 0
 var players = []
 var hit_radius = 200
 var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
+signal tick_sig
 
 func _ready():
 	spawn_players()
@@ -19,7 +20,7 @@ func _ready():
 
 func spawn_players():
 	var counter = 0
-	for id in Inventory.id_list:
+	for id in Inventory.name_list:
 		var player = turtle_scene.instantiate()
 		player.id = id
 		var temp = id
@@ -44,6 +45,7 @@ func _process(delta):
 	accumulator += delta
 	while accumulator >= tick_rate:
 		run_tick()
+		tick_sig.emit()
 		accumulator -= tick_rate
 		
 func run_tick():
@@ -70,6 +72,10 @@ func run_tick():
 			if turt.finished == false:
 				turt.head_instance.activate_effect()
 				turt.head_ready = false
+		if turt.shell_ready:
+			if turt.finished == false:
+				turt.shell_instance.activate_effect()
+				turt.shell_ready = false
 		if turt.legs_ready:
 			if turt.finished == false:
 				turt.legs_instance.activate_effect()
@@ -91,20 +97,22 @@ func cooldowns(player):
 		if player.left_arm_cooldown <= 0.0:
 			if player.sim_position.y < 7350:
 				player.left_ready = true
-				#use_item(left_arm, "left_arm_item")
 				player.left_arm_cooldown = player.left_arm_cooldown_max
 	if Inventory.server_turtles[player.id]["rightArm"] != null:
 		if player.right_arm_cooldown <= 0.0:
 			if player.sim_position.y < 7350:
 				player.right_ready = true
-				#use_item(right_arm, "right_arm_item")
 				player.right_arm_cooldown = player.right_arm_cooldown_max
 	if Inventory.server_turtles[player.id]["head"] != null:
 		if player.head_cooldown <= 0.0:
 			if player.head_instance.effect == true:
 				player.head_ready = true
-				#head_instance.activate_effect()
 				player.head_cooldown = player.head_cooldown_max
+	if Inventory.server_turtles[player.id]["shell"] != null:
+		if player.shell_cooldown <= 0.0:
+			if player.shell_instance.effect == true:
+				player.shell_ready = true
+				player.shell_cooldown = player.shell_cooldown_max
 	if Inventory.server_turtles[player.id]["legs"] != null:
 		if player.legs_cooldown <= 0.0:
 			if player.legs_instance.effect == true:
@@ -113,6 +121,7 @@ func cooldowns(player):
 	player.left_arm_cooldown -= tick_rate
 	player.right_arm_cooldown -= tick_rate
 	player.head_cooldown -= tick_rate
+	player.shell_cooldown -= tick_rate
 	player.legs_cooldown -= tick_rate
 	
 func use_item(player, body_part, name):

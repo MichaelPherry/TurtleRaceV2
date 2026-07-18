@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+#Turtle markers and animations
 @onready var visuals = $Visuals
 @onready var shadow = $Shadow
 @onready var collision = $CollisionShape2D
@@ -10,15 +11,16 @@ extends CharacterBody2D
 @onready var leftArm_anim = $Visuals/leftArm/AnimatedSprite2D
 @onready var head_anim = $Visuals/head/AnimatedSprite2D
 @onready var face_anim = $Visuals/face/AnimatedSprite2D
+@onready var belly = $Visuals/belly
 @onready var belly_anim = $Visuals/belly/AnimatedSprite2D
-@onready var animation = $AnimationPlayer
 @onready var left_hand_sprite = $Visuals/LeftHand/LeftWeapon
-@onready var hat_marker = $Visuals/Hat
+@onready var hat_marker = $Visuals/head/Hat
 @onready var left_shoe_marker = $Visuals/leftLeg/AnimatedSprite2D/leftShoe
 @onready var right_shoe_marker = $Visuals/rightLeg/AnimatedSprite2D/rightShoe
 @onready var left_shoe = $Visuals/leftLeg/AnimatedSprite2D/leftShoe/AnimatedSprite2D
 @onready var right_shoe = $Visuals/rightLeg/AnimatedSprite2D/rightShoe/AnimatedSprite2D
 
+#Turtle items and appendages
 var left_arm
 var left_arm_cooldown_max: float
 var left_arm_cooldown = 0
@@ -33,6 +35,7 @@ var head_cooldown_max: float
 var head_cooldown = 0
 var head_type = null
 var shell
+var shell_instance
 var shell_cooldown_max: float
 var shell_cooldown = 0
 var shell_type = null
@@ -48,25 +51,29 @@ var head_ready = false
 var shell_ready = false
 var legs_ready = false
 
+#Turtle stats
 var acceleration = 5
 var resilience = 0.1
 var max_speed = 300
 var current_speed = 0
 var height = 0
 var max_height = -500
-var multiplier = 1
+var projectile = 1
+var stun = 0
+
+#Turtle properties
+var id
 var finished = false
 var invincible = false
-var id
-var projectile = 1
 var hit = false
 var finish_time = "N/A"
 var place = "N/A"
 var grounded = true
+
+#Misc
 var rng
 var seed
 var sim_position
-
 var direction = 1
 var curr_tick = -1
 var tick_rat
@@ -77,6 +84,7 @@ func _ready():
 	current_speed = 0
 	sim_position = global_position
 	$Label.text = str(id)
+	$Label.visible = true
 	Inventory.rng_calls += 1
 	equip()
 	add_to_group(id)
@@ -126,7 +134,7 @@ func tick(current_tick, tick_rate):
 	if sim_position.y < 50 and direction == -1:
 		sim_position.y += 0
 	else:
-		sim_position.y += current_speed * multiplier * tick_rate * direction
+		sim_position.y += current_speed * tick_rate * direction
 	curr_tick = current_tick
 	tick_rat = tick_rate
 	moving_animations()
@@ -142,24 +150,29 @@ func equip():
 					left_arm_cooldown_max = left_arm.cooldown
 					left_arm_cooldown = left_arm_cooldown_max
 					left_arm_type = left_arm.type
-					equip_left_item(left_arm)
+					#equip_left_item(left_arm)
 				"rightArm":
 					right_arm = ItemPassivePool.arm(Inventory.server_turtles[id][body_part])
 					right_arm_cooldown_max = right_arm.cooldown
 					right_arm_cooldown = right_arm_cooldown_max
 					right_arm_type = right_arm.type
-					equip_right_item(right_arm)
+					#equip_right_item(right_arm)
 				"head":
 					head = ItemPassivePool.head(Inventory.server_turtles[id][body_part])
 					head_cooldown_max = head.cooldown
 					head_cooldown = head_cooldown_max
 					head_instance = head.passive_scene.instantiate()
-					hat_marker.visible = true
+					#hat_marker.visible = true
 					head_instance.user = self
 					hat_marker.add_child(head_instance)
-					equip_hat(head)
+					#equip_hat(head)
 				"shell":
-					pass
+					shell = ItemPassivePool.shell(Inventory.server_turtles[id][body_part])
+					shell_cooldown_max = shell.cooldown
+					shell_cooldown = shell_cooldown_max
+					shell_instance = shell.passive_scene.instantiate()
+					shell_instance.user = self
+					belly.add_child(shell_instance)
 				"legs":
 					legs = ItemPassivePool.legs(Inventory.server_turtles[id][body_part])
 					legs_cooldown_max = legs.cooldown
@@ -246,11 +259,11 @@ func invin_frames():
 	hit = false
 
 func moving_animations():
-	if current_speed * multiplier <= 250:
+	if current_speed <= 250:
 		animation_controller("Walking")
 		#animation.play("Walking")
 		
-	elif current_speed * multiplier <= 350:
+	elif current_speed <= 350:
 		animation_controller("Jogging")
 		#animation.play("Jogging")
 	else:
@@ -273,7 +286,6 @@ func target_final_position(target):
 	return final_position
 	
 func animation_controller(action):
-	animation.play(action)
 	shell_anim.play(action)
 	rightLeg_anim.animation = action
 	leftLeg_anim.animation = action

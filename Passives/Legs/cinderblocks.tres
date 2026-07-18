@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://bc33kxn8sd5wq"]
+
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_hx2va"]
+[ext_resource type="PackedScene" uid="uid://cjsltpo6hcfio" path="res://Passives/Legs/cinderblocks.tscn" id="1_ndmyr"]
+
+[resource]
+script = ExtResource("1_hx2va")
+name = "Cinderblocks"
+description = ""
+price = 0
+passive_scene = ExtResource("1_ndmyr")
+cooldown = 0
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

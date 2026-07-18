@@ -15,6 +15,7 @@ type Player = {
     placement: number | null;
     ready: boolean;
     slot: number;
+    name: string;
 };
 
 export class RaceMatch extends Room {
@@ -24,12 +25,13 @@ export class RaceMatch extends Room {
     maxClients: number = 4;
     availableRaceStarts = [1, 2, 3, 4];
     id_list: string[] = [];
+    name_list: string[] = [];
     seed: number = 0;
 
     onCreate(options: any) {
         try{
-        this.maxClients = options;
-
+        this.maxClients = options[0];
+        this.name_list = options[1];
         this.onMessage("submit_turtle", (client, turtle_build) => {
             this.players[client.sessionId].build = turtle_build;
             this.players[client.sessionId].ready = true;
@@ -54,8 +56,8 @@ export class RaceMatch extends Room {
         });
 
         this.onMessage("enter_shop", (client, message) => {
-            console.log(this.id_list)
-            this.broadcast("id_list", this.id_list)
+            console.log(this.name_list)
+            this.broadcast("name_list", this.name_list)
             this.seed = Math.floor(Math.random() * 1000000);
             console.log("New seed:", this.seed);
             this.broadcast("seed", this.seed);
@@ -71,6 +73,7 @@ export class RaceMatch extends Room {
         try{
             console.log(client.sessionId + " is in the race!");
             var race_slot = Number(this.availableRaceStarts.shift());
+            var name_remaining = String(this.name_list.shift());
             this.players[client.sessionId] = {
             build:  {
                 leftArm: null,
@@ -82,7 +85,8 @@ export class RaceMatch extends Room {
             slot: race_slot,
             finished: false,
             placement: null,
-            ready: false
+            ready: false,
+            name: name_remaining
         };
         this.id_list.push(client.sessionId)
         }
@@ -97,6 +101,7 @@ export class RaceMatch extends Room {
         console.log(client.sessionId, "left race");
         if (this.players[client.sessionId]) {
             this.availableRaceStarts.push(this.players[client.sessionId].slot)
+            this.name_list.push(this.players[client.sessionId].name)
         }
         delete this.players[client.sessionId];
      }

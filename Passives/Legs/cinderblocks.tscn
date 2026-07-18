@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjsltpo6hcfio"]
+
+[ext_resource type="Script" uid="uid://bte4u8p85nxlk" path="res://Passives/Legs/cinderblocks.gd" id="1_uupff"]
+
+[node name="Cinderblocks" type="Node2D"]
+script = ExtResource("1_uupff")

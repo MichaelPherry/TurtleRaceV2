@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var results = $Results/Panel/Timelist
+@onready var tick_controller = $TickController
 
 var finished_turts = []
 var time_elapsed = 0.0
@@ -13,6 +14,7 @@ func _ready():
 		turt.remove_from_group("finished")
 	$Results.visible = false
 	finished_turts = []
+	Inventory.tick_controller_ref = tick_controller
 
 func _process(delta):
 	time_elapsed += delta

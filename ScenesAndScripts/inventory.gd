@@ -12,13 +12,14 @@ extends Node
 #	}
 var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
 var rng_calls = 0
-var id_list
+var name_list
 var seed
 var local_turtle = {}
 var server_turtles = {}
 var start_time
 var projectiles = []
 var race_started = false
+var tick_controller_ref
 
 func reset_turtles():
 	var server_keys = server_turtles.keys()
@@ -37,3 +38,9 @@ func set_turtles(turtles):
 	
 func seconds_to_ticks(seconds, tick_rate):
 	return round (seconds / tick_rate)
+	
+func wait_ticks(user, amt_of_seconds_to_wait):
+	var amt_of_ticks_to_wait = seconds_to_ticks(amt_of_seconds_to_wait, user.tick_rat)
+	var target_tick = user.curr_tick + amt_of_ticks_to_wait
+	while user.curr_tick < target_tick:
+		await tick_controller_ref.tick_sig

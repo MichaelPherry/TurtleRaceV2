@@ -156,6 +156,12 @@ offset_bottom = 130.0
 text = "Legs
 "
 
+[node name="Label" type="Label" parent="."]
+offset_right = 1198.0
+offset_bottom = 46.0
+text = "shop"
+horizontal_alignment = 1
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="fissile" to="." method="_on_fissile"]
 [connection signal="button_down" from="eel" to="." method="_on_eel"]

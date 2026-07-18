@@ -3,17 +3,18 @@ extends Node2D
 var client: Colyseus.Client
 var room: Colyseus.Room
 var callbacks: Colyseus.Callbacks
+var local_player_name = null
 var sessionID
 var current_scene = null
 var race_scene = preload("res://ScenesAndScripts/main.tscn") 
 
 func _ready():
 	client = Colyseus.Client.new("wss://turtleracev2.onrender.com")
-	connect_to_matchmaking()
+	#connect_to_matchmaking()
 
 func connect_to_matchmaking():
 	print("Connecting...")
-	room = await client.join_or_create("raceLobby")
+	room = await client.join_or_create("raceLobby", {"player_name": local_player_name})
 	get_tree().current_scene.setup(room)
 	room.joined.connect(_on_lobby_joined)
 
@@ -31,7 +32,7 @@ func _on_room_joined(data):
 	print("Joined room: ", room.get_id())
 	print("Session ID: ", room.get_session_id())
 	print("Room name: ", room.get_name())
-	sessionID = room.get_session_id()
+	sessionID = await room.get_session_id()
 	Inventory.local_turtle[sessionID] = {
 		"leftArm" : null,
 		"rightArm" : null,
@@ -47,17 +48,14 @@ func send_message(code_text, message):
 	room.send_message(code_text, message)
 
 func _on_message_received(type, message):
-	#print(type)
-	#print("message received")
-	
 	if type == "send_turtles":
 		Inventory.set_turtles(message)
 		get_tree().change_scene_to_packed(race_scene)
 	elif type == "seed":
 		Inventory.seed = message
 		#Inventory.rng.seed = message
-	elif type == "id_list":
-		Inventory.id_list = message
+	elif type == "name_list":
+		Inventory.name_list = message
 	elif type == "race_start":
 		print(message["startTime"])
 		Inventory.start_time = message["startTime"] 

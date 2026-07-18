@@ -6,6 +6,7 @@ import { matchMaker } from "colyseus";
 type PlayerData = {
     ready: boolean;
     race_order: number;
+    name: string
 };
 
 export class RaceLobby extends Room {
@@ -14,6 +15,7 @@ export class RaceLobby extends Room {
     availableRaceStarts = [1, 2, 3, 4]
     seed = 0;
     players: Record<string, PlayerData> = {};
+name_list: string[] = [];
 
     onCreate() {
         try {
@@ -32,22 +34,28 @@ export class RaceLobby extends Room {
         }
     }
 
-    onJoin(client: any) {
+    onJoin(client: any, options: any) {
 
-        console.log(client.sessionId, "joined race");
+        console.log(options.player_name, "joined race");
 
         if (this.availableRaceStarts.length == 0) {
             client.leave();
             return
         }
-
+        for (const player in this.players){
+            if (this.players[player].name == options.player_name)
+                options.player_name = client.sessionId
+                }
+                
         var slot = Number(this.availableRaceStarts.shift())
 
+        //client.sessionId = options.player_name
         this.players[client.sessionId] = {
             ready: false,
-            race_order: slot
+            race_order: slot,
+            name: options.player_name
         };
-
+        this.name_list.push(this.players[client.sessionId].name);
         this.sendLobbyUpdate();
     }
 
@@ -55,6 +63,11 @@ export class RaceLobby extends Room {
         console.log(client.sessionId, "left race");
         if (this.players[client.sessionId]) {
             this.availableRaceStarts.push(this.players[client.sessionId].race_order)
+        }
+
+        var index = this.name_list.indexOf(this.players[client.sessionId].name)
+        if (index !== -1) {
+            this.name_list.splice(index, 1);
         }
 
         delete this.players[client.sessionId];
@@ -75,7 +88,7 @@ export class RaceLobby extends Room {
     sendLobbyUpdate() {
         const lobby = []
         for (const id in this.players){
-            lobby.push({id: id, ready: this.players[id].ready, slot: this.players[id].race_order});
+            lobby.push({ready: this.players[id].ready, slot: this.players[id].race_order, name: this.players[id].name});
         }
 
         this.broadcast("lobby_update", lobby)
@@ -84,7 +97,7 @@ export class RaceLobby extends Room {
     async startRace() {
 
 
-        const raceRoom = await matchMaker.createRoom("raceMatch", this.maxClients);
+        const raceRoom = await matchMaker.createRoom("raceMatch", [this.maxClients, this.name_list]);
         this.broadcast("load_race", { roomId: raceRoom.roomId})
         this.seed = Math.floor(Math.random() * 1000000);
         console.log("Starting race with seed:", this.seed);

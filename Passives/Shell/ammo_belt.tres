@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://b1m8qjp8ih8da"]
+
+[ext_resource type="PackedScene" uid="uid://cyxkr31lx45dl" path="res://Passives/Shell/ammo_belt.tscn" id="1_24ltj"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_b1ugm"]
+
+[resource]
+script = ExtResource("1_b1ugm")
+name = "Ammo Belt"
+description = ""
+price = 0
+passive_scene = ExtResource("1_24ltj")
+cooldown = 0
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

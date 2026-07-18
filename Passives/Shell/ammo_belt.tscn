@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cyxkr31lx45dl"]
+
+[ext_resource type="Script" uid="uid://b0b7fpkwmo1gk" path="res://Passives/Shell/ammo_belt.gd" id="1_q3xxp"]
+
+[node name="AmmoBelt" type="Node2D"]
+script = ExtResource("1_q3xxp")
