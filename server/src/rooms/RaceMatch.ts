@@ -7,7 +7,6 @@ type Turtle = {
     head: string | null;
     shell: string | null;
     legs: string | null;
-    name: string | null;
 };
 
 type Player = {
@@ -67,7 +66,7 @@ export class RaceMatch extends Room {
 
         this.onMessage("enter_shop", (client, message) => {
             console.log(this.perm_name_list)
-            this.broadcast("id_name_list",[this.id_list, this.perm_name_list])
+            this.broadcast("id_list",this.id_list)
             this.seed = Math.floor(Math.random() * 1000000);
             console.log("New seed:", this.seed);
             this.broadcast("seed", this.seed);
@@ -90,8 +89,7 @@ export class RaceMatch extends Room {
                 rightArm: null,
                 head: null,
                 shell: null,
-                legs: null,
-                name: name_remaining
+                legs: null
             },
             slot: race_slot,
             finished: false,
