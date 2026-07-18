@@ -1,10 +1,12 @@
 extends Node
 
-var arm_list = ["fissile", "eel_spit", "mystery_item", "bear_trap"]
-var head_list = ["propreller", "bunny_ears", "dunce_hat", "m1_helmet"]
-var shell_list = ["ammo_belt", "arc_reactor"]
-var legs_list = ["rollerskates", "cinderblocks"]
-var total_pool = [arm_list, head_list, shell_list, legs_list]
+var appendages = ["arm", "head", "shell", "legs"]
+var total_pool = {
+	"arm": ["fissile", "bear_trap"],
+	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet"],
+	"shell": ["ammo_belt", "arc_reactor"],
+	"legs": ["rollerskates", "cinderblocks"]
+}
 
 func arm(item):
 	match item:

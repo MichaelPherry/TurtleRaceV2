@@ -84,7 +84,7 @@ func _ready():
 	rng.seed = seed
 	current_speed = 0
 	sim_position = global_position
-	$Label.text = str(id)
+	$Label.text = str(name_tag)
 	$Label.visible = true
 	Inventory.rng_calls += 1
 	equip()

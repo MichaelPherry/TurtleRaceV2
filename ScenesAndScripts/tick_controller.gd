@@ -24,12 +24,10 @@ func spawn_players():
 		var player = turtle_scene.instantiate()
 		player.id = id
 		
-		var id_counter = 0
-		for id_name in Inventory.id_name_list[0]:
-			if id_name[id_counter] == id:
-				player.name_tag = Inventory.id_name_list[1][id_counter]
-			else:
-				id_counter += 1
+		for id_name in Inventory.id_name_list:
+			if id_name[0] == id:
+				player.name_tag = id_name[1]
+
 		var temp = id
 		
 		player.global_position = start_pos[Inventory.server_turtles[id]["slot"] - 1]

@@ -22,6 +22,10 @@ var projectiles = []
 var race_started = false
 var tick_controller_ref
 
+var item_1
+var item_2
+var item_3
+
 func reset_turtles():
 	var server_keys = server_turtles.keys()
 	for id in server_keys:
