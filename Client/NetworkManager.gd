@@ -54,9 +54,10 @@ func _on_message_received(type, message):
 	elif type == "seed":
 		Inventory.seed = message
 		#Inventory.rng.seed = message
+	elif type == "id_list":
+		Inventory.id_list = message
 	elif type == "id_name_list":
-		Inventory.id_list = message[0]
-		Inventory.name_list = message[1]
+		Inventory.id_name_list = message
 	elif type == "race_start":
 		print(message["startTime"])
 		Inventory.start_time = message["startTime"] 

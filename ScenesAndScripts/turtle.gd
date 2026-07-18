@@ -63,6 +63,7 @@ var stun = 0
 
 #Turtle properties
 var id
+var name_tag
 var finished = false
 var invincible = false
 var hit = false

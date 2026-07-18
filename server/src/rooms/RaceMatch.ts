@@ -7,6 +7,7 @@ type Turtle = {
     head: string | null;
     shell: string | null;
     legs: string | null;
+    name: string | null;
 };
 
 type Player = {
@@ -26,6 +27,7 @@ export class RaceMatch extends Room {
     availableRaceStarts = [1, 2, 3, 4];
     id_list: string[] = [];
     perm_name_list: string[] = [];
+    id_name_list: Array<string>[] = [];
     name_list: string[] = [];
     seed: number = 0;
 
@@ -47,6 +49,11 @@ export class RaceMatch extends Room {
             if (counter == 4)
             {
                 console.log("wooo")
+                for (const id of Object.keys(this.players)){
+                    this.id_name_list.push([id, this.players[id].name])
+                }
+
+                this.broadcast("id_with_name", this.id_name_list)
                 this.broadcast("send_turtles", this.players)
 
                 const startTime = Date.now() + 3000;
@@ -83,7 +90,8 @@ export class RaceMatch extends Room {
                 rightArm: null,
                 head: null,
                 shell: null,
-                legs: null
+                legs: null,
+                name: name_remaining
             },
             slot: race_slot,
             finished: false,

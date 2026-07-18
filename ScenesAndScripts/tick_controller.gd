@@ -23,12 +23,16 @@ func spawn_players():
 	for id in Inventory.id_list:
 		var player = turtle_scene.instantiate()
 		player.id = id
+		for element in Inventory.id_name_list:
+			if element[0] == id:
+				player.name_tag = element[1]
 		var temp = id
 		
 		player.global_position = start_pos[Inventory.server_turtles[id]["slot"] - 1]
 		player.seed = Inventory.seed + counter
 		add_child(player)
 		counter += 1
+		
 	players = get_tree().get_nodes_in_group("players")
 	players.sort_custom(func(a,b):
 		return a.id < b.id

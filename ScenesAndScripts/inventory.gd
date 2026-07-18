@@ -13,7 +13,7 @@ extends Node
 var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
 var rng_calls = 0
 var id_list
-var name_list
+var id_name_list
 var seed
 var local_turtle = {}
 var server_turtles = {}
