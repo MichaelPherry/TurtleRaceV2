@@ -31,9 +31,10 @@ export class RaceMatch extends Room {
 
     onCreate(options: any) {
         try{
+        console.log("beg " + options);
         this.maxClients = options[0];
         this.name_list = options[1];
-        this.perm_name_list = options[1];
+        this.perm_name_list = options[1].slice();
         this.onMessage("submit_turtle", (client, turtle_build) => {
             this.players[client.sessionId].build = turtle_build;
             this.players[client.sessionId].ready = true;

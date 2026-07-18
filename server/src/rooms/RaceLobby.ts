@@ -15,7 +15,7 @@ export class RaceLobby extends Room {
     availableRaceStarts = [1, 2, 3, 4]
     seed = 0;
     players: Record<string, PlayerData> = {};
-name_list: string[] = [];
+    name_list: string[] = [];
 
     onCreate() {
         try {
