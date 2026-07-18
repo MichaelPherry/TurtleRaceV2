@@ -20,7 +20,7 @@ func _ready():
 
 func spawn_players():
 	var counter = 0
-	for id in Inventory.name_list:
+	for id in Inventory.id_list:
 		var player = turtle_scene.instantiate()
 		player.id = id
 		var temp = id
