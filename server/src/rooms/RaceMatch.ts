@@ -25,6 +25,7 @@ export class RaceMatch extends Room {
     maxClients: number = 4;
     availableRaceStarts = [1, 2, 3, 4];
     id_list: string[] = [];
+    perm_name_list: string[] = [];
     name_list: string[] = [];
     seed: number = 0;
 
@@ -32,6 +33,7 @@ export class RaceMatch extends Room {
         try{
         this.maxClients = options[0];
         this.name_list = options[1];
+        this.perm_name_list = options[1];
         this.onMessage("submit_turtle", (client, turtle_build) => {
             this.players[client.sessionId].build = turtle_build;
             this.players[client.sessionId].ready = true;
@@ -56,8 +58,8 @@ export class RaceMatch extends Room {
         });
 
         this.onMessage("enter_shop", (client, message) => {
-            console.log(this.name_list)
-            this.broadcast("name_list", this.name_list)
+            console.log(this.perm_name_list)
+            this.broadcast("name_list", this.perm_name_list)
             this.seed = Math.floor(Math.random() * 1000000);
             console.log("New seed:", this.seed);
             this.broadcast("seed", this.seed);
