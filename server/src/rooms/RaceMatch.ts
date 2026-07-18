@@ -60,7 +60,7 @@ export class RaceMatch extends Room {
 
         this.onMessage("enter_shop", (client, message) => {
             console.log(this.perm_name_list)
-            this.broadcast("name_list", this.perm_name_list)
+            this.broadcast("id_name_list",[this.id_list, this.perm_name_list])
             this.seed = Math.floor(Math.random() * 1000000);
             console.log("New seed:", this.seed);
             this.broadcast("seed", this.seed);
@@ -76,6 +76,7 @@ export class RaceMatch extends Room {
         try{
             var race_slot = Number(this.availableRaceStarts.shift());
             var name_remaining = String(this.name_list.shift());
+            console.log(name_remaining)
             this.players[client.sessionId] = {
             build:  {
                 leftArm: null,
@@ -90,7 +91,7 @@ export class RaceMatch extends Room {
             ready: false,
             name: name_remaining
         };
-        client.sessionId = this.players[client.sessionId].name
+        //client.sessionId = this.players[client.sessionId].name
         console.log(this.players[client.sessionId].name + " is in the race!");
         this.id_list.push(client.sessionId)
         }

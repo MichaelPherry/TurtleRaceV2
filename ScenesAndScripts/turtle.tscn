@@ -1406,7 +1406,6 @@ animation = &"Walking"
 [node name="Hat" type="Marker2D" parent="Visuals/head"]
 visible = false
 position = Vector2(4.76837e-07, -38)
-scale = Vector2(1, 1)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals/head/Hat"]
 position = Vector2(45.8069, -69.0487)
