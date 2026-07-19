@@ -21,9 +21,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("4_xj0q2")
 }],
-"loop": false,
+"loop": true,
 "name": &"snap",
-"speed": 7.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pw57n"]

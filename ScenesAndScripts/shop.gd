@@ -2,6 +2,9 @@ extends Node2D
 
 @onready var background = $RaccoonBackground
 
+var correct_arm = "leftArm"
+signal button_selected(button_name)
+
 func _ready():
 	$leftArm.visible = false
 	$rightArm.visible = false
@@ -26,19 +29,19 @@ func _on_button_button_down():
 	
 func _on_fissile():
 	if Inventory.item_1[0] == "arm":
-		Inventory.item_1[0] = which_arm()
+		Inventory.item_1[0] = await which_arm()
 		
 	Inventory.local_turtle[NetworkManager.sessionID][Inventory.item_1[0]] = Inventory.item_1[1]
 
 func _on_eel():
 	if Inventory.item_2[0] == "arm":
-		Inventory.item_2[0] = which_arm()
+		Inventory.item_2[0] = await which_arm()
 		
 	Inventory.local_turtle[NetworkManager.sessionID][Inventory.item_2[0]] = Inventory.item_2[1]
 
 func _on_mystery(): 
 	if Inventory.item_3[0] == "arm":
-		Inventory.item_3[0] = which_arm()
+		Inventory.item_3[0] = await which_arm()
 		
 	Inventory.local_turtle[NetworkManager.sessionID][Inventory.item_3[0]] = Inventory.item_3[1]
 
@@ -67,6 +70,8 @@ func which_arm():
 	$leftArm.visible = true
 	$rightArm.visible = true
 	$whichArm.visible = true
+	var arm = await button_selected
+	return arm
 	
 func _on_left_arm():
 	$Button.disabled = false
@@ -77,8 +82,8 @@ func _on_left_arm():
 	$leftArm.visible = false
 	$rightArm.visible = false
 	$whichArm.visible = false
-	var ret = "leftArm"
-	return ret
+	button_selected.emit("leftArm")
+
 	
 func _on_right_arm():
 	$Button.disabled = false
@@ -89,5 +94,4 @@ func _on_right_arm():
 	$leftArm.visible = false
 	$rightArm.visible = false
 	$whichArm.visible = false
-	var ret = "rightArm"
-	return ret
+	button_selected.emit("rightArm")

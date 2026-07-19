@@ -1,13 +1,13 @@
 extends Node
 
 var user
-var mult_add = 2.5
-var mult_minus = 0.3
+var max_speed_mult = 2.5
+var accel_mult = 0.75
 var effect = true
 
 func _ready():
-	user.multiplier *= mult_add
+	user.max_speed *= max_speed_mult
 	
 func activate_effect():
-	if user.multiplier >= 0.75:
-		user.multiplier -= mult_minus
+	if user.acceleration >= 1:
+		user.acceleration *= accel_mult
