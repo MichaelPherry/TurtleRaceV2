@@ -55,6 +55,7 @@ export class RaceLobby extends Room {
             race_order: slot,
             name: options.player_name
         };
+        client.send("session_id", client.sessionId)
         this.name_list.push(this.players[client.sessionId].name);
         this.sendLobbyUpdate();
     }

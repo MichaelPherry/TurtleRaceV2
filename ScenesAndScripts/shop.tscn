@@ -86,10 +86,10 @@ position = Vector2(-1.5, -12)
 shape = SubResource("RectangleShape2D_heiyn")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 415.0
-offset_top = 529.0
-offset_right = 664.0
-offset_bottom = 618.0
+offset_left = 373.0
+offset_top = 428.0
+offset_right = 622.0
+offset_bottom = 517.0
 text = "Ready
 "
 

@@ -10,7 +10,6 @@ var race_scene = preload("res://ScenesAndScripts/main.tscn")
 
 func _ready():
 	client = Colyseus.Client.new("wss://turtleracev2.onrender.com")
-	#connect_to_matchmaking()
 
 func connect_to_matchmaking():
 	print("Connecting...")
@@ -32,15 +31,6 @@ func _on_room_joined(data):
 	print("Joined room: ", room.get_id())
 	print("Session ID: ", room.get_session_id())
 	print("Room name: ", room.get_name())
-	sessionID = await room.get_session_id()
-	Inventory.local_turtle[sessionID] = {
-		"leftArm" : null,
-		"rightArm" : null,
-		"head" : null,
-		"shell" : null,
-		"legs" : null,
-		"slot" : null
-		}
 	room.message_received.connect(_on_message_received)
 	await get_tree().create_timer(1.0).timeout
 	
@@ -61,5 +51,15 @@ func _on_message_received(type, message):
 	elif type == "race_start":
 		print(message["startTime"])
 		Inventory.start_time = message["startTime"] 
+	elif type == "session_id":
+		sessionID = message
+		Inventory.local_turtle[sessionID] = {
+		"leftArm" : null,
+		"rightArm" : null,
+		"head" : null,
+		"shell" : null,
+		"legs" : null,
+		"slot" : null
+		}
 	#Inventory.reset_turtles()
 	#Inventory.set_turtles(message)

@@ -77,7 +77,8 @@ func _on_left_arm():
 	$leftArm.visible = false
 	$rightArm.visible = false
 	$whichArm.visible = false
-	return "leftArm"
+	var ret = "leftArm"
+	return ret
 	
 func _on_right_arm():
 	$Button.disabled = false
@@ -88,4 +89,5 @@ func _on_right_arm():
 	$leftArm.visible = false
 	$rightArm.visible = false
 	$whichArm.visible = false
-	return "rightArm"
+	var ret = "rightArm"
+	return ret
