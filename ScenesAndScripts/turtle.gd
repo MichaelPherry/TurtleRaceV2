@@ -4,21 +4,13 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var shadow = $Shadow
 @onready var collision = $CollisionShape2D
-@onready var shell_anim = $Visuals/Turtle_Body
-@onready var rightLeg_anim = $Visuals/rightLeg/AnimatedSprite2D
-@onready var leftLeg_anim = $Visuals/leftLeg/AnimatedSprite2D
-@onready var rightArm_anim = $Visuals/rightArm/AnimatedSprite2D
-@onready var leftArm_anim = $Visuals/leftArm/AnimatedSprite2D
-@onready var head_anim = $Visuals/head/AnimatedSprite2D
-@onready var face_anim = $Visuals/face/AnimatedSprite2D
-@onready var belly = $Visuals/belly
-@onready var belly_anim = $Visuals/belly/AnimatedSprite2D
-@onready var left_hand_sprite = $Visuals/LeftHand/LeftWeapon
-@onready var hat_marker = $Visuals/head/Hat
-@onready var left_shoe_marker = $Visuals/leftLeg/AnimatedSprite2D/leftShoe
-@onready var right_shoe_marker = $Visuals/rightLeg/AnimatedSprite2D/rightShoe
-@onready var left_shoe = $Visuals/leftLeg/AnimatedSprite2D/leftShoe/AnimatedSprite2D
-@onready var right_shoe = $Visuals/rightLeg/AnimatedSprite2D/rightShoe/AnimatedSprite2D
+@onready var shell_anim = $Visuals/Shell
+@onready var legs_anim = $Visuals/Legs
+@onready var belly_anim = $Visuals/Belly
+@onready var head_anim = $Visuals/Head
+@onready var face_anim = $Visuals/Face
+@onready var leftArm_anim = $Visuals/LeftArm
+@onready var rightArm_anim = $Visuals/RightArm
 
 #Turtle items and appendages
 var left_arm
@@ -58,7 +50,9 @@ var max_speed = 300
 var current_speed = 0
 var height = 0
 var max_height = -500
-var projectile = 1
+var fire_rate = 1
+var projectile_speed = 1
+var luck = 1
 var stun = 0
 
 #Turtle properties
@@ -82,7 +76,16 @@ var tick_rat
 func _ready():
 	rng = RandomNumberGenerator.new()
 	rng.seed = seed
+	
 	current_speed = 0
+	acceleration = Inventory.server_turtles[id]["base_stats"]["acceleration"]
+	resilience = Inventory.server_turtles[id]["base_stats"]["resilience"]
+	max_speed = Inventory.server_turtles[id]["base_stats"]["max_speed"]
+	fire_rate = Inventory.server_turtles[id]["base_stats"]["fire_rate"]
+	projectile_speed = Inventory.server_turtles[id]["base_stats"]["projectile_speed"]
+	luck = Inventory.server_turtles[id]["base_stats"]["luck"]
+	
+	animation_controller()
 	sim_position = global_position
 	$Label.text = str(name_tag)
 	$Label.visible = true
@@ -91,12 +94,11 @@ func _ready():
 	add_to_group(id)
 	add_to_group("players")
 	add_to_group("racing")
-	moving_animations()
+
 	
 func _process(delta):
 	var current_frame = shell_anim.frame
-	rightLeg_anim.frame = current_frame
-	leftLeg_anim.frame = current_frame
+	legs_anim.frame = current_frame
 	rightArm_anim.frame = current_frame
 	leftArm_anim.frame = current_frame
 	head_anim.frame = current_frame
@@ -121,9 +123,7 @@ func tick(current_tick, tick_rate):
 		height = 0
 	else:
 		height = max_height
-	#if curr_tick != current_tick:
-		#print(current_tick, " ", id, " ", sim_position.y)
-	
+
 	#visuals.position.y = height
 	collision.position.y = height
 	
@@ -138,53 +138,60 @@ func tick(current_tick, tick_rate):
 		sim_position.y += current_speed * tick_rate * direction
 	curr_tick = current_tick
 	tick_rat = tick_rate
-	moving_animations()
+
 
 func equip():
 	for body_part in Inventory.appendages:
 		if Inventory.server_turtles[id][body_part] != null:
-			#instead of using arm below you will eventually have to use the 
-			#call function similarly how you do it in the item script
 			match body_part:
 				"leftArm":
-					left_arm = ItemPassivePool.arm(Inventory.server_turtles[id][body_part])
+					left_arm = ItemPassivePool.arm(Inventory.server_turtles[id]["items"][body_part])
 					left_arm_cooldown_max = left_arm.cooldown
 					left_arm_cooldown = left_arm_cooldown_max
 					left_arm_type = left_arm.type
-					#equip_left_item(left_arm)
+					if leftArm_anim.sprite_frames.has_animation(left_arm.name):
+						leftArm_anim.play(left_arm.name)
+					
 				"rightArm":
-					right_arm = ItemPassivePool.arm(Inventory.server_turtles[id][body_part])
+					right_arm = ItemPassivePool.arm(Inventory.server_turtles[id]["items"][body_part])
 					right_arm_cooldown_max = right_arm.cooldown
 					right_arm_cooldown = right_arm_cooldown_max
 					right_arm_type = right_arm.type
-					#equip_right_item(right_arm)
+					if rightArm_anim.sprite_frames.has_animation(right_arm.name):
+						rightArm_anim.play(right_arm.name)
+
 				"head":
-					head = ItemPassivePool.head(Inventory.server_turtles[id][body_part])
+					head = ItemPassivePool.head(Inventory.server_turtles[id]["items"][body_part])
 					head_cooldown_max = head.cooldown
 					head_cooldown = head_cooldown_max
 					head_instance = head.passive_scene.instantiate()
+					head_instance.visible = false
 					#hat_marker.visible = true
 					head_instance.user = self
-					hat_marker.add_child(head_instance)
-					#equip_hat(head)
+					head_anim.add_child(head_instance)
+					if head_anim.sprite_frames.has_animation(head.name):
+						head_anim.play(head.name)
+
 				"shell":
-					shell = ItemPassivePool.shell(Inventory.server_turtles[id][body_part])
+					shell = ItemPassivePool.shell(Inventory.server_turtles[id]["items"][body_part])
 					shell_cooldown_max = shell.cooldown
 					shell_cooldown = shell_cooldown_max
 					shell_instance = shell.passive_scene.instantiate()
 					shell_instance.user = self
-					belly.add_child(shell_instance)
+					shell_instance.visible = false
+					belly_anim.add_child(shell_instance)
+					if belly_anim.sprite_frames.has_animation(shell.name):
+						belly_anim.play(shell.name)
 				"legs":
-					legs = ItemPassivePool.legs(Inventory.server_turtles[id][body_part])
+					legs = ItemPassivePool.legs(Inventory.server_turtles[id]["items"][body_part])
 					legs_cooldown_max = legs.cooldown
 					legs_cooldown = legs_cooldown_max
 					legs_instance = legs.passive_scene.instantiate()
 					legs_instance.user = self
-					left_shoe_marker.visible = true
-					left_shoe.play(legs_instance.name)
-					right_shoe_marker.visible = true
-					right_shoe.play(legs_instance.name)
-					right_shoe_marker.add_child(legs_instance)
+					legs_instance.visible = false
+					legs_anim.add_child(legs_instance)
+					if legs_anim.sprite_frames.has_animation(legs.name):
+						legs_anim.play(legs.name)
 					
 			var temp = Inventory.server_turtles[id][body_part]
 
@@ -225,8 +232,9 @@ func right_arm_item(user, target, scene):
 	get_tree().current_scene.add_child(instance)
 	
 func equip_left_item(item):
-	left_hand_sprite.texture = item.icon
-	left_hand_sprite.flip_h = true
+	pass
+	#left_hand_sprite.texture = item.icon
+	#left_hand_sprite.flip_h = true
 
 func equip_right_item(item):
 	#right_hand_sprite.texture = item.icon
@@ -255,21 +263,20 @@ func invin_frames():
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1) 
 	sim_position.y = sped
-	moving_animations()
 	invincible = false
 	hit = false
 
-func moving_animations():
-	if current_speed <= 250:
-		animation_controller("Walking")
-		#animation.play("Walking")
-		
-	elif current_speed <= 350:
-		animation_controller("Jogging")
-		#animation.play("Jogging")
-	else:
-		animation_controller("Running")
-		#animation.play("Running")
+#func moving_animations():
+	#if current_speed <= 250:
+		#animation_controller("Walking")
+		##animation.play("Walking")
+		#
+	#elif current_speed <= 350:
+		#animation_controller("Jogging")
+		##animation.play("Jogging")
+	#else:
+		#animation_controller("Running")
+		##animation.play("Running")
 
 func target_final_position(target):
 	var max = 7500
@@ -286,23 +293,16 @@ func target_final_position(target):
 		#print(final_position.y, " final ", curr_tick, " ", rng.state, " targs ", targy, " randy targ ", randy_targ)
 	return final_position
 	
-func animation_controller(action):
+func animation_controller():
+	var action = "default"
 	shell_anim.play(action)
-	rightLeg_anim.animation = action
-	leftLeg_anim.animation = action
+	legs_anim.animation = action
 	rightArm_anim.animation = action
 	leftArm_anim.animation = action
 	head_anim.animation = action
 	face_anim.animation = action
 	belly_anim.animation = action
 
-	if action == "Running":
-		$Visuals/leftArm.position = Vector2(-185, -50)
-		$Visuals/rightArm.position = Vector2(80,-140)
-		
-	else:
-		$Visuals/leftArm.position = Vector2(-124, -41)
-		$Visuals/rightArm.position = Vector2(49,-90)
 
 func start_flying():
 	var tween = create_tween()

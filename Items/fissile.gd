@@ -37,7 +37,7 @@ func tick():
 
 	sim_rotation = target_angle
 	var direction = Vector2.RIGHT.rotated(sim_rotation)
-	sim_position += direction * speed * user.tick_rat * user.projectile
+	sim_position += direction * speed * user.tick_rat * user.projectile_speed
 
 func hit(body):
 	if body == target:

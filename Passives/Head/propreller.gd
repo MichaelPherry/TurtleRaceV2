@@ -20,13 +20,10 @@ func activate_effect():
 	user.grounded = false
 	user.max_speed *= max_speed_mult
 	user.acceleration *= accel_mult
-	user.moving_animations()
-	
+
 	#while user.curr_tick - start_tick > flight_time:
 		#pass
 	await Inventory.wait_ticks(user, flight_time)
 	user.max_speed = orig_max_speed
-	user.acceleration /= accel_mult
-	user.moving_animations()
 	user.head_cooldown = user.head.cooldown
 	user.grounded = true

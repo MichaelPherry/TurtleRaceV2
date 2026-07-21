@@ -54,12 +54,23 @@ func _on_message_received(type, message):
 	elif type == "session_id":
 		sessionID = message
 		Inventory.local_turtle[sessionID] = {
-		"leftArm" : null,
-		"rightArm" : null,
-		"head" : null,
-		"shell" : null,
-		"legs" : null,
-		"slot" : null
+		"items": {
+			"leftArm" : null,
+			"rightArm" : null,
+			"head" : null,
+			"shell" : null,
+			"legs" : null,
+			"slot" : null
+		},		
+		"base_stats": {
+			"acceleration": 5.0,
+			"resilience": 0.1,
+			"max_speed": 300.0,
+			"fire_rate": 1.0,
+			"projectile_speed": 1.0,
+			"luck": 1.0
+		},		
+		"econ": {
+			"gold": 10
 		}
-	#Inventory.reset_turtles()
-	#Inventory.set_turtles(message)
+	}

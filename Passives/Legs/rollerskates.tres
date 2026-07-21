@@ -1,13 +1,16 @@
-[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://dgpko1a5ki5ni"]
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://dgpko1a5ki5ni"]
 
 [ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_66lq1"]
+[ext_resource type="Texture2D" uid="uid://cbwvekoy6of0t" path="res://Art/AlexArt/Items/Rollerskates/Shop Roller Skate.png" id="1_rlene"]
 [ext_resource type="PackedScene" uid="uid://bps3q4tusmord" path="res://Passives/Legs/rollerskates.tscn" id="1_wl1mu"]
 
 [resource]
 script = ExtResource("1_66lq1")
-name = "Rollerskates"
+name = "Roller Skates"
 description = ""
 price = 0
+icon = ExtResource("1_rlene")
 passive_scene = ExtResource("1_wl1mu")
 cooldown = 0
+type = ""
 metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

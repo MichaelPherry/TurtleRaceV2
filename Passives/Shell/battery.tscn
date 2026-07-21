@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs5a16jsi25bp"]
+
+[ext_resource type="Script" uid="uid://cv8n8umfccrn7" path="res://Passives/Shell/battery.gd" id="1_xjn3t"]
+
+[node name="ArcReactor" type="Node2D"]
+script = ExtResource("1_xjn3t")

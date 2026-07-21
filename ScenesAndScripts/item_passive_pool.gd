@@ -4,7 +4,7 @@ var appendages = ["arm", "head", "shell", "legs"]
 var total_pool = {
 	"arm": ["fissile", "bear_trap"],
 	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet"],
-	"shell": ["ammo_belt", "arc_reactor"],
+	"shell": ["ammo_belt", "battery"],
 	"legs": ["rollerskates", "cinderblocks"]
 }
 
@@ -34,8 +34,8 @@ func shell(item):
 	match item:
 		"ammo_belt":
 			return load("res://Passives/Shell/ammo_belt.tres")
-		"arc_reactor":
-			return load("res://Passives/Shell/arc_reactor.tres")
+		"battery":
+			return load("res://Passives/Shell/battery.tres")
 		
 func legs(item):
 	match item:

@@ -1,152 +1,127 @@
-[gd_scene load_steps=10 format=3 uid="uid://croetv5l82fpm"]
+[gd_scene load_steps=8 format=3 uid="uid://croetv5l82fpm"]
 
 [ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
-[ext_resource type="Texture2D" uid="uid://1xjrtcy4hkub" path="res://Art/ShaneArt/Shop0000.png" id="2_u13sh"]
-[ext_resource type="Texture2D" uid="uid://d1n7mcfv41up3" path="res://Art/ShaneArt/Shop0001.png" id="3_4u8c6"]
-[ext_resource type="Texture2D" uid="uid://ssx7l0ws3i5p" path="res://Art/ShaneArt/Shop0002.png" id="4_tawjt"]
-[ext_resource type="Texture2D" uid="uid://c2sl3urpe8hm5" path="res://Art/ShaneArt/Shop0003.png" id="5_fnmc7"]
+[ext_resource type="Texture2D" uid="uid://ixhs05ounnrl" path="res://Art/ShaneArt/Shop/Racoon_Items_he_sourced_from_the_Appalancan_Mountains.png" id="2_u13sh"]
+[ext_resource type="Texture2D" uid="uid://b7ekdlhrhvi0o" path="res://Art/AlexArt/Items/BunnyEars/Shop _Bunny Ear.png" id="3_gyq1v"]
+[ext_resource type="Texture2D" uid="uid://dmjfsytr8ycts" path="res://Art/AlexArt/Items/BearTrap/Shop Bear Trap.png" id="4_4u8c6"]
+[ext_resource type="PackedScene" uid="uid://1usxicevamun" path="res://ScenesAndScripts/inventory_turtle.tscn" id="6_tawjt"]
+[ext_resource type="Texture2D" uid="uid://dwge1bsudkw65" path="res://Art/AlexArt/Items/Battery/Battery_v2.png" id="7_im1wo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r850d"]
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_u13sh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_4u8c6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_tawjt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_fnmc7")
 }],
 "loop": true,
 "name": &"default",
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u13sh"]
-size = Vector2(63, 47)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyq1v"]
-size = Vector2(65, 58)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_heiyn"]
-size = Vector2(41, 56)
-
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_u13sh")
 
 [node name="RaccoonBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(576, 321.5)
-scale = Vector2(0.653, 0.591)
 sprite_frames = SubResource("SpriteFrames_r850d")
-frame = 3
 frame_progress = 0.0971101
 
-[node name="One" type="Marker2D" parent="."]
-visible = false
-position = Vector2(396, 267)
-gizmo_extents = 40.0
-
-[node name="Sprite2D" type="Sprite2D" parent="One"]
-
-[node name="Area2D" type="Area2D" parent="One"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="One/Area2D"]
-position = Vector2(2, -10)
-shape = SubResource("RectangleShape2D_u13sh")
-
-[node name="Two" type="Marker2D" parent="."]
-visible = false
-position = Vector2(567, 266)
-gizmo_extents = 50.0
-
-[node name="Sprite2D" type="Sprite2D" parent="Two"]
-
-[node name="Area2D" type="Area2D" parent="Two"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Two/Area2D"]
-position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_gyq1v")
-
-[node name="Three" type="Marker2D" parent="."]
-visible = false
-position = Vector2(774, 264)
-gizmo_extents = 64.5
-
-[node name="Sprite2D" type="Sprite2D" parent="Three"]
-
-[node name="Area2D" type="Area2D" parent="Three"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Three/Area2D"]
-position = Vector2(-1.5, -12)
-shape = SubResource("RectangleShape2D_heiyn")
-
 [node name="Button" type="Button" parent="."]
-offset_left = 373.0
-offset_top = 428.0
-offset_right = 622.0
-offset_bottom = 517.0
+offset_left = -962.0
+offset_top = -497.0
+offset_right = -397.0
+offset_bottom = -289.0
+theme_override_font_sizes/font_size = 50
 text = "Ready
 "
 
-[node name="fissile" type="Button" parent="."]
-offset_left = 123.0
-offset_top = 69.0
-offset_right = 346.0
-offset_bottom = 206.0
-text = "
-"
+[node name="slot1" type="TextureButton" parent="."]
+offset_left = -788.0
+offset_top = 138.0
+offset_right = -492.0
+offset_bottom = 364.0
+texture_normal = ExtResource("3_gyq1v")
+ignore_texture_size = true
+stretch_mode = 3
 
-[node name="eel" type="Button" parent="."]
-offset_left = 500.0
-offset_top = 69.0
-offset_right = 733.0
-offset_bottom = 233.0
-text = "
+[node name="slot2" type="TextureButton" parent="."]
+offset_left = -204.0
+offset_top = 149.0
+offset_right = 155.0
+offset_bottom = 376.0
+texture_normal = ExtResource("4_4u8c6")
+ignore_texture_size = true
+stretch_mode = 3
 
-"
-
-[node name="mystery" type="Button" parent="."]
-offset_left = 823.0
-offset_top = 67.0
-offset_right = 1044.0
-offset_bottom = 230.0
+[node name="slot3" type="TextureButton" parent="."]
+offset_left = 461.0
+offset_top = 139.0
+offset_right = 816.0
+offset_bottom = 391.0
+texture_normal = ExtResource("7_im1wo")
+ignore_texture_size = true
+stretch_mode = 3
 
 [node name="leftArm" type="Button" parent="."]
-offset_left = 63.0
-offset_top = 375.0
-offset_right = 265.0
-offset_bottom = 454.0
+offset_left = -944.0
+offset_top = -161.0
+offset_right = -430.0
+offset_bottom = -35.0
+theme_override_font_sizes/font_size = 40
 text = "Left Arm"
 
 [node name="rightArm" type="Button" parent="."]
-offset_left = 69.0
-offset_top = 489.0
-offset_right = 270.0
-offset_bottom = 568.0
+offset_left = -946.0
+offset_top = -18.0
+offset_right = -423.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 40
 text = "Right Arm"
 
 [node name="Label" type="Label" parent="."]
-offset_right = 1198.0
-offset_bottom = 46.0
+offset_left = -565.0
+offset_top = -535.0
+offset_right = 633.0
+offset_bottom = -489.0
+theme_override_font_sizes/font_size = 40
 text = "shop"
 horizontal_alignment = 1
 
 [node name="whichArm" type="Label" parent="."]
-offset_left = 5.0
-offset_top = 314.0
-offset_right = 354.0
-offset_bottom = 371.0
-text = "Which arm"
+offset_left = -926.0
+offset_top = -225.0
+offset_right = -466.0
+offset_bottom = -164.0
+theme_override_font_sizes/font_size = 40
+text = "Which arm?"
 horizontal_alignment = 1
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+
+[node name="InventoryButton" type="Button" parent="."]
+visible = false
+offset_left = 651.0
+offset_top = -528.0
+offset_right = 937.0
+offset_bottom = -416.0
+theme_override_font_sizes/font_size = 40
+text = "Inventory"
+
+[node name="InventoryPanel" type="Panel" parent="."]
+visible = false
+offset_left = -900.0
+offset_top = -503.0
+offset_right = 888.0
+offset_bottom = 510.0
+
+[node name="InventoryTurtle" parent="InventoryPanel" instance=ExtResource("6_tawjt")]
+visible = false
+position = Vector2(916, 565)
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="fissile" to="." method="_on_fissile"]
-[connection signal="button_down" from="eel" to="." method="_on_eel"]
-[connection signal="button_down" from="mystery" to="." method="_on_mystery"]
+[connection signal="button_down" from="slot1" to="." method="_slot1"]
+[connection signal="button_down" from="slot2" to="." method="_slot2"]
+[connection signal="button_down" from="slot3" to="." method="_slot3"]
 [connection signal="button_down" from="leftArm" to="." method="_on_left_arm"]
 [connection signal="button_down" from="rightArm" to="." method="_on_right_arm"]

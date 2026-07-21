@@ -2,11 +2,30 @@ import { Room } from "colyseus";
 import type { Client } from "colyseus";
 
 type Turtle = {
-    leftArm: string | null;
-    rightArm: string | null;
-    head: string | null;
-    shell: string | null;
-    legs: string | null;
+    items : {
+        leftArm: string | null;
+        rightArm: string | null;
+        head: string | null;
+        shell: string | null;
+        legs: string | null;
+    },
+
+    base_stats : {
+        acceleration: Float16Array | 5.0;
+        resilience: Float16Array | 0.1;
+        max_speed: Float16Array | 300.0;
+        fire_rate: Float16Array | 1.0;
+        projectile_speed: Float16Array | 1.0;
+        luck: Float16Array | 1.0;
+    },
+
+    econ : {
+        gold: Int16Array | 10;
+        //stock1: Int16Array | 0;
+        //stock2: Int16Array | 0;
+        //stock3: Int16Array | 0;
+        //stock4: Int16Array | 0;
+    }
 };
 
 type Player = {
@@ -36,7 +55,9 @@ export class RaceMatch extends Room {
         this.name_list = options[1];
         this.perm_name_list = options[1].slice();
         this.onMessage("submit_turtle", (client, turtle_build) => {
-            this.players[client.sessionId].build = turtle_build;
+            this.players[client.sessionId].build.items = turtle_build["items"];
+            this.players[client.sessionId].build.base_stats = turtle_build["base_stats"];
+            this.players[client.sessionId].build.econ = turtle_build["econ"];
             console.log(this.players[client.sessionId].name + " " + turtle_build);
             this.players[client.sessionId].ready = true;
             var counter = 0
@@ -84,12 +105,27 @@ export class RaceMatch extends Room {
             var name_remaining = String(this.name_list.shift());
             console.log(name_remaining)
             this.players[client.sessionId] = {
-            build:  {
-                leftArm: null,
-                rightArm: null,
-                head: null,
-                shell: null,
-                legs: null
+            build: { 
+                items: {
+                    leftArm: null,
+                    rightArm: null,
+                    head: null,
+                    shell: null,
+                    legs: null
+                },
+
+                base_stats: {
+                    acceleration: 5.0,
+                    resilience: 0.1,
+                    max_speed: 300.0,
+                    fire_rate: 1.0,
+                    projectile_speed: 1.0,
+                    luck: 1.0
+                },
+
+                econ: {
+                    gold: 10
+                }
             },
             slot: race_slot,
             finished: false,

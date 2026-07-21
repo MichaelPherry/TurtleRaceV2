@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://bc33kxn8sd5wq"]
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://bc33kxn8sd5wq"]
 
 [ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_hx2va"]
 [ext_resource type="PackedScene" uid="uid://cjsltpo6hcfio" path="res://Passives/Legs/cinderblocks.tscn" id="1_ndmyr"]
+[ext_resource type="Texture2D" uid="uid://buxnykw6t47xg" path="res://Art/AlexArt/Items/CinderBlocks/Shop Cinder Blocks.png" id="1_r7dvw"]
 
 [resource]
 script = ExtResource("1_hx2va")
-name = "Cinderblocks"
+name = "Cinder Blocks"
 description = ""
 price = 0
+icon = ExtResource("1_r7dvw")
 passive_scene = ExtResource("1_ndmyr")
 cooldown = 0
 type = ""

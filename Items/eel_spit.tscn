@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://dg67f8lg61i8g"]
+[gd_scene load_steps=0 format=3 uid="uid://dg67f8lg61i8g"]
 
 [ext_resource type="Script" uid="uid://bnbgtduurjh5p" path="res://Items/eel_spit.gd" id="1_a1p7t"]
-[ext_resource type="Texture2D" uid="uid://co357ykwwcxqx" path="res://Art/boomerang.png" id="2_402xs"]
+[ext_resource type="Texture2D" uid="uid://co357ykwwcxqx" path="res://Art/TempArt/boomerang.png" id="2_402xs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ve68j"]
 atlas = ExtResource("2_402xs")

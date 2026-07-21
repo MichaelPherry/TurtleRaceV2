@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="Passive" load_steps=3 format=3 uid="uid://jhp0bbdq66fu"]
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://jhp0bbdq66fu"]
 
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_4bgbu"]
 [ext_resource type="PackedScene" uid="uid://5ydm1jisjyvo" path="res://Passives/Head/m1_helmet.tscn" id="1_53ekr"]
 [ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_qw44n"]
 
@@ -8,6 +9,7 @@ script = ExtResource("1_qw44n")
 name = "M1 Helmet"
 description = ""
 price = 0
+icon = ExtResource("1_4bgbu")
 passive_scene = ExtResource("1_53ekr")
 cooldown = 0
 type = ""
