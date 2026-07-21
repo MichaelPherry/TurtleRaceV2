@@ -142,7 +142,7 @@ func tick(current_tick, tick_rate):
 
 func equip():
 	for body_part in Inventory.appendages:
-		if Inventory.server_turtles[id][body_part] != null:
+		if Inventory.server_turtles[id]["items"][body_part] != null:
 			match body_part:
 				"leftArm":
 					left_arm = ItemPassivePool.arm(Inventory.server_turtles[id]["items"][body_part])
@@ -192,8 +192,6 @@ func equip():
 					legs_anim.add_child(legs_instance)
 					if legs_anim.sprite_frames.has_animation(legs.name):
 						legs_anim.play(legs.name)
-					
-			var temp = Inventory.server_turtles[id][body_part]
 
 func left_arm_item(user, target, scene):
 	var instance = scene.instantiate()

@@ -5,4 +5,4 @@ var proj_speed_add = 2
 var effect = false
 
 func _ready():
-	user.projectile *= proj_speed_add
+	user.projectile_speed *= proj_speed_add

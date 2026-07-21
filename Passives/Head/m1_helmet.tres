@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_qw44n")
 name = "M1 Helmet"
-description = ""
+description = "10"
 price = 0
 icon = ExtResource("1_4bgbu")
 passive_scene = ExtResource("1_53ekr")

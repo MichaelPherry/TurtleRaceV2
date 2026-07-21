@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=3 uid="uid://1usxicevamun"]
+[gd_scene load_steps=169 format=3 uid="uid://1usxicevamun"]
 
 [ext_resource type="Script" uid="uid://dukpxyrxhenc5" path="res://ScenesAndScripts/inventory_turtle.gd" id="1_v3plr"]
 [ext_resource type="Texture2D" uid="uid://rtsu0j76wnn4" path="res://Art/AlexArt/green_turt/shell/Shell0001.png" id="2_khnfd"]
@@ -41,16 +41,16 @@
 [ext_resource type="Texture2D" uid="uid://duewbkqwmohn8" path="res://Art/AlexArt/green_turt/legs/Legs0008.png" id="39_ww3ob"]
 [ext_resource type="Texture2D" uid="uid://c4jsjunmnrogm" path="res://Art/AlexArt/green_turt/legs/Legs0009.png" id="40_8mc30"]
 [ext_resource type="Texture2D" uid="uid://76yusd1qkkyx" path="res://Art/AlexArt/green_turt/legs/Legs0010.png" id="41_xr7pi"]
-[ext_resource type="Texture2D" uid="uid://c3h84j3lvy2io" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0001.png" id="42_juudb"]
-[ext_resource type="Texture2D" uid="uid://dmi6kgl6slcgj" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0002.png" id="43_rx8xw"]
-[ext_resource type="Texture2D" uid="uid://dmkc1fbtdbn3b" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0003.png" id="44_ne0nv"]
-[ext_resource type="Texture2D" uid="uid://b6mkk0b11ue8" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0004.png" id="45_nefk1"]
-[ext_resource type="Texture2D" uid="uid://d3ep4jxtq6atj" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0005.png" id="46_13n4o"]
-[ext_resource type="Texture2D" uid="uid://bq201om6jlanw" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0006.png" id="47_u30g8"]
-[ext_resource type="Texture2D" uid="uid://d2qso4ob0wbk6" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0007.png" id="48_6e7gi"]
-[ext_resource type="Texture2D" uid="uid://cwxxpix6p4w3w" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0008.png" id="49_q1kcq"]
-[ext_resource type="Texture2D" uid="uid://c8nl5ea2xshlx" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0009.png" id="50_ve7sb"]
-[ext_resource type="Texture2D" uid="uid://bllmbwc67ndv" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt0010.png" id="51_vnm0a"]
+[ext_resource type="Texture2D" uid="uid://cku21rwh6ia4u" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20001.png" id="42_adutl"]
+[ext_resource type="Texture2D" uid="uid://b163sx3fyioau" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20002.png" id="43_tk3a2"]
+[ext_resource type="Texture2D" uid="uid://b4pe1y7bm3bkh" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20003.png" id="44_qpcfd"]
+[ext_resource type="Texture2D" uid="uid://c85f6lrd10nnr" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20004.png" id="45_eapc2"]
+[ext_resource type="Texture2D" uid="uid://bda03hbln3jkv" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20005.png" id="46_4mhgk"]
+[ext_resource type="Texture2D" uid="uid://cmeie8p6phlr8" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20006.png" id="47_1vmyd"]
+[ext_resource type="Texture2D" uid="uid://b34hio7oewkoo" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20007.png" id="48_pgbya"]
+[ext_resource type="Texture2D" uid="uid://cwubo60tjkdd5" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20008.png" id="49_6ymxx"]
+[ext_resource type="Texture2D" uid="uid://csct1lt6sg4tm" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20009.png" id="50_qqhko"]
+[ext_resource type="Texture2D" uid="uid://cyotq0issyqyn" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20010.png" id="51_ysm3u"]
 [ext_resource type="Texture2D" uid="uid://de6spqgekc86b" path="res://Art/AlexArt/Items/Battery/Battery0001.png" id="52_x6v1h"]
 [ext_resource type="Texture2D" uid="uid://bxlp1hhmm6hda" path="res://Art/AlexArt/Items/Battery/Battery0002.png" id="53_qr6w6"]
 [ext_resource type="Texture2D" uid="uid://cqpkjly2xmmqu" path="res://Art/AlexArt/Items/Battery/Battery0003.png" id="54_aymmb"]
@@ -62,15 +62,25 @@
 [ext_resource type="Texture2D" uid="uid://crw450algsess" path="res://Art/AlexArt/Items/Battery/Battery0009.png" id="60_52woj"]
 [ext_resource type="Texture2D" uid="uid://dycqup70iimgn" path="res://Art/AlexArt/Items/Battery/Battery0010.png" id="61_powbn"]
 [ext_resource type="Texture2D" uid="uid://dv0yfj7d38haq" path="res://Art/AlexArt/green_turt/belly/Belly0001.png" id="62_262yj"]
+[ext_resource type="Texture2D" uid="uid://cs0ohk3clw5ps" path="res://Art/AlexArt/Items/Suit/Suit0001.png" id="62_adutl"]
 [ext_resource type="Texture2D" uid="uid://d2crvr66ovweo" path="res://Art/AlexArt/green_turt/belly/Belly0002.png" id="63_c8foa"]
+[ext_resource type="Texture2D" uid="uid://cp0en6j860oh3" path="res://Art/AlexArt/Items/Suit/Suit0002.png" id="63_tk3a2"]
 [ext_resource type="Texture2D" uid="uid://b7ctei8s8t5h2" path="res://Art/AlexArt/green_turt/belly/Belly0003.png" id="64_fgpsv"]
+[ext_resource type="Texture2D" uid="uid://ia7r4ke54mf6" path="res://Art/AlexArt/Items/Suit/Suit0003.png" id="64_qpcfd"]
+[ext_resource type="Texture2D" uid="uid://c3um8m6tp0yfp" path="res://Art/AlexArt/Items/Suit/Suit0004.png" id="65_eapc2"]
 [ext_resource type="Texture2D" uid="uid://dg64ablnk4ixp" path="res://Art/AlexArt/green_turt/belly/Belly0004.png" id="65_y1lt8"]
+[ext_resource type="Texture2D" uid="uid://csrmsn5gu272u" path="res://Art/AlexArt/Items/Suit/Suit0005.png" id="66_4mhgk"]
 [ext_resource type="Texture2D" uid="uid://b7gyshpklyfn2" path="res://Art/AlexArt/green_turt/belly/Belly0005.png" id="66_vvqbb"]
+[ext_resource type="Texture2D" uid="uid://dvm6rlhivu46c" path="res://Art/AlexArt/Items/Suit/Suit0006.png" id="67_1vmyd"]
 [ext_resource type="Texture2D" uid="uid://cw71opsbyghfi" path="res://Art/AlexArt/green_turt/belly/Belly0006.png" id="67_3dsed"]
 [ext_resource type="Texture2D" uid="uid://maq0halasgp0" path="res://Art/AlexArt/green_turt/belly/Belly0007.png" id="68_p03b0"]
+[ext_resource type="Texture2D" uid="uid://d2fa2qxxfu56l" path="res://Art/AlexArt/Items/Suit/Suit0007.png" id="68_pgbya"]
+[ext_resource type="Texture2D" uid="uid://o5kafuukc4bk" path="res://Art/AlexArt/Items/Suit/Suit0008.png" id="69_6ymxx"]
 [ext_resource type="Texture2D" uid="uid://bjtm01ubvcu3v" path="res://Art/AlexArt/green_turt/belly/Belly0008.png" id="69_lpx1r"]
 [ext_resource type="Texture2D" uid="uid://cbd5b2vdup7xf" path="res://Art/AlexArt/green_turt/belly/Belly0009.png" id="70_bkf11"]
+[ext_resource type="Texture2D" uid="uid://chd5wxmycfx57" path="res://Art/AlexArt/Items/Suit/Suit0009.png" id="70_qqhko"]
 [ext_resource type="Texture2D" uid="uid://bjjinr02iakga" path="res://Art/AlexArt/green_turt/belly/Belly0010.png" id="71_p6ton"]
+[ext_resource type="Texture2D" uid="uid://bhwhs4imkre40" path="res://Art/AlexArt/Items/Suit/Suit0010.png" id="71_ysm3u"]
 [ext_resource type="Texture2D" uid="uid://bfpednckjbyh6" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0001.png" id="72_og2j5"]
 [ext_resource type="Texture2D" uid="uid://1nrxe1w7r8tg" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0002.png" id="73_vtusb"]
 [ext_resource type="Texture2D" uid="uid://dcfiusjcrshfh" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0003.png" id="74_a24k7"]
@@ -112,15 +122,25 @@
 [ext_resource type="Texture2D" uid="uid://douc5aypldy2u" path="res://Art/AlexArt/green_turt/head/Head0009.png" id="110_i356r"]
 [ext_resource type="Texture2D" uid="uid://cq7trmd41wc73" path="res://Art/AlexArt/green_turt/head/Head0010.png" id="111_6l040"]
 [ext_resource type="Texture2D" uid="uid://tod0w1tu30jh" path="res://Art/AlexArt/green_turt/face/Face0001.png" id="112_14s0d"]
+[ext_resource type="Texture2D" uid="uid://dwnd66depgrt" path="res://Art/AlexArt/Items/SecondHead/Second Head0001.png" id="112_agiho"]
 [ext_resource type="Texture2D" uid="uid://xc63b73x2dct" path="res://Art/AlexArt/green_turt/face/Face0002.png" id="113_5govq"]
+[ext_resource type="Texture2D" uid="uid://c241p8ttwn0u2" path="res://Art/AlexArt/Items/SecondHead/Second Head0002.png" id="113_hj54k"]
+[ext_resource type="Texture2D" uid="uid://dl16qhfkgn15e" path="res://Art/AlexArt/Items/SecondHead/Second Head0003.png" id="114_vllpm"]
 [ext_resource type="Texture2D" uid="uid://ct4gd6c21h2cm" path="res://Art/AlexArt/green_turt/face/Face0003.png" id="114_vs68d"]
 [ext_resource type="Texture2D" uid="uid://b43pl01fmqkc" path="res://Art/AlexArt/green_turt/face/Face0004.png" id="115_84sn8"]
+[ext_resource type="Texture2D" uid="uid://gu7lrwbycswq" path="res://Art/AlexArt/Items/SecondHead/Second Head0004.png" id="115_pe025"]
 [ext_resource type="Texture2D" uid="uid://dhpcegsruktkk" path="res://Art/AlexArt/green_turt/face/Face0005.png" id="116_cwuyi"]
+[ext_resource type="Texture2D" uid="uid://c4ud0842m2q2y" path="res://Art/AlexArt/Items/SecondHead/Second Head0005.png" id="116_onsse"]
 [ext_resource type="Texture2D" uid="uid://c6naeluacw0ye" path="res://Art/AlexArt/green_turt/face/Face0006.png" id="117_ba6uh"]
+[ext_resource type="Texture2D" uid="uid://cx7c7fco4n27b" path="res://Art/AlexArt/Items/SecondHead/Second Head0006.png" id="117_pwi6c"]
+[ext_resource type="Texture2D" uid="uid://cd5dvsiavqah6" path="res://Art/AlexArt/Items/SecondHead/Second Head0007.png" id="118_eiph7"]
 [ext_resource type="Texture2D" uid="uid://cxbh1rl0mtol0" path="res://Art/AlexArt/green_turt/face/Face0007.png" id="118_qgxv5"]
 [ext_resource type="Texture2D" uid="uid://sgi5h41v4uqb" path="res://Art/AlexArt/green_turt/face/Face0008.png" id="119_chqi2"]
+[ext_resource type="Texture2D" uid="uid://cativglwgaely" path="res://Art/AlexArt/Items/SecondHead/Second Head0008.png" id="119_ilgfh"]
 [ext_resource type="Texture2D" uid="uid://dgo8xwdlyvey2" path="res://Art/AlexArt/green_turt/face/Face0009.png" id="120_bikwd"]
+[ext_resource type="Texture2D" uid="uid://twyqjim2s5oq" path="res://Art/AlexArt/Items/SecondHead/Second Head0009.png" id="120_ww3ob"]
 [ext_resource type="Texture2D" uid="uid://bnbrsb00ck2ud" path="res://Art/AlexArt/green_turt/face/Face0010.png" id="121_2acks"]
+[ext_resource type="Texture2D" uid="uid://d317ardpycp5p" path="res://Art/AlexArt/Items/SecondHead/Second Head0010.png" id="121_8mc30"]
 [ext_resource type="Texture2D" uid="uid://c3cxlxgwd13c6" path="res://Art/AlexArt/green_turt/leftArm/L Arm0001.png" id="122_v0boq"]
 [ext_resource type="Texture2D" uid="uid://ek8awlunx80p" path="res://Art/AlexArt/green_turt/leftArm/L Arm0002.png" id="123_fe5go"]
 [ext_resource type="Texture2D" uid="uid://ce1f162cwxrni" path="res://Art/AlexArt/green_turt/leftArm/L Arm0003.png" id="124_i2mqw"]
@@ -292,34 +312,34 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("42_juudb")
+"texture": ExtResource("42_adutl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("43_rx8xw")
+"texture": ExtResource("43_tk3a2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("44_ne0nv")
+"texture": ExtResource("44_qpcfd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("45_nefk1")
+"texture": ExtResource("45_eapc2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("46_13n4o")
+"texture": ExtResource("46_4mhgk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("47_u30g8")
+"texture": ExtResource("47_1vmyd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("48_6e7gi")
+"texture": ExtResource("48_pgbya")
 }, {
 "duration": 1.0,
-"texture": ExtResource("49_q1kcq")
+"texture": ExtResource("49_6ymxx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("50_ve7sb")
+"texture": ExtResource("50_qqhko")
 }, {
 "duration": 1.0,
-"texture": ExtResource("51_vnm0a")
+"texture": ExtResource("51_ysm3u")
 }],
 "loop": true,
 "name": &"Ammo Belt",
@@ -359,6 +379,41 @@ animations = [{
 "loop": true,
 "name": &"Battery",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("62_adutl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_tk3a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_qpcfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_eapc2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_4mhgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_1vmyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_pgbya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_6ymxx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_qqhko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("71_ysm3u")
+}],
+"loop": true,
+"name": &"Suit",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -501,6 +556,41 @@ animations = [{
 }],
 "loop": true,
 "name": &"Propreller",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("112_agiho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_hj54k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_vllpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_pe025")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_onsse")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_pwi6c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_eiph7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_ilgfh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_ww3ob")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_8mc30")
+}],
+"loop": true,
+"name": &"Second Head",
 "speed": 10.0
 }, {
 "frames": [{

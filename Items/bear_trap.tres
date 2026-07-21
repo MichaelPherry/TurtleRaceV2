@@ -8,6 +8,7 @@
 script = ExtResource("1_o0vsc")
 name = "Bear Trap"
 description = ""
+price = 10
 body_part = ""
 icon = ExtResource("1_8w8hu")
 cooldown = 6

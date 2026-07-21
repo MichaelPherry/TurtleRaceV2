@@ -8,7 +8,7 @@
 script = ExtResource("2_1e82l")
 name = "Bunny Ears"
 description = ""
-price = 0
+price = 10
 icon = ExtResource("1_1e82l")
 passive_scene = ExtResource("1_nbn4d")
 cooldown = 1

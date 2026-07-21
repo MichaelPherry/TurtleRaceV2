@@ -8,7 +8,7 @@
 script = ExtResource("1_qx16p")
 name = "Propreller"
 description = ""
-price = 0
+price = 10
 icon = ExtResource("1_k5f2x")
 passive_scene = ExtResource("1_kxxwe")
 cooldown = 5

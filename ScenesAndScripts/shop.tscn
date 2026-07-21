@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
 [ext_resource type="Texture2D" uid="uid://ixhs05ounnrl" path="res://Art/ShaneArt/Shop/Racoon_Items_he_sourced_from_the_Appalancan_Mountains.png" id="2_u13sh"]
 [ext_resource type="Texture2D" uid="uid://b7ekdlhrhvi0o" path="res://Art/AlexArt/Items/BunnyEars/Shop _Bunny Ear.png" id="3_gyq1v"]
-[ext_resource type="Texture2D" uid="uid://dmjfsytr8ycts" path="res://Art/AlexArt/Items/BearTrap/Shop Bear Trap.png" id="4_4u8c6"]
+[ext_resource type="Texture2D" uid="uid://uee036w3k2ey" path="res://Art/AlexArt/Items/SecondHead/Second Headshop.png" id="4_tawjt"]
+[ext_resource type="Texture2D" uid="uid://dcqr3gqsrviah" path="res://Art/AlexArt/Items/DunceHat/DunceShop.png" id="5_fnmc7"]
 [ext_resource type="PackedScene" uid="uid://1usxicevamun" path="res://ScenesAndScripts/inventory_turtle.tscn" id="6_tawjt"]
-[ext_resource type="Texture2D" uid="uid://dwge1bsudkw65" path="res://Art/AlexArt/Items/Battery/Battery_v2.png" id="7_im1wo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r850d"]
 animations = [{
@@ -26,6 +26,15 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_r850d")
 frame_progress = 0.0971101
 
+[node name="Gold" type="Label" parent="."]
+offset_left = 441.0
+offset_top = -466.0
+offset_right = 713.0
+offset_bottom = -396.0
+theme_override_font_sizes/font_size = 40
+text = "Gold: "
+horizontal_alignment = 1
+
 [node name="Button" type="Button" parent="."]
 offset_left = -962.0
 offset_top = -497.0
@@ -36,31 +45,62 @@ text = "Ready
 "
 
 [node name="slot1" type="TextureButton" parent="."]
-offset_left = -788.0
-offset_top = 138.0
-offset_right = -492.0
-offset_bottom = 364.0
+offset_left = -800.0
+offset_top = 139.0
+offset_right = -504.0
+offset_bottom = 365.0
 texture_normal = ExtResource("3_gyq1v")
 ignore_texture_size = true
 stretch_mode = 3
 
+[node name="slot1_cost" type="Label" parent="slot1"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 264.0
+offset_right = 294.0
+offset_bottom = 361.0
+theme_override_font_sizes/font_size = 30
+text = "slot1 price
+"
+horizontal_alignment = 1
+
 [node name="slot2" type="TextureButton" parent="."]
-offset_left = -204.0
-offset_top = 149.0
-offset_right = 155.0
-offset_bottom = 376.0
-texture_normal = ExtResource("4_4u8c6")
+offset_left = -183.0
+offset_top = 108.0
+offset_right = 176.0
+offset_bottom = 335.0
+texture_normal = ExtResource("4_tawjt")
 ignore_texture_size = true
 stretch_mode = 3
 
+[node name="slot2_cost" type="Label" parent="slot2"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = 268.0
+offset_right = 304.0
+offset_bottom = 353.0
+theme_override_font_sizes/font_size = 30
+text = "slot2 price"
+horizontal_alignment = 1
+
 [node name="slot3" type="TextureButton" parent="."]
-offset_left = 461.0
-offset_top = 139.0
-offset_right = 816.0
-offset_bottom = 391.0
-texture_normal = ExtResource("7_im1wo")
+offset_left = 452.0
+offset_top = 69.0
+offset_right = 807.0
+offset_bottom = 321.0
+texture_normal = ExtResource("5_fnmc7")
 ignore_texture_size = true
 stretch_mode = 3
+
+[node name="slot3_cost" type="Label" parent="slot3"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 310.0
+offset_right = 279.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 30
+text = "slot3_price"
+horizontal_alignment = 1
 
 [node name="leftArm" type="Button" parent="."]
 offset_left = -944.0
@@ -100,24 +140,92 @@ horizontal_alignment = 1
 zoom = Vector2(0.6, 0.6)
 
 [node name="InventoryButton" type="Button" parent="."]
-visible = false
-offset_left = 651.0
-offset_top = -528.0
-offset_right = 937.0
-offset_bottom = -416.0
+offset_left = 435.0
+offset_top = -382.0
+offset_right = 721.0
+offset_bottom = -270.0
 theme_override_font_sizes/font_size = 40
 text = "Inventory"
 
 [node name="InventoryPanel" type="Panel" parent="."]
-visible = false
 offset_left = -900.0
 offset_top = -503.0
 offset_right = 888.0
 offset_bottom = 510.0
 
+[node name="HoverButton" type="TextureButton" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 656.0
+offset_top = 240.0
+offset_right = 1210.0
+offset_bottom = 785.0
+
 [node name="InventoryTurtle" parent="InventoryPanel" instance=ExtResource("6_tawjt")]
-visible = false
-position = Vector2(916, 565)
+position = Vector2(920, 589)
+
+[node name="HideInventory" type="Button" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 1299.0
+offset_top = 802.0
+offset_right = 1732.0
+offset_bottom = 971.0
+theme_override_font_sizes/font_size = 40
+text = "Hide Inventory"
+
+[node name="Acceleration" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 647.0
+offset_right = 262.0
+offset_bottom = 725.0
+theme_override_font_sizes/font_size = 30
+text = "Acceleration:"
+
+[node name="Top Speed" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 588.0
+offset_right = 260.0
+offset_bottom = 653.0
+theme_override_font_sizes/font_size = 30
+text = "Top Speed:"
+
+[node name="Resilience" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 703.0
+offset_right = 292.0
+offset_bottom = 790.0
+theme_override_font_sizes/font_size = 30
+text = "Resilience:
+"
+
+[node name="Fire Rate" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 761.0
+offset_right = 265.0
+offset_bottom = 848.0
+theme_override_font_sizes/font_size = 30
+text = "Fire Rate:"
+
+[node name="Projectile Speed" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 817.0
+offset_right = 295.0
+offset_bottom = 874.0
+theme_override_font_sizes/font_size = 30
+text = "Projectile Speed:"
+
+[node name="Luck" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 870.0
+offset_right = 282.0
+offset_bottom = 942.0
+theme_override_font_sizes/font_size = 30
+text = "Luck:"
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="slot1" to="." method="_slot1"]
@@ -125,3 +233,5 @@ position = Vector2(916, 565)
 [connection signal="button_down" from="slot3" to="." method="_slot3"]
 [connection signal="button_down" from="leftArm" to="." method="_on_left_arm"]
 [connection signal="button_down" from="rightArm" to="." method="_on_right_arm"]
+[connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="InventoryPanel/HideInventory" to="." method="_on_hide_inventory_pressed"]

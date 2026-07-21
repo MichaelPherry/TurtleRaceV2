@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://cyxkr31lx45dl" path="res://Passives/Shell/ammo_belt.tscn" id="1_24ltj"]
 [ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_b1ugm"]
-[ext_resource type="Texture2D" uid="uid://rn2lv0xyucvo" path="res://Art/AlexArt/Items/AmmoBelt/Shop Ammo Belt.png" id="1_taggb"]
+[ext_resource type="Texture2D" uid="uid://c7xivhpswio72" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt shop.png" id="1_taggb"]
 
 [resource]
 script = ExtResource("1_b1ugm")
 name = "Ammo Belt"
 description = ""
-price = 0
+price = 10
 icon = ExtResource("1_taggb")
 passive_scene = ExtResource("1_24ltj")
 cooldown = 0

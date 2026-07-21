@@ -71,6 +71,6 @@ func _on_message_received(type, message):
 			"luck": 1.0
 		},		
 		"econ": {
-			"gold": 10
+			"gold": 0
 		}
 	}

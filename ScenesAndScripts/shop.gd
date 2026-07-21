@@ -1,19 +1,24 @@
 extends Node2D
 
 @onready var background = $RaccoonBackground
+@onready var inventoryTurt = $InventoryPanel/InventoryTurtle
+@onready var hover_button = $InventoryPanel/HoverButton
 
 var shop_item_icons = []
 var tres_item1
 var tres_item2
 var tres_item3
+var id
 signal button_selected(button_name)
 
 func _ready():
-	print(Inventory.local_turtle)
+	
 	$leftArm.visible = false
 	$rightArm.visible = false
 	$whichArm.visible = false
 	
+	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += 10
+	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 	background.play("default")
 	
 	$Label.text = str(NetworkManager.local_player_name) + "'s shop"
@@ -21,6 +26,7 @@ func _ready():
 	Inventory.item_1 = rand_items()
 	Inventory.item_2 = rand_items()
 	Inventory.item_3 = rand_items()
+
 	tres_item1 = get_item_path(Inventory.item_1[0], Inventory.item_1[1])
 	tres_item2 = get_item_path(Inventory.item_2[0], Inventory.item_2[1])
 	tres_item3 = get_item_path(Inventory.item_3[0], Inventory.item_3[1])
@@ -29,12 +35,27 @@ func _ready():
 	$slot2.texture_normal = tres_item2.icon
 	$slot3.texture_normal = tres_item3.icon
 	
+	$slot1/slot1_cost.text = "$" + str(tres_item1.price)
+	$slot2/slot2_cost.text = "$" + str(tres_item2.price)
+	$slot3/slot3_cost.text = "$" + str(tres_item3.price)
+	
 	$slot1.mouse_entered.connect(_on_slot_hovered.bind($slot1))
 	$slot1.mouse_exited.connect(_on_slot_unhovered.bind($slot1))
 	$slot2.mouse_entered.connect(_on_slot_hovered.bind($slot2))
 	$slot2.mouse_exited.connect(_on_slot_unhovered.bind($slot2))
 	$slot3.mouse_entered.connect(_on_slot_hovered.bind($slot3))
 	$slot3.mouse_exited.connect(_on_slot_unhovered.bind($slot3))
+	
+	hover_button.mouse_entered.connect(_on_inventory_turtle_hovered)
+	hover_button.mouse_exited.connect(_on_inventory_turtle_unhovered)
+	
+	
+	$InventoryPanel/Acceleration.text = "Acceleration: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["acceleration"])
+	$"InventoryPanel/Top Speed".text = "Top Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["max_speed"])
+	$InventoryPanel/Resilience.text = "Resilience: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["resilience"])
+	$"InventoryPanel/Fire Rate".text = "Fire Rate: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["fire_rate"])
+	$"InventoryPanel/Projectile Speed".text = "Projectile Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["projectile_speed"])
+	$InventoryPanel/Luck.text = "Luck: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["luck"])
 	
 	await get_tree().create_timer(1.0).timeout
 	NetworkManager.send_message("enter_shop", "enter_shop")
@@ -47,22 +68,37 @@ func _on_button_button_down():
 	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
 	
 func _slot1():
-	if Inventory.item_1[0] == "arm":
-		Inventory.item_1[0] = await which_arm()
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= tres_item1.price:
+		if Inventory.item_1[0] == "arm":
+			Inventory.item_1[0] = await which_arm()
 		
-	Inventory.local_turtle[NetworkManager.sessionID][Inventory.item_1[0]] = Inventory.item_1[1]
-
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= tres_item1.price
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = Inventory.item_1[1]
+		inventoryTurt.equip()
+		$slot1.visible = false
+	
 func _slot2():
-	if Inventory.item_2[0] == "arm":
-		Inventory.item_2[0] = await which_arm()
-		
-	Inventory.local_turtle[NetworkManager.sessionID][Inventory.item_2[0]] = Inventory.item_2[1]
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= tres_item2.price:
+		if Inventory.item_2[0] == "arm":
+			Inventory.item_2[0] = await which_arm()
+			
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= tres_item2.price
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = Inventory.item_2[1]
+		inventoryTurt.equip()
+		$slot2.visible = false
 
 func _slot3(): 
-	if Inventory.item_3[0] == "arm":
-		Inventory.item_3[0] = await which_arm()
-		
-	Inventory.local_turtle[NetworkManager.sessionID][Inventory.item_3[0]] = Inventory.item_3[1]
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= tres_item3.price:
+		if Inventory.item_3[0] == "arm":
+			Inventory.item_3[0] = await which_arm()
+
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= tres_item3.price
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = Inventory.item_3[1]
+		inventoryTurt.equip()
+		$slot3.visible = false
 
 func rand_items():
 	#$while body_part_list.size() == 0:
@@ -117,7 +153,8 @@ func _on_right_arm():
 func get_item_path(body_part, item_name):
 	if body_part == "leftArm" or body_part == "rightArm":
 		body_part = "arm"
-	return ItemPassivePool.call(body_part, item_name)
+	var tres_instance = ItemPassivePool.call(body_part, item_name)
+	return tres_instance
 	
 func _on_slot_hovered(button):
 	create_tween().tween_property(button, "scale", Vector2(1.1, 1.1), 0.1)
@@ -126,3 +163,16 @@ func _on_slot_hovered(button):
 func _on_slot_unhovered(button):
 	create_tween().tween_property(button, "scale", Vector2.ONE, 0.1)
 	button.modulate = Color.WHITE
+
+func _on_inventory_button_pressed() -> void:
+	$InventoryPanel.visible = true
+	#create_tween().tween_property($InventoryPanel, "position:x", 1100, 0.2)
+
+func _on_hide_inventory_pressed() -> void:
+	$InventoryPanel.visible = false
+
+func _on_inventory_turtle_hovered():
+	inventoryTurt.hover()
+	
+func _on_inventory_turtle_unhovered():
+	inventoryTurt.unhover()

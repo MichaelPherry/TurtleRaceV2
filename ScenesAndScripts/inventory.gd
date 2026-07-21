@@ -58,13 +58,12 @@ func set_turtles(turtles):
 	var server_keys = turtles.keys()
 	for id in server_keys:
 		for body_part in appendages:	
-			server_turtles.get_or_add(id, {})["items"][body_part] = turtles[id]["build"]["items"][body_part]
+			server_turtles.get_or_add(id, {}).get_or_add("items", {})[body_part] = turtles[id]["build"]["items"][body_part]
 		for stat in stats:
-			server_turtles.get_or_add(id, {})["base_stats"][stat] = turtles[id]["build"]["base_stats"][stat]
+			server_turtles.get_or_add(id, {}).get_or_add("base_stats", {})[stat] = turtles[id]["build"]["base_stats"][stat]
 		for security in econ:
-			server_turtles.get_or_add(id, {})["econ"][security] = turtles[id]["build"]["econ"][security]
+			server_turtles.get_or_add(id, {}).get_or_add("econ", {})[security] = turtles[id]["build"]["econ"][security]
 		server_turtles[id]["slot"] = turtles[id]["slot"]
-	#print(server_turtles)
 	
 func seconds_to_ticks(seconds, tick_rate):
 	return round (seconds / tick_rate)
