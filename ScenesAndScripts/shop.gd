@@ -60,10 +60,6 @@ func _ready():
 	await get_tree().create_timer(1.0).timeout
 	NetworkManager.send_message("enter_shop", "enter_shop")
 	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _on_button_button_down():
 	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
 	
@@ -159,10 +155,20 @@ func get_item_path(body_part, item_name):
 func _on_slot_hovered(button):
 	create_tween().tween_property(button, "scale", Vector2(1.1, 1.1), 0.1)
 	button.modulate = Color(1.3, 1.3, 1.3)
+	var item
+	if button == $slot1:
+		item = tres_item1
+	elif button == $slot2:
+		item = tres_item2
+	elif button == $slot3:
+		item = tres_item3
+	$Tooltop.show_item(item)
+	$Tooltop.global_position = button.global_position + Vector2(button.size.x + 10, 0)
 	
 func _on_slot_unhovered(button):
 	create_tween().tween_property(button, "scale", Vector2.ONE, 0.1)
 	button.modulate = Color.WHITE
+	$Tooltop.hide_tooltip()
 
 func _on_inventory_button_pressed() -> void:
 	$InventoryPanel.visible = true
