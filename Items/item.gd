@@ -12,6 +12,7 @@ class_name Item
 @export var active: bool
 @export var animation: bool
 @export var type: String
+@export var stay_in_hand: bool
 
 func apply(user, target, name):
 	if item_scene:

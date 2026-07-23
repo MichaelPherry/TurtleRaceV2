@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlcwh1usy3srh"]
+
+[ext_resource type="Script" uid="uid://ccvrkhv4pc7ls" path="res://Items/machine_gun.gd" id="1_b62u8"]
+[ext_resource type="Texture2D" uid="uid://b725h4pov32ww" path="res://Art/AlexArt/Items/Boomerang/Shop Boomerang.png" id="2_7m5o0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r2a7p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7m5o0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="MachineGun" type="Node2D"]
+script = ExtResource("1_b62u8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r2a7p")

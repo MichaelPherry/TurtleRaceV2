@@ -14,10 +14,12 @@ extends CharacterBody2D
 
 #Turtle items and appendages
 var left_arm
+var left_arm_instance
 var left_arm_cooldown_max: float
 var left_arm_cooldown = 0
 var left_arm_type = null
 var right_arm
+var right_arm_instance
 var right_arm_cooldown_max: float
 var right_arm_cooldown = 0
 var right_arm_type = null
@@ -149,6 +151,12 @@ func equip():
 					left_arm_cooldown_max = left_arm.cooldown
 					left_arm_cooldown = left_arm_cooldown_max
 					left_arm_type = left_arm.type
+					if left_arm.stay_in_hand == true:
+						left_arm_instance = left_arm.item_scene.instantiate()
+						left_arm_instance.user = self
+						left_arm_instance.visible = false
+						leftArm_anim.add_child(left_arm_instance)
+							
 					if leftArm_anim.sprite_frames.has_animation(left_arm.name):
 						leftArm_anim.play(left_arm.name)
 					
@@ -157,6 +165,12 @@ func equip():
 					right_arm_cooldown_max = right_arm.cooldown
 					right_arm_cooldown = right_arm_cooldown_max
 					right_arm_type = right_arm.type
+					if right_arm.stay_in_hand == true:
+						right_arm_instance = right_arm.item_scene.instantiate()
+						right_arm_instance.user = self
+						right_arm_instance.visible = false
+						rightArm_anim.add_child(right_arm_instance)
+						
 					if rightArm_anim.sprite_frames.has_animation(right_arm.name):
 						rightArm_anim.play(right_arm.name)
 
@@ -194,40 +208,46 @@ func equip():
 						legs_anim.play(legs.name)
 
 func left_arm_item(user, target, scene):
-	var instance = scene.instantiate()
-	instance.target = target
-	instance.user = user
-	instance.global_position = user.global_position + Vector2(0, height)
-	current_speed = 0
-	if instance.ground_trap == true:
-		instance.final_position = target_final_position(instance.target)
-	#if user.sim_position.x > target.sim_position.x:
-		##user.sprite.flip_h = true
-		#await get_tree().create_timer(0.5).timeout
-		##user.sprite.flip_h = false
-	#else:
-		#await get_tree().create_timer(0.5).timeout
-	current_speed = max_speed
-	#moving_animations()
-	get_tree().current_scene.add_child(instance)
+	if left_arm.stay_in_hand == true:
+		left_arm_instance.use_item(target)
+	else:
+		var instance = scene.instantiate()
+		instance.target = target
+		instance.user = user
+		instance.global_position = user.global_position + Vector2(0, height)
+		current_speed = 0
+		if instance.ground_trap == true:
+			instance.final_position = target_final_position(instance.target)
+		#if user.sim_position.x > target.sim_position.x:
+			##user.sprite.flip_h = true
+			#await get_tree().create_timer(0.5).timeout
+			##user.sprite.flip_h = false
+		#else:
+			#await get_tree().create_timer(0.5).timeout
+		current_speed = max_speed
+		#moving_animations()
+		get_tree().current_scene.add_child(instance)
 	
 func right_arm_item(user, target, scene):
-	var instance = scene.instantiate()
-	instance.target = target
-	instance.user = user
-	instance.global_position = user.global_position + Vector2(0, height)
-	current_speed = 0
-	if instance.ground_trap == true:
-		instance.final_position = target_final_position(instance.target)
-	#if user.sim_position.x > target.sim_position.x:
-		##user.sprite.flip_h = true
-		#await get_tree().create_timer(0.5).timeout
-		##user.sprite.flip_h = false
-	#else:
-		#await get_tree().create_timer(0.5).timeout
-	current_speed = max_speed
-	#moving_animations()
-	get_tree().current_scene.add_child(instance)
+	if right_arm.stay_in_hand == true:
+		right_arm_instance.use_item(target)
+	else:
+		var instance = scene.instantiate()
+		instance.target = target
+		instance.user = user
+		instance.global_position = user.global_position + Vector2(0, height)
+		current_speed = 0
+		if instance.ground_trap == true:
+			instance.final_position = target_final_position(instance.target)
+		#if user.sim_position.x > target.sim_position.x:
+			##user.sprite.flip_h = true
+			#await get_tree().create_timer(0.5).timeout
+			##user.sprite.flip_h = false
+		#else:
+			#await get_tree().create_timer(0.5).timeout
+		current_speed = max_speed
+		#moving_animations()
+		get_tree().current_scene.add_child(instance)
 	
 func equip_left_item(item):
 	pass

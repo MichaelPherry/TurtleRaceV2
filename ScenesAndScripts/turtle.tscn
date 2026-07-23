@@ -790,7 +790,7 @@ sprite_frames = SubResource("SpriteFrames_cv87c")
 visibility_layer = 4
 z_index = -50
 y_sort_enabled = true
-position = Vector2(8, 231)
+position = Vector2(0, 200)
 scale = Vector2(0.26237, 0.169922)
 texture = ExtResource("254_ne40m")
 

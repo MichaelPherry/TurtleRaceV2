@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://c8rwco2myk8i"]
+
+[ext_resource type="Script" uid="uid://cqkhn8ptyrps3" path="res://Items/item.gd" id="1_bpwib"]
+[ext_resource type="Texture2D" uid="uid://b725h4pov32ww" path="res://Art/AlexArt/Items/Boomerang/Shop Boomerang.png" id="1_rj5f6"]
+[ext_resource type="PackedScene" uid="uid://dlcwh1usy3srh" path="res://Items/machine_gun.tscn" id="2_y04eh"]
+
+[resource]
+script = ExtResource("1_bpwib")
+name = "Machine Gun"
+description = ""
+price = 10
+body_part = ""
+icon = ExtResource("1_rj5f6")
+cooldown = 4
+item_scene = ExtResource("2_y04eh")
+ground_trap = false
+active = false
+animation = false
+type = ""
+stay_in_hand = true
+metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

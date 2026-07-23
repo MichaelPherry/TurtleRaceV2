@@ -1,0 +1,58 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvl0n0g3vm31y"]
+
+[ext_resource type="Script" uid="uid://chb6keti8whcq" path="res://Items/boomerang.gd" id="1_okxkc"]
+[ext_resource type="Texture2D" uid="uid://r1rsmfaiw8le" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0001.png" id="1_rgp5q"]
+[ext_resource type="Texture2D" uid="uid://u40n6gifkpt" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0002.png" id="2_okxkc"]
+[ext_resource type="Texture2D" uid="uid://bjubjlo1wmk0" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0003.png" id="3_odnjr"]
+[ext_resource type="Texture2D" uid="uid://cbu7rytte3vr6" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0004.png" id="4_46dse"]
+[ext_resource type="Texture2D" uid="uid://n3wq3ocjo53i" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0005.png" id="5_4q651"]
+[ext_resource type="Texture2D" uid="uid://cngejfncnkipg" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0006.png" id="6_y07rx"]
+[ext_resource type="Texture2D" uid="uid://dmm5jaulcq1pb" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0007.png" id="7_erpna"]
+[ext_resource type="Texture2D" uid="uid://bs5ptuiebi85t" path="res://Art/AlexArt/Items/Boomerang/Bomerang Travel0008.png" id="8_bwiwa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0iwj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rgp5q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_okxkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_odnjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_46dse")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4q651")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y07rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_erpna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bwiwa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6oldk"]
+radius = 185.0
+height = 390.0
+
+[node name="Boomerang" type="Area2D"]
+script = ExtResource("1_okxkc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_k0iwj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(22, 11)
+shape = SubResource("CapsuleShape2D_6oldk")

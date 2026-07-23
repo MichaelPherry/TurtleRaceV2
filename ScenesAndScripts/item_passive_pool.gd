@@ -2,7 +2,7 @@ extends Node
 
 var appendages = ["arm", "head", "shell", "legs"]
 var total_pool = {
-	"arm": ["fissile", "bear_trap"],
+	"arm": ["fissile", "bear_trap", "machine_gun", "boomerang"],
 	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet"],
 	"shell": ["ammo_belt", "battery"],
 	"legs": ["rollerskates", "cinderblocks"]
@@ -18,6 +18,10 @@ func arm(item):
 			return load("res://Items/mystery_item.tres")
 		"bear_trap":
 			return load("res://Items/bear_trap.tres")
+		"machine_gun":
+			return load("res://Items/machine_gun.tres")
+		"boomerang":
+			return load("res://Items/boomerang.tres")
 
 func head(item):
 	match item:
