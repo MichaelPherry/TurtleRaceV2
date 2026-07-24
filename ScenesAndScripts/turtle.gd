@@ -13,27 +13,27 @@ extends CharacterBody2D
 @onready var rightArm_anim = $Visuals/RightArm
 
 #Turtle items and appendages
-var left_arm
+var left_arm = null
 var left_arm_instance
 var left_arm_cooldown_max: float
 var left_arm_cooldown = 0
 var left_arm_type = null
-var right_arm
+var right_arm = null
 var right_arm_instance
 var right_arm_cooldown_max: float
 var right_arm_cooldown = 0
 var right_arm_type = null
-var head
+var head = null
 var head_instance
 var head_cooldown_max: float
 var head_cooldown = 0
 var head_type = null
-var shell
+var shell = null
 var shell_instance
 var shell_cooldown_max: float
 var shell_cooldown = 0
 var shell_type = null
-var legs
+var legs = null
 var legs_cooldown_max: float
 var legs_cooldown = 0
 var legs_instance

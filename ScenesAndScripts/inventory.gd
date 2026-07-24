@@ -30,6 +30,8 @@ extends Node
 var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
 var stats = ["acceleration", "resilience", "max_speed", "fire_rate", "projectile_speed", "luck"]
 var econ = ["gold"]
+var what_pos = {}
+var race_order = []
 
 var rng_calls = 0
 var id_list

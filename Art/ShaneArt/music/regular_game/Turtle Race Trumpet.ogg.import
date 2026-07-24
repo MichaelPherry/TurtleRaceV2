@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ttv8u2mldp73"
+path="res://.godot/imported/Turtle Race Trumpet.ogg-fe7b5f076cb148c5b223a76fee06cf9c.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/ShaneArt/music/regular_game/Turtle Race Trumpet.ogg"
+dest_files=["res://.godot/imported/Turtle Race Trumpet.ogg-fe7b5f076cb148c5b223a76fee06cf9c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

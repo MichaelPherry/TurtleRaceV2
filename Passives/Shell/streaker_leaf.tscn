@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c32jddds0ss77"]
+
+[ext_resource type="Script" uid="uid://ccd8htqfxpwgm" path="res://Passives/Shell/streaker_leaf.gd" id="1_ssqsj"]
+
+[node name="StreakerLeaf" type="Node2D"]
+script = ExtResource("1_ssqsj")

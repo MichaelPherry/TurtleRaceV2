@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bw3rsomx8n75n"
+path="res://.godot/imported/Turtle Race Piano.ogg-c203477ff432b281edd07027cbdfcb09.oggvorbisstr"
+
+[deps]
+
+source_file="res://Art/ShaneArt/music/regular_game/Turtle Race Piano.ogg"
+dest_files=["res://.godot/imported/Turtle Race Piano.ogg-c203477ff432b281edd07027cbdfcb09.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

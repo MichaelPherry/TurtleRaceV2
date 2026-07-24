@@ -4,9 +4,15 @@ extends Node2D
 @onready var tick_controller = $TickController
 
 var finished_turts = []
+var turtles 
 var time_elapsed = 0.0
 
 func _ready():
+	$Bass.play()
+	$Organ.play()
+	$Piano.play()
+	$Trumpet.play()
+	$Whistle.play()
 	Inventory.rng_calls = 0
 	NetworkManager.send_message("Unready", NetworkManager.sessionID)
 	var finished = get_tree().get_nodes_in_group("finished")
@@ -18,6 +24,40 @@ func _ready():
 
 func _process(delta):
 	time_elapsed += delta
+	turtles = get_tree().get_nodes_in_group("players")
+	turtles.sort_custom(func(a,b): return a.id < b.id)
+		
+	for turtle in turtles:
+		Inventory.what_pos[turtle.name_tag] = turtle.global_position.y
+	var order = Inventory.what_pos.keys().map(func(k): return [k, Inventory.what_pos[k]])
+	order.sort_custom(func(a, b): return a[1] > b[1])
+	Inventory.race_order = order
+	
+	if str(order[0][0]) == turtles[0].name_tag:
+		if $Organ.volume_db < 0:
+			$Organ.volume_db = -20
+			$Piano.volume_db = -80
+			$Trumpet.volume_db = -80
+			$Whistle.volume_db = -80
+	elif str(order[0][0]) == turtles[1].name_tag:
+		if $Piano.volume_db < 0:
+			$Piano.volume_db = -20
+			$Organ.volume_db = -80
+			$Trumpet.volume_db = -80
+			$Whistle.volume_db = -80
+	elif str(order[0][0]) == turtles[2].name_tag:
+		if $Trumpet.volume_db < 0:
+			$Trumpet.volume_db = -20
+			$Organ.volume_db = -80
+			$Piano.volume_db = -80
+			$Whistle.volume_db = -80
+	elif str(order[0][0]) == turtles[3].name_tag:
+		if $Whistle.volume_db < 0:
+			$Whistle.volume_db = -20
+			$Organ.volume_db = -80
+			$Piano.volume_db = -80
+			$Trumpet.volume_db = -80
+
 
 func _on_finish_line_body_exited(body):
 	if body.is_in_group("racing"):
