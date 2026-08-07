@@ -26,7 +26,7 @@ export class RaceLobby extends Room {
             this.onMessage("ready", (client) => {
                 this.players[client.sessionId].ready = true;
                 console.log(client.sessionId, " is ready!")
-                if (this.gamemode = "singleplayer") {
+                if (this.gamemode == "singleplayer") {
                     var slot = Number(this.availableRaceStarts.shift())
                     this.players["CPU1"] = {
                         ready: true,
