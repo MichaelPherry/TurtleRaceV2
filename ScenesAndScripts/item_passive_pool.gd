@@ -2,7 +2,7 @@ extends Node
 
 var appendages = ["arm", "head", "shell", "legs"]
 var total_pool = {
-	"arm": ["fissile", "bear_trap", "machine_gun", "boomerang"],
+	"arm": ["fissile", "bear_trap", "machine_gun"],
 	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet"],
 	"shell": ["ammo_belt", "battery", "streaker_leaf"],
 	"legs": ["rollerskates", "cinderblocks"]

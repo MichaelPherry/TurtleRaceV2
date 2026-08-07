@@ -9,11 +9,11 @@ var current_scene = null
 var race_scene = preload("res://ScenesAndScripts/main.tscn") 
 
 func _ready():
-	client = Colyseus.Client.new("wss://turtleracev2.onrender.com")
-
+	pass
+	
 func connect_to_matchmaking():
 	print("Connecting...")
-	room = await client.join_or_create("raceLobby", {"player_name": local_player_name})
+	room = await client.join_or_create("raceLobby", {"player_name": local_player_name, "mode": Inventory.mode})
 	get_tree().current_scene.setup(room)
 	room.joined.connect(_on_lobby_joined)
 

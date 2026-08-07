@@ -51,6 +51,7 @@ export class RaceMatch extends Room {
 
     onCreate(options: any) {
         try{
+        console.log("multiplayer");
         this.maxClients = options[0];
         this.name_list = options[1];
         this.perm_name_list = options[1].slice();

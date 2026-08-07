@@ -4,6 +4,7 @@ import { Server } from "colyseus";
 import { WebSocketTransport } from "@colyseus/ws-transport";
 import { RaceLobby } from "./rooms/RaceLobby.js"
 import { RaceMatch } from "./rooms/RaceMatch.js"
+import { RaceMatchLocal } from "./rooms/RaceMatchLocal.js"
 
 const port = Number(process.env.PORT) || 2567;
 const app = express();
@@ -19,7 +20,8 @@ const gameServer = new Server({
 console.log("REGISTERING ROOM");
 gameServer.define("raceLobby", RaceLobby);
 gameServer.define("raceMatch", RaceMatch);
-console.log("AAAAAAA");
+gameServer.define("raceMatchLocal", RaceMatchLocal);
+
 gameServer.listen(port);
 
 console.log(`Server running on ws://localhost:${port}`);

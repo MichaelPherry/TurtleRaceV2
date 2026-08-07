@@ -34,6 +34,7 @@ var what_pos = {}
 var race_order = []
 
 var rng_calls = 0
+var mode
 var id_list
 var id_name_list
 var seed
@@ -66,6 +67,7 @@ func set_turtles(turtles):
 		for security in econ:
 			server_turtles.get_or_add(id, {}).get_or_add("econ", {})[security] = turtles[id]["build"]["econ"][security]
 		server_turtles[id]["slot"] = turtles[id]["slot"]
+	var temp = 2
 	
 func seconds_to_ticks(seconds, tick_rate):
 	return round (seconds / tick_rate)
