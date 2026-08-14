@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_hx2va")
 name = "Cinder Blocks"
-description = ""
+description = "2x Resilience 0.75x Max Speed"
 price = 10
 icon = ExtResource("1_r7dvw")
 passive_scene = ExtResource("1_ndmyr")

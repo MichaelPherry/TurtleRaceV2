@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_o0vsc")
 name = "Bear Trap"
-description = ""
+description = "Throws trap infront of target turtle"
 price = 10
 body_part = ""
 icon = ExtResource("1_8w8hu")
@@ -17,4 +17,5 @@ ground_trap = true
 active = false
 animation = false
 type = "Trap"
+stay_in_hand = false
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

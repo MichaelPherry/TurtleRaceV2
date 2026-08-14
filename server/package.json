@@ -8,7 +8,10 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "bundle": "esbuild dist/index.js --bundle --platform=node --format=cjs --outfile=dist/server-bundle.cjs --external:@colyseus/bun-websockets --external:@colyseus/redis-driver --external:@colyseus/redis-presence",
     "start": "node dist/index.js",
+    "start:bundle": "node dist/server-bundle.cjs",
+    "build-exe": "node build-exe.js",
     "watch": "tsc -w",
     "dev": "concurrently \"tsc -w\" \"nodemon --cwd server dist/index.js\""
   },
@@ -25,7 +28,9 @@
   "devDependencies": {
     "@types/express": "^5.0.6",
     "@types/node": "^25.6.0",
+    "esbuild": "^0.28.1",
     "nodemon": "^3.1.14",
+    "postject": "^1.0.0-alpha.6",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }

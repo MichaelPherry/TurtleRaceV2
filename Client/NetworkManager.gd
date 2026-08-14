@@ -3,6 +3,7 @@ extends Node2D
 var client: Colyseus.Client
 var room: Colyseus.Room
 var callbacks: Colyseus.Callbacks
+var local_server_pid = -1
 var local_player_name = null
 var sessionID
 var current_scene = null
@@ -74,3 +75,8 @@ func _on_message_received(type, message):
 			"gold": 0
 		}
 	}
+	
+func _exit_tree():
+	if local_server_pid != -1:
+		OS.kill(local_server_pid)
+		print("Local server stopped")

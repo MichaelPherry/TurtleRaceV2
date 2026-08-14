@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_08h6u")
 name = "fissile"
-description = ""
+description = "Heat seaking fish missile"
 price = 10
 body_part = ""
 icon = ExtResource("1_08h6u")
@@ -17,4 +17,5 @@ ground_trap = false
 active = true
 animation = false
 type = "gun"
+stay_in_hand = false
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

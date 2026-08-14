@@ -1,10 +1,10 @@
 extends Node2D
 
-@export var speed: float = 2750
+@export var speed: float = 3000
 var bullet = preload("res://Items/projectiles/bullet.tscn")
 var target
 var user
-var bullet_amount = 7
+var bullet_amount = 8
 var cone_angle = 50
 var ground_trap = false
 

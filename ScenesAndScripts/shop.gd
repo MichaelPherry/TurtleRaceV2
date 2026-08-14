@@ -23,7 +23,8 @@ func _ready():
 	
 	$Label.text = str(NetworkManager.local_player_name) + "'s shop"
 	
-	Inventory.item_1 = ["head", "dunce_hat"] #rand_items()
+	#item layout below [appendage, item]
+	Inventory.item_1 = rand_items()
 	Inventory.item_2 = rand_items()
 	Inventory.item_3 = rand_items()
 

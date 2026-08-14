@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://dm7q40b7xgc4r"]
 
 [ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_djmuj"]
-[ext_resource type="Texture2D" uid="uid://cag32dt5msbji" path="res://Art/AlexArt/Items/Suit/SuitShop.png" id="1_dlsbv"]
+[ext_resource type="Texture2D" uid="uid://30a4u2kwb2jv" path="res://Art/AlexArt/Items/StreakerLeaf/Leaf.png" id="1_dlsbv"]
 [ext_resource type="PackedScene" uid="uid://c32jddds0ss77" path="res://Passives/Shell/streaker_leaf.tscn" id="1_samou"]
 
 [resource]
 script = ExtResource("1_djmuj")
 name = "Streaker Leaf"
-description = ""
+description = "Max Speed x mult for every appendage without an item"
 price = 10
 icon = ExtResource("1_dlsbv")
 passive_scene = ExtResource("1_samou")
