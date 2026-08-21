@@ -25,7 +25,9 @@ type Turtle = {
         //stock2: Int16Array | 0;
         //stock3: Int16Array | 0;
         //stock4: Int16Array | 0;
-    }
+    },
+
+    name : string;
 };
 
 type Player = {
@@ -60,6 +62,7 @@ export class RaceMatch extends Room {
             this.players[client.sessionId].build.base_stats = turtle_build["base_stats"];
             this.players[client.sessionId].build.econ = turtle_build["econ"];
             console.log(this.players[client.sessionId].name + " " + turtle_build);
+            this.players[client.sessionId].name = this.players[client.sessionId].build.name;
             this.players[client.sessionId].ready = true;
             var counter = 0
             for (const id of Object.keys(this.players)){
@@ -126,7 +129,9 @@ export class RaceMatch extends Room {
 
                 econ: {
                     gold: 10
-                }
+                },
+
+                name: "error"
             },
             slot: race_slot,
             finished: false,
