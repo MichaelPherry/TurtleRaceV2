@@ -73,9 +73,10 @@ func _on_message_received(type, message):
 		},		
 		"econ": {
 			"gold": 0
-		}
+		},
+		"name": local_player_name
 	}
-	
+	var temp = 4
 func _exit_tree():
 	if local_server_pid != -1:
 		OS.kill(local_server_pid)
