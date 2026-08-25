@@ -83,11 +83,6 @@ export class RaceLobby extends Room {
         this.sendLobbyUpdate();
     }
 
-
-    onDispose() {
-    console.log("RACE LOBBY DISPOSED");
-    }
-
     checkStart() {
 
         const allReady =

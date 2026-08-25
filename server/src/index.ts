@@ -23,8 +23,7 @@ gameServer.define("raceLobby", RaceLobby).enableRealtimeListing();
 gameServer.define("raceMatch", RaceMatch);
 gameServer.define("raceMatchLocal", RaceMatchLocal);
 
-gameServer.listen(port);
-
+gameServer.listen(port, "0.0.0.0");
 console.log(`Server running on ws://localhost:${port}`);
 
 gameServer.onShutdown(() => {
