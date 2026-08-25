@@ -17,7 +17,7 @@ func _ready():
 		name_submit.disabled = true
 	else:
 		available_rooms.clear()
-		NetworkManager.connect_to_lobby()
+		#NetworkManager.connect_to_lobby()
 		name_input.visible = false
 		name_submit.visible = false
 	update_room_list()
@@ -62,6 +62,10 @@ func _on_create_button_down() -> void:
 	get_tree().change_scene_to_file("res://Client/Lobby.tscn")
 
 func _on_lobby_message(type, message):
+	print("Message time: ", Time.get_ticks_msec())
+	print("TYPE:", type)
+	print("MESSAGE:", message)
+	
 	if NetworkManager.lobby == null:
 		return
 		

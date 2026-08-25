@@ -71,6 +71,9 @@ class RaceLobby extends colyseus_1.Room {
         delete this.players[client.sessionId];
         this.sendLobbyUpdate();
     }
+    onDispose() {
+        console.log("RACE LOBBY DISPOSED");
+    }
     checkStart() {
         const allReady = Object.keys(this.players).length === this.maxClients &&
             Object.values(this.players).every(p => p.ready);

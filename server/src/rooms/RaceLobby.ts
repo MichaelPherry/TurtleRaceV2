@@ -14,7 +14,6 @@ type PlayerData = {
 export class RaceLobby extends Room {
 
     maxClients = 4;
-    static realtimeListing = true;
     availableRaceStarts = [1, 2, 3, 4]
     seed = 0;
     players: Record<string, PlayerData> = {};
@@ -82,6 +81,11 @@ export class RaceLobby extends Room {
 
         delete this.players[client.sessionId];
         this.sendLobbyUpdate();
+    }
+
+
+    onDispose() {
+    console.log("RACE LOBBY DISPOSED");
     }
 
     checkStart() {

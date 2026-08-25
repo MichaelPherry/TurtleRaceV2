@@ -25,7 +25,7 @@ func connect_to_lobby():
 	if get_tree().current_scene != null:
 		if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
 			lobby.message_received.connect(get_tree().current_scene._on_lobby_message)
-	
+			print("Lobby connect: ", Time.get_ticks_msec())
 
 func connect_to_matchmaking():
 	print("Connecting...")
