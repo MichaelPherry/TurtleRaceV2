@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn6ehtplyd8xs"]
+
+[ext_resource type="Script" uid="uid://bbksum7viv4ob" path="res://Client/gui_match.gd" id="1_rbrv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ijs42"]
+bg_color = Color(0.266667, 0.435294, 0.658824, 0.635294)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="GUIMatch" type="PanelContainer"]
+custom_minimum_size = Vector2(400, 60)
+anchors_preset = -1
+anchor_left = 0.253
+anchor_top = 0.071
+anchor_right = 0.253
+anchor_bottom = 0.071
+offset_left = -291.456
+offset_top = -46.008
+offset_right = -0.456024
+offset_bottom = 45.992
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ijs42")
+script = ExtResource("1_rbrv8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Button" type="Button" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "JOIN"
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
+top_level = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 16
+text = "Null
+for now
+"
+
+[connection signal="button_down" from="MarginContainer/HBoxContainer/Button" to="." method="_on_button_button_down"]

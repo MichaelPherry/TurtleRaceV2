@@ -1,6 +1,6 @@
 import http from "http";
 import express from "express";
-import { Server } from "colyseus";
+import { Server, LobbyRoom } from "colyseus";
 import { WebSocketTransport } from "@colyseus/ws-transport";
 import { RaceLobby } from "./rooms/RaceLobby.js"
 import { RaceMatch } from "./rooms/RaceMatch.js"
@@ -18,7 +18,8 @@ const gameServer = new Server({
 });
 
 console.log("REGISTERING ROOM");
-gameServer.define("raceLobby", RaceLobby);
+gameServer.define("lobby", LobbyRoom);
+gameServer.define("raceLobby", RaceLobby).enableRealtimeListing();
 gameServer.define("raceMatch", RaceMatch);
 gameServer.define("raceMatchLocal", RaceMatchLocal);
 

@@ -1,6 +1,7 @@
-import { Room } from "colyseus";
+import { Room, LobbyRoom } from "colyseus";
 import type { Client } from "colyseus";
 import { matchMaker } from "colyseus";
+
 import { PassThrough } from "node:stream";
 
 
@@ -13,41 +14,22 @@ type PlayerData = {
 export class RaceLobby extends Room {
 
     maxClients = 4;
+    static realtimeListing = true;
     availableRaceStarts = [1, 2, 3, 4]
     seed = 0;
-    gamemode: string = ""
     players: Record<string, PlayerData> = {};
     name_list: string[] = [];
 
-    onCreate() {
+    onCreate(options: any) {
         try {
             console.log("RaceLobby created");
 
             this.onMessage("ready", (client) => {
                 this.players[client.sessionId].ready = true;
                 console.log(client.sessionId, " is ready!")
-                if (this.gamemode == "singleplayer") {
-                    var slot = Number(this.availableRaceStarts.shift())
-                    this.players["CPU1"] = {
-                        ready: true,
-                        race_order: slot,
-                        name: "CPU1"
-                    };
-
-                    slot = Number(this.availableRaceStarts.shift())
-                    this.players["CPU2"] = {
-                        ready: true,
-                        race_order: slot,
-                        name: "CPU2"
-                    };
-
-                    slot = Number(this.availableRaceStarts.shift())
-                    this.players["CPU3"] = {
-                        ready: true,
-                        race_order: slot,
-                        name: "CPU3"
-                    };
-                }
+                this.setMetadata({
+                    roomName : String(options.player_name) + "'s lobby"
+                });
 
                 this.sendLobbyUpdate();
                 this.checkStart();
@@ -68,8 +50,6 @@ export class RaceLobby extends Room {
             client.leave();
             return
         }
-
-        this.gamemode = options.mode
 
         for (const player in this.players){
             if (this.players[player].name == options.player_name)
@@ -127,14 +107,7 @@ export class RaceLobby extends Room {
     async startRace() {
 
         var room_location
-        if (this.gamemode == "singleplayer")
-        {
-            room_location = "raceMatchLocal"
-        }  
-        else
-        {
-            room_location = "raceMatch"
-        }
+        room_location = "raceMatch"
         const raceRoom = await matchMaker.createRoom(room_location, [this.maxClients, this.name_list]);
         console.log(this.players)
         console.log(this.name_list)

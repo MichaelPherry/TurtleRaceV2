@@ -18,36 +18,18 @@ class RaceLobby extends colyseus_1.Room {
         this.maxClients = 4;
         this.availableRaceStarts = [1, 2, 3, 4];
         this.seed = 0;
-        this.gamemode = "";
         this.players = {};
         this.name_list = [];
     }
-    onCreate() {
+    onCreate(options) {
         try {
             console.log("RaceLobby created");
             this.onMessage("ready", (client) => {
                 this.players[client.sessionId].ready = true;
                 console.log(client.sessionId, " is ready!");
-                if (this.gamemode == "singleplayer") {
-                    var slot = Number(this.availableRaceStarts.shift());
-                    this.players["CPU1"] = {
-                        ready: true,
-                        race_order: slot,
-                        name: "CPU1"
-                    };
-                    slot = Number(this.availableRaceStarts.shift());
-                    this.players["CPU2"] = {
-                        ready: true,
-                        race_order: slot,
-                        name: "CPU2"
-                    };
-                    slot = Number(this.availableRaceStarts.shift());
-                    this.players["CPU3"] = {
-                        ready: true,
-                        race_order: slot,
-                        name: "CPU3"
-                    };
-                }
+                this.setMetadata({
+                    roomName: String(options.player_name) + "'s lobby"
+                });
                 this.sendLobbyUpdate();
                 this.checkStart();
             });
@@ -62,7 +44,6 @@ class RaceLobby extends colyseus_1.Room {
             client.leave();
             return;
         }
-        this.gamemode = options.mode;
         for (const player in this.players) {
             if (this.players[player].name == options.player_name)
                 options.player_name = client.sessionId;
@@ -107,12 +88,7 @@ class RaceLobby extends colyseus_1.Room {
     startRace() {
         return __awaiter(this, void 0, void 0, function* () {
             var room_location;
-            if (this.gamemode == "singleplayer") {
-                room_location = "raceMatchLocal";
-            }
-            else {
-                room_location = "raceMatch";
-            }
+            room_location = "raceMatch";
             const raceRoom = yield colyseus_2.matchMaker.createRoom(room_location, [this.maxClients, this.name_list]);
             console.log(this.players);
             console.log(this.name_list);
@@ -124,4 +100,5 @@ class RaceLobby extends colyseus_1.Room {
     }
 }
 exports.RaceLobby = RaceLobby;
+RaceLobby.realtimeListing = true;
 //# sourceMappingURL=RaceLobby.js.map

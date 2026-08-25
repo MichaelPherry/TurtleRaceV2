@@ -29,3 +29,7 @@ Inventory="*res://ScenesAndScripts/inventory.gd"
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/colyseus/addons/colyseus/plugin.cfg")
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true

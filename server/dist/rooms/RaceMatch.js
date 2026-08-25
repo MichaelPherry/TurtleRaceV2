@@ -26,6 +26,8 @@ class RaceMatch extends colyseus_1.Room {
                 this.players[client.sessionId].build.base_stats = turtle_build["base_stats"];
                 this.players[client.sessionId].build.econ = turtle_build["econ"];
                 console.log(this.players[client.sessionId].name + " " + turtle_build);
+                this.players[client.sessionId].name = turtle_build["name"];
+                this.players[client.sessionId].build.name = turtle_build["name"];
                 this.players[client.sessionId].ready = true;
                 var counter = 0;
                 for (const id of Object.keys(this.players)) {
@@ -83,7 +85,8 @@ class RaceMatch extends colyseus_1.Room {
                     },
                     econ: {
                         gold: 10
-                    }
+                    },
+                    name: "error"
                 },
                 slot: race_slot,
                 finished: false,

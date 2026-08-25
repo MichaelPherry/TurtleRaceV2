@@ -62,29 +62,20 @@ offset_bottom = 65.0
 
 [node name="Ready" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 341.0
-offset_top = 359.0
-offset_right = 704.0
-offset_bottom = 488.0
+offset_left = 332.0
+offset_top = 216.0
+offset_right = 695.0
+offset_bottom = 345.0
 text = "Ready"
 
-[node name="NameSubmit" type="Button" parent="Panel"]
-layout_mode = 2
-offset_left = 136.0
-offset_top = 180.0
-offset_right = 581.0
-offset_bottom = 229.0
-text = "Submit Name"
-
-[node name="LineEdit" type="LineEdit" parent="Panel"]
+[node name="Leave" type="Button" parent="Panel"]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 72.0
-offset_right = 624.0
-offset_bottom = 140.0
-placeholder_text = "Enter name here"
-max_length = 9
+offset_left = 333.0
+offset_top = 357.0
+offset_right = 696.0
+offset_bottom = 486.0
+text = "Leave
+"
 
 [connection signal="pressed" from="Panel/Ready" to="." method="_on_ready_pressed"]
-[connection signal="pressed" from="Panel/NameSubmit" to="." method="_on_name_submit_pressed"]
-[connection signal="text_changed" from="Panel/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="button_down" from="Panel/Leave" to="." method="_on_leave_button_down"]

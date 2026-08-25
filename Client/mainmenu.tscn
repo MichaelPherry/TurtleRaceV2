@@ -1,0 +1,101 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn5uiyv8boev4"]
+
+[ext_resource type="Script" uid="uid://rrdltoj2x3tv" path="res://Client/mainmenu.gd" id="1_jxe75"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi176"]
+bg_color = Color(0.156863, 0.156863, 0.156863, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Mainmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -1.0
+offset_right = 1152.0
+offset_bottom = 648.0
+script = ExtResource("1_jxe75")
+
+[node name="NameSubmit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 136.0
+offset_top = 180.0
+offset_right = 581.0
+offset_bottom = 229.0
+text = "Submit Name"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 72.0
+offset_right = 624.0
+offset_bottom = 140.0
+placeholder_text = "Enter name here"
+max_length = 9
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.156863, 0.156863, 0.156863, 1)
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -502.5
+offset_top = -209.0
+offset_right = 518.5
+offset_bottom = 286.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yi176")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/separation = 20
+
+[node name="Create" type="Button" parent="ColorRect"]
+layout_mode = 2
+offset_left = 77.0
+offset_top = 37.0
+offset_right = 1096.0
+offset_bottom = 79.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "Create Lobby"
+
+[connection signal="pressed" from="NameSubmit" to="." method="_on_name_submit_pressed"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="button_down" from="ColorRect/Create" to="." method="_on_create_button_down"]

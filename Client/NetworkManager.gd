@@ -8,13 +8,26 @@ var local_player_name = null
 var sessionID
 var current_scene = null
 var race_scene = preload("res://ScenesAndScripts/main.tscn") 
+var lobby
+var available_rooms = {}
 
 func _ready():
 	pass
 	
+func connect_to_lobby():
+	lobby = await client.join_or_create("lobby")
+
+	if lobby == null:
+		print("Failed to connect to lobby")
+		return
+	print("Connected to lobby: ", lobby.get_id())
+
+	#room = await client.create("raceLobby", {"player_name": local_player_name})
+	lobby.message_received.connect(_on_lobby_message)
+	
 func connect_to_matchmaking():
 	print("Connecting...")
-	room = await client.join_or_create("raceLobby", {"player_name": local_player_name, "mode": Inventory.mode})
+	#room = await client.join_or_create("raceLobby", {"player_name": local_player_name})
 	get_tree().current_scene.setup(room)
 	room.joined.connect(_on_lobby_joined)
 
@@ -39,6 +52,7 @@ func send_message(code_text, message):
 	room.send_message(code_text, message)
 
 func _on_message_received(type, message):
+	print("messages ", type, message)
 	if type == "send_turtles":
 		Inventory.set_turtles(message)
 		get_tree().change_scene_to_packed(race_scene)
@@ -76,7 +90,41 @@ func _on_message_received(type, message):
 		},
 		"name": local_player_name
 	}
-	var temp = 4
+
+func _on_lobby_message(type, message):
+	var temp
+	match type:
+		"rooms":
+			available_rooms.clear()
+
+			for room in message:
+				available_rooms[room["roomId"]] = room
+			
+			if get_tree().current_scene != null:
+				if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
+					get_tree().current_scene.update_room_list()
+			
+		"+":
+			var room_id = message[0]
+			var room_data = message[1]
+
+			available_rooms[room_id] = room_data
+			
+			if get_tree().current_scene != null:
+				if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
+					get_tree().current_scene.update_room_list()
+			
+		"-":
+			var room_id = message
+
+			available_rooms.erase(room_id)
+			
+			if get_tree().current_scene != null:
+				if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
+					get_tree().current_scene.update_room_list()
+			
+	print("Available rooms: ", available_rooms)
+
 func _exit_tree():
 	if local_server_pid != -1:
 		OS.kill(local_server_pid)
