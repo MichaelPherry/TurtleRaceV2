@@ -17,7 +17,7 @@ func _ready():
 		name_submit.disabled = true
 	else:
 		available_rooms.clear()
-		#NetworkManager.connect_to_lobby()
+		NetworkManager.connect_to_lobby()
 		name_input.visible = false
 		name_submit.visible = false
 	update_room_list()

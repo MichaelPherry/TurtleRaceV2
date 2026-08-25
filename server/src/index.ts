@@ -1,6 +1,6 @@
 import http from "http";
 import express from "express";
-import { Server, LobbyRoom } from "colyseus";
+import { Server, LobbyRoom } from "@colyseus/core";
 import { WebSocketTransport } from "@colyseus/ws-transport";
 import { RaceLobby } from "./rooms/RaceLobby.js"
 import { RaceMatch } from "./rooms/RaceMatch.js"
