@@ -9,7 +9,6 @@ var sessionID
 var current_scene = null
 var race_scene = preload("res://ScenesAndScripts/main.tscn") 
 var lobby
-var available_rooms = {}
 
 func _ready():
 	pass
@@ -23,8 +22,11 @@ func connect_to_lobby():
 	print("Connected to lobby: ", lobby.get_id())
 
 	#room = await client.create("raceLobby", {"player_name": local_player_name})
-	lobby.message_received.connect(_on_lobby_message)
+	if get_tree().current_scene != null:
+		if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
+			lobby.message_received.connect(get_tree().current_scene._on_lobby_message)
 	
+
 func connect_to_matchmaking():
 	print("Connecting...")
 	#room = await client.join_or_create("raceLobby", {"player_name": local_player_name})
@@ -90,40 +92,6 @@ func _on_message_received(type, message):
 		},
 		"name": local_player_name
 	}
-
-func _on_lobby_message(type, message):
-	var temp
-	match type:
-		"rooms":
-			available_rooms.clear()
-
-			for room in message:
-				available_rooms[room["roomId"]] = room
-			
-			if get_tree().current_scene != null:
-				if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
-					get_tree().current_scene.update_room_list()
-			
-		"+":
-			var room_id = message[0]
-			var room_data = message[1]
-
-			available_rooms[room_id] = room_data
-			
-			if get_tree().current_scene != null:
-				if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
-					get_tree().current_scene.update_room_list()
-			
-		"-":
-			var room_id = message
-
-			available_rooms.erase(room_id)
-			
-			if get_tree().current_scene != null:
-				if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
-					get_tree().current_scene.update_room_list()
-			
-	print("Available rooms: ", available_rooms)
 
 func _exit_tree():
 	if local_server_pid != -1:

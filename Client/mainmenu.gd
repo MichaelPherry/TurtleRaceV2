@@ -5,6 +5,7 @@ extends Control
 @onready var vbox1 = $ColorRect/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer
 @onready var vbox2 = $ColorRect/PanelContainer/MarginContainer/HBoxContainer/VBoxContainer2
 var race_lobby_button = preload("res://Client/gui_match.tscn") 
+var available_rooms = {}
 
 func _ready():
 	if NetworkManager.local_player_name == null:
@@ -24,11 +25,11 @@ func update_room_list():
 	for child in vbox2.get_children():
 		child.queue_free()
 	
-	for room_id in NetworkManager.available_rooms:
-		var room = NetworkManager.available_rooms[room_id]
+	for room_id in available_rooms:
+		var room = available_rooms[room_id]
 		var room_button = race_lobby_button.instantiate()
-		room_button.current_clients = str(NetworkManager.available_rooms[room_id]["clients"])
-		room_button.max_clients = str(NetworkManager.available_rooms[room_id]["maxClients"])
+		room_button.current_clients = str(available_rooms[room_id]["clients"])
+		room_button.max_clients = str(available_rooms[room_id]["maxClients"])
 		room_button.room_id = room_id
 		
 		
@@ -56,3 +57,31 @@ func _on_create_button_down() -> void:
 	NetworkManager.room = await NetworkManager.client.create("raceLobby", {"player_name": NetworkManager.local_player_name})
 	#await NetworkManager.lobby.message_received.connect(NetworkManager._on_lobby_message)
 	get_tree().change_scene_to_file("res://Client/Lobby.tscn")
+
+func _on_lobby_message(type, message):
+	if NetworkManager.lobby == null:
+		return
+		
+	match type:
+		"rooms":
+			available_rooms.clear()
+
+			for room in message:
+				available_rooms[room["roomId"]] = room
+			
+			update_room_list()
+			
+		"+":
+			var room_id = message[0]
+			var room_data = message[1]
+
+			available_rooms[room_id] = room_data
+			
+			update_room_list()
+			
+		"-":
+			var room_id = message
+
+			available_rooms.erase(room_id)
+			
+			update_room_list()
