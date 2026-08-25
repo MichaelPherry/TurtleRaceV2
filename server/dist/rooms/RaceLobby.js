@@ -59,8 +59,8 @@ class RaceLobby extends colyseus_1.Room {
         this.name_list.push(this.players[client.sessionId].name);
         this.sendLobbyUpdate();
     }
-    onLeave(client) {
-        console.log(client.sessionId, "left race");
+    onLeave(client, code) {
+        console.log(client.sessionId, "left race ", " code: ", code, " clients remaining: ", this.name_list.length);
         if (this.players[client.sessionId]) {
             this.availableRaceStarts.push(this.players[client.sessionId].race_order);
         }

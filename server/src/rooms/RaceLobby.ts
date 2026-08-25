@@ -69,8 +69,8 @@ export class RaceLobby extends Room {
         this.sendLobbyUpdate();
     }
 
-    onLeave(client: any) {
-        console.log(client.sessionId, "left race");
+    onLeave(client: any, code: number) {
+        console.log(client.sessionId, "left race ", " code: ", code, " clients remaining: ", this.name_list.length);
         if (this.players[client.sessionId]) {
             this.availableRaceStarts.push(this.players[client.sessionId].race_order)
         }

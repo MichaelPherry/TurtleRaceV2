@@ -12,6 +12,8 @@ var room
 var callbacks: Colyseus.Callbacks
 
 func _ready():
+	await NetworkManager.lobby.leave()
+	NetworkManager.lobby = null
 	NetworkManager.connect_to_matchmaking()
 
 func setup(_room):
@@ -45,14 +47,10 @@ func join_match(data):
 	print(data)
 	await get_tree().create_timer(1.0).timeout
 	NetworkManager._on_room_joined(data)
-	await NetworkManager.lobby.leave()
-	NetworkManager.lobby = null
 	get_tree().change_scene_to_file("res://ScenesAndScripts/shop.tscn")
 
 func _on_ready_pressed():
-	#NetworkManager.send_message()
 	room.send_message("ready", "ready")
-
 
 func _on_leave_button_down():
 	await room.leave()
