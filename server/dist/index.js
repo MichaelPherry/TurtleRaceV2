@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const core_1 = require("@colyseus/core");
 const ws_transport_1 = require("@colyseus/ws-transport");
 const RaceLobby_js_1 = require("./rooms/RaceLobby.js");
+const BotLobby_js_1 = require("./rooms/BotLobby.js");
 const RaceMatch_js_1 = require("./rooms/RaceMatch.js");
 const RaceMatchLocal_js_1 = require("./rooms/RaceMatchLocal.js");
 const port = Number(process.env.PORT) || 2567;
@@ -23,6 +24,7 @@ const gameServer = new core_1.Server({
 console.log("REGISTERING ROOM");
 gameServer.define("lobby", core_1.LobbyRoom);
 gameServer.define("raceLobby", RaceLobby_js_1.RaceLobby).enableRealtimeListing();
+gameServer.define("botLobby", BotLobby_js_1.BotLobby);
 gameServer.define("raceMatch", RaceMatch_js_1.RaceMatch);
 gameServer.define("raceMatchLocal", RaceMatchLocal_js_1.RaceMatchLocal);
 gameServer.listen(port, "0.0.0.0");

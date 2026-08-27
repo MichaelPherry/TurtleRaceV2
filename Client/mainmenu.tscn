@@ -96,6 +96,34 @@ size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
 text = "Create Lobby"
 
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 235.0
+offset_top = 166.0
+offset_right = 938.0
+offset_bottom = 528.0
+
+[node name="Online" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 101.0
+offset_top = 37.0
+offset_right = 579.0
+offset_bottom = 114.0
+theme_override_font_sizes/font_size = 24
+text = "Online Lobby"
+
+[node name="CPU" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 192.0
+offset_right = 580.0
+offset_bottom = 269.0
+theme_override_font_sizes/font_size = 24
+text = "CPU Lobby
+"
+
 [connection signal="pressed" from="NameSubmit" to="." method="_on_name_submit_pressed"]
 [connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="button_down" from="ColorRect/Create" to="." method="_on_create_button_down"]
+[connection signal="pressed" from="Panel/Online" to="." method="_on_online_pressed"]
+[connection signal="pressed" from="Panel/CPU" to="." method="_on_cpu_pressed"]

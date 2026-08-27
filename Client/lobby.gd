@@ -53,7 +53,5 @@ func _on_ready_pressed():
 	room.send_message("ready", "ready")
 
 func _on_leave_button_down():
-	print("BEFORE LEAVE: ", Time.get_ticks_msec())
-	await room.leave()
-	print("AFTER LEAVE: ", Time.get_ticks_msec())
+	room.leave()
 	get_tree().change_scene_to_file("res://Client/mainmenu.tscn")

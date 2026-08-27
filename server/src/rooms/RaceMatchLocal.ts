@@ -71,8 +71,8 @@ export class RaceMatchLocal extends Room {
             this.players[client.sessionId].build.base_stats = turtle_build["base_stats"];
             this.players[client.sessionId].build.econ = turtle_build["econ"];
 
-            this.round += 1
-            if (this.round > 3) {this.round = 3;}
+            this.round += 1;
+            if (this.round > 3) {this.round = 3;};
 
             console.log(this.players[client.sessionId].name + " " + turtle_build);
             this.players[client.sessionId].ready = true;
@@ -90,25 +90,25 @@ export class RaceMatchLocal extends Room {
             this.players["CPU3"].build.econ = builds.turtles[this.round][this.cpu3]["econ"];
             this.players["CPU3"].ready = true;
 
-            var counter = 0
+            var counter = 0;
             for (const id of Object.keys(this.players)){
                 if (this.players[id].ready == true){
-                    counter += 1
-                }
-            }
+                    counter += 1;
+                };
+            };
             if (counter == 4)
             {
-                console.log("wooo")
+                console.log("wooo");
                 for (const id of Object.keys(this.players)){
-                    this.id_name_list.push([id, this.players[id].name])
-                }
+                    this.id_name_list.push([id, this.players[id].name]);
+                };
 
-                this.broadcast("id_with_name", this.id_name_list)
-                this.broadcast("send_turtles", this.players)
+                this.broadcast("id_with_name", this.id_name_list);
+                this.broadcast("send_turtles", this.players);
 
                 const startTime = Date.now() + 3000;
                 this.broadcast("race_start", {startTime: startTime});
-            }
+            };
         });
 
         this.onMessage("Unready", (client) => {
@@ -116,8 +116,8 @@ export class RaceMatchLocal extends Room {
         });
 
         this.onMessage("enter_shop", (client, message) => {
-            console.log(this.perm_name_list)
-            this.broadcast("id_list",this.id_list)
+            console.log("SENDING ID LIST: ", this.id_list);
+            this.broadcast("id_list", this.id_list);
             this.seed = Math.floor(Math.random() * 1000000);
             console.log("New seed:", this.seed);
             this.broadcast("seed", this.seed);
@@ -256,15 +256,17 @@ export class RaceMatchLocal extends Room {
         };
 
         this.cpu1 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
-        this.availableBots.splice(this.availableBots.indexOf(this.cpu1), 1)
+        this.availableBots.splice(this.availableBots.indexOf(this.cpu1), 1);
         this.cpu2 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
-        this.availableBots.splice(this.availableBots.indexOf(this.cpu2), 1)
+        this.availableBots.splice(this.availableBots.indexOf(this.cpu2), 1);
         this.cpu3 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
 
-        this.id_list.push(client.sessionId)
-        this.id_list.push("CPU1")
-        this.id_list.push("CPU2")
-        this.id_list.push("CPU3")
+        this.id_list.push(client.sessionId);
+        this.id_list.push("CPU1");
+        this.id_list.push("CPU2");
+        this.id_list.push("CPU3");
+        console.log("computers here ", this.id_list);
+        this.broadcast("id_list", this.id_list);
         }
 
         catch (e) {
@@ -276,8 +278,8 @@ export class RaceMatchLocal extends Room {
      onLeave(client: any) {
         console.log(client.sessionId, "left race");
         if (this.players[client.sessionId]) {
-            this.availableRaceStarts.push(this.players[client.sessionId].slot)
-            this.name_list.push(this.players[client.sessionId].name)
+            this.availableRaceStarts.push(this.players[client.sessionId].slot);
+            this.name_list.push(this.players[client.sessionId].name);
         }
         delete this.players[client.sessionId];
      }

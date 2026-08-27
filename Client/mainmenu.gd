@@ -20,6 +20,7 @@ func _ready():
 		NetworkManager.connect_to_lobby()
 		name_input.visible = false
 		name_submit.visible = false
+	$Panel.visible = false
 	update_room_list()
 
 func update_room_list():
@@ -57,9 +58,8 @@ func _on_name_submit_pressed():
 	$ColorRect.visible = true
 
 func _on_create_button_down() -> void:
-	NetworkManager.room = await NetworkManager.client.create("raceLobby", {"player_name": NetworkManager.local_player_name})
-	#await NetworkManager.lobby.message_received.connect(NetworkManager._on_lobby_message)
-	get_tree().change_scene_to_file("res://Client/Lobby.tscn")
+	$ColorRect.visible = false
+	$Panel.visible = true
 
 func _on_lobby_message(type, message):
 	print("Message time: ", Time.get_ticks_msec())
@@ -92,3 +92,17 @@ func _on_lobby_message(type, message):
 			available_rooms.erase(room_id)
 			
 			update_room_list()
+
+
+func _on_online_pressed() -> void:
+	$ColorRect.visible = true
+	$Panel.visible = false
+	NetworkManager.room = await NetworkManager.client.create("raceLobby", {"player_name": NetworkManager.local_player_name})
+	get_tree().change_scene_to_file("res://Client/Lobby.tscn")
+
+
+func _on_cpu_pressed() -> void:
+	$ColorRect.visible = true
+	$Panel.visible = false
+	NetworkManager.room = await NetworkManager.client.create("botLobby", {"player_name": NetworkManager.local_player_name})
+	get_tree().change_scene_to_file("res://Client/Lobby.tscn")

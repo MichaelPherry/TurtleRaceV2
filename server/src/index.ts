@@ -3,6 +3,7 @@ import express from "express";
 import { Server, LobbyRoom } from "@colyseus/core";
 import { WebSocketTransport } from "@colyseus/ws-transport";
 import { RaceLobby } from "./rooms/RaceLobby.js"
+import { BotLobby } from "./rooms/BotLobby.js";
 import { RaceMatch } from "./rooms/RaceMatch.js"
 import { RaceMatchLocal } from "./rooms/RaceMatchLocal.js"
 
@@ -20,6 +21,7 @@ const gameServer = new Server({
 console.log("REGISTERING ROOM");
 gameServer.define("lobby", LobbyRoom);
 gameServer.define("raceLobby", RaceLobby).enableRealtimeListing();
+gameServer.define("botLobby", BotLobby);
 gameServer.define("raceMatch", RaceMatch);
 gameServer.define("raceMatchLocal", RaceMatchLocal);
 

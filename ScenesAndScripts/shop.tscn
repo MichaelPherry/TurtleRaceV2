@@ -120,10 +120,10 @@ theme_override_font_sizes/font_size = 40
 text = "Right Arm"
 
 [node name="Label" type="Label" parent="."]
-offset_left = -565.0
-offset_top = -535.0
-offset_right = 633.0
-offset_bottom = -489.0
+offset_left = -434.0
+offset_top = -533.0
+offset_right = 436.0
+offset_bottom = -477.0
 theme_override_font_sizes/font_size = 40
 text = "shop"
 horizontal_alignment = 1
@@ -232,6 +232,14 @@ offset_bottom = 942.0
 theme_override_font_sizes/font_size = 30
 text = "Luck:"
 
+[node name="Roll" type="Button" parent="."]
+offset_left = 378.0
+offset_top = -267.0
+offset_right = 775.0
+offset_bottom = -154.0
+theme_override_font_sizes/font_size = 40
+text = "Roll"
+
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
 [connection signal="button_down" from="slot1" to="." method="_slot1"]
 [connection signal="button_down" from="slot2" to="." method="_slot2"]
@@ -240,3 +248,4 @@ text = "Luck:"
 [connection signal="button_down" from="rightArm" to="." method="_on_right_arm"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="InventoryPanel/HideInventory" to="." method="_on_hide_inventory_pressed"]
+[connection signal="pressed" from="Roll" to="." method="_on_roll_pressed"]

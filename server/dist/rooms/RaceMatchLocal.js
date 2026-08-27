@@ -38,6 +38,7 @@ class RaceMatchLocal extends colyseus_1.Room {
                 if (this.round > 3) {
                     this.round = 3;
                 }
+                ;
                 console.log(this.players[client.sessionId].name + " " + turtle_build);
                 this.players[client.sessionId].ready = true;
                 this.players["CPU1"].build.items = builds.turtles[this.round][this.cpu1]["items"];
@@ -57,23 +58,27 @@ class RaceMatchLocal extends colyseus_1.Room {
                     if (this.players[id].ready == true) {
                         counter += 1;
                     }
+                    ;
                 }
+                ;
                 if (counter == 4) {
                     console.log("wooo");
                     for (const id of Object.keys(this.players)) {
                         this.id_name_list.push([id, this.players[id].name]);
                     }
+                    ;
                     this.broadcast("id_with_name", this.id_name_list);
                     this.broadcast("send_turtles", this.players);
                     const startTime = Date.now() + 3000;
                     this.broadcast("race_start", { startTime: startTime });
                 }
+                ;
             });
             this.onMessage("Unready", (client) => {
                 this.players[client.sessionId].ready = false;
             });
             this.onMessage("enter_shop", (client, message) => {
-                console.log(this.perm_name_list);
+                console.log("SENDING ID LIST: ", this.id_list);
                 this.broadcast("id_list", this.id_list);
                 this.seed = Math.floor(Math.random() * 1000000);
                 console.log("New seed:", this.seed);
@@ -207,6 +212,8 @@ class RaceMatchLocal extends colyseus_1.Room {
             this.id_list.push("CPU1");
             this.id_list.push("CPU2");
             this.id_list.push("CPU3");
+            console.log("computers here ", this.id_list);
+            this.broadcast("id_list", this.id_list);
         }
         catch (e) {
             console.log("ROOM FAILED TO CREATE in Join Race Match:", e);

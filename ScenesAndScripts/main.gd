@@ -6,6 +6,7 @@ extends Node2D
 var finished_turts = []
 var turtles 
 var time_elapsed = 0.0
+var first_finish_time = 15
 
 func _ready():
 	$Bass.play()
@@ -64,6 +65,9 @@ func _on_finish_line_body_exited(body):
 		body.add_to_group("finished")
 		body.finished = true
 		body.place = get_tree().get_nodes_in_group("finished").size()
+		if body.place == 1:
+			pass
+			
 		var end_time = format_time(time_elapsed)
 		body.finish_time = end_time
 		body.remove_from_group("racing")

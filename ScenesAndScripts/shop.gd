@@ -9,10 +9,12 @@ var tres_item1
 var tres_item2
 var tres_item3
 var id
+var done_shopping = false
+var shop_time = 40
 signal button_selected(button_name)
 
 func _ready():
-	
+	done_shopping = false
 	$leftArm.visible = false
 	$rightArm.visible = false
 	$whichArm.visible = false
@@ -21,8 +23,36 @@ func _ready():
 	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 	background.play("default")
 	
-	$Label.text = str(NetworkManager.local_player_name) + "'s shop"
+	#$Label.text = str(NetworkManager.local_player_name) + "'s shop"
 	
+	item_roll()
+	
+	hover_button.mouse_entered.connect(_on_inventory_turtle_hovered)
+	hover_button.mouse_exited.connect(_on_inventory_turtle_unhovered)
+	
+	
+	$InventoryPanel/Acceleration.text = "Acceleration: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["acceleration"])
+	$"InventoryPanel/Top Speed".text = "Top Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["max_speed"])
+	$InventoryPanel/Resilience.text = "Resilience: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["resilience"])
+	$"InventoryPanel/Fire Rate".text = "Fire Rate: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["fire_rate"])
+	$"InventoryPanel/Projectile Speed".text = "Projectile Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["projectile_speed"])
+	$InventoryPanel/Luck.text = "Luck: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["luck"])
+	
+	await NetworkManager.send_message("enter_shop", "enter_shop")
+	
+func _process(delta):
+	if done_shopping:
+		$Label.text = "Starting Race!"
+		return
+	
+	shop_time -= delta
+	$Label.text = str(ceil(shop_time))
+	if shop_time <= 0:
+		done_shopping = true
+		NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
+	
+
+func item_roll():
 	#item layout below [appendage, item]
 	Inventory.item_1 = rand_items()
 	Inventory.item_2 = rand_items()
@@ -47,24 +77,13 @@ func _ready():
 	$slot3.mouse_entered.connect(_on_slot_hovered.bind($slot3))
 	$slot3.mouse_exited.connect(_on_slot_unhovered.bind($slot3))
 	
-	hover_button.mouse_entered.connect(_on_inventory_turtle_hovered)
-	hover_button.mouse_exited.connect(_on_inventory_turtle_unhovered)
-	
-	
-	$InventoryPanel/Acceleration.text = "Acceleration: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["acceleration"])
-	$"InventoryPanel/Top Speed".text = "Top Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["max_speed"])
-	$InventoryPanel/Resilience.text = "Resilience: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["resilience"])
-	$"InventoryPanel/Fire Rate".text = "Fire Rate: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["fire_rate"])
-	$"InventoryPanel/Projectile Speed".text = "Projectile Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["projectile_speed"])
-	$InventoryPanel/Luck.text = "Luck: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["luck"])
-	
-	await get_tree().create_timer(1.0).timeout
-	NetworkManager.send_message("enter_shop", "enter_shop")
-	
 func _on_button_button_down():
 	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
+	done_shopping = true
 	
 func _slot1():
+	if done_shopping:
+		return
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= tres_item1.price:
 		if Inventory.item_1[0] == "arm":
 			Inventory.item_1[0] = await which_arm()
@@ -76,6 +95,8 @@ func _slot1():
 		$slot1.visible = false
 	
 func _slot2():
+	if done_shopping:
+		return
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= tres_item2.price:
 		if Inventory.item_2[0] == "arm":
 			Inventory.item_2[0] = await which_arm()
@@ -87,6 +108,8 @@ func _slot2():
 		$slot2.visible = false
 
 func _slot3(): 
+	if done_shopping:
+		return
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= tres_item3.price:
 		if Inventory.item_3[0] == "arm":
 			Inventory.item_3[0] = await which_arm()
@@ -183,3 +206,11 @@ func _on_inventory_turtle_hovered():
 	
 func _on_inventory_turtle_unhovered():
 	inventoryTurt.unhover()
+
+
+func _on_roll_pressed() -> void:
+	if done_shopping:
+		return
+	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= 5
+	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	item_roll()
