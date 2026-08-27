@@ -89,6 +89,10 @@ export class RaceMatch extends Room {
         this.onMessage("Unready", (client) => {
             this.players[client.sessionId].ready = false;    
         });
+        
+        this.onMessage("keepingServerUp", (client, message) => {
+            void 0;
+        });
 
         this.onMessage("enter_shop", (client, message) => {
             console.log(this.perm_name_list)

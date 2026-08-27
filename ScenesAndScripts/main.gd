@@ -24,6 +24,7 @@ func _ready():
 	Inventory.tick_controller_ref = tick_controller
 
 func _process(delta):
+	NetworkManager.send_message("keepingServerUp", "keepingServerUp")
 	time_elapsed += delta
 	turtles = get_tree().get_nodes_in_group("players")
 	turtles.sort_custom(func(a,b): return a.id < b.id)

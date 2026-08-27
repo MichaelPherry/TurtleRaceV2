@@ -77,6 +77,9 @@ class RaceMatchLocal extends colyseus_1.Room {
             this.onMessage("Unready", (client) => {
                 this.players[client.sessionId].ready = false;
             });
+            this.onMessage("keepingServerUp", (client, message) => {
+                void 0;
+            });
             this.onMessage("enter_shop", (client, message) => {
                 console.log("SENDING ID LIST: ", this.id_list);
                 this.broadcast("id_list", this.id_list);

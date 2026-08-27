@@ -2,6 +2,7 @@ import { Room } from "colyseus";
 import type { Client } from "colyseus";
 import { botBuilds } from "../bots/botBuilds.js";
 import { bot_list } from "../bots/botBuilds.js";
+import { PassThrough } from "stream";
 
 type Turtle = {
     items : {
@@ -113,6 +114,10 @@ export class RaceMatchLocal extends Room {
 
         this.onMessage("Unready", (client) => {
             this.players[client.sessionId].ready = false;    
+        });
+        
+        this.onMessage("keepingServerUp", (client, message) => {
+            void 0;
         });
 
         this.onMessage("enter_shop", (client, message) => {
