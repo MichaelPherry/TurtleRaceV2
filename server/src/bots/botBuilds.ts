@@ -64,10 +64,10 @@ export class botBuilds extends Room {
                 "tank" : {
                     "items" : { 
                         "leftArm" : null,
-                        "rightArm" : null,
+                        "rightArm" : "fissile",
                         "head" : null,
                         "shell" : null,
-                        "legs" : "cinderblocks"
+                        "legs" : null
                     },
 
                     "base_stats" : {
@@ -116,7 +116,7 @@ export class botBuilds extends Room {
                     "items" : { 
                         "leftArm" : null,
                         "rightArm" : null,
-                        "head" : "bunny_ears",
+                        "head" : "propreller",
                         "shell" : null,
                         "legs" : "rollerskates"
                     },
@@ -139,10 +139,10 @@ export class botBuilds extends Room {
                 "tank" : {
                     "items" : { 
                         "leftArm" : "bear_trap",
-                        "rightArm" : null,
+                        "rightArm" : "fissile",
                         "head" : null,
                         "shell" : null,
-                        "legs" : "cinderblocks"
+                        "legs" : null,
                     },
 
                     "base_stats" : {
@@ -189,7 +189,7 @@ export class botBuilds extends Room {
                     "items" : { 
                         "leftArm" : "machine_gun",
                         "rightArm" : null,
-                        "head" : "bunny_ears",
+                        "head" : "propreller",
                         "shell" : null,
                         "legs" : "rollerskates"
                     },
@@ -212,10 +212,10 @@ export class botBuilds extends Room {
                 "tank" : {
                     "items" : { 
                         "leftArm" : "bear_trap",
-                        "rightArm" : null,
+                        "rightArm" : "fissile",
                         "head" : "propreller",
                         "shell" : null,
-                        "legs" : "cinderblocks"
+                        "legs" : null,
                     },
 
                     "base_stats" : {
