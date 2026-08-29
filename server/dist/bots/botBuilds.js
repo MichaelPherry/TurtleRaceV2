@@ -32,10 +32,10 @@ class botBuilds extends colyseus_1.Room {
                 "tank": {
                     "items": {
                         "leftArm": null,
-                        "rightArm": null,
+                        "rightArm": "fissile",
                         "head": null,
                         "shell": null,
-                        "legs": "cinderblocks"
+                        "legs": null
                     },
                     "base_stats": {
                         "acceleration": 5.0,
@@ -75,7 +75,7 @@ class botBuilds extends colyseus_1.Room {
                     "items": {
                         "leftArm": null,
                         "rightArm": null,
-                        "head": "bunny_ears",
+                        "head": "propreller",
                         "shell": null,
                         "legs": "rollerskates"
                     },
@@ -94,10 +94,10 @@ class botBuilds extends colyseus_1.Room {
                 "tank": {
                     "items": {
                         "leftArm": "bear_trap",
-                        "rightArm": null,
+                        "rightArm": "fissile",
                         "head": null,
                         "shell": null,
-                        "legs": "cinderblocks"
+                        "legs": null,
                     },
                     "base_stats": {
                         "acceleration": 5.0,
@@ -137,7 +137,7 @@ class botBuilds extends colyseus_1.Room {
                     "items": {
                         "leftArm": "machine_gun",
                         "rightArm": null,
-                        "head": "bunny_ears",
+                        "head": "propreller",
                         "shell": null,
                         "legs": "rollerskates"
                     },
@@ -156,10 +156,10 @@ class botBuilds extends colyseus_1.Room {
                 "tank": {
                     "items": {
                         "leftArm": "bear_trap",
-                        "rightArm": null,
+                        "rightArm": "fissile",
                         "head": "propreller",
                         "shell": null,
-                        "legs": "cinderblocks"
+                        "legs": null,
                     },
                     "base_stats": {
                         "acceleration": 5.0,

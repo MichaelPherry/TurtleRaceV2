@@ -46,10 +46,10 @@ var shell_ready = false
 var legs_ready = false
 
 #Turtle stats
-var acceleration = 5
+var acceleration = 200
 var resilience = 0.1
-var max_speed = 300
-var current_speed = 0
+var max_speed = 3000
+var current_speed = 200
 var height = 0
 var max_height = -500
 var fire_rate = 1

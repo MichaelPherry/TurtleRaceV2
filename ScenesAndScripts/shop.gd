@@ -11,10 +11,12 @@ var tres_item3
 var id
 var done_shopping = false
 var shop_time = 40
+var temp_pool
 signal button_selected(button_name)
 
 func _ready():
 	done_shopping = false
+	temp_pool = ItemPassivePool.total_pool.duplicate(true)
 	$leftArm.visible = false
 	$rightArm.visible = false
 	$whichArm.visible = false
@@ -37,8 +39,6 @@ func _ready():
 	$"InventoryPanel/Fire Rate".text = "Fire Rate: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["fire_rate"])
 	$"InventoryPanel/Projectile Speed".text = "Projectile Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["projectile_speed"])
 	$InventoryPanel/Luck.text = "Luck: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["luck"])
-	
-	await NetworkManager.send_message("enter_shop", "enter_shop")
 	
 func _process(delta):
 	if done_shopping:
@@ -90,8 +90,15 @@ func _slot1():
 		
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= tres_item1.price
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] != null:
+			var old_item = get_item_path(Inventory.item_1[0], Inventory.item_1[1])
+			return_to_item_pool(Inventory.item_1[0], Inventory.item_1[1])
+			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
+			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = null
+			
 		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = Inventory.item_1[1]
 		inventoryTurt.equip()
+		ItemPassivePool.total_pool[Inventory.item_1[0]].erase(Inventory.item_1[1])
 		$slot1.visible = false
 	
 func _slot2():
@@ -103,8 +110,15 @@ func _slot2():
 			
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= tres_item2.price
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] != null:
+			var old_item = get_item_path(Inventory.item_2[0], Inventory.item_2[1])
+			return_to_item_pool(Inventory.item_2[0], Inventory.item_2[1])
+			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
+			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = null
+			
 		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = Inventory.item_2[1]
 		inventoryTurt.equip()
+		ItemPassivePool.total_pool[Inventory.item_2[0]].erase(Inventory.item_2[1])
 		$slot2.visible = false
 
 func _slot3(): 
@@ -116,8 +130,15 @@ func _slot3():
 
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= tres_item3.price
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] != null:
+			var old_item = get_item_path(Inventory.item_3[0], Inventory.item_3[1])
+			return_to_item_pool(Inventory.item_3[0], Inventory.item_3[1])	
+			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
+			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = null
+			
 		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = Inventory.item_3[1]
 		inventoryTurt.equip()
+		ItemPassivePool.total_pool[Inventory.item_3[0]].erase(Inventory.item_3[1])
 		$slot3.visible = false
 
 func rand_items():
@@ -126,13 +147,13 @@ func rand_items():
 	var body_part = null
 	while check_again:
 		body_part = ItemPassivePool.appendages.pick_random()
-		if ItemPassivePool.total_pool[body_part].size() == 0:
+		if temp_pool[body_part].size() == 0:
 			check_again = true
 		else:
 			check_again = false
 	
-	var item = ItemPassivePool.total_pool[body_part].pick_random()
-	ItemPassivePool.total_pool[body_part].erase(item)
+	var item = temp_pool[body_part].pick_random()
+	temp_pool[body_part].erase(item)
 	
 	return [body_part, item]
 	
@@ -176,6 +197,9 @@ func get_item_path(body_part, item_name):
 	var tres_instance = ItemPassivePool.call(body_part, item_name)
 	return tres_instance
 	
+func return_to_item_pool(body_part, item_name):
+	ItemPassivePool.total_pool[body_part].append(item_name)
+
 func _on_slot_hovered(button):
 	create_tween().tween_property(button, "scale", Vector2(1.1, 1.1), 0.1)
 	button.modulate = Color(1.3, 1.3, 1.3)
@@ -211,6 +235,8 @@ func _on_inventory_turtle_unhovered():
 func _on_roll_pressed() -> void:
 	if done_shopping:
 		return
-	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= 5
-	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
-	item_roll()
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= 5:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= 5
+		temp_pool = ItemPassivePool.total_pool.duplicate(true)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+		item_roll()

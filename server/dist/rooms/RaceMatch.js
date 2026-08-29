@@ -17,7 +17,6 @@ class RaceMatch extends colyseus_1.Room {
     }
     onCreate(options) {
         try {
-            console.log("multiplayer");
             this.maxClients = options[0];
             this.name_list = options[1];
             this.perm_name_list = options[1].slice();
@@ -29,35 +28,13 @@ class RaceMatch extends colyseus_1.Room {
                 this.players[client.sessionId].name = turtle_build["name"];
                 this.players[client.sessionId].build.name = turtle_build["name"];
                 this.players[client.sessionId].ready = true;
-                var counter = 0;
-                for (const id of Object.keys(this.players)) {
-                    if (this.players[id].ready == true) {
-                        counter += 1;
-                    }
-                }
-                if (counter == 4) {
-                    console.log("wooo");
-                    for (const id of Object.keys(this.players)) {
-                        this.id_name_list.push([id, this.players[id].name]);
-                    }
-                    this.broadcast("id_with_name", this.id_name_list);
-                    this.broadcast("send_turtles", this.players);
-                    const startTime = Date.now() + 3000;
-                    this.broadcast("race_start", { startTime: startTime });
-                }
+                this.raceStart(client);
             });
             this.onMessage("Unready", (client) => {
                 this.players[client.sessionId].ready = false;
             });
             this.onMessage("keepingServerUp", (client, message) => {
                 void 0;
-            });
-            this.onMessage("enter_shop", (client, message) => {
-                console.log(this.perm_name_list);
-                this.broadcast("id_list", this.id_list);
-                this.seed = Math.floor(Math.random() * 1000000);
-                console.log("New seed:", this.seed);
-                this.broadcast("seed", this.seed);
             });
         }
         catch (e) {
@@ -68,7 +45,7 @@ class RaceMatch extends colyseus_1.Room {
         try {
             var race_slot = Number(this.availableRaceStarts.shift());
             var name_remaining = String(this.name_list.shift());
-            console.log(name_remaining);
+            console.log(name_remaining, " is my name");
             this.players[client.sessionId] = {
                 build: {
                     items: {
@@ -107,11 +84,38 @@ class RaceMatch extends colyseus_1.Room {
     }
     onLeave(client) {
         console.log(client.sessionId, "left race");
-        if (this.players[client.sessionId]) {
-            this.availableRaceStarts.push(this.players[client.sessionId].slot);
-            this.name_list.push(this.players[client.sessionId].name);
+        this.availableRaceStarts.push(this.players[client.sessionId].slot);
+        this.name_list.push(this.players[client.sessionId].name);
+        const index = this.id_list.indexOf(this.players[client.session_id].name);
+        if (index != -1) {
+            this.id_list.splice(index, 1);
         }
+        ;
         delete this.players[client.sessionId];
+        this.maxClients -= 1;
+        console.log(" new client amt ", this.maxClients);
+        this.raceStart(client);
+    }
+    raceStart(client) {
+        var counter = 0;
+        for (const id of Object.keys(this.players)) {
+            if (this.players[id].ready == true) {
+                counter += 1;
+            }
+        }
+        if (counter >= this.maxClients) {
+            console.log("wooo");
+            for (const id of Object.keys(this.players)) {
+                this.id_name_list.push([id, this.players[id].name]);
+            }
+            this.seed = Math.floor(Math.random() * 1000000);
+            this.broadcast("seed", this.seed);
+            this.broadcast("id_list", this.id_list);
+            this.broadcast("id_with_name", this.id_name_list);
+            this.broadcast("send_turtles", this.players);
+            const startTime = Date.now() + 3000;
+            this.broadcast("race_start", { startTime: startTime });
+        }
     }
 }
 exports.RaceMatch = RaceMatch;
