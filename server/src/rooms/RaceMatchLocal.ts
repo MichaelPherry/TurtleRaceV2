@@ -44,6 +44,9 @@ const builds = new botBuilds();
 
 export class RaceMatchLocal extends Room {
 
+    private initialized!: Promise<void>;
+    private initialize!: () => void;
+
     players: Record<string, Player> = {};
     placements: string[] = [];
     maxClients: number = 4;
@@ -62,11 +65,15 @@ export class RaceMatchLocal extends Room {
 
     onCreate(options: any) {
         try{
-        console.log("singleplayer");
+        this.initialized = new Promise((resolve) => {
+        this.initialize = resolve;
+        });
+        console.log("setting up bots");
         this.maxClients = options[0];
-        console.log(options[1] + " name");
         this.name_list = options[1];
         this.perm_name_list = options[1].slice();
+        console.log("bot set up finished");
+        this.initialize();
         this.onMessage("submit_turtle", (client, turtle_build) => {
             this.players[client.sessionId].build.items = turtle_build["items"];
             this.players[client.sessionId].build.base_stats = turtle_build["base_stats"];
@@ -108,8 +115,10 @@ export class RaceMatchLocal extends Room {
         }
     }
 
-        onJoin(client: any) {
-        try{
+        async onJoin(client: any) {
+        
+            await this.initialized;
+            try{
             //var race_slot = Number(this.availableRaceStarts.shift());
             var name_remaining = String(this.perm_name_list.shift());
             this.players[client.sessionId] = {

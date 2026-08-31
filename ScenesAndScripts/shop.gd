@@ -26,6 +26,7 @@ func _ready():
 	background.play("default")
 	
 	#$Label.text = str(NetworkManager.local_player_name) + "'s shop"
+	$InventoryPanel/PlayerName.text = str(NetworkManager.local_player_name)
 	
 	item_roll()
 	

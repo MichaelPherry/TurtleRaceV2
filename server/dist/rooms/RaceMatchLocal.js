@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RaceMatchLocal = void 0;
 const colyseus_1 = require("colyseus");
@@ -25,11 +34,15 @@ class RaceMatchLocal extends colyseus_1.Room {
     }
     onCreate(options) {
         try {
-            console.log("singleplayer");
+            this.initialized = new Promise((resolve) => {
+                this.initialize = resolve;
+            });
+            console.log("setting up bots");
             this.maxClients = options[0];
-            console.log(options[1] + " name");
             this.name_list = options[1];
             this.perm_name_list = options[1].slice();
+            console.log("bot set up finished");
+            this.initialize();
             this.onMessage("submit_turtle", (client, turtle_build) => {
                 this.players[client.sessionId].build.items = turtle_build["items"];
                 this.players[client.sessionId].build.base_stats = turtle_build["base_stats"];
@@ -67,134 +80,137 @@ class RaceMatchLocal extends colyseus_1.Room {
         }
     }
     onJoin(client) {
-        try {
-            //var race_slot = Number(this.availableRaceStarts.shift());
-            var name_remaining = String(this.perm_name_list.shift());
-            this.players[client.sessionId] = {
-                build: {
-                    items: {
-                        leftArm: null,
-                        rightArm: null,
-                        head: null,
-                        shell: null,
-                        legs: null
+        return __awaiter(this, void 0, void 0, function* () {
+            yield this.initialized;
+            try {
+                //var race_slot = Number(this.availableRaceStarts.shift());
+                var name_remaining = String(this.perm_name_list.shift());
+                this.players[client.sessionId] = {
+                    build: {
+                        items: {
+                            leftArm: null,
+                            rightArm: null,
+                            head: null,
+                            shell: null,
+                            legs: null
+                        },
+                        base_stats: {
+                            acceleration: 5.0,
+                            resilience: 0.1,
+                            max_speed: 300.0,
+                            fire_rate: 1.0,
+                            projectile_speed: 1.0,
+                            luck: 1.0
+                        },
+                        econ: {
+                            gold: 10
+                        }
                     },
-                    base_stats: {
-                        acceleration: 5.0,
-                        resilience: 0.1,
-                        max_speed: 300.0,
-                        fire_rate: 1.0,
-                        projectile_speed: 1.0,
-                        luck: 1.0
+                    slot: 1,
+                    finished: false,
+                    placement: null,
+                    ready: false,
+                    name: name_remaining
+                };
+                //client.sessionId = this.players[client.sessionId].name
+                console.log(this.players[client.sessionId].name + " is in the race!");
+                this.players["CPU1"] = {
+                    build: {
+                        items: {
+                            leftArm: null,
+                            rightArm: null,
+                            head: null,
+                            shell: null,
+                            legs: null
+                        },
+                        base_stats: {
+                            acceleration: 5.0,
+                            resilience: 0.1,
+                            max_speed: 300.0,
+                            fire_rate: 1.0,
+                            projectile_speed: 1.0,
+                            luck: 1.0
+                        },
+                        econ: {
+                            gold: 10
+                        }
                     },
-                    econ: {
-                        gold: 10
-                    }
-                },
-                slot: 1,
-                finished: false,
-                placement: null,
-                ready: false,
-                name: name_remaining
-            };
-            //client.sessionId = this.players[client.sessionId].name
-            console.log(this.players[client.sessionId].name + " is in the race!");
-            this.players["CPU1"] = {
-                build: {
-                    items: {
-                        leftArm: null,
-                        rightArm: null,
-                        head: null,
-                        shell: null,
-                        legs: null
+                    slot: 2,
+                    finished: false,
+                    placement: null,
+                    ready: true,
+                    name: "CPU1"
+                };
+                this.players["CPU2"] = {
+                    build: {
+                        items: {
+                            leftArm: null,
+                            rightArm: null,
+                            head: null,
+                            shell: null,
+                            legs: null
+                        },
+                        base_stats: {
+                            acceleration: 5.0,
+                            resilience: 0.1,
+                            max_speed: 300.0,
+                            fire_rate: 1.0,
+                            projectile_speed: 1.0,
+                            luck: 1.0
+                        },
+                        econ: {
+                            gold: 10
+                        }
                     },
-                    base_stats: {
-                        acceleration: 5.0,
-                        resilience: 0.1,
-                        max_speed: 300.0,
-                        fire_rate: 1.0,
-                        projectile_speed: 1.0,
-                        luck: 1.0
+                    slot: 3,
+                    finished: false,
+                    placement: null,
+                    ready: true,
+                    name: "CPU2"
+                };
+                this.players["CPU3"] = {
+                    build: {
+                        items: {
+                            leftArm: null,
+                            rightArm: null,
+                            head: null,
+                            shell: null,
+                            legs: null
+                        },
+                        base_stats: {
+                            acceleration: 5.0,
+                            resilience: 0.1,
+                            max_speed: 300.0,
+                            fire_rate: 1.0,
+                            projectile_speed: 1.0,
+                            luck: 1.0
+                        },
+                        econ: {
+                            gold: 10
+                        }
                     },
-                    econ: {
-                        gold: 10
-                    }
-                },
-                slot: 2,
-                finished: false,
-                placement: null,
-                ready: true,
-                name: "CPU1"
-            };
-            this.players["CPU2"] = {
-                build: {
-                    items: {
-                        leftArm: null,
-                        rightArm: null,
-                        head: null,
-                        shell: null,
-                        legs: null
-                    },
-                    base_stats: {
-                        acceleration: 5.0,
-                        resilience: 0.1,
-                        max_speed: 300.0,
-                        fire_rate: 1.0,
-                        projectile_speed: 1.0,
-                        luck: 1.0
-                    },
-                    econ: {
-                        gold: 10
-                    }
-                },
-                slot: 3,
-                finished: false,
-                placement: null,
-                ready: true,
-                name: "CPU2"
-            };
-            this.players["CPU3"] = {
-                build: {
-                    items: {
-                        leftArm: null,
-                        rightArm: null,
-                        head: null,
-                        shell: null,
-                        legs: null
-                    },
-                    base_stats: {
-                        acceleration: 5.0,
-                        resilience: 0.1,
-                        max_speed: 300.0,
-                        fire_rate: 1.0,
-                        projectile_speed: 1.0,
-                        luck: 1.0
-                    },
-                    econ: {
-                        gold: 10
-                    }
-                },
-                slot: 4,
-                finished: false,
-                placement: null,
-                ready: true,
-                name: "CPU3"
-            };
-            this.cpu1 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
-            this.availableBots.splice(this.availableBots.indexOf(this.cpu1), 1);
-            this.cpu2 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
-            this.availableBots.splice(this.availableBots.indexOf(this.cpu2), 1);
-            this.cpu3 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
-            this.id_list.push(client.sessionId);
-            this.id_list.push("CPU1");
-            this.id_list.push("CPU2");
-            this.id_list.push("CPU3");
-            console.log("computers here ", this.id_list);
-            this.broadcast("id_list", this.id_list);
-        }
-        catch (e) {
-            console.log("ROOM FAILED TO CREATE in Join Race Match:", e);
-        }
+                    slot: 4,
+                    finished: false,
+                    placement: null,
+                    ready: true,
+                    name: "CPU3"
+                };
+                this.cpu1 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
+                this.availableBots.splice(this.availableBots.indexOf(this.cpu1), 1);
+                this.cpu2 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
+                this.availableBots.splice(this.availableBots.indexOf(this.cpu2), 1);
+                this.cpu3 = this.availableBots[Math.floor(Math.random() * this.availableBots.length)];
+                this.id_list.push(client.sessionId);
+                this.id_list.push("CPU1");
+                this.id_list.push("CPU2");
+                this.id_list.push("CPU3");
+                console.log("computers here ", this.id_list);
+                this.broadcast("id_list", this.id_list);
+            }
+            catch (e) {
+                console.log("ROOM FAILED TO CREATE in Join Race Match:", e);
+            }
+        });
     }
     onLeave(client) {
         console.log(client.sessionId, "left race");

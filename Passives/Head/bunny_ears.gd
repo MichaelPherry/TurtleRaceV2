@@ -1,8 +1,8 @@
 extends Node
 
 var user
-var max_speed_mult = 2.5
-var accel_mult = 0.75
+var max_speed_mult = 0.75
+var accel_mult = 2.5
 var effect = true
 
 func _ready():

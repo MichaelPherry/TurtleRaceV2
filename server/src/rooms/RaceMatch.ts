@@ -41,6 +41,9 @@ type Player = {
 
 export class RaceMatch extends Room {
 
+    private initialized!: Promise<void>;
+    private initialize!: () => void;
+
     players: Record<string, Player> = {};
     placements: string[] = [];
     maxClients: number = 4;
@@ -53,9 +56,18 @@ export class RaceMatch extends Room {
 
     onCreate(options: any) {
         try{
-        this.maxClients = options[0];
-        this.name_list = options[1];
-        this.perm_name_list = options[1].slice();
+        this.initialized = new Promise((resolve) => {
+        this.initialize = resolve;
+        });
+        console.log("RACE MATCH OPTIONS:", options);
+
+        this.maxClients = options.maxClients;
+        this.name_list = options.nameList.slice();
+        this.perm_name_list = options.nameList.slice();
+        console.log("set up finished");
+        console.log("NAME LIST ", this.name_list)
+        this.initialize();
+
         this.onMessage("submit_turtle", (client, turtle_build) => {
             this.players[client.sessionId].build.items = turtle_build["items"];
             this.players[client.sessionId].build.base_stats = turtle_build["base_stats"];
@@ -82,10 +94,13 @@ export class RaceMatch extends Room {
         }
     }
 
-        onJoin(client: any) {
+        async onJoin(client: any) {
+        await this.initialized;
         try{
+            console.log("NAME LIST WHEN JOINING:", this.name_list);
             var race_slot = Number(this.availableRaceStarts.shift());
             var name_remaining = String(this.name_list.shift());
+
             console.log(name_remaining, " is my name");
             this.players[client.sessionId] = {
             build: { 
@@ -133,7 +148,7 @@ export class RaceMatch extends Room {
         console.log(client.sessionId, "left race");
         this.availableRaceStarts.push(this.players[client.sessionId].slot);
         this.name_list.push(this.players[client.sessionId].name);
-        const index = this.id_list.indexOf(this.players[client.session_id].name);
+        const index = this.id_list.indexOf(client.sessionId);
         if (index != -1){this.id_list.splice(index, 1)};
         delete this.players[client.sessionId];
         this.maxClients -= 1;

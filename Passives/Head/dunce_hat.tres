@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_wspat")
 name = "Dunce Hat"
-description = "2x Acceleration and 1.5x Max Speed. Has the chance to make the user go backwards but "
+description = "Head: 2x Acceleration and 1.5x Max Speed. Has the chance to make the user go backwards but "
 price = 10
 icon = ExtResource("1_200in")
 passive_scene = ExtResource("1_gus2c")

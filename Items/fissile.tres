@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_08h6u")
 name = "fissile"
-description = "Heat seaking fish missile"
+description = "Arm: Heat seaking fish missile"
 price = 10
 body_part = ""
 icon = ExtResource("1_08h6u")

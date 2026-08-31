@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_r8gjg")
 name = "Battery"
-description = "2x Projectile Speed"
+description = "Shell: 2x Projectile Speed"
 price = 10
 icon = ExtResource("1_r8gjg")
 passive_scene = ExtResource("1_muijk")

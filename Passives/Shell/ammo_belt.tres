@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_b1ugm")
 name = "Ammo Belt"
-description = "Fire Rate 2x"
+description = "Shell: Fire Rate 2x"
 price = 10
 icon = ExtResource("1_taggb")
 passive_scene = ExtResource("1_24ltj")

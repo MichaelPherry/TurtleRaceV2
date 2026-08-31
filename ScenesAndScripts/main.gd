@@ -14,6 +14,7 @@ func _ready():
 	$Piano.play()
 	$Trumpet.play()
 	$Whistle.play()
+	Inventory.what_pos = {}
 	Inventory.rng_calls = 0
 	NetworkManager.send_message("Unready", NetworkManager.sessionID)
 	var finished = get_tree().get_nodes_in_group("finished")

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_bpwib")
 name = "Machine Gun"
-description = "Shoots a barage of bullets towards target turtle"
+description = "Arm: Shoots a barage of bullets towards target turtle"
 price = 10
 body_part = ""
 icon = ExtResource("1_rj5f6")

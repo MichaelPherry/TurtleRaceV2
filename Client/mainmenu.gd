@@ -12,8 +12,8 @@ func _ready():
 	if NetworkManager.local_player_name == null:
 		$ColorRect.visible = false
 		Inventory.mode = "multiplayer"
-		NetworkManager.client = Colyseus.Client.new("ws://localhost:2567")
-		#NetworkManager.client = Colyseus.Client.new("wss://turtleracev2.onrender.com")
+		#NetworkManager.client = Colyseus.Client.new("ws://localhost:2567")
+		NetworkManager.client = Colyseus.Client.new("wss://turtleracev2.onrender.com")
 		name_submit.disabled = true
 	else:
 		available_rooms.clear()

@@ -2,18 +2,19 @@ extends Node
 
 var user
 var effect = false
-var top_speed_mult = 1
+var active = false
+var mult = 3
 
 func _ready():
-	if user.left_arm == null:
-		top_speed_mult += 1
-	if user.right_arm == null:
-		top_speed_mult += 1
-	if user.shell == null:
-		top_speed_mult += 1
-	if user.legs == null:
-		top_speed_mult += 1
-	if user.head == null:
-		top_speed_mult += 1
+	active = true
+	if user.left_arm != null:
+		active = false
+	if user.right_arm != null:
+		active = false
+	if user.legs != null:
+		active = false
+	if user.head != null:
+		active = false
 		
-	user.max_speed *= top_speed_mult
+	user.max_speed *= mult
+	user.acceleration *= mult
