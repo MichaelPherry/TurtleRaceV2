@@ -15,6 +15,7 @@ var temp_pool
 signal button_selected(button_name)
 
 func _ready():
+	MusicManager.fade_in()
 	done_shopping = false
 	temp_pool = ItemPassivePool.total_pool.duplicate(true)
 	$leftArm.visible = false
@@ -93,12 +94,17 @@ func _slot1():
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] != null:
 			var old_item = get_item_path(Inventory.item_1[0], Inventory.item_1[1])
-			return_to_item_pool(Inventory.item_1[0], Inventory.item_1[1])
+			if Inventory.item_1[0] == "leftArm" or Inventory.item_1[0] == "rightArm":
+				return_to_item_pool("arm", Inventory.item_1[1])
+			else:
+				return_to_item_pool(Inventory.item_1[0], Inventory.item_1[1])
 			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
 			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = null
 			
 		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = Inventory.item_1[1]
 		inventoryTurt.equip()
+		if Inventory.item_1[0] == "leftArm" or Inventory.item_1[0] == "rightArm":
+			Inventory.item_1[0] = "arm"
 		ItemPassivePool.total_pool[Inventory.item_1[0]].erase(Inventory.item_1[1])
 		$slot1.visible = false
 	
@@ -113,12 +119,17 @@ func _slot2():
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] != null:
 			var old_item = get_item_path(Inventory.item_2[0], Inventory.item_2[1])
-			return_to_item_pool(Inventory.item_2[0], Inventory.item_2[1])
+			if Inventory.item_2[0] == "leftArm" or Inventory.item_2[0] == "rightArm":
+				return_to_item_pool("arm", Inventory.item_2[1])
+			else:
+				return_to_item_pool(Inventory.item_2[0], Inventory.item_2[1])
 			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
 			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = null
 			
 		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = Inventory.item_2[1]
 		inventoryTurt.equip()
+		if Inventory.item_2[0] == "leftArm" or Inventory.item_2[0] == "rightArm":
+			Inventory.item_2[0] = "arm"
 		ItemPassivePool.total_pool[Inventory.item_2[0]].erase(Inventory.item_2[1])
 		$slot2.visible = false
 
@@ -128,17 +139,23 @@ func _slot3():
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= tres_item3.price:
 		if Inventory.item_3[0] == "arm":
 			Inventory.item_3[0] = await which_arm()
+			
 
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= tres_item3.price
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] != null:
 			var old_item = get_item_path(Inventory.item_3[0], Inventory.item_3[1])
-			return_to_item_pool(Inventory.item_3[0], Inventory.item_3[1])	
+			if Inventory.item_3[0] == "leftArm" or Inventory.item_3[0] == "rightArm":
+				return_to_item_pool("arm", Inventory.item_3[1])
+			else:
+				return_to_item_pool(Inventory.item_3[0], Inventory.item_3[1])
 			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
 			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = null
 			
 		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = Inventory.item_3[1]
 		inventoryTurt.equip()
+		if Inventory.item_3[0] == "leftArm" or Inventory.item_3[0] == "rightArm":
+			Inventory.item_3[0] = "arm"
 		ItemPassivePool.total_pool[Inventory.item_3[0]].erase(Inventory.item_3[1])
 		$slot3.visible = false
 

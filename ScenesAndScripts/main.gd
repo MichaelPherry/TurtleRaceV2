@@ -9,11 +9,6 @@ var time_elapsed = 0.0
 var first_finish_time = 15
 
 func _ready():
-	$Bass.play()
-	$Organ.play()
-	$Piano.play()
-	$Trumpet.play()
-	$Whistle.play()
 	Inventory.what_pos = {}
 	Inventory.rng_calls = 0
 	NetworkManager.send_message("Unready", NetworkManager.sessionID)
@@ -37,29 +32,17 @@ func _process(delta):
 	Inventory.race_order = order
 	
 	if str(order[0][0]) == turtles[0].name_tag:
-		if $Organ.volume_db < 0:
-			$Organ.volume_db = -20
-			$Piano.volume_db = -80
-			$Trumpet.volume_db = -80
-			$Whistle.volume_db = -80
+		if MusicManager.organ.volume_db < 0:
+			MusicManager.switch(MusicManager.organ)
 	elif str(order[0][0]) == turtles[1].name_tag:
-		if $Piano.volume_db < 0:
-			$Piano.volume_db = -20
-			$Organ.volume_db = -80
-			$Trumpet.volume_db = -80
-			$Whistle.volume_db = -80
+		if MusicManager.piano.volume_db < 0:
+			MusicManager.switch(MusicManager.piano)
 	elif str(order[0][0]) == turtles[2].name_tag:
-		if $Trumpet.volume_db < 0:
-			$Trumpet.volume_db = -20
-			$Organ.volume_db = -80
-			$Piano.volume_db = -80
-			$Whistle.volume_db = -80
+		if MusicManager.trumpet.volume_db < 0:
+			MusicManager.switch(MusicManager.trumpet)
 	elif str(order[0][0]) == turtles[3].name_tag:
-		if $Whistle.volume_db < 0:
-			$Whistle.volume_db = -20
-			$Organ.volume_db = -80
-			$Piano.volume_db = -80
-			$Trumpet.volume_db = -80
+		if MusicManager.whistle.volume_db < 0:
+			MusicManager.switch(MusicManager.whistle)
 
 
 func _on_finish_line_body_exited(body):

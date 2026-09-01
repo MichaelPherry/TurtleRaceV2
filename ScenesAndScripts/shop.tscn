@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7ekdlhrhvi0o" path="res://Art/AlexArt/Items/BunnyEars/Shop _Bunny Ear.png" id="3_gyq1v"]
 [ext_resource type="Texture2D" uid="uid://uee036w3k2ey" path="res://Art/AlexArt/Items/SecondHead/Second Headshop.png" id="4_tawjt"]
 [ext_resource type="Texture2D" uid="uid://dcqr3gqsrviah" path="res://Art/AlexArt/Items/DunceHat/DunceShop.png" id="5_fnmc7"]
-[ext_resource type="PackedScene" uid="uid://uxls16xddw38" path="res://ScenesAndScripts/tooltop.tscn" id="6_fnmc7"]
+[ext_resource type="PackedScene" uid="uid://uxls16xddw38" path="res://Client/tooltop.tscn" id="6_fnmc7"]
 [ext_resource type="PackedScene" uid="uid://1usxicevamun" path="res://ScenesAndScripts/inventory_turtle.tscn" id="6_tawjt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r850d"]
@@ -28,10 +28,10 @@ sprite_frames = SubResource("SpriteFrames_r850d")
 frame_progress = 0.0971101
 
 [node name="Gold" type="Label" parent="."]
-offset_left = 441.0
-offset_top = -466.0
-offset_right = 713.0
-offset_bottom = -396.0
+offset_left = 115.0
+offset_top = -497.0
+offset_right = 387.0
+offset_bottom = -427.0
 theme_override_font_sizes/font_size = 40
 text = "Gold: "
 horizontal_alignment = 1

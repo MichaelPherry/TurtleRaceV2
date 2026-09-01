@@ -1,0 +1,125 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceg26iv0tt2w8"]
+
+[ext_resource type="Script" uid="uid://dodtvyjnie4ue" path="res://Client/settings.gd" id="1_pdo55"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pdo55")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -337.5
+offset_top = 11.0
+offset_right = 333.5
+offset_bottom = 33.3333
+grow_horizontal = 2
+text = "Audio Settings"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -274.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Master Volume" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Master Volume
+"
+
+[node name="MusicVolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Percent" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Background Volume" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Background Volume
+"
+
+[node name="BackgoundVolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Percent" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Lead Volume" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lead Volume
+"
+
+[node name="LeadVolumeSlider" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Percent" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="GlobalButton" type="Button" parent="."]
+process_mode = 3
+layout_mode = 0
+offset_left = 973.0
+offset_top = 14.0
+offset_right = 1113.0
+offset_bottom = 62.0
+text = "Settings
+"
+
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer3/BackgoundVolumeSlider" to="." method="_on_backgound_volume_slider_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer2/LeadVolumeSlider" to="." method="_on_lead_volume_slider_value_changed"]
+[connection signal="pressed" from="GlobalButton" to="." method="_on_global_button_pressed"]

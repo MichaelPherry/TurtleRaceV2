@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://d2uwndmbv8ate"]
 
-[ext_resource type="Texture2D" uid="uid://ddi1fhbl0vl3i" path="res://Art/AlexArt/Items/Fishile/Fishile Start0003.png" id="1_08h6u"]
+[ext_resource type="Texture2D" uid="uid://d3ku28yjdi30m" path="res://Art/AlexArt/Items/newFissile/Fissile.png.png" id="1_08h6u"]
 [ext_resource type="PackedScene" uid="uid://b51scr60twmv0" path="res://Items/fissile.tscn" id="1_oclcc"]
 [ext_resource type="Script" uid="uid://cqkhn8ptyrps3" path="res://Items/item.gd" id="2_08h6u"]
 

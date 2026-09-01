@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfmlw5817o1r7"]
+
+[ext_resource type="PackedScene" uid="uid://ceg26iv0tt2w8" path="res://Client/settings.tscn" id="1_3er16"]
+
+[node name="GlobalSettings" type="CanvasLayer"]
+layer = 100
+
+[node name="Settings" parent="." instance=ExtResource("1_3er16")]

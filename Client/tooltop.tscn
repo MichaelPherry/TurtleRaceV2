@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://uxls16xddw38"]
+
+[ext_resource type="Script" uid="uid://csmqf6m2lsb5q" path="res://Client/tooltop.gd" id="1_u0dkh"]
+
+[node name="Tooltop" type="Panel"]
+visible = false
+anchors_preset = -1
+offset_right = 458.0
+offset_bottom = 266.0
+script = ExtResource("1_u0dkh")
+
+[node name="Name" type="Label" parent="."]
+layout_mode = 0
+offset_right = 459.0
+offset_bottom = 55.0
+theme_override_font_sizes/font_size = 30
+text = "Name"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 84.0
+offset_right = 461.0
+offset_bottom = 261.0
+theme_override_font_sizes/font_size = 25
+text = "Description
+"
