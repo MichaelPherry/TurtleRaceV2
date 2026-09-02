@@ -790,6 +790,41 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("164_2dfkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_3w22k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_wgkxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_w65y4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_m2yvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_s3hyt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_gye8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_je5b4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_kv71o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("173_gdt2n")
+}],
+"loop": true,
+"name": &"Fissile Cannon",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("52_r41av")
 }, {
 "duration": 1.0,
@@ -822,45 +857,45 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("164_2dfkh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("165_3w22k")
-}, {
-"duration": 1.0,
-"texture": ExtResource("166_wgkxd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("167_w65y4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("168_m2yvg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("169_s3hyt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("170_gye8u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("171_je5b4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("172_kv71o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("173_gdt2n")
-}],
-"loop": true,
-"name": &"fissile",
-"speed": 10.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cv87c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("184_oin8y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_sdu0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_wohdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_rskbg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_o1bvj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_y27n7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_xf57t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_2c5gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("192_18i77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_cb2ib")
+}],
+"loop": true,
+"name": &"Fissile Cannon",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("62_w7r18")
@@ -895,41 +930,6 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("184_oin8y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("185_sdu0q")
-}, {
-"duration": 1.0,
-"texture": ExtResource("186_wohdf")
-}, {
-"duration": 1.0,
-"texture": ExtResource("187_rskbg")
-}, {
-"duration": 1.0,
-"texture": ExtResource("188_o1bvj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("189_y27n7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("190_xf57t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("191_2c5gm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("192_18i77")
-}, {
-"duration": 1.0,
-"texture": ExtResource("193_cb2ib")
-}],
-"loop": true,
-"name": &"fissile",
-"speed": 10.0
 }]
 
 [node name="Turtle" type="CharacterBody2D"]
@@ -962,11 +962,11 @@ sprite_frames = SubResource("SpriteFrames_mqv1x")
 
 [node name="LeftArm" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_2lp8t")
-animation = &"fissile"
+animation = &"Fissile Cannon"
 
 [node name="RightArm" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_cv87c")
-animation = &"fissile"
+animation = &"Fissile Cannon"
 
 [node name="Shadow" type="Sprite2D" parent="."]
 visibility_layer = 4

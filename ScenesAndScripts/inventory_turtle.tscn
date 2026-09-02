@@ -781,6 +781,41 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("162_vnm0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_x6v1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_qr6w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_aymmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_75owh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_6ncsr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_6wpjt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_06nrj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_okiin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_52woj")
+}],
+"loop": true,
+"name": &"Fissile Cannon",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("122_v0boq")
 }, {
 "duration": 1.0,
@@ -813,45 +848,45 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("162_vnm0a")
-}, {
-"duration": 1.0,
-"texture": ExtResource("163_x6v1h")
-}, {
-"duration": 1.0,
-"texture": ExtResource("164_qr6w6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("165_aymmb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("166_75owh")
-}, {
-"duration": 1.0,
-"texture": ExtResource("167_6ncsr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("168_6wpjt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("169_06nrj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("170_okiin")
-}, {
-"duration": 1.0,
-"texture": ExtResource("171_52woj")
-}],
-"loop": true,
-"name": &"fissile",
-"speed": 10.0
 }]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1x7el"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("182_powbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("183_262yj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("184_c8foa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("185_fgpsv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("186_y1lt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("187_vvqbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("188_3dsed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("189_p03b0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("190_lpx1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("191_bkf11")
+}],
+"loop": true,
+"name": &"Fissile Cannon",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("132_hgtcu")
@@ -885,41 +920,6 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("182_powbn")
-}, {
-"duration": 1.0,
-"texture": ExtResource("183_262yj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("184_c8foa")
-}, {
-"duration": 1.0,
-"texture": ExtResource("185_fgpsv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("186_y1lt8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("187_vvqbb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("188_3dsed")
-}, {
-"duration": 1.0,
-"texture": ExtResource("189_p03b0")
-}, {
-"duration": 1.0,
-"texture": ExtResource("190_lpx1r")
-}, {
-"duration": 1.0,
-"texture": ExtResource("191_bkf11")
-}],
-"loop": true,
-"name": &"fissile",
 "speed": 10.0
 }]
 

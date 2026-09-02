@@ -1,13 +1,11 @@
 extends Node2D
+
+@export var speed: float = 3000
+var fissile = preload("res://Items/projectiles/fissile.tscn") 
 var target
 var user
-var fissile = preload("res://Items/projectiles/fissile.tscn") 
-var flip = false
 var bullet_amount = 1
-
-@onready var firepoint = $AnimatedSprite2D/Firepoint
-@onready var sprite = $AnimatedSprite2D
-
+var ground_trap = false
 	
 #func fire(target):
 	#fissile = fissile_scene.instantiate()
@@ -23,8 +21,7 @@ func use_item(user_target):
 	
 	for i in (bullet_amount * user.projectile_amt):
 		var gun_projectile = fissile.instantiate()
-		#var spread = deg_to_rad(user.rng.randf_range(-cone_angle / 2, cone_angle / 2)) 
-		var direction = Vector2.RIGHT.rotated(base_angle)
+		var direction = base_angle
 		gun_projectile.user = user
 		gun_projectile.target = target
 		gun_projectile.global_position = user.global_position

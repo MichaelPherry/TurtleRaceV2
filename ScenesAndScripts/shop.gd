@@ -58,7 +58,7 @@ func _process(delta):
 
 func item_roll():
 	#item layout below [appendage, item]
-	Inventory.item_1 = rand_items()#["arm", "fissile_cannon"]#rand_items()
+	Inventory.item_1 = rand_items()
 	Inventory.item_2 = rand_items()
 	Inventory.item_3 = rand_items()
 

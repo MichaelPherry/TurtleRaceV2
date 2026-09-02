@@ -43,7 +43,7 @@ func spawn_players():
 
 func _process(delta):
 	if Inventory.race_started == false:
-		if Time.get_unix_time_from_system() >= Inventory.start_time:
+		if Time.get_unix_time_from_system() >= Inventory.start_time and Inventory.start == true:
 			Inventory.race_started = true
 		else:
 			Inventory.start_time /= 1.05 

@@ -8,6 +8,7 @@ var user
 var mult
 var ground_trap = false
 
+var direction
 var sim_position: Vector2
 var sim_rotation: float
 
