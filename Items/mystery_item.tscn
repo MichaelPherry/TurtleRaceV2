@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cxnjtxu7ugn3w" path="res://Items/mystery_item.gd" id="1_oanxa"]
 [ext_resource type="Script" uid="uid://cqkhn8ptyrps3" path="res://Items/item.gd" id="2_n5lhj"]
-[ext_resource type="Resource" uid="uid://d2uwndmbv8ate" path="res://Items/fissile.tres" id="3_veqm3"]
+[ext_resource type="Resource" uid="uid://d2uwndmbv8ate" path="res://Items/projectiles/fissile.tres" id="3_veqm3"]
 [ext_resource type="Resource" uid="uid://dnldi3r4grybk" path="res://Items/eel_spit.tres" id="4_8bnag"]
 [ext_resource type="Resource" uid="uid://dbp3mb2bvnqjp" path="res://Items/bear_trap.tres" id="5_n5lhj"]
 

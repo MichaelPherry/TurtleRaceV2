@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6yamh062j32t"]
+[gd_scene load_steps=8 format=3 uid="uid://c6yamh062j32t"]
 
 [ext_resource type="Script" uid="uid://c34q83jwq2ufi" path="res://ScenesAndScripts/main.gd" id="1_f6nm2"]
 [ext_resource type="Texture2D" uid="uid://bjghsep8234jf" path="res://Art/AlexArt/Forest Stage v2 (no turtles).png" id="2_jx7lm"]
 [ext_resource type="Script" uid="uid://b4ha8dffp6v0q" path="res://ScenesAndScripts/main_camera.gd" id="3_txa5d"]
 [ext_resource type="PackedScene" uid="uid://e0ynki15iy0u" path="res://ScenesAndScripts/results.tscn" id="4_jx7lm"]
 [ext_resource type="Script" uid="uid://c8xpx0c5rhe72" path="res://ScenesAndScripts/tick_controller.gd" id="5_txa5d"]
+[ext_resource type="PackedScene" uid="uid://lkcedg5bm0e4" path="res://ScenesAndScripts/canvas_layer.tscn" id="6_gvcja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6nm2"]
 size = Vector2(6148.5, 274.25)
@@ -34,6 +35,8 @@ shape = SubResource("RectangleShape2D_f6nm2")
 script = ExtResource("5_txa5d")
 
 [node name="positionTester" type="Node2D" parent="."]
-position = Vector2(2168, 7350)
+position = Vector2(-1205, 5000)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("6_gvcja")]
 
 [connection signal="body_exited" from="FinishLine" to="." method="_on_finish_line_body_exited"]

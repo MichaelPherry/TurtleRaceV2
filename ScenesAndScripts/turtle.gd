@@ -61,6 +61,7 @@ var stun = 0
 
 #Turtle effects
 var asleep
+var projectile_amt = 1
 
 #Turtle properties
 var id
@@ -94,11 +95,11 @@ func _ready():
 	asleep = false
 	
 	animation_controller()
-	sim_position = global_position
 	$Label.text = str(name_tag)
 	$Label.visible = true
 	Inventory.rng_calls += 1
 	equip()
+	sim_position = global_position
 	add_to_group(id)
 	add_to_group("players")
 	add_to_group("racing")
@@ -116,9 +117,9 @@ func _process(delta):
 	global_position = global_position.lerp(sim_position, 0.25)
 
 func tick(current_tick, tick_rate):
-	if Inventory.race_started == false:
+	if Inventory.race_started == false or Inventory.start == false:
 		return
-			
+		
 	if hit == true:
 		return
 	

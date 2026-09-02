@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8ascmgrc3bsi"]
+[gd_scene load_steps=8 format=3 uid="uid://b8ascmgrc3bsi"]
 
 [ext_resource type="Script" uid="uid://c10pi41yrkots" path="res://Client/music_manager.gd" id="1_inx5w"]
 [ext_resource type="AudioStream" uid="uid://cxr01h2v30cir" path="res://Art/ShaneArt/music/regular_game/Turtle Race Bass.ogg" id="2_1b1qm"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://bw3rsomx8n75n" path="res://Art/ShaneArt/music/regular_game/Turtle Race Piano.ogg" id="4_eq6k4"]
 [ext_resource type="AudioStream" uid="uid://ttv8u2mldp73" path="res://Art/ShaneArt/music/regular_game/Turtle Race Trumpet.ogg" id="5_kdu6p"]
 [ext_resource type="AudioStream" uid="uid://chwobavmpwwkv" path="res://Art/ShaneArt/music/regular_game/Turtle Race Whistle.ogg" id="6_af7eb"]
+[ext_resource type="AudioStream" uid="uid://dme6xgrdamms4" path="res://Art/AidanArt/Turtle Main menu v2.wav" id="7_li70c"]
 
 [node name="MusicManager" type="Node2D"]
 script = ExtResource("1_inx5w")
@@ -40,3 +41,9 @@ stream = ExtResource("6_af7eb")
 volume_db = -80.0
 bus = &"Lead"
 parameters/looping = true
+
+[node name="Mainmenu" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_li70c")
+volume_db = -30.0
+autoplay = true
+bus = &"Background"

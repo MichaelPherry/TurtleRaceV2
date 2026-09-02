@@ -8,6 +8,7 @@
 script = ExtResource("1_ntqg1")
 name = "eel_spit"
 description = ""
+price = 0
 body_part = ""
 icon = ExtResource("1_wrcxq")
 cooldown = 5
@@ -15,4 +16,6 @@ item_scene = ExtResource("1_ulyb1")
 ground_trap = false
 active = true
 animation = false
+type = "Projectile"
+stay_in_hand = false
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

@@ -64,7 +64,7 @@ export class botBuilds extends Room {
                 "tank" : {
                     "items" : { 
                         "leftArm" : null,
-                        "rightArm" : "fissile",
+                        "rightArm" : "fissile_cannon",
                         "head" : null,
                         "shell" : null,
                         "legs" : null
@@ -139,7 +139,7 @@ export class botBuilds extends Room {
                 "tank" : {
                     "items" : { 
                         "leftArm" : "bear_trap",
-                        "rightArm" : "fissile",
+                        "rightArm" : "fissile_cannon",
                         "head" : null,
                         "shell" : null,
                         "legs" : null,
@@ -162,7 +162,7 @@ export class botBuilds extends Room {
 
                 "gun" : {
                     "items" : { 
-                        "leftArm" : "fissile",
+                        "leftArm" : "fissile_cannon",
                         "rightArm" : null,
                         "head" : null,
                         "shell" : "ammo_belt",
@@ -212,7 +212,7 @@ export class botBuilds extends Room {
                 "tank" : {
                     "items" : { 
                         "leftArm" : "bear_trap",
-                        "rightArm" : "fissile",
+                        "rightArm" : "fissile_cannon",
                         "head" : "propreller",
                         "shell" : null,
                         "legs" : null,
@@ -235,7 +235,7 @@ export class botBuilds extends Room {
 
                 "gun" : {
                     "items" : { 
-                        "leftArm" : "fissile",
+                        "leftArm" : "fissile_cannon",
                         "rightArm" : null,
                         "head" : "m1_helmet",
                         "shell" : "ammo_belt",

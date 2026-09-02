@@ -43,6 +43,7 @@ var server_turtles = {}
 var start_time
 var projectiles = []
 var race_started = false
+var start = false
 var tick_controller_ref
 
 var item_1

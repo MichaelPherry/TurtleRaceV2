@@ -10,6 +10,6 @@ func _ready():
 	user.max_speed *= max_speed_mult
 	
 func activate_effect():
-	user.go_asleep(3, self)
-	await Inventory.wait_ticks(user, 3)
+	user.go_asleep(1, self)
+	await Inventory.wait_ticks(user, 1)
 	user.head_cooldown = user.head.cooldown

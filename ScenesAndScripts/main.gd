@@ -31,6 +31,9 @@ func _process(delta):
 	order.sort_custom(func(a, b): return a[1] > b[1])
 	Inventory.race_order = order
 	
+	if Inventory.start == false:
+		return
+		
 	if str(order[0][0]) == turtles[0].name_tag:
 		if MusicManager.organ.volume_db < 0:
 			MusicManager.switch(MusicManager.organ)

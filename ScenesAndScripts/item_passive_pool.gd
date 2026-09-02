@@ -2,16 +2,16 @@ extends Node
 
 var appendages = ["arm", "head", "shell", "legs"]
 var total_pool = {
-	"arm": ["fissile", "bear_trap", "machine_gun", "laser_gun"],
-	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet"],
-	"shell": ["ammo_belt", "battery", "streaker_leaf"],
+	"arm": ["fissile_cannon", "bear_trap", "machine_gun", "laser_gun"],
+	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet", "kings_crown"],
+	"shell": ["ammo_belt", "battery", "streaker_leaf", "suit"],
 	"legs": ["rollerskates", "cinderblocks"]
 }
 
 func arm(item):
 	match item:
-		"fissile":
-			return load("res://Items/fissile.tres")
+		"fissile_cannon":
+			return load("res://Items/fissile_cannon.tres")
 		"eel_spit":
 			return load("res://Items/eel_spit.tres")
 		"mystery_item":
@@ -35,6 +35,8 @@ func head(item):
 			return load("res://Passives/Head/dunce_hat.tres")
 		"m1_helmet":
 			return load("res://Passives/Head/m1_helmet.tres")
+		"kings_crown":
+			return load("res://Passives/Head/kings_crown.tres")
 
 func shell(item):
 	match item:
@@ -44,6 +46,8 @@ func shell(item):
 			return load("res://Passives/Shell/battery.tres")
 		"streaker_leaf":
 			return load("res://Passives/Shell/streaker_leaf.tres")
+		"suit":
+			return load("res://Passives/Shell/suit.tres")
 		
 func legs(item):
 	match item:

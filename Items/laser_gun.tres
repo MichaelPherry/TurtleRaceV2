@@ -16,6 +16,6 @@ item_scene = ExtResource("2_skxf1")
 ground_trap = false
 active = false
 animation = false
-type = ""
+type = "Projectile"
 stay_in_hand = false
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

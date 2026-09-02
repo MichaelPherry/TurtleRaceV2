@@ -15,6 +15,8 @@ var temp_pool
 signal button_selected(button_name)
 
 func _ready():
+	Inventory.start = false
+	MusicManager.mainmenu.stop()
 	MusicManager.fade_in()
 	done_shopping = false
 	temp_pool = ItemPassivePool.total_pool.duplicate(true)
@@ -56,7 +58,7 @@ func _process(delta):
 
 func item_roll():
 	#item layout below [appendage, item]
-	Inventory.item_1 = rand_items()
+	Inventory.item_1 = rand_items()#["arm", "fissile_cannon"]#rand_items()
 	Inventory.item_2 = rand_items()
 	Inventory.item_3 = rand_items()
 

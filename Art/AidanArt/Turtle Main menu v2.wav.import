@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dme6xgrdamms4"
+path="res://.godot/imported/Turtle Main menu v2.wav-378bbaab5a0cb20f5472976d1d34756e.sample"
+
+[deps]
+
+source_file="res://Art/AidanArt/Turtle Main menu v2.wav"
+dest_files=["res://.godot/imported/Turtle Main menu v2.wav-378bbaab5a0cb20f5472976d1d34756e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

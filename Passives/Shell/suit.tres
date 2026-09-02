@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://djjwbk41r6gcl"]
+
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_v5e46"]
+[ext_resource type="Texture2D" uid="uid://mydsvb1nb5ka" path="res://Art/AlexArt/Items/Suit/Suit.png.png.png" id="1_xehkl"]
+[ext_resource type="PackedScene" uid="uid://8i7jxh7xw0o4" path="res://Passives/Shell/suit.tscn" id="2_lpwtg"]
+
+[resource]
+script = ExtResource("1_v5e46")
+name = "Suit"
+description = "User gains 5 addional gold"
+price = 10
+icon = ExtResource("1_xehkl")
+passive_scene = ExtResource("2_lpwtg")
+cooldown = 0
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

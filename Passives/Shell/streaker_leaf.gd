@@ -16,5 +16,6 @@ func _ready():
 	if user.head != null:
 		active = false
 		
-	user.max_speed *= mult
-	user.acceleration *= mult
+	if active == true:
+		user.max_speed *= mult
+		user.acceleration *= mult
