@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8ascmgrc3bsi"]
 
-[ext_resource type="Script" uid="uid://c10pi41yrkots" path="res://ScenesAndScripts/music_manager.gd" id="1_inx5w"]
+[ext_resource type="Script" uid="uid://c10pi41yrkots" path="res://Client/music_manager.gd" id="1_inx5w"]
 [ext_resource type="AudioStream" uid="uid://cxr01h2v30cir" path="res://Art/ShaneArt/music/regular_game/Turtle Race Bass.ogg" id="2_1b1qm"]
 [ext_resource type="AudioStream" uid="uid://dv8mdjh8i8efj" path="res://Art/ShaneArt/music/regular_game/Turtle Race Organ.ogg" id="3_or0yl"]
 [ext_resource type="AudioStream" uid="uid://bw3rsomx8n75n" path="res://Art/ShaneArt/music/regular_game/Turtle Race Piano.ogg" id="4_eq6k4"]

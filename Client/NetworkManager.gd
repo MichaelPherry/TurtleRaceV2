@@ -39,7 +39,8 @@ func _on_lobby_joined():
 	await get_tree().create_timer(1.0).timeout
 	
 func _on_room_joined(data):
-	room.leave()
+	await room.leave()
+	room = null
 	await get_tree().process_frame
 	var new_room = await client.join_by_id(data.roomId)
 	room = new_room

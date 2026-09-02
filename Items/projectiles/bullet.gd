@@ -22,8 +22,8 @@ func _process(delta):
 	position = position.lerp(sim_position, 0.25)
 	
 	
-func tick():
-	sim_position += direction * speed * user.tick_rat * user.projectile_speed
+func tick(curr_tick, tick_rat):
+	sim_position += direction * speed * tick_rat * user.projectile_speed
 	if sim_position.distance_to(target.sim_position) > last_distace and abs(last_distace) > 3500:
 		queue_free()
 		Inventory.projectiles.erase(self)

@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var rightArm_anim = $Visuals/RightArm
 
 #Turtle items and appendages
+var base_animation_speed = 0.5
 var left_arm = null
 var left_arm_instance
 var left_arm_cooldown_max: float
@@ -50,12 +51,16 @@ var acceleration = 200
 var resilience = 0.1
 var max_speed = 3000
 var current_speed = 200
-var height = 0
+var normal_height = -50
+var height = -50
 var max_height = -500
 var fire_rate = 1
 var projectile_speed = 1
 var luck = 1
 var stun = 0
+
+#Turtle effects
+var asleep
 
 #Turtle properties
 var id
@@ -86,6 +91,7 @@ func _ready():
 	fire_rate = Inventory.server_turtles[id]["base_stats"]["fire_rate"]
 	projectile_speed = Inventory.server_turtles[id]["base_stats"]["projectile_speed"]
 	luck = Inventory.server_turtles[id]["base_stats"]["luck"]
+	asleep = false
 	
 	animation_controller()
 	sim_position = global_position
@@ -99,6 +105,7 @@ func _ready():
 
 	
 func _process(delta):
+	shell_anim.speed_scale = lerp(0.8, 2.0, clamp(current_speed / max_speed, 0.0, 1.0))
 	var current_frame = shell_anim.frame
 	legs_anim.frame = current_frame
 	rightArm_anim.frame = current_frame
@@ -115,26 +122,29 @@ func tick(current_tick, tick_rate):
 	if hit == true:
 		return
 	
-	if grounded == false and height == 0:
+	if finished == true:
+		velocity.y = 0
+		if grounded == true and height == max_height:
+			stop_flying()
+			collision.position.y = normal_height
+		return
+	
+	if grounded == false and height == normal_height:
 		start_flying()
 	
 	if grounded == true and height == max_height:
 		stop_flying()
 	
 	if grounded:
-		height = 0
+		height = normal_height
 	else:
 		height = max_height
 
 	#visuals.position.y = height
-	collision.position.y = height
-	
-	if finished == true:
-		velocity.y = 0
-		return
+	collision.position.y = height 
 	
 	current_speed = min(current_speed + acceleration, max_speed)
-	if sim_position.y < 50 and direction == -1:
+	if (sim_position.y < 50 and direction == -1) or asleep:
 		sim_position.y += 0
 	else:
 		sim_position.y += current_speed * tick_rate * direction
@@ -249,19 +259,6 @@ func right_arm_item(user, target, scene):
 		#moving_animations()
 		get_tree().current_scene.add_child(instance)
 	
-func equip_left_item(item):
-	pass
-	#left_hand_sprite.texture = item.icon
-	#left_hand_sprite.flip_h = true
-
-func equip_right_item(item):
-	#right_hand_sprite.texture = item.icon
-	pass
-
-func equip_hat(hat):
-	#hat.texture = hat
-	pass
-	
 func invin_frames():
 	invincible = true
 	hit = true
@@ -283,19 +280,17 @@ func invin_frames():
 	sim_position.y = sped
 	invincible = false
 	hit = false
-
-#func moving_animations():
-	#if current_speed <= 250:
-		#animation_controller("Walking")
-		##animation.play("Walking")
-		#
-	#elif current_speed <= 350:
-		#animation_controller("Jogging")
-		##animation.play("Jogging")
-	#else:
-		#animation_controller("Running")
-		##animation.play("Running")
-
+	
+func animation_controller():
+	var action = "default"
+	shell_anim.play(action)
+	legs_anim.animation = action
+	rightArm_anim.animation = action
+	leftArm_anim.animation = action
+	head_anim.animation = action
+	face_anim.animation = action
+	belly_anim.animation = action
+	
 func target_final_position(target):
 	var max = 7500
 	var min = 1000
@@ -311,17 +306,6 @@ func target_final_position(target):
 		#print(final_position.y, " final ", curr_tick, " ", rng.state, " targs ", targy, " randy targ ", randy_targ)
 	return final_position
 	
-func animation_controller():
-	var action = "default"
-	shell_anim.play(action)
-	legs_anim.animation = action
-	rightArm_anim.animation = action
-	leftArm_anim.animation = action
-	head_anim.animation = action
-	face_anim.animation = action
-	belly_anim.animation = action
-
-
 func start_flying():
 	var tween = create_tween()
 	tween.tween_property($Visuals, "position:y", max_height, 1.0)\
@@ -329,5 +313,10 @@ func start_flying():
 	
 func stop_flying():
 	var tween = create_tween()
-	tween.tween_property($Visuals, "position:y", 0, 1.0)\
+	tween.tween_property($Visuals, "position:y", -250, 1.0)\
 	.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
+
+func go_asleep(how_long, appendage = null):
+	asleep = true
+	await Inventory.wait_ticks(self, how_long)
+	asleep = false

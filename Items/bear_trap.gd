@@ -52,17 +52,17 @@ func launchProjectile(initial_pos, direction, desired_distance, desired_angle_de
 	z_axis =  0
 	is_launch = true
 
-func tick():
+func tick(curr_tick, tick_rat):
 	if is_launch == false:
 		launchProjectile(sim_position, final_position - start_position, distance, 60)
 		
 	if is_launch == true:
-		z_axis = initial_speed * sin(deg_to_rad(throw_angle_degrees)) * (user.curr_tick - start_tick) - 0.5 * gravit * pow((user.curr_tick - start_tick), 2)
+		z_axis = initial_speed * sin(deg_to_rad(throw_angle_degrees)) * (curr_tick - start_tick) - 0.5 * gravit * pow((curr_tick - start_tick), 2)
 		
 		if z_axis > 0:
-			var x_axis = initial_speed * cos(deg_to_rad(throw_angle_degrees)) * (user.curr_tick - start_tick)
+			var x_axis = initial_speed * cos(deg_to_rad(throw_angle_degrees)) * (curr_tick - start_tick)
 			sim_position = start_position + throw_direction * x_axis
-			$AnimatedSprite2D.rotation += rotation_speed * (user.tick_rat / 2)
+			$AnimatedSprite2D.rotation += rotation_speed * (tick_rat / 2)
 			$AnimatedSprite2D.position.y = -z_axis
 		
 		else:

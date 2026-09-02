@@ -44,7 +44,7 @@ func launchProjectile(initial_pos, direction, desired_distance, desired_angle_de
 	z_axis =  0
 	is_launch = true
 
-func tick():
+func tick(curr_tick, tick_rat):
 	if is_launch == false:
 		launchProjectile(sim_position, target.sim_position - start_position, distance, 60)
 		

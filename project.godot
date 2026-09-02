@@ -25,7 +25,7 @@ ItemPassivePool="*res://ScenesAndScripts/item_passive_pool.gd"
 Net="*uid://de3luefqvt2om"
 NetworkManager="*res://Client/NetworkManager.gd"
 Inventory="*res://ScenesAndScripts/inventory.gd"
-MusicManager="*res://ScenesAndScripts/music_manager.tscn"
+MusicManager="*res://Client/music_manager.tscn"
 GlobalSettings="*res://Client/global_settings.tscn"
 
 [editor_plugins]

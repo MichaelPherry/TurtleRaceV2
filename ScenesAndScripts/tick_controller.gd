@@ -89,7 +89,7 @@ func run_tick():
 	
 	#projectile movement
 	for projectile in Inventory.projectiles:
-		projectile.tick()
+		projectile.tick(current_tick, tick_rate)
 	
 	#collision
 	for projectile in Inventory.projectiles:
@@ -101,12 +101,12 @@ func run_tick():
 func cooldowns(player):
 	if Inventory.server_turtles[player.id]["items"]["leftArm"] != null:
 		if player.left_arm_cooldown <= 0.0:
-			if player.sim_position.y < 7350:
+			if player.sim_position.y < 7450:
 				player.left_ready = true
 				player.left_arm_cooldown = player.left_arm_cooldown_max
 	if Inventory.server_turtles[player.id]["items"]["rightArm"] != null:
 		if player.right_arm_cooldown <= 0.0:
-			if player.sim_position.y < 7350:
+			if player.sim_position.y < 7450:
 				player.right_ready = true
 				player.right_arm_cooldown = player.right_arm_cooldown_max
 	if Inventory.server_turtles[player.id]["items"]["head"] != null:

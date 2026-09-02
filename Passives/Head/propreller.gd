@@ -6,7 +6,6 @@ var user
 var flight_time = 3
 var start_tick
 var effect = true
-
 var orig_max_speed
 
 func _ready():
@@ -20,9 +19,7 @@ func activate_effect():
 	user.grounded = false
 	user.max_speed *= max_speed_mult
 	user.acceleration *= accel_mult
-
-	#while user.curr_tick - start_tick > flight_time:
-		#pass
+	
 	await Inventory.wait_ticks(user, flight_time)
 	user.max_speed = orig_max_speed
 	user.head_cooldown = user.head.cooldown

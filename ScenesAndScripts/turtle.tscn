@@ -316,7 +316,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Roller Skates",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -955,7 +955,7 @@ animation = &"Suit"
 
 [node name="Head" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_5fc6w")
-animation = &"M1 Helmet"
+animation = &"Bunny Ears"
 
 [node name="Face" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_mqv1x")

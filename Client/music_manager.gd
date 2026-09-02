@@ -2,8 +2,8 @@ extends Node2D
 
 var current_lead
 var duration = 2.0
-var background_vol = -20
-var lead_vol = -20
+var background_vol = -80
+var lead_vol = -80
 
 @onready var bass = $Bass
 @onready var organ = $Organ

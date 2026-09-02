@@ -51,7 +51,7 @@ func _process(delta):
 		sprite.flip_v = false
 	position = position.lerp(sim_position, 0.25)
 	
-func tick():
+func tick(curr_tick, tick_rat):
 	if is_launch == false:
 		launchProjectile(sim_position, final_position - start_position, distance, 60)
 		

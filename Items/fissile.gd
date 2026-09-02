@@ -30,14 +30,14 @@ func _process(delta):
 	position = position.lerp(sim_position, 0.25)
 	rotation = lerp_angle(rotation, sim_rotation, 0.25)
 
-func tick():
+func tick(curr_tick, tick_rat):
 	var target_pos = target.sim_position + Vector2(0, target.height)
 	var to_target = (target_pos - sim_position).normalized()
 	var target_angle = to_target.angle()
 
 	sim_rotation = target_angle
 	var direction = Vector2.RIGHT.rotated(sim_rotation)
-	sim_position += direction * speed * user.tick_rat * user.projectile_speed
+	sim_position += direction * speed * tick_rat * user.projectile_speed
 
 func hit(body):
 	if body == target:
