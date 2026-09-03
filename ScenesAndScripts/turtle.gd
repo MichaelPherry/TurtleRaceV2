@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var rightArm_anim = $Visuals/RightArm
 @onready var stamina_bar = $Visuals/PlayerUI/VBoxContainer/StaminaBar
 @onready var name_label = $Visuals/PlayerUI/VBoxContainer/NameLabel
+var stamina_bar_style: StyleBoxFlat
 
 #Turtle items and appendages
 var base_animation_speed = 0.5
@@ -93,6 +94,8 @@ var turtle_effects = []
 func _ready():
 	rng = RandomNumberGenerator.new()
 	rng.seed = seed
+	stamina_bar_style = stamina_bar.get_theme_stylebox("fill").duplicate()
+	stamina_bar.add_theme_stylebox_override("fill", stamina_bar_style)
 	update_stamina_bar()
 	
 	current_speed = 0
@@ -307,31 +310,30 @@ func invin_frames(stamina_damage = 0, projectile_keywords = null):
 	sim_position.y -= current_speed * tick_rat
 	var sprite = $Visuals
 	sprite.modulate = Color(1, 1, 1, 0.2)
-	await Inventory.wait_ticks(self, (stamina_damage / resilience) / 10)
+	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1) 
-	await Inventory.wait_ticks(self, (stamina_damage / resilience) / 10)
+	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 0.2)
-	await Inventory.wait_ticks(self, (stamina_damage / resilience) / 10)
+	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1) 
-	await Inventory.wait_ticks(self, (stamina_damage / resilience) / 10)
+	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 0.2)
-	await Inventory.wait_ticks(self, (stamina_damage / resilience) / 10)
+	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1) 
 	sim_position.y = sped
-	invincible = false
 	hit = false
+	await Inventory.wait_ticks(self, 0.5)
+	invincible = false
 
 func update_stamina_bar():
 	var percent = current_stamina / max_stamina
 	stamina_bar.value = current_stamina
 	
-	var style = stamina_bar.get_theme_stylebox("fill").duplicate()
-	
-	if abs(percent) >= 0.5:
-		style.bg_color = Color.YELLOW.lerp(Color.GREEN, (percent - 0.5) * 2.0)
+	if current_stamina >= 50:
+		stamina_bar_style.bg_color = Color.YELLOW.lerp(Color.GREEN, (percent - 0.5) * 2.0)
 	else:
-		style.bg_color = Color.RED.lerp(Color.YELLOW, percent * 2.0)
-	stamina_bar.add_theme_stylebox_override("fill", style)
+		stamina_bar_style.bg_color = Color.RED.lerp(Color.YELLOW, percent * 2.0)
+	print("Health: ", current_stamina, " Max: ", max_stamina, " Percent: ", percent)
 
 func animation_controller():
 	var action = "default"

@@ -33,7 +33,7 @@ type Turtle = {
 export class botBuilds extends Room {
     turtles: Record<string, Record<string, Turtle>> = {};
     acceleration: number = 5
-    resilience: number = 10
+    resilience: number = 0
     max_speed: number = 500
     fire_rate: number = 1
     projectile_speed: number = 1

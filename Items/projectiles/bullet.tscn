@@ -55,3 +55,5 @@ shape = SubResource("CircleShape2D_3kidl")
 position = Vector2(-12, -24)
 scale = Vector2(0.584112, 0.625307)
 sprite_frames = SubResource("SpriteFrames_0f304")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
