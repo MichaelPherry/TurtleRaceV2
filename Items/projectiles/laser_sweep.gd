@@ -9,15 +9,18 @@ var start_angle
 var end_angle
 var start_tick
 var sweep_ticks = 30
+var damage = 20
 
 var sim_position: Vector2
 var sim_rotation: float
+var keyword_attributes
 
 func _ready():
 	Inventory.projectiles.append(self)
 	get_laser_direction()
 	rotation = start_angle
 	start_tick = user.curr_tick
+	user.asleep = true
 
 func get_laser_direction():
 	if target.position.x > user.position.x:
@@ -34,6 +37,7 @@ func tick(curr_tick, tick_rat):
 	rotation = lerp(start_angle, end_angle, progress)
 	position = user.global_position
 	if progress >= 1:
+		user.asleep = false
 		queue_free()
 		Inventory.projectiles.erase(self)
 
@@ -43,4 +47,4 @@ func hit():
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body != user:
 		if body.invincible == false:
-			body.invin_frames()
+			body.invin_frames(damage, keyword_attributes)

@@ -2,8 +2,8 @@ extends Node2D
 
 var current_lead
 var duration = 2.0
-var background_vol = -20
-var lead_vol = -20
+var background_vol = 0
+var lead_vol = 0
 
 @onready var mainmenu = $Mainmenu
 @onready var bass = $Bass
@@ -16,7 +16,7 @@ var instruments = [organ, piano, trumpet, whistle]
 func _ready():
 	current_lead = null
 	mainmenu.play()
-	mainmenu.volume_db = -25.0
+	mainmenu.volume_db = 0
 	bass.play()
 	organ.play()
 	piano.play()

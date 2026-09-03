@@ -32,6 +32,12 @@ type Turtle = {
 
 export class botBuilds extends Room {
     turtles: Record<string, Record<string, Turtle>> = {};
+    acceleration: number = 5
+    resilience: number = 10
+    max_speed: number = 500
+    fire_rate: number = 1
+    projectile_speed: number = 1
+    luck: number = 1
 
     constructor() {
         super();
@@ -47,12 +53,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -71,12 +77,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -95,12 +101,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -122,12 +128,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -146,12 +152,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -170,12 +176,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -195,12 +201,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -219,12 +225,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {
@@ -243,12 +249,12 @@ export class botBuilds extends Room {
                     },
 
                     "base_stats" : {
-                        "acceleration" : 5.0,
-                        "resilience" : 0.1,
-                        "max_speed" : 300.0,
-                        "fire_rate" : 1.0,
-                        "projectile_speed" : 1.0,
-                        "luck" : 1.0
+                        "acceleration" : this.acceleration,
+                        "resilience" : this.resilience,
+                        "max_speed" : this.max_speed,
+                        "fire_rate" : this.fire_rate,
+                        "projectile_speed" : this.projectile_speed,
+                        "luck" : this.luck
                     },
 
                     "econ" : {

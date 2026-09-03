@@ -43,7 +43,7 @@ func spawn_players():
 
 func _process(delta):
 	if Inventory.race_started == false:
-		if Time.get_unix_time_from_system() >= Inventory.start_time and Inventory.start == true:
+		if Time.get_unix_time_from_system() >= Inventory.start_time:
 			Inventory.race_started = true
 		else:
 			Inventory.start_time /= 1.05 
@@ -55,6 +55,8 @@ func _process(delta):
 		accumulator -= tick_rate
 		
 func run_tick():
+	if Inventory.start == false:
+		return
 	current_tick += 1
 	#player movement
 	for turt in players:
@@ -90,6 +92,10 @@ func run_tick():
 	#projectile movement
 	for projectile in Inventory.projectiles:
 		projectile.tick(current_tick, tick_rate)
+		
+	for item in Inventory.end_items:
+		if item.user.finished == true:
+			item.end_effect()
 	
 	#collision
 	for projectile in Inventory.projectiles:

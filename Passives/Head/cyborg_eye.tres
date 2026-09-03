@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://dqfojjbul5jne"]
+
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_7sl2m"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_e2okd"]
+[ext_resource type="PackedScene" uid="uid://bsuq5uaslkalt" path="res://Passives/Head/cyborg_eye.tscn" id="2_4hyuc"]
+
+[resource]
+script = ExtResource("1_e2okd")
+name = "Cyborg Eye"
+description = "Head: Blasts a huge sweeping laser"
+price = 10
+icon = ExtResource("1_7sl2m")
+passive_scene = ExtResource("2_4hyuc")
+cooldown = 5
+type = "Laser"
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://bsanqw668b7pj"]
+
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_svah7"]
+[ext_resource type="PackedScene" uid="uid://dwro0ai0og8bl" path="res://Passives/Head/halo.tscn" id="2_ixwn7"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="3_astts"]
+
+[resource]
+script = ExtResource("3_astts")
+name = "Halo"
+description = "Head: While active causes projectiles and traps that hit the user to have Divine"
+price = 10
+icon = ExtResource("1_svah7")
+passive_scene = ExtResource("2_ixwn7")
+cooldown = 4
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

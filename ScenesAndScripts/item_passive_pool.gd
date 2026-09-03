@@ -1,12 +1,17 @@
 extends Node
 
 var appendages = ["arm", "head", "shell", "legs"]
-var total_pool = {
-	"arm": ["fissile_cannon", "bear_trap", "machine_gun", "laser_gun"],
-	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet", "kings_crown"],
-	"shell": ["ammo_belt", "battery", "streaker_leaf", "suit"],
+var all_items = {
+	"arm": ["fissile_cannon", "bear_trap", "machine_gun"],
+	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet", "kings_crown", "halo", "cyborg_eye", "clown_wig"],
+	"shell": ["ammo_belt", "battery", "streaker_leaf", "suit", "angel_wings"],
 	"legs": ["rollerskates", "cinderblocks"]
 }
+
+var total_pool
+
+func _ready():
+	total_pool = all_items.duplicate(true)
 
 func arm(item):
 	match item:
@@ -22,8 +27,6 @@ func arm(item):
 			return load("res://Items/machine_gun.tres")
 		"boomerang":
 			return load("res://Items/boomerang.tres")
-		"laser_gun":
-			return load("res://Items/laser_gun.tres")
 
 func head(item):
 	match item:
@@ -37,6 +40,12 @@ func head(item):
 			return load("res://Passives/Head/m1_helmet.tres")
 		"kings_crown":
 			return load("res://Passives/Head/kings_crown.tres")
+		"halo":
+			return load("res://Passives/Head/halo.tres")
+		"cyborg_eye":
+			return load("res://Passives/Head/cyborg_eye.tres")
+		"clown_wig":
+			return load("res://Passives/Head/clown_wig.tres")
 
 func shell(item):
 	match item:
@@ -48,6 +57,8 @@ func shell(item):
 			return load("res://Passives/Shell/streaker_leaf.tres")
 		"suit":
 			return load("res://Passives/Shell/suit.tres")
+		"angel_wings":
+			return load("res://Passives/Shell/angel_wings.tres")
 		
 func legs(item):
 	match item:

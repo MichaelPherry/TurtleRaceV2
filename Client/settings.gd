@@ -4,11 +4,11 @@ extends Control
 @onready var background_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer3/BackgoundVolumeSlider
 @onready var lead_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer2/LeadVolumeSlider
 func _ready():
-	master_slider.value = 100
+	master_slider.value = 25
 	master_slider.value_changed.connect(music_volume_changed.bind("Master"))
-	background_slider.value = 100
+	background_slider.value = 25
 	background_slider.value_changed.connect(music_volume_changed.bind("Background"))
-	lead_slider.value = 100
+	lead_slider.value = 25
 	lead_slider.value_changed.connect(music_volume_changed.bind("Lead"))
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	process_mode = Node.PROCESS_MODE_PAUSABLE

@@ -3,7 +3,7 @@ extends Area2D
 @export var speed: float = 1200
 var target
 var turn_speed = 200
-var damage = 1
+var damage = 15
 var user
 var mult
 var ground_trap = false
@@ -11,6 +11,7 @@ var ground_trap = false
 var direction
 var sim_position: Vector2
 var sim_rotation: float
+var keyword_attributes
 
 @onready var sprite = $Fish
 
@@ -45,4 +46,4 @@ func hit(body):
 		queue_free()
 		Inventory.projectiles.erase(self)
 		if body.invincible == false:
-			body.invin_frames()
+			body.invin_frames(damage, keyword_attributes)

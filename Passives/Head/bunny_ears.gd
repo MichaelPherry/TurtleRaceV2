@@ -11,5 +11,5 @@ func _ready():
 	
 func activate_effect():
 	user.go_asleep(1, self)
-	await Inventory.wait_ticks(user, 1)
+	await Inventory.wait_ticks(user, 2)
 	user.head_cooldown = user.head.cooldown

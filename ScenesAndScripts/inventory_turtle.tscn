@@ -1,4 +1,4 @@
-[gd_scene load_steps=209 format=3 uid="uid://1usxicevamun"]
+[gd_scene load_steps=229 format=3 uid="uid://1usxicevamun"]
 
 [ext_resource type="Script" uid="uid://dukpxyrxhenc5" path="res://ScenesAndScripts/inventory_turtle.gd" id="1_v3plr"]
 [ext_resource type="Texture2D" uid="uid://rtsu0j76wnn4" path="res://Art/AlexArt/green_turt/shell/Shell0001.png" id="2_khnfd"]
@@ -181,15 +181,25 @@
 [ext_resource type="Texture2D" uid="uid://dadnpfhg2cp65" path="res://Art/AlexArt/green_turt/rightArm/R Arm0008.png" id="139_ijw6r"]
 [ext_resource type="Texture2D" uid="uid://cfmxf8pi41dgt" path="res://Art/AlexArt/green_turt/rightArm/R Arm0009.png" id="140_tieid"]
 [ext_resource type="Texture2D" uid="uid://bhrpikltc8fxj" path="res://Art/AlexArt/green_turt/rightArm/R Arm0010.png" id="141_2dklo"]
+[ext_resource type="Texture2D" uid="uid://cmwhsfvyp6jut" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0001.png" id="162_lktwl"]
 [ext_resource type="Texture2D" uid="uid://dso2vr6fh5pks" path="res://Art/AlexArt/Items/newFissile/L Fissile0001.png" id="162_vnm0a"]
+[ext_resource type="Texture2D" uid="uid://cje8eddwy1ncb" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0002.png" id="163_n2fkx"]
 [ext_resource type="Texture2D" uid="uid://mbpfhehfcamf" path="res://Art/AlexArt/Items/newFissile/L Fissile0002.png" id="163_x6v1h"]
 [ext_resource type="Texture2D" uid="uid://becm16y12e5ay" path="res://Art/AlexArt/Items/newFissile/L Fissile0003.png" id="164_qr6w6"]
+[ext_resource type="Texture2D" uid="uid://djecrjvnsemmc" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0003.png" id="164_xvbu5"]
 [ext_resource type="Texture2D" uid="uid://brdnru4dhwyeg" path="res://Art/AlexArt/Items/newFissile/L Fissile0004.png" id="165_aymmb"]
+[ext_resource type="Texture2D" uid="uid://cutc4cfo11c14" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0004.png" id="165_ip1ii"]
+[ext_resource type="Texture2D" uid="uid://nbn2di01ryg8" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0005.png" id="166_2fsjm"]
 [ext_resource type="Texture2D" uid="uid://wd3putt0xrr3" path="res://Art/AlexArt/Items/newFissile/L Fissile0005.png" id="166_75owh"]
 [ext_resource type="Texture2D" uid="uid://dyp1ueww2smgx" path="res://Art/AlexArt/Items/newFissile/L Fissile0006.png" id="167_6ncsr"]
+[ext_resource type="Texture2D" uid="uid://c0vb8bauj5cpc" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0006.png" id="167_a8qtf"]
 [ext_resource type="Texture2D" uid="uid://b7wc10wj8834n" path="res://Art/AlexArt/Items/newFissile/L Fissile0007.png" id="168_6wpjt"]
+[ext_resource type="Texture2D" uid="uid://ceyyilrowk2oy" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0007.png" id="168_fra8p"]
+[ext_resource type="Texture2D" uid="uid://dnghwcegaaeee" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0008.png" id="169_5mdoo"]
 [ext_resource type="Texture2D" uid="uid://v3cv2gi621q7" path="res://Art/AlexArt/Items/newFissile/L Fissile0008.png" id="169_06nrj"]
 [ext_resource type="Texture2D" uid="uid://dssrjffvtgarg" path="res://Art/AlexArt/Items/newFissile/L Fissile0009.png" id="170_okiin"]
+[ext_resource type="Texture2D" uid="uid://c6mqlyqpdi214" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0009.png" id="170_psn1n"]
+[ext_resource type="Texture2D" uid="uid://ce4v0fk1sng0u" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0010.png" id="171_7gdul"]
 [ext_resource type="Texture2D" uid="uid://c3seuhtyeeb23" path="res://Art/AlexArt/Items/newFissile/L Fissile0010.png" id="171_52woj"]
 [ext_resource type="Texture2D" uid="uid://bn5ndlk0dp3vi" path="res://Art/AlexArt/Items/newFissile/R Fissile0001.png" id="182_powbn"]
 [ext_resource type="Texture2D" uid="uid://daugulix41g1g" path="res://Art/AlexArt/Items/newFissile/R Fissile0002.png" id="183_262yj"]
@@ -201,6 +211,16 @@
 [ext_resource type="Texture2D" uid="uid://b5gplnn5p7pdi" path="res://Art/AlexArt/Items/newFissile/R Fissile0008.png" id="189_p03b0"]
 [ext_resource type="Texture2D" uid="uid://b7kwt387o17yb" path="res://Art/AlexArt/Items/newFissile/R Fissile0009.png" id="190_lpx1r"]
 [ext_resource type="Texture2D" uid="uid://bqr76bac3sver" path="res://Art/AlexArt/Items/newFissile/R Fissile0010.png" id="191_bkf11"]
+[ext_resource type="Texture2D" uid="uid://dt6gssbolyek3" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0001.png" id="192_iuvra"]
+[ext_resource type="Texture2D" uid="uid://sejjaxicgoxj" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0002.png" id="193_7ajin"]
+[ext_resource type="Texture2D" uid="uid://cgk6fq6ktpaow" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0003.png" id="194_4gjfq"]
+[ext_resource type="Texture2D" uid="uid://5jeu1qapi2xm" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0004.png" id="195_rfh14"]
+[ext_resource type="Texture2D" uid="uid://cmg7trbm3tga" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0005.png" id="196_2moc8"]
+[ext_resource type="Texture2D" uid="uid://b3urlcucj5p76" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0006.png" id="197_chbuo"]
+[ext_resource type="Texture2D" uid="uid://bly12a365wxxr" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0007.png" id="198_dcc6g"]
+[ext_resource type="Texture2D" uid="uid://d14766x6b6osh" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0008.png" id="199_hgv2n"]
+[ext_resource type="Texture2D" uid="uid://cvbpcqj2bkrjl" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0009.png" id="200_7rpd1"]
+[ext_resource type="Texture2D" uid="uid://vijkujp0uw3l" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0010.png" id="201_sxk8n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v3plr"]
 animations = [{
@@ -781,6 +801,41 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("162_lktwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("163_n2fkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_xvbu5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_ip1ii")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_2fsjm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_a8qtf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_fra8p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_5mdoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_psn1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_7gdul")
+}],
+"loop": true,
+"name": &"Bear Trap",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("162_vnm0a")
 }, {
 "duration": 1.0,
@@ -852,6 +907,41 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1x7el"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("192_iuvra")
+}, {
+"duration": 1.0,
+"texture": ExtResource("193_7ajin")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_4gjfq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_rfh14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("196_2moc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("197_chbuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("198_dcc6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("199_hgv2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("200_7rpd1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("201_sxk8n")
+}],
+"loop": true,
+"name": &"Bear Trap",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("182_powbn")

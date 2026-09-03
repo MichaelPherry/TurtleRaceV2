@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwro0ai0og8bl"]
+
+[ext_resource type="Script" uid="uid://o4gs4jf0jrx4" path="res://Passives/Head/halo.gd" id="1_wquew"]
+
+[node name="Halo" type="Node2D"]
+script = ExtResource("1_wquew")

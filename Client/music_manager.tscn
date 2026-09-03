@@ -44,6 +44,6 @@ parameters/looping = true
 
 [node name="Mainmenu" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_li70c")
-volume_db = -30.0
+volume_db = -80.0
 autoplay = true
 bus = &"Background"

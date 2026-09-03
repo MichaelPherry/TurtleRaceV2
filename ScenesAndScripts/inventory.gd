@@ -27,7 +27,7 @@ extends Node
 #		}
 #	}
 
-var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
+var appendages = ["head", "shell", "legs", "leftArm", "rightArm"]
 var stats = ["acceleration", "resilience", "max_speed", "fire_rate", "projectile_speed", "luck"]
 var econ = ["gold"]
 var what_pos = {}
@@ -42,6 +42,7 @@ var local_turtle = {}
 var server_turtles = {}
 var start_time
 var projectiles = []
+var end_items = []
 var race_started = false
 var start = false
 var tick_controller_ref
@@ -78,3 +79,10 @@ func wait_ticks(user, amt_of_seconds_to_wait):
 	var target_tick = user.curr_tick + amt_of_ticks_to_wait
 	while user.curr_tick < target_tick:
 		await tick_controller_ref.tick_sig
+
+func dupe_remover(duped_list):
+	var unique_list = []
+	for element in duped_list:
+		if element not in unique_list:
+			unique_list.append(element)
+	return unique_list

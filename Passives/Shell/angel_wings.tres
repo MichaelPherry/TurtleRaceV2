@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://dnnl0f8i1ajhu"]
+
+[ext_resource type="PackedScene" uid="uid://duecw7w3uy2mv" path="res://Passives/Shell/angel_wings.tscn" id="1_4n3hh"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_gx51i"]
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_nbhqc"]
+
+[resource]
+script = ExtResource("1_gx51i")
+name = "Angel Wings"
+description = "Shell: Causes the user to fly"
+price = 10
+icon = ExtResource("1_nbhqc")
+passive_scene = ExtResource("1_4n3hh")
+cooldown = 0
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

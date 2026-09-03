@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://rr8uqdbj7hr2"]
 
-[ext_resource type="Script" uid="uid://cdjxp1yqftn7b" path="res://Items/laser_gun.gd" id="1_7s7uc"]
+[ext_resource type="Script" uid="uid://cdjxp1yqftn7b" path="res://Items/projectiles/laser_sweep.gd" id="1_7s7uc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_abahs"]
 size = Vector2(7191, 78)

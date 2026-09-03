@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsuq5uaslkalt"]
+
+[ext_resource type="Script" uid="uid://cygekg7in2t4f" path="res://Passives/Head/cyborg_eye.gd" id="1_abahs"]
+
+[node name="CyborgEye" type="Node2D"]
+script = ExtResource("1_abahs")

@@ -82,8 +82,8 @@ func _on_message_received(type, message):
 		},		
 		"base_stats": {
 			"acceleration": 5.0,
-			"resilience": 0.1,
-			"max_speed": 300.0,
+			"resilience": 10,
+			"max_speed": 500.0,
 			"fire_rate": 1.0,
 			"projectile_speed": 1.0,
 			"luck": 1.0

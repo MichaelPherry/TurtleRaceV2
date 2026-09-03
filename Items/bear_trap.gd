@@ -12,6 +12,7 @@ var active = false
 var arc_height = 100
 var distance
 var progress = 0
+var damage = 50
 
 var sim_position
 var sim_rotation
@@ -25,7 +26,7 @@ var throw_direction
 
 var z_axis = 0
 var is_launch = false
-var rotation_speed = PI * 2
+var rotation_speed = PI * 3
 @onready var sprite = $AnimatedSprite2D
 
 func _ready():
@@ -72,13 +73,13 @@ func tick(curr_tick, tick_rat):
 func hit(body):
 	if body == target:
 		if active == true:
-			if body.grounded == true:
+			if body.grounded == true and body.height == -50:
 				if self in Inventory.projectiles:
 					Inventory.projectiles.erase(self)
 					$AnimatedSprite2D.play("snap")
 					if body.invincible == false:
 						#body.take_damage(damage)
-						body.invin_frames()
+						body.invin_frames(damage)
 					await $AnimatedSprite2D.animation_finished
 					#await get_tree().create_timer(1.0).timeout
 					queue_free()

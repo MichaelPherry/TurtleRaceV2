@@ -27,6 +27,7 @@ NetworkManager="*res://Client/NetworkManager.gd"
 Inventory="*res://ScenesAndScripts/inventory.gd"
 MusicManager="*res://Client/music_manager.tscn"
 GlobalSettings="*res://Client/global_settings.tscn"
+Keywords="*res://Keywords/keywords.gd"
 
 [editor_plugins]
 

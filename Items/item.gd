@@ -13,6 +13,7 @@ class_name Item
 @export var animation: bool
 @export var type: String
 @export var stay_in_hand: bool
+@export var keywords: Array[Keyword.Type] = []
 
 func apply(user, target, name):
 	if item_scene:

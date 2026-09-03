@@ -1,4 +1,4 @@
-[gd_scene load_steps=212 format=3 uid="uid://csjw8kp18folb"]
+[gd_scene load_steps=232 format=3 uid="uid://csjw8kp18folb"]
 
 [ext_resource type="Script" uid="uid://cvj77qbfyswks" path="res://ScenesAndScripts/turtle.gd" id="1_fhre7"]
 [ext_resource type="Texture2D" uid="uid://rtsu0j76wnn4" path="res://Art/AlexArt/green_turt/shell/Shell0001.png" id="2_ljy2c"]
@@ -182,14 +182,24 @@
 [ext_resource type="Texture2D" uid="uid://eg3q6dvwfbli" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0009.png" id="122_18i77"]
 [ext_resource type="Texture2D" uid="uid://d317ardpycp5p" path="res://Art/AlexArt/Items/SecondHead/Second Head0010.png" id="122_yt0lj"]
 [ext_resource type="Texture2D" uid="uid://c4mfpgs8wfg82" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0010.png" id="123_cb2ib"]
+[ext_resource type="Texture2D" uid="uid://cmwhsfvyp6jut" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0001.png" id="163_cyk58"]
 [ext_resource type="Texture2D" uid="uid://dso2vr6fh5pks" path="res://Art/AlexArt/Items/newFissile/L Fissile0001.png" id="164_2dfkh"]
+[ext_resource type="Texture2D" uid="uid://cje8eddwy1ncb" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0002.png" id="164_8l4xm"]
 [ext_resource type="Texture2D" uid="uid://mbpfhehfcamf" path="res://Art/AlexArt/Items/newFissile/L Fissile0002.png" id="165_3w22k"]
+[ext_resource type="Texture2D" uid="uid://djecrjvnsemmc" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0003.png" id="165_fstrt"]
+[ext_resource type="Texture2D" uid="uid://cutc4cfo11c14" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0004.png" id="166_jh33w"]
 [ext_resource type="Texture2D" uid="uid://becm16y12e5ay" path="res://Art/AlexArt/Items/newFissile/L Fissile0003.png" id="166_wgkxd"]
+[ext_resource type="Texture2D" uid="uid://nbn2di01ryg8" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0005.png" id="167_6lf3s"]
 [ext_resource type="Texture2D" uid="uid://brdnru4dhwyeg" path="res://Art/AlexArt/Items/newFissile/L Fissile0004.png" id="167_w65y4"]
+[ext_resource type="Texture2D" uid="uid://c0vb8bauj5cpc" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0006.png" id="168_0qpx1"]
 [ext_resource type="Texture2D" uid="uid://wd3putt0xrr3" path="res://Art/AlexArt/Items/newFissile/L Fissile0005.png" id="168_m2yvg"]
+[ext_resource type="Texture2D" uid="uid://ceyyilrowk2oy" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0007.png" id="169_nxlhi"]
 [ext_resource type="Texture2D" uid="uid://dyp1ueww2smgx" path="res://Art/AlexArt/Items/newFissile/L Fissile0006.png" id="169_s3hyt"]
+[ext_resource type="Texture2D" uid="uid://dnghwcegaaeee" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0008.png" id="170_e645d"]
 [ext_resource type="Texture2D" uid="uid://b7wc10wj8834n" path="res://Art/AlexArt/Items/newFissile/L Fissile0007.png" id="170_gye8u"]
+[ext_resource type="Texture2D" uid="uid://c6mqlyqpdi214" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0009.png" id="171_ghetc"]
 [ext_resource type="Texture2D" uid="uid://v3cv2gi621q7" path="res://Art/AlexArt/Items/newFissile/L Fissile0008.png" id="171_je5b4"]
+[ext_resource type="Texture2D" uid="uid://ce4v0fk1sng0u" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0010.png" id="172_14sru"]
 [ext_resource type="Texture2D" uid="uid://dssrjffvtgarg" path="res://Art/AlexArt/Items/newFissile/L Fissile0009.png" id="172_kv71o"]
 [ext_resource type="Texture2D" uid="uid://c3seuhtyeeb23" path="res://Art/AlexArt/Items/newFissile/L Fissile0010.png" id="173_gdt2n"]
 [ext_resource type="Texture2D" uid="uid://bn5ndlk0dp3vi" path="res://Art/AlexArt/Items/newFissile/R Fissile0001.png" id="184_oin8y"]
@@ -202,6 +212,16 @@
 [ext_resource type="Texture2D" uid="uid://b5gplnn5p7pdi" path="res://Art/AlexArt/Items/newFissile/R Fissile0008.png" id="191_2c5gm"]
 [ext_resource type="Texture2D" uid="uid://b7kwt387o17yb" path="res://Art/AlexArt/Items/newFissile/R Fissile0009.png" id="192_18i77"]
 [ext_resource type="Texture2D" uid="uid://bqr76bac3sver" path="res://Art/AlexArt/Items/newFissile/R Fissile0010.png" id="193_cb2ib"]
+[ext_resource type="Texture2D" uid="uid://dt6gssbolyek3" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0001.png" id="193_pohqt"]
+[ext_resource type="Texture2D" uid="uid://sejjaxicgoxj" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0002.png" id="194_yboey"]
+[ext_resource type="Texture2D" uid="uid://cgk6fq6ktpaow" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0003.png" id="195_ym4rh"]
+[ext_resource type="Texture2D" uid="uid://5jeu1qapi2xm" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0004.png" id="196_fh8rx"]
+[ext_resource type="Texture2D" uid="uid://cmg7trbm3tga" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0005.png" id="197_pvwjr"]
+[ext_resource type="Texture2D" uid="uid://b3urlcucj5p76" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0006.png" id="198_qnh1e"]
+[ext_resource type="Texture2D" uid="uid://bly12a365wxxr" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0007.png" id="199_iba7e"]
+[ext_resource type="Texture2D" uid="uid://d14766x6b6osh" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0008.png" id="200_c2jd3"]
+[ext_resource type="Texture2D" uid="uid://cvbpcqj2bkrjl" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0009.png" id="201_jp6or"]
+[ext_resource type="Texture2D" uid="uid://vijkujp0uw3l" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0010.png" id="202_rg2dp"]
 [ext_resource type="Texture2D" uid="uid://dbespwijcr1yi" path="res://Art/TempArt/shadow.png" id="254_ne40m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_knrj5"]
@@ -790,6 +810,41 @@ animations = [{
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("163_cyk58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("164_8l4xm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("165_fstrt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("166_jh33w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("167_6lf3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("168_0qpx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("169_nxlhi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("170_e645d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("171_ghetc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("172_14sru")
+}],
+"loop": true,
+"name": &"Bear Trap",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("164_2dfkh")
 }, {
 "duration": 1.0,
@@ -861,6 +916,41 @@ animations = [{
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cv87c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("193_pohqt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("194_yboey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("195_ym4rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("196_fh8rx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("197_pvwjr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("198_qnh1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("199_iba7e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("200_c2jd3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("201_jp6or")
+}, {
+"duration": 1.0,
+"texture": ExtResource("202_rg2dp")
+}],
+"loop": true,
+"name": &"Bear Trap",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("184_oin8y")
@@ -936,6 +1026,7 @@ animations = [{
 script = ExtResource("1_fhre7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -50)
 shape = SubResource("CapsuleShape2D_knrj5")
 
@@ -947,11 +1038,9 @@ sprite_frames = SubResource("SpriteFrames_jwvlw")
 
 [node name="Legs" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_thiku")
-animation = &"Roller Skates"
 
 [node name="Belly" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_6ivxv")
-animation = &"Suit"
 
 [node name="Head" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_5fc6w")
@@ -962,11 +1051,40 @@ sprite_frames = SubResource("SpriteFrames_mqv1x")
 
 [node name="LeftArm" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_2lp8t")
-animation = &"Fissile Cannon"
+animation = &"Bear Trap"
 
 [node name="RightArm" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_cv87c")
-animation = &"Fissile Cannon"
+animation = &"Bear Trap"
+
+[node name="PlayerUI" type="Control" parent="Visuals"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Visuals/PlayerUI"]
+layout_mode = 0
+offset_left = -278.0
+offset_top = -452.0
+offset_right = 283.0
+offset_bottom = -336.0
+
+[node name="NameLabel" type="Label" parent="Visuals/PlayerUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 44
+text = "text"
+horizontal_alignment = 1
+
+[node name="StaminaBar" type="ProgressBar" parent="Visuals/PlayerUI/VBoxContainer"]
+layout_mode = 2
 
 [node name="Shadow" type="Sprite2D" parent="."]
 visibility_layer = 4
@@ -975,13 +1093,3 @@ y_sort_enabled = true
 position = Vector2(0, 200)
 scale = Vector2(0.26237, 0.169922)
 texture = ExtResource("254_ne40m")
-
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_left = -314.0
-offset_top = -394.0
-offset_right = 324.0
-offset_bottom = -310.0
-theme_override_font_sizes/font_size = 44
-text = "text"
-horizontal_alignment = 1

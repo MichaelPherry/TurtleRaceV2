@@ -4,13 +4,9 @@ var max_speed_mult = 1.5
 var accel_mult = 100
 var user
 var flight_time = 3
-var start_tick
 var effect = true
 var orig_max_speed
 
-func _ready():
-	start_tick = user.curr_tick
-	
 func _process(delta):
 	pass
 
