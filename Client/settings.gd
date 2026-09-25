@@ -47,3 +47,8 @@ func _on_global_button_pressed() -> void:
 	else:
 		$Panel.visible = false
 		mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+func _on_exit_pressed() -> void:
+	$Panel.visible = false
+	mouse_filter = Control.MOUSE_FILTER_IGNORE

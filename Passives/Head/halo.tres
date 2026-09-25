@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_astts")
 name = "Halo"
-description = "Head: While active causes projectiles and traps that hit the user to have Divine"
+description = "Head: While active causes projectiles and traps that hit the user to increase resilience"
 price = 10
 icon = ExtResource("1_svah7")
 passive_scene = ExtResource("2_ixwn7")

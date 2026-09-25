@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_q5dnt")
 name = "Clown Wig"
-description = "Head: Creates up to tow random common items for the next race that are then removed at the end of the race. Only works if there are empty slots in Users inventory "
+description = "Head: Creates up to two random common items for the next race that are then removed at the end of the race. Only works if there are empty slots in Users inventory "
 price = 10
 icon = ExtResource("1_brcfp")
 passive_scene = ExtResource("2_kuy6w")

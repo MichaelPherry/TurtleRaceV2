@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Buffs" load_steps=4 format=3 uid="uid://cl5ke1pvhnodi"]
+
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_ap4yg"]
+[ext_resource type="Script" uid="uid://ccj5nhnjej77f" path="res://StatBuffs/buffs.gd" id="1_auybh"]
+[ext_resource type="PackedScene" uid="uid://sv8vu1q3u1mr" path="res://StatBuffs/kettlebell.tscn" id="1_y4cxm"]
+
+[resource]
+script = ExtResource("1_auybh")
+name = "Kettlebell"
+description = "User increases their luck stat"
+price = 10
+icon = ExtResource("1_ap4yg")
+buff_amount = 0.1
+buff_scene = ExtResource("1_y4cxm")
+metadata/_custom_type_script = "uid://ccj5nhnjej77f"

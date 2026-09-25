@@ -23,4 +23,4 @@ func use_item(user_target):
 		gun_projectile.direction = direction
 		gun_projectile.keyword_attributes = user_keywords
 		get_tree().current_scene.add_child(gun_projectile)
-		await Inventory.wait_ticks(user, 0.1)
+		await Inventory.wait_ticks(user, 0.2)

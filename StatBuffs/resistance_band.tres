@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Buffs" load_steps=4 format=3 uid="uid://cbpp4w0ey6eah"]
+
+[ext_resource type="Script" uid="uid://ccj5nhnjej77f" path="res://StatBuffs/buffs.gd" id="1_1ucfs"]
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_isars"]
+[ext_resource type="PackedScene" uid="uid://dkafs3nknato5" path="res://StatBuffs/resistance_band.tscn" id="1_kyqmw"]
+
+[resource]
+script = ExtResource("1_1ucfs")
+name = "Resistance Band"
+description = "User increases their resilience stat"
+price = 10
+icon = ExtResource("1_isars")
+buff_amount = 10.0
+buff_scene = ExtResource("1_kyqmw")
+metadata/_custom_type_script = "uid://ccj5nhnjej77f"

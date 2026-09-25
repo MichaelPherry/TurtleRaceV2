@@ -1,7 +1,7 @@
 extends Node
 
 var max_speed_mult = 1.5
-var accel_mult = 100
+var accel_mult = 1.5
 var user
 var flight_time = 3
 var effect = true
@@ -18,5 +18,6 @@ func activate_effect():
 	
 	await Inventory.wait_ticks(user, flight_time)
 	user.max_speed = orig_max_speed
+	user.acceleration /= 1.5
 	user.head_cooldown = user.head.cooldown
 	user.grounded = true

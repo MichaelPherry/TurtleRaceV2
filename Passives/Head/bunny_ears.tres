@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_1e82l")
 name = "Bunny Ears"
-description = "Head: 2.5x acceleration. Cuts max speed by 3/4 every second"
+description = "Head: Doubles user acceleration and max speed but causes the user to fall asleep. Cooldown 5 seconds"
 price = 10
 icon = ExtResource("1_1e82l")
 passive_scene = ExtResource("1_nbn4d")

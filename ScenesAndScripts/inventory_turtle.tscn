@@ -1,4 +1,4 @@
-[gd_scene load_steps=229 format=3 uid="uid://1usxicevamun"]
+[gd_scene load_steps=269 format=3 uid="uid://1usxicevamun"]
 
 [ext_resource type="Script" uid="uid://dukpxyrxhenc5" path="res://ScenesAndScripts/inventory_turtle.gd" id="1_v3plr"]
 [ext_resource type="Texture2D" uid="uid://rtsu0j76wnn4" path="res://Art/AlexArt/green_turt/shell/Shell0001.png" id="2_khnfd"]
@@ -21,16 +21,26 @@
 [ext_resource type="Texture2D" uid="uid://ms0btw2jpjom" path="res://Art/AlexArt/Items/CinderBlocks/Cinder Blocks0008.png" id="19_wky2y"]
 [ext_resource type="Texture2D" uid="uid://bf42dtin8sajf" path="res://Art/AlexArt/Items/CinderBlocks/Cinder Blocks0009.png" id="20_e0nye"]
 [ext_resource type="Texture2D" uid="uid://d0gbr6kvyi777" path="res://Art/AlexArt/Items/CinderBlocks/Cinder Blocks0010.png" id="21_adutl"]
+[ext_resource type="Texture2D" uid="uid://broso88v0pdjr" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0001.png" id="22_2acks"]
 [ext_resource type="Texture2D" uid="uid://cgk34nxb82y3q" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0001.png" id="22_tk3a2"]
 [ext_resource type="Texture2D" uid="uid://bjtg3mm8e254" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0002.png" id="23_qpcfd"]
+[ext_resource type="Texture2D" uid="uid://dd2lve7w2mdaj" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0002.png" id="23_v0boq"]
 [ext_resource type="Texture2D" uid="uid://cji4sab0fxvva" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0003.png" id="24_eapc2"]
+[ext_resource type="Texture2D" uid="uid://cprvnivvlbaen" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0003.png" id="24_fe5go"]
 [ext_resource type="Texture2D" uid="uid://cymj06yd63650" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0004.png" id="25_4mhgk"]
+[ext_resource type="Texture2D" uid="uid://cpx3iguei3h2m" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0004.png" id="25_i2mqw"]
 [ext_resource type="Texture2D" uid="uid://cqic0swqwsafl" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0005.png" id="26_1vmyd"]
+[ext_resource type="Texture2D" uid="uid://dj5mxdfo72o8i" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0005.png" id="26_q01d7"]
+[ext_resource type="Texture2D" uid="uid://bn8m27snytlkl" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0006.png" id="27_bhtiw"]
 [ext_resource type="Texture2D" uid="uid://cyyhdqmeu4p4g" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0006.png" id="27_pgbya"]
 [ext_resource type="Texture2D" uid="uid://cvwy1pqn318u3" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0007.png" id="28_6ymxx"]
+[ext_resource type="Texture2D" uid="uid://cm17c8e6b77fp" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0007.png" id="28_24i3x"]
+[ext_resource type="Texture2D" uid="uid://dht3aeyfxohsi" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0008.png" id="29_aamqo"]
 [ext_resource type="Texture2D" uid="uid://codm4ycqak5r3" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0008.png" id="29_qqhko"]
+[ext_resource type="Texture2D" uid="uid://bf68k5em2yxx0" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0009.png" id="30_0k1qx"]
 [ext_resource type="Texture2D" uid="uid://ckocv1pyg4nni" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0009.png" id="30_ysm3u"]
 [ext_resource type="Texture2D" uid="uid://btonb6kob7gfs" path="res://Art/AlexArt/Items/Rollerskates/Roller Skates0010.png" id="31_agiho"]
+[ext_resource type="Texture2D" uid="uid://b2roikm2dvv7l" path="res://Art/AlexArt/Items/DressShoes/Dress Shoes0010.png" id="31_wejsa"]
 [ext_resource type="Texture2D" uid="uid://gbvvut7ofddl" path="res://Art/AlexArt/green_turt/legs/Legs0001.png" id="32_hj54k"]
 [ext_resource type="Texture2D" uid="uid://divws4d5j2qpf" path="res://Art/AlexArt/green_turt/legs/Legs0002.png" id="33_vllpm"]
 [ext_resource type="Texture2D" uid="uid://yo3esa5tsgle" path="res://Art/AlexArt/green_turt/legs/Legs0003.png" id="34_pe025"]
@@ -134,33 +144,43 @@
 [ext_resource type="Texture2D" uid="uid://tod0w1tu30jh" path="res://Art/AlexArt/green_turt/face/Face0001.png" id="112_14s0d"]
 [ext_resource type="Texture2D" uid="uid://dwnd66depgrt" path="res://Art/AlexArt/Items/SecondHead/Second Head0001.png" id="112_agiho"]
 [ext_resource type="Texture2D" uid="uid://dlhueppp5m0o5" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0001.png" id="112_powbn"]
+[ext_resource type="Texture2D" uid="uid://cfxj3bi3agp30" path="res://Art/AlexArt/Items/Crown/Crown0001.png" id="112_tbumr"]
 [ext_resource type="Texture2D" uid="uid://xc63b73x2dct" path="res://Art/AlexArt/green_turt/face/Face0002.png" id="113_5govq"]
 [ext_resource type="Texture2D" uid="uid://comqac1vugp5o" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0002.png" id="113_262yj"]
+[ext_resource type="Texture2D" uid="uid://bat3gv2k07c3x" path="res://Art/AlexArt/Items/Crown/Crown0002.png" id="113_hgtcu"]
 [ext_resource type="Texture2D" uid="uid://c241p8ttwn0u2" path="res://Art/AlexArt/Items/SecondHead/Second Head0002.png" id="113_hj54k"]
+[ext_resource type="Texture2D" uid="uid://b446clp5s5pqw" path="res://Art/AlexArt/Items/Crown/Crown0003.png" id="114_bec84"]
 [ext_resource type="Texture2D" uid="uid://dya5ip3804rlc" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0003.png" id="114_c8foa"]
 [ext_resource type="Texture2D" uid="uid://dl16qhfkgn15e" path="res://Art/AlexArt/Items/SecondHead/Second Head0003.png" id="114_vllpm"]
 [ext_resource type="Texture2D" uid="uid://ct4gd6c21h2cm" path="res://Art/AlexArt/green_turt/face/Face0003.png" id="114_vs68d"]
 [ext_resource type="Texture2D" uid="uid://b43pl01fmqkc" path="res://Art/AlexArt/green_turt/face/Face0004.png" id="115_84sn8"]
 [ext_resource type="Texture2D" uid="uid://c0rqych16fj21" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0004.png" id="115_fgpsv"]
+[ext_resource type="Texture2D" uid="uid://djr1hipkywotg" path="res://Art/AlexArt/Items/Crown/Crown0004.png" id="115_hcsq8"]
 [ext_resource type="Texture2D" uid="uid://gu7lrwbycswq" path="res://Art/AlexArt/Items/SecondHead/Second Head0004.png" id="115_pe025"]
 [ext_resource type="Texture2D" uid="uid://dhpcegsruktkk" path="res://Art/AlexArt/green_turt/face/Face0005.png" id="116_cwuyi"]
 [ext_resource type="Texture2D" uid="uid://c4ud0842m2q2y" path="res://Art/AlexArt/Items/SecondHead/Second Head0005.png" id="116_onsse"]
+[ext_resource type="Texture2D" uid="uid://bskjjasppjlbb" path="res://Art/AlexArt/Items/Crown/Crown0005.png" id="116_smb6n"]
 [ext_resource type="Texture2D" uid="uid://cusyx4e6txq6n" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0005.png" id="116_y1lt8"]
+[ext_resource type="Texture2D" uid="uid://diwmmkurx6ysg" path="res://Art/AlexArt/Items/Crown/Crown0006.png" id="117_4i7tv"]
 [ext_resource type="Texture2D" uid="uid://c6naeluacw0ye" path="res://Art/AlexArt/green_turt/face/Face0006.png" id="117_ba6uh"]
 [ext_resource type="Texture2D" uid="uid://cx7c7fco4n27b" path="res://Art/AlexArt/Items/SecondHead/Second Head0006.png" id="117_pwi6c"]
 [ext_resource type="Texture2D" uid="uid://c1rbxl66qopmv" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0006.png" id="117_vvqbb"]
 [ext_resource type="Texture2D" uid="uid://rv6ocbggigel" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0007.png" id="118_3dsed"]
+[ext_resource type="Texture2D" uid="uid://brmrduw11a4nd" path="res://Art/AlexArt/Items/Crown/Crown0007.png" id="118_by7lo"]
 [ext_resource type="Texture2D" uid="uid://cd5dvsiavqah6" path="res://Art/AlexArt/Items/SecondHead/Second Head0007.png" id="118_eiph7"]
 [ext_resource type="Texture2D" uid="uid://cxbh1rl0mtol0" path="res://Art/AlexArt/green_turt/face/Face0007.png" id="118_qgxv5"]
+[ext_resource type="Texture2D" uid="uid://d3tt0iv8j8yvm" path="res://Art/AlexArt/Items/Crown/Crown0008.png" id="119_cd0bm"]
 [ext_resource type="Texture2D" uid="uid://sgi5h41v4uqb" path="res://Art/AlexArt/green_turt/face/Face0008.png" id="119_chqi2"]
 [ext_resource type="Texture2D" uid="uid://cativglwgaely" path="res://Art/AlexArt/Items/SecondHead/Second Head0008.png" id="119_ilgfh"]
 [ext_resource type="Texture2D" uid="uid://dyqacfdliuek2" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0008.png" id="119_p03b0"]
 [ext_resource type="Texture2D" uid="uid://dgo8xwdlyvey2" path="res://Art/AlexArt/green_turt/face/Face0009.png" id="120_bikwd"]
+[ext_resource type="Texture2D" uid="uid://d26aeyychiye2" path="res://Art/AlexArt/Items/Crown/Crown0009.png" id="120_ijw6r"]
 [ext_resource type="Texture2D" uid="uid://eg3q6dvwfbli" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0009.png" id="120_lpx1r"]
 [ext_resource type="Texture2D" uid="uid://twyqjim2s5oq" path="res://Art/AlexArt/Items/SecondHead/Second Head0009.png" id="120_ww3ob"]
 [ext_resource type="Texture2D" uid="uid://bnbrsb00ck2ud" path="res://Art/AlexArt/green_turt/face/Face0010.png" id="121_2acks"]
 [ext_resource type="Texture2D" uid="uid://d317ardpycp5p" path="res://Art/AlexArt/Items/SecondHead/Second Head0010.png" id="121_8mc30"]
 [ext_resource type="Texture2D" uid="uid://c4mfpgs8wfg82" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0010.png" id="121_bkf11"]
+[ext_resource type="Texture2D" uid="uid://cmcw0ofa5f2t" path="res://Art/AlexArt/Items/Crown/Crown0010.png" id="121_tieid"]
 [ext_resource type="Texture2D" uid="uid://c3cxlxgwd13c6" path="res://Art/AlexArt/green_turt/leftArm/L Arm0001.png" id="122_v0boq"]
 [ext_resource type="Texture2D" uid="uid://ek8awlunx80p" path="res://Art/AlexArt/green_turt/leftArm/L Arm0002.png" id="123_fe5go"]
 [ext_resource type="Texture2D" uid="uid://ce1f162cwxrni" path="res://Art/AlexArt/green_turt/leftArm/L Arm0003.png" id="124_i2mqw"]
@@ -221,6 +241,26 @@
 [ext_resource type="Texture2D" uid="uid://d14766x6b6osh" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0008.png" id="199_hgv2n"]
 [ext_resource type="Texture2D" uid="uid://cvbpcqj2bkrjl" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0009.png" id="200_7rpd1"]
 [ext_resource type="Texture2D" uid="uid://vijkujp0uw3l" path="res://Art/AlexArt/Items/BearTrap/R Bear Trap0010.png" id="201_sxk8n"]
+[ext_resource type="Texture2D" uid="uid://bdurqqv2gh4ky" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0001.png" id="202_2dklo"]
+[ext_resource type="Texture2D" uid="uid://8ddd5jw7otb4" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0002.png" id="203_dwpl3"]
+[ext_resource type="Texture2D" uid="uid://co1au58et8fmt" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0003.png" id="204_p6htg"]
+[ext_resource type="Texture2D" uid="uid://c87cjxqqg56o7" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0004.png" id="205_kep4w"]
+[ext_resource type="Texture2D" uid="uid://cwtbedd1bfd4e" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0005.png" id="206_ahedd"]
+[ext_resource type="Texture2D" uid="uid://llvoumn8kmr8" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0006.png" id="207_jb5pd"]
+[ext_resource type="Texture2D" uid="uid://clffi2qts186k" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0007.png" id="208_cnq8f"]
+[ext_resource type="Texture2D" uid="uid://domnmrm8fymvf" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0008.png" id="209_hd4ig"]
+[ext_resource type="Texture2D" uid="uid://bahfgrtoxq6as" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0009.png" id="210_ysfx4"]
+[ext_resource type="Texture2D" uid="uid://dc6jop148ha4x" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Left Arm0010.png" id="211_jrjgt"]
+[ext_resource type="Texture2D" uid="uid://c24f1o21jl1qj" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0001.png" id="242_qn86t"]
+[ext_resource type="Texture2D" uid="uid://h5i75aqnf5fn" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0002.png" id="243_wac7l"]
+[ext_resource type="Texture2D" uid="uid://dl77e3oxo85rp" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0003.png" id="244_lsrpq"]
+[ext_resource type="Texture2D" uid="uid://dfbbstn304cje" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0004.png" id="245_2kj4j"]
+[ext_resource type="Texture2D" uid="uid://d13kl7eusjhum" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0005.png" id="246_2nigg"]
+[ext_resource type="Texture2D" uid="uid://q8g6iur7ly5x" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0006.png" id="247_xu73o"]
+[ext_resource type="Texture2D" uid="uid://ckjn0ejsvubs3" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0007.png" id="248_mh48h"]
+[ext_resource type="Texture2D" uid="uid://7lndxkjuiv75" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0008.png" id="249_4s2ls"]
+[ext_resource type="Texture2D" uid="uid://dfvn53ovyfqlv" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0009.png" id="250_4eq7x"]
+[ext_resource type="Texture2D" uid="uid://b3rhnavv017g2" path="res://Art/AlexArt/Items/MachineGun/Machine Gun Right Arm0010.png" id="251_glxtx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v3plr"]
 animations = [{
@@ -295,6 +335,41 @@ animations = [{
 }],
 "loop": true,
 "name": &"Cinder Blocks",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_2acks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_v0boq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_fe5go")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_i2mqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_q01d7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_bhtiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_24i3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_aamqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_0k1qx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_wejsa")
+}],
+"loop": true,
+"name": &"Dress Shoes",
 "speed": 10.0
 }, {
 "frames": [{
@@ -620,6 +695,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("112_tbumr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("113_hgtcu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("114_bec84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("115_hcsq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("116_smb6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("117_4i7tv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("118_by7lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("119_cd0bm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("120_ijw6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("121_tieid")
+}],
+"loop": true,
+"name": &"Kings Crown",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("112_powbn")
 }, {
 "duration": 1.0,
@@ -871,6 +981,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("202_2dklo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("203_dwpl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("204_p6htg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("205_kep4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("206_ahedd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("207_jb5pd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("208_cnq8f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("209_hd4ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("210_ysfx4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("211_jrjgt")
+}],
+"loop": true,
+"name": &"Machine Gun",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("122_v0boq")
 }, {
 "duration": 1.0,
@@ -979,6 +1124,41 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("242_qn86t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("243_wac7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("244_lsrpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("245_2kj4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("246_2nigg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("247_xu73o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("248_mh48h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("249_4s2ls")
+}, {
+"duration": 1.0,
+"texture": ExtResource("250_4eq7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("251_glxtx")
+}],
+"loop": true,
+"name": &"Machine Gun",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("132_hgtcu")
 }, {
 "duration": 1.0,
@@ -1030,6 +1210,7 @@ sprite_frames = SubResource("SpriteFrames_vfv2l")
 
 [node name="Head" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_ablqi")
+animation = &"Kings Crown"
 
 [node name="Face" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_mufq1")

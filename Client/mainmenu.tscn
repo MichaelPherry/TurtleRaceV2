@@ -17,26 +17,28 @@ corner_radius_bottom_left = 5
 layout_mode = 3
 anchors_preset = 0
 offset_top = -1.0
-offset_right = 1152.0
-offset_bottom = 648.0
+offset_right = 1922.0
+offset_bottom = 1079.0
+mouse_filter = 2
 script = ExtResource("1_jxe75")
 
 [node name="NameSubmit" type="Button" parent="."]
 layout_mode = 0
-offset_left = 136.0
-offset_top = 180.0
-offset_right = 581.0
-offset_bottom = 229.0
+offset_left = 770.0
+offset_top = 260.0
+offset_right = 1215.0
+offset_bottom = 309.0
 text = "Submit Name"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 77.0
-offset_top = 72.0
-offset_right = 624.0
-offset_bottom = 140.0
+offset_left = 712.0
+offset_top = 152.0
+offset_right = 1259.0
+offset_bottom = 220.0
 placeholder_text = "Enter name here"
-max_length = 9
+alignment = 1
+max_length = 25
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -45,6 +47,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0.156863, 0.156863, 0.156863, 1)
 
 [node name="PanelContainer" type="PanelContainer" parent="ColorRect"]
@@ -54,16 +57,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -502.5
+offset_left = -781.0
 offset_top = -209.0
-offset_right = 518.5
-offset_bottom = 286.0
+offset_right = 764.0
+offset_bottom = 452.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yi176")
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect/PanelContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
@@ -71,25 +76,28 @@ theme_override_constants/margin_bottom = 15
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/PanelContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+mouse_filter = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
+mouse_filter = 2
 theme_override_constants/separation = 20
 
 [node name="Create" type="Button" parent="ColorRect"]
 layout_mode = 2
-offset_left = 77.0
-offset_top = 59.0
-offset_right = 1096.0
-offset_bottom = 101.0
+offset_left = 392.0
+offset_top = 27.0
+offset_right = 1534.0
+offset_bottom = 293.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 0
@@ -98,10 +106,11 @@ text = "Create Lobby"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
-offset_left = 235.0
-offset_top = 166.0
-offset_right = 938.0
-offset_bottom = 528.0
+offset_left = 609.0
+offset_top = 389.0
+offset_right = 1312.0
+offset_bottom = 751.0
+mouse_filter = 2
 
 [node name="Online" type="Button" parent="Panel"]
 layout_mode = 0

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_e2okd")
 name = "Cyborg Eye"
-description = "Head: Blasts a huge sweeping laser"
+description = "Head: Blasts a huge sweeping laser. Cooldown 5 seconds"
 price = 10
 icon = ExtResource("1_7sl2m")
 passive_scene = ExtResource("2_4hyuc")

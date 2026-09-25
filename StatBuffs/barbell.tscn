@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://p48ebp6kehdu"]
+
+[ext_resource type="Script" uid="uid://co0sna620b4pa" path="res://StatBuffs/barbell.gd" id="1_8gtj3"]
+
+[node name="Barbell" type="Node2D"]
+script = ExtResource("1_8gtj3")

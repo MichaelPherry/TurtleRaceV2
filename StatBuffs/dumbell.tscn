@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://coy2y5n3vu4e5"]
+
+[ext_resource type="Script" uid="uid://c8i6e8omktujg" path="res://StatBuffs/dumbell.gd" id="1_frub5"]
+
+[node name="Dumbell" type="Node2D"]
+script = ExtResource("1_frub5")

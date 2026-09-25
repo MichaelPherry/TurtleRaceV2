@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjji8m5ur87bo"]
+
+[ext_resource type="Script" uid="uid://bxgl87tcilgmv" path="res://ScenesAndScripts/gym.gd" id="1_p110f"]
+[ext_resource type="Texture2D" uid="uid://bsspdauuayvk3" path="res://Art/ShaneArt/Gym/barbell/frame0000.png" id="2_j85im"]
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="3_ai3kp"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2x6u7"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"Barbell",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Dumbell",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Jump Rope",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"Punching Bag",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_j85im")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Gym" type="Node2D"]
+script = ExtResource("1_p110f")
+
+[node name="RatBackground" type="AnimatedSprite2D" parent="."]
+position = Vector2(-0.500032, -0.999937)
+scale = Vector2(1.66615, 1.66481)
+sprite_frames = SubResource("SpriteFrames_2x6u7")
+
+[node name="gymslot1" type="TextureButton" parent="RatBackground"]
+offset_left = -653.904
+offset_top = 76.2847
+offset_right = -425.904
+offset_bottom = 210.285
+texture_normal = ExtResource("3_ai3kp")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="slot1_cost" type="Label" parent="RatBackground/gymslot1"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 51.6161
+offset_top = 138.754
+offset_right = 209.616
+offset_bottom = 189.754
+text = "slot1 price"
+metadata/_edit_use_anchors_ = true
+
+[node name="gymslot2" type="TextureButton" parent="RatBackground"]
+offset_left = -164.751
+offset_top = 103.315
+offset_right = 63.2487
+offset_bottom = 237.315
+texture_normal = ExtResource("3_ai3kp")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="slot2_cost" type="Label" parent="RatBackground/gymslot2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 33.0422
+offset_top = 120.432
+offset_right = 191.042
+offset_bottom = 171.432
+text = "slot1 price"
+metadata/_edit_use_anchors_ = true
+
+[node name="gymslot3" type="TextureButton" parent="RatBackground"]
+offset_left = 269.184
+offset_top = 73.2814
+offset_right = 497.184
+offset_bottom = 207.281
+texture_normal = ExtResource("3_ai3kp")
+ignore_texture_size = true
+stretch_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="slot3_cost" type="Label" parent="RatBackground/gymslot3"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 100.071
+offset_top = 134.897
+offset_right = 258.07
+offset_bottom = 185.897
+text = "slot1 price"
+metadata/_edit_use_anchors_ = true

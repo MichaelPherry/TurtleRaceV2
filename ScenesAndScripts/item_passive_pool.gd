@@ -1,18 +1,19 @@
 extends Node
 
 var appendages = ["arm", "head", "shell", "legs"]
+var all_buffs = ["ankle_weights", "barbell", "dumbell", "kettlebell", "punching_bag", "resistance_band"]
 var all_items = {
 	"arm": ["fissile_cannon", "bear_trap", "machine_gun"],
 	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet", "kings_crown", "halo", "cyborg_eye", "clown_wig"],
 	"shell": ["ammo_belt", "battery", "streaker_leaf", "suit", "angel_wings"],
-	"legs": ["rollerskates", "cinderblocks"]
+	"legs": ["rollerskates", "cinderblocks", "rocketboots"]
 }
 
 var total_pool
 
 func _ready():
 	total_pool = all_items.duplicate(true)
-
+	
 func arm(item):
 	match item:
 		"fissile_cannon":
@@ -66,3 +67,20 @@ func legs(item):
 			return load("res://Passives/Legs/rollerskates.tres")
 		"cinderblocks":
 			return load("res://Passives/Legs/cinderblocks.tres")
+		"rocketboots":
+			return load("res://Passives/Legs/rocketboots.tres")
+
+func stat_buff(buff):
+	match buff:
+		"ankle_weights":
+			return load("res://StatBuffs/ankle_weight.tres")
+		"barbell":
+			return load("res://StatBuffs/barbell.tres")
+		"dumbell":
+			return load("res://StatBuffs/dumbell.tres")
+		"kettlebell":
+			return load("res://StatBuffs/kettlebell.tres")
+		"punching_bag":
+			return load("res://StatBuffs/punching_bag.tres")
+		"resistance_band":
+			return load("res://StatBuffs/resistance_band.tres")

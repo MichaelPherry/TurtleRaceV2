@@ -51,6 +51,10 @@ var item_1
 var item_2
 var item_3
 
+var buff_1
+var buff_2
+var buff_3
+
 #currently not in use
 func reset_turtles():
 	var server_keys = server_turtles.keys()

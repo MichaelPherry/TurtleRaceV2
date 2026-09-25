@@ -10,7 +10,7 @@ var last_distace = 7777777
 var sim_rotation: float
 var keyword_attributes
 var damage = 5
-@onready var sprite = $Fish
+@onready var sprite = $AnimatedSprite2D
 
 
 func _ready():
@@ -18,9 +18,14 @@ func _ready():
 	Inventory.projectiles.append(self)
 	$AnimatedSprite2D.play('default')
 	sim_position = global_position
+	sprite.rotation = direction.angle()
 	#players = get_tree().get_nodes_in_group("racing")
 	
 func _process(delta):
+	if transform.x.x < 0:
+		sprite.flip_v = true
+	else:
+		sprite.flip_v = false
 	position = position.lerp(sim_position, 0.25)
 	
 	

@@ -70,35 +70,35 @@ func hover():
 	shell_anim.play("default")
 	face_anim.frame = current_frame
 	face_anim.play("default")
-	if legs != null:
+	if legs != null and legs_anim.sprite_frames.has_animation(legs.name):
 		legs_anim.frame = current_frame
 		legs_anim.play(legs.name)
 	else:
 		legs_anim.frame = current_frame
 		legs_anim.play("default")
 		
-	if shell != null:
+	if shell != null and belly_anim.sprite_frames.has_animation(shell.name):
 		belly_anim.frame = current_frame
 		belly_anim.play(shell.name)
 	else:
 		belly_anim.frame = current_frame
 		belly_anim.play("default")
 		
-	if head != null:
+	if head != null and head_anim.sprite_frames.has_animation(head.name):
 		head_anim.frame = current_frame
 		head_anim.play(head.name)
 	else:
 		head_anim.frame = current_frame
 		head_anim.play("default")
 		
-	if left_arm != null:
+	if left_arm != null and leftArm_anim.sprite_frames.has_animation(left_arm.name):
 		leftArm_anim.frame = current_frame
 		leftArm_anim.play(left_arm.name)
 	else:
 		leftArm_anim.frame = current_frame
 		leftArm_anim.play("default")
 		
-	if right_arm != null:
+	if right_arm != null and rightArm_anim.sprite_frames.has_animation(right_arm.name):
 		rightArm_anim.frame = current_frame
 		rightArm_anim.play(right_arm.name)
 	else:

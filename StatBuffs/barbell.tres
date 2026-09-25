@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Buffs" load_steps=4 format=3 uid="uid://b1kcifkvlsbqg"]
+
+[ext_resource type="PackedScene" uid="uid://p48ebp6kehdu" path="res://StatBuffs/barbell.tscn" id="1_biy48"]
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_dd6n0"]
+[ext_resource type="Script" uid="uid://ccj5nhnjej77f" path="res://StatBuffs/buffs.gd" id="1_g4nj5"]
+
+[resource]
+script = ExtResource("1_g4nj5")
+name = "Barbell"
+description = "User increases their top speed stat"
+price = 10
+icon = ExtResource("1_dd6n0")
+buff_amount = 50.0
+buff_scene = ExtResource("1_biy48")
+metadata/_custom_type_script = "uid://ccj5nhnjej77f"

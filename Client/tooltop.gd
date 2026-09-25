@@ -1,7 +1,7 @@
 extends Panel
 
-@onready var nameLabel = $Name
-@onready var descriptionLabel = $Description
+@onready var nameLabel = $VBoxContainer/Name
+@onready var descriptionLabel = $VBoxContainer/Description
 
 func show_item(item):
 	self.visible = true

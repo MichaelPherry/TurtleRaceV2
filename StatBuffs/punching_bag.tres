@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Buffs" load_steps=4 format=3 uid="uid://bir4esrrlsuoj"]
+
+[ext_resource type="Script" uid="uid://ccj5nhnjej77f" path="res://StatBuffs/buffs.gd" id="1_e517v"]
+[ext_resource type="PackedScene" uid="uid://dvo002otombyn" path="res://StatBuffs/punching_bag.tscn" id="1_f4gme"]
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_s3ngc"]
+
+[resource]
+script = ExtResource("1_e517v")
+name = "Punching Bag"
+description = "User increases their fire rate stat"
+price = 10
+icon = ExtResource("1_s3ngc")
+buff_amount = 0.1
+buff_scene = ExtResource("1_f4gme")
+metadata/_custom_type_script = "uid://ccj5nhnjej77f"

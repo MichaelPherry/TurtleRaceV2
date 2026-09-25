@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://daqk2orbi58am"]
+
+[ext_resource type="FontFile" uid="uid://33acvxbgd0fq" path="res://Art/AlexArt/TextFonts/Turtle-Regular.ttf" id="1_qqkps"]
+
+[resource]
+default_font = ExtResource("1_qqkps")

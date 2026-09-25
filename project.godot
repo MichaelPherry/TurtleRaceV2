@@ -29,10 +29,17 @@ MusicManager="*res://Client/music_manager.tscn"
 GlobalSettings="*res://Client/global_settings.tscn"
 Keywords="*res://Keywords/keywords.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+
 [editor_plugins]
 
 enabled=PackedStringArray()
 
 [gui]
 
+theme/custom_font="uid://33acvxbgd0fq"
 theme/default_font_multichannel_signed_distance_field=true

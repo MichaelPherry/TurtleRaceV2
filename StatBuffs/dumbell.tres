@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Buffs" load_steps=4 format=3 uid="uid://nkx5q8t5esbj"]
+
+[ext_resource type="PackedScene" uid="uid://coy2y5n3vu4e5" path="res://StatBuffs/dumbell.tscn" id="1_10p24"]
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_ry2j3"]
+[ext_resource type="Script" uid="uid://ccj5nhnjej77f" path="res://StatBuffs/buffs.gd" id="1_ul2fd"]
+
+[resource]
+script = ExtResource("1_ul2fd")
+name = "Dumbell"
+description = "Increases users their projectile speed stat"
+price = 10
+icon = ExtResource("1_ry2j3")
+buff_amount = 0.1
+buff_scene = ExtResource("1_10p24")
+metadata/_custom_type_script = "uid://ccj5nhnjej77f"

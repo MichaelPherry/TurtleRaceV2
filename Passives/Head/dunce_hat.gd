@@ -2,7 +2,7 @@ extends Node
 
 var user
 var acceleration_add = 2
-var max_speed_add = 1.5
+var max_speed_add = 2
 var effect = true
 var last_dunce = -1
 var dunce_list = [-1,1]

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_o0vsc")
 name = "Bear Trap"
-description = "Arm: Throws trap infront of target turtle"
+description = "Arm: Throws a large trap infront of target dealing a lot of damage. Cooldown 6 seconds"
 price = 10
 body_part = "Arm"
 icon = ExtResource("1_8w8hu")
@@ -18,4 +18,5 @@ active = false
 animation = false
 type = "Trap"
 stay_in_hand = false
+keywords = Array[int]([])
 metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

@@ -1,7 +1,7 @@
 extends Node
 
 var user
-var acceleration_add = 1.25
+var acceleration_add = 1.5
 var max_speed_add = 1.5
 var effect = false
 @onready var sprite = $RollerSkateFlipped

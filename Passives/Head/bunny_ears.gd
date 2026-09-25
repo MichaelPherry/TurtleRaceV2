@@ -1,7 +1,7 @@
 extends Node
 
 var user
-var accel_mult = 2.5
+var accel_mult = 2
 var max_speed_mult = 2
 var effect = true
 

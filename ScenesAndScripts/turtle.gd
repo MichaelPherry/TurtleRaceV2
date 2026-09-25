@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var face_anim = $Visuals/Face
 @onready var leftArm_anim = $Visuals/LeftArm
 @onready var rightArm_anim = $Visuals/RightArm
-@onready var stamina_bar = $Visuals/PlayerUI/VBoxContainer/StaminaBar
+@onready var stamina_bar = $Visuals/PlayerUI/StaminaBar
 @onready var name_label = $Visuals/PlayerUI/VBoxContainer/NameLabel
 var stamina_bar_style: StyleBoxFlat
 
@@ -52,6 +52,7 @@ var legs_ready = false
 #Turtle stats
 var max_stamina = 100
 var current_stamina = 100
+var stamina_broken = false
 var acceleration = 200
 var resilience = 10
 var max_speed = 300
@@ -70,6 +71,7 @@ var projectile_amt = 1
 
 #Turtle properties
 var id
+var kaput = false
 var name_tag
 var finished = false
 var invincible = false
@@ -133,15 +135,30 @@ func tick(current_tick, tick_rate):
 	if Inventory.race_started == false or Inventory.start == false:
 		return
 		
+	if stamina_broken == true:
+		current_speed = 0
+		stamina_replenish()
+		return
+		
 	if hit == true:
 		return
 	
 	if finished == true:
-		velocity.y = 0
 		if grounded == true and height == max_height:
 			stop_flying()
 			collision.position.y = normal_height
-		return
+			
+		if sim_position.y < 9000:
+				current_speed = min(current_speed + acceleration, max_speed)
+				if (sim_position.y < 50 and direction == -1) or asleep:
+					sim_position.y += 0
+				else:
+					sim_position.y += current_speed * tick_rate * direction
+				curr_tick = current_tick
+				tick_rat = tick_rate
+		else:
+			velocity.y = 0
+			return
 	
 	if grounded == false and height == normal_height:
 		start_flying()
@@ -165,13 +182,7 @@ func tick(current_tick, tick_rate):
 	curr_tick = current_tick
 	tick_rat = tick_rate
 	
-	if current_stamina > 0:
-		current_stamina += resilience * tick_rat
-		print(resilience * tick_rat)
-		current_stamina = min(current_stamina, max_stamina)
-	
-	update_stamina_bar()
-
+	stamina_replenish()
 
 func equip():
 	for body_part in Inventory.appendages:
@@ -287,6 +298,8 @@ func right_arm_item(user, target, scene):
 		get_tree().current_scene.add_child(instance)
 	
 func invin_frames(stamina_damage = 0, projectile_keywords = null):
+	if stamina_broken:
+		return
 	invincible = true
 	hit = true
 	var temp_effects = turtle_effects.duplicate()
@@ -299,7 +312,7 @@ func invin_frames(stamina_damage = 0, projectile_keywords = null):
 		#var unique_projectile_keywords = Inventory.dupe_remover(projectile_keywords)
 		for word in projectile_keywords:
 			if word == "Ruthless":
-				resilience = resilience * 0.5
+				stamina_damage *= 2
 			if word == "Divine":
 				resilience = resilience * 1.5
 
@@ -322,7 +335,7 @@ func invin_frames(stamina_damage = 0, projectile_keywords = null):
 	sprite.modulate = Color(1, 1, 1, 1) 
 	sim_position.y = sped
 	hit = false
-	await Inventory.wait_ticks(self, 0.5)
+	await Inventory.wait_ticks(self, 0.2)
 	invincible = false
 
 func update_stamina_bar():
@@ -333,7 +346,27 @@ func update_stamina_bar():
 		stamina_bar_style.bg_color = Color.YELLOW.lerp(Color.GREEN, (percent - 0.5) * 2.0)
 	else:
 		stamina_bar_style.bg_color = Color.RED.lerp(Color.YELLOW, percent * 2.0)
-	print("Health: ", current_stamina, " Max: ", max_stamina, " Percent: ", percent)
+
+func stamina_replenish():
+	if stamina_broken == false:
+		if current_stamina > 0:
+			current_stamina += resilience * tick_rat
+			current_stamina = min(current_stamina, max_stamina)
+		else:
+			stamina_broken = true
+			kaput = true
+	
+	if stamina_broken == true:
+		if current_stamina < 100:
+			if self.is_in_group("racing"):
+				self.remove_from_group("racing")
+			current_stamina += max((resilience / 2) * tick_rat, 10 * tick_rat)
+			current_stamina = min(current_stamina, max_stamina)
+		else:
+			add_to_group("racing")
+			stamina_broken = false
+			kaput = false
+	update_stamina_bar()
 
 func animation_controller():
 	var action = "default"
@@ -372,5 +405,7 @@ func stop_flying():
 
 func go_asleep(how_long, appendage = null):
 	asleep = true
+	kaput = true
 	await Inventory.wait_ticks(self, how_long)
+	kaput = false
 	asleep = false

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_v5e46")
 name = "Suit"
-description = "User gains 5 addional gold"
+description = "Shell: User gains 5 addional gold at the end of the race"
 price = 10
 icon = ExtResource("1_xehkl")
 passive_scene = ExtResource("2_lpwtg")

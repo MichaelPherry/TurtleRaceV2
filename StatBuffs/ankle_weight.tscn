@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgwn3dbunf3im"]
+
+[ext_resource type="Script" uid="uid://bce13pdth480s" path="res://StatBuffs/ankle_weight.gd" id="1_chbbr"]
+
+[node name="AnkleWeight" type="Node2D"]
+script = ExtResource("1_chbbr")

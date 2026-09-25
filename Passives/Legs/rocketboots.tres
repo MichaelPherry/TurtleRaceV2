@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://bn2uc63hsuc5w"]
+
+[ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="1_3cil1"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_seb64"]
+[ext_resource type="PackedScene" uid="uid://b3ly2cqjx4nyt" path="res://Passives/Legs/rocketboots.tscn" id="2_otw6w"]
+
+[resource]
+script = ExtResource("1_seb64")
+name = "Rocket Boots"
+description = "Legs: If airborne while active than max speed and acceleration doubles. Cooldown 3 seconds"
+price = 10
+icon = ExtResource("1_3cil1")
+passive_scene = ExtResource("2_otw6w")
+cooldown = 3
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

@@ -1,6 +1,8 @@
 extends Node2D
 
-@onready var results = $Results/Panel/Timelist
+#@onready var results = $Results/Panel/Timelist
+@onready var name_list = $Results/Panel/HBoxContainer/Namelist
+@onready var time_list = $Results/Panel/HBoxContainer/Timelist
 @onready var tick_controller = $TickController
 
 var finished_turts = []
@@ -59,15 +61,20 @@ func _on_finish_line_body_exited(body):
 		
 	if get_tree().get_nodes_in_group("racing").size() == 0:
 		for num in range(len(Inventory.id_list)):
-			var label = Label.new()
-			results.add_child(label)
+			var name_label = Label.new()
+			name_list.add_child(name_label)
+			var time_label = Label.new()
+			time_list.add_child(time_label)
 		
-					
 		for turt in get_tree().get_nodes_in_group("players"):
-			var temp = results.get_children()
-			var wanted_label = results.get_child(int(turt.place))
-			wanted_label.text = turt.name_tag + "     " + turt.finish_time + "     " + str(turt.curr_tick) 
-			 
+			var wanted_name_label = name_list.get_child(int(turt.place) - 1)
+			var wanted_time_label = time_list.get_child(int(turt.place) - 1)
+			wanted_name_label.text = turt.name_tag + "     " 
+			wanted_time_label.text = turt.finish_time #+ "     " + str(turt.curr_tick) 
+			wanted_name_label.add_theme_font_size_override("font_size", 34)
+			wanted_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+			wanted_time_label.add_theme_font_size_override("font_size", 34)
+			wanted_time_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		await get_tree().create_timer(0.1).timeout
 		$Results.visible = true
 		

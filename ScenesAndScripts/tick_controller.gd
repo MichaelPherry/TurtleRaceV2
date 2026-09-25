@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var turtle_scene = preload("res://ScenesAndScripts/turtle.tscn")
 
-var start_pos = [Vector2(2700,820),Vector2(4050,820),Vector2(5380,820),Vector2(6750,820)]
+var start_pos = [Vector2(1600,820),Vector2(3600,820),Vector2(5600,820),Vector2(7600,820)]
 
 var tick_rate = 0.05
 var accumulator = 0.0
@@ -64,7 +64,8 @@ func run_tick():
 		
 	#cooldowns
 	for turt in players:
-		cooldowns(turt)	
+		if turt.kaput == false:
+			cooldowns(turt)
 		
 	#spawn projectiles and activate passives
 	for turt in players:
@@ -129,7 +130,7 @@ func cooldowns(player):
 		if player.legs_cooldown <= 0.0:
 			if player.legs_instance.effect == true:
 				player.legs_ready = true
-				player.legs_cooldwon = player.legs_cooldown_max
+				player.legs_cooldown = player.legs_cooldown_max
 	player.left_arm_cooldown -= tick_rate
 	player.right_arm_cooldown -= tick_rate
 	player.head_cooldown -= tick_rate

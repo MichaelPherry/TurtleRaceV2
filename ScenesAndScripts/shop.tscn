@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://croetv5l82fpm"]
+[gd_scene load_steps=10 format=3 uid="uid://croetv5l82fpm"]
 
 [ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
 [ext_resource type="Texture2D" uid="uid://ixhs05ounnrl" path="res://Art/ShaneArt/Shop/Racoon_Items_he_sourced_from_the_Appalancan_Mountains.png" id="2_u13sh"]
@@ -19,120 +19,129 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnmc7"]
+bg_color = Color(0.211765, 0.239216, 0.290196, 1)
+
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_u13sh")
 
 [node name="RaccoonBackground" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.66146, 1.65556)
 sprite_frames = SubResource("SpriteFrames_r850d")
 frame_progress = 0.0971101
 
-[node name="Gold" type="Label" parent="."]
-offset_left = 115.0
-offset_top = -497.0
-offset_right = 387.0
-offset_bottom = -427.0
-theme_override_font_sizes/font_size = 40
-text = "Gold: "
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="."]
-offset_left = -962.0
-offset_top = -497.0
-offset_right = -397.0
-offset_bottom = -289.0
-theme_override_font_sizes/font_size = 50
-text = "Ready
-"
-
-[node name="slot1" type="TextureButton" parent="."]
-offset_left = -800.0
-offset_top = 139.0
-offset_right = -504.0
-offset_bottom = 365.0
+[node name="slot1" type="TextureButton" parent="RaccoonBackground"]
+offset_left = -869.115
+offset_top = 51.9462
+offset_right = -231.115
+offset_bottom = 432.946
 texture_normal = ExtResource("3_gyq1v")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="slot1_cost" type="Label" parent="slot1"]
+[node name="slot1_cost" type="Label" parent="RaccoonBackground/slot1"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 34.0
-offset_top = 264.0
-offset_right = 294.0
-offset_bottom = 361.0
+offset_left = 196.0
+offset_top = 326.0
+offset_right = 456.0
+offset_bottom = 423.0
 theme_override_font_sizes/font_size = 30
 text = "slot1 price
 "
 horizontal_alignment = 1
 
-[node name="slot2" type="TextureButton" parent="."]
-offset_left = -183.0
-offset_top = 108.0
-offset_right = 176.0
-offset_bottom = 335.0
+[node name="slot2" type="TextureButton" parent="RaccoonBackground"]
+offset_left = -250.382
+offset_top = -33.2214
+offset_right = 367.618
+offset_bottom = 390.779
 texture_normal = ExtResource("4_tawjt")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="slot2_cost" type="Label" parent="slot2"]
+[node name="slot2_cost" type="Label" parent="RaccoonBackground/slot2"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 71.0
-offset_top = 268.0
-offset_right = 304.0
-offset_bottom = 353.0
+offset_left = 168.526
+offset_top = 401.677
+offset_right = 401.526
+offset_bottom = 486.677
 theme_override_font_sizes/font_size = 30
 text = "slot2 price"
 horizontal_alignment = 1
 
-[node name="slot3" type="TextureButton" parent="."]
-offset_left = 452.0
-offset_top = 69.0
-offset_right = 807.0
-offset_bottom = 321.0
+[node name="slot3" type="TextureButton" parent="RaccoonBackground"]
+offset_left = 296.727
+offset_top = 36.2415
+offset_right = 952.727
+offset_bottom = 426.242
 texture_normal = ExtResource("5_fnmc7")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="slot3_cost" type="Label" parent="slot3"]
+[node name="slot3_cost" type="Label" parent="RaccoonBackground/slot3"]
+modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 44.0
-offset_top = 310.0
-offset_right = 279.0
-offset_bottom = 384.0
+offset_left = 173.342
+offset_top = 337.046
+offset_right = 408.341
+offset_bottom = 411.046
 theme_override_font_sizes/font_size = 30
 text = "slot3_price"
 horizontal_alignment = 1
 
+[node name="Gold" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -816.0
+offset_top = -829.0
+offset_right = -381.0
+offset_bottom = -711.0
+theme_override_font_sizes/font_size = 64
+text = "Gold: "
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = -1527.0
+offset_top = -788.0
+offset_right = -962.0
+offset_bottom = -580.0
+theme_override_font_sizes/font_size = 50
+text = "Ready
+"
+
 [node name="leftArm" type="Button" parent="."]
-offset_left = -944.0
-offset_top = -161.0
-offset_right = -430.0
-offset_bottom = -35.0
+offset_left = -1493.0
+offset_top = -385.0
+offset_right = -979.0
+offset_bottom = -259.0
 theme_override_font_sizes/font_size = 40
 text = "Left Arm"
 
 [node name="rightArm" type="Button" parent="."]
-offset_left = -946.0
-offset_top = -18.0
-offset_right = -423.0
-offset_bottom = 104.0
+offset_left = -1495.0
+offset_top = -242.0
+offset_right = -972.0
+offset_bottom = -120.0
 theme_override_font_sizes/font_size = 40
 text = "Right Arm"
 
 [node name="Label" type="Label" parent="."]
-offset_left = -434.0
-offset_top = -533.0
-offset_right = 436.0
-offset_bottom = -477.0
-theme_override_font_sizes/font_size = 40
+modulate = Color(0, 0, 0, 1)
+offset_left = -496.0
+offset_top = -849.0
+offset_right = 374.0
+offset_bottom = -759.667
+theme_override_font_sizes/font_size = 64
 text = "shop"
 horizontal_alignment = 1
 
 [node name="whichArm" type="Label" parent="."]
-offset_left = -926.0
-offset_top = -225.0
-offset_right = -466.0
-offset_bottom = -164.0
+offset_left = -1475.0
+offset_top = -449.0
+offset_right = -1015.0
+offset_bottom = -388.0
 theme_override_font_sizes/font_size = 40
 text = "Which arm?"
 horizontal_alignment = 1
@@ -141,121 +150,185 @@ horizontal_alignment = 1
 zoom = Vector2(0.6, 0.6)
 
 [node name="InventoryButton" type="Button" parent="."]
-offset_left = 435.0
-offset_top = -382.0
-offset_right = 721.0
-offset_bottom = -270.0
+offset_left = 1144.0
+offset_top = -623.0
+offset_right = 1523.0
+offset_bottom = -438.0
 theme_override_font_sizes/font_size = 40
 text = "Inventory"
 
-[node name="Tooltop" parent="." instance=ExtResource("6_fnmc7")]
-anchors_preset = 0
-
-[node name="InventoryPanel" type="Panel" parent="."]
-visible = false
-offset_left = -900.0
-offset_top = -503.0
-offset_right = 888.0
-offset_bottom = 510.0
-
-[node name="HoverButton" type="TextureButton" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 656.0
-offset_top = 240.0
-offset_right = 1210.0
-offset_bottom = 785.0
-
-[node name="InventoryTurtle" parent="InventoryPanel" instance=ExtResource("6_tawjt")]
-position = Vector2(920, 589)
-
-[node name="HideInventory" type="Button" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 1299.0
-offset_top = 802.0
-offset_right = 1732.0
-offset_bottom = 971.0
-theme_override_font_sizes/font_size = 40
-text = "Hide Inventory"
-
-[node name="Acceleration" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 647.0
-offset_right = 262.0
-offset_bottom = 725.0
-theme_override_font_sizes/font_size = 30
-text = "Acceleration:"
-
-[node name="Top Speed" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 45.0
-offset_top = 588.0
-offset_right = 260.0
-offset_bottom = 653.0
-theme_override_font_sizes/font_size = 30
-text = "Top Speed:"
-
-[node name="Resilience" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 703.0
-offset_right = 292.0
-offset_bottom = 790.0
-theme_override_font_sizes/font_size = 30
-text = "Resilience:
-"
-
-[node name="Fire Rate" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 761.0
-offset_right = 265.0
-offset_bottom = 848.0
-theme_override_font_sizes/font_size = 30
-text = "Fire Rate:"
-
-[node name="Projectile Speed" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 817.0
-offset_right = 295.0
-offset_bottom = 874.0
-theme_override_font_sizes/font_size = 30
-text = "Projectile Speed:"
-
-[node name="Luck" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 870.0
-offset_right = 282.0
-offset_bottom = 942.0
-theme_override_font_sizes/font_size = 30
-text = "Luck:"
-
-[node name="PlayerName" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 713.0
-offset_top = 13.0
-offset_right = 1090.0
-offset_bottom = 121.0
-theme_override_font_sizes/font_size = 36
-text = "Filler"
-horizontal_alignment = 1
-
 [node name="Roll" type="Button" parent="."]
-offset_left = 378.0
-offset_top = -267.0
-offset_right = 775.0
-offset_bottom = -154.0
+offset_left = 1146.0
+offset_top = -191.0
+offset_right = 1526.0
+offset_bottom = -4.0
 theme_override_font_sizes/font_size = 40
 text = "Roll"
 
+[node name="InventoryPanel" type="Panel" parent="."]
+visible = false
+offset_left = -1606.0
+offset_top = -904.0
+offset_right = 1600.0
+offset_bottom = 909.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_fnmc7")
+
+[node name="HoverButton" type="TextureButton" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 1288.0
+offset_top = 161.0
+offset_right = 1842.0
+offset_bottom = 682.0
+
+[node name="InventoryTurtle" parent="InventoryPanel" instance=ExtResource("6_tawjt")]
+position = Vector2(1567, 495)
+
+[node name="HideInventory" type="Button" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 2560.0
+offset_top = 73.0
+offset_right = 3103.0
+offset_bottom = 352.0
+theme_override_font_sizes/font_size = 40
+text = "Hide Inventory"
+
+[node name="PlayerName" type="Label" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 1370.0
+offset_top = 60.0
+offset_right = 1747.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 40
+text = "Filler"
+horizontal_alignment = 1
+
+[node name="StatsVBox" type="VBoxContainer" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 103.0
+offset_right = 724.0
+offset_bottom = 644.0
+theme_override_constants/separation = 40
+
+[node name="Acceleration" type="Label" parent="InventoryPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Acceleration:"
+
+[node name="Top Speed" type="Label" parent="InventoryPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Top Speed:"
+
+[node name="Resilience" type="Label" parent="InventoryPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Resilience"
+
+[node name="Fire Rate" type="Label" parent="InventoryPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Fire Rate:"
+
+[node name="Projectile Speed" type="Label" parent="InventoryPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Projectile Speed:"
+
+[node name="Luck" type="Label" parent="InventoryPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Luck:"
+
+[node name="ItemsVBox" type="VBoxContainer" parent="InventoryPanel"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 868.0
+offset_right = 3086.0
+offset_bottom = 1673.0
+
+[node name="Names" type="HBoxContainer" parent="InventoryPanel/ItemsVBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+alignment = 2
+
+[node name="Head" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Head"
+horizontal_alignment = 1
+
+[node name="Shell" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Shell"
+horizontal_alignment = 1
+
+[node name="LeftArm" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Left Arm"
+horizontal_alignment = 1
+
+[node name="RightArm" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Right Arm"
+horizontal_alignment = 1
+
+[node name="Legs" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Legs"
+horizontal_alignment = 1
+
+[node name="Items" type="HBoxContainer" parent="InventoryPanel/ItemsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Head" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Shell" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftArm" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightArm" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Legs" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tooltop" parent="." instance=ExtResource("6_fnmc7")]
+visible = false
+
+[connection signal="button_down" from="RaccoonBackground/slot1" to="." method="_slot1"]
+[connection signal="button_down" from="RaccoonBackground/slot2" to="." method="_slot2"]
+[connection signal="button_down" from="RaccoonBackground/slot3" to="." method="_slot3"]
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="slot1" to="." method="_slot1"]
-[connection signal="button_down" from="slot2" to="." method="_slot2"]
-[connection signal="button_down" from="slot3" to="." method="_slot3"]
 [connection signal="button_down" from="leftArm" to="." method="_on_left_arm"]
 [connection signal="button_down" from="rightArm" to="." method="_on_right_arm"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]
-[connection signal="pressed" from="InventoryPanel/HideInventory" to="." method="_on_hide_inventory_pressed"]
 [connection signal="pressed" from="Roll" to="." method="_on_roll_pressed"]
+[connection signal="pressed" from="InventoryPanel/HideInventory" to="." method="_on_hide_inventory_pressed"]

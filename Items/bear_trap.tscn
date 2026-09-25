@@ -30,7 +30,6 @@ animations = [{
 size = Vector2(520, 123.25)
 
 [node name="BearTrap" type="Area2D"]
-z_index = -10
 script = ExtResource("1_6hm6t")
 
 [node name="Shadow" type="Sprite2D" parent="."]
