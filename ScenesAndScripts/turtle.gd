@@ -143,22 +143,12 @@ func tick(current_tick, tick_rate):
 	if hit == true:
 		return
 	
-	if finished == true:
+	if sim_position.y > 9000:
 		if grounded == true and height == max_height:
 			stop_flying()
 			collision.position.y = normal_height
-			
-		if sim_position.y < 9000:
-				current_speed = min(current_speed + acceleration, max_speed)
-				if (sim_position.y < 50 and direction == -1) or asleep:
-					sim_position.y += 0
-				else:
-					sim_position.y += current_speed * tick_rate * direction
-				curr_tick = current_tick
-				tick_rat = tick_rate
-		else:
-			velocity.y = 0
-			return
+		velocity.y = 0
+		return
 	
 	if grounded == false and height == normal_height:
 		start_flying()

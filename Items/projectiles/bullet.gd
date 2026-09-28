@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var speed: float = 1200
+@export var speed: float = 2000
 var target
 var user
 
@@ -31,7 +31,7 @@ func _process(delta):
 	
 func tick(curr_tick, tick_rat):
 	sim_position += direction * speed * tick_rat * user.projectile_speed
-	if sim_position.distance_to(target.sim_position) > last_distace and abs(last_distace) > 3500:
+	if sim_position.distance_to(target.sim_position) > last_distace and abs(last_distace) > 10000:
 		queue_free()
 		Inventory.projectiles.erase(self)
 	last_distace = sim_position.distance_to(target.sim_position)

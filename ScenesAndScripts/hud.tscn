@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwysh2igy5tkf"]
+
+[ext_resource type="Script" uid="uid://d4gwmvgn1mab3" path="res://ScenesAndScripts/hud.gd" id="1_oq301"]
+[ext_resource type="PackedScene" uid="uid://dabq3t0pacfc1" path="res://ScenesAndScripts/inventory_item.tscn" id="2_y4mcb"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_oq301")
+
+[node name="Inventory" type="PanelContainer" parent="."]
+offset_left = 115.0
+offset_top = 802.0
+offset_right = 1815.0
+offset_bottom = 1061.0
+
+[node name="ItemContainer" type="HBoxContainer" parent="Inventory"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Head" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+layout_mode = 2
+
+[node name="Shell" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+layout_mode = 2
+
+[node name="LeftArm" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+layout_mode = 2
+
+[node name="RightArm" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+layout_mode = 2
+
+[node name="Legs" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+layout_mode = 2

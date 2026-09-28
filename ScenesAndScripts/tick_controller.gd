@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var turtle_scene = preload("res://ScenesAndScripts/turtle.tscn")
+@onready var hud = get_parent().get_node("HUD")
 
 var start_pos = [Vector2(1600,820),Vector2(3600,820),Vector2(5600,820),Vector2(7600,820)]
 
@@ -111,32 +112,39 @@ func cooldowns(player):
 			if player.sim_position.y < 7450:
 				player.left_ready = true
 				player.left_arm_cooldown = player.left_arm_cooldown_max
+
 	if Inventory.server_turtles[player.id]["items"]["rightArm"] != null:
 		if player.right_arm_cooldown <= 0.0:
 			if player.sim_position.y < 7450:
 				player.right_ready = true
 				player.right_arm_cooldown = player.right_arm_cooldown_max
+
 	if Inventory.server_turtles[player.id]["items"]["head"] != null:
 		if player.head_cooldown <= 0.0:
 			if player.head_instance.effect == true:
 				player.head_ready = true
 				player.head_cooldown = player.head_cooldown_max
+
 	if Inventory.server_turtles[player.id]["items"]["shell"] != null:
 		if player.shell_cooldown <= 0.0:
 			if player.shell_instance.effect == true:
 				player.shell_ready = true
 				player.shell_cooldown = player.shell_cooldown_max
+
 	if Inventory.server_turtles[player.id]["items"]["legs"] != null:
 		if player.legs_cooldown <= 0.0:
 			if player.legs_instance.effect == true:
 				player.legs_ready = true
 				player.legs_cooldown = player.legs_cooldown_max
+
 	player.left_arm_cooldown -= tick_rate
 	player.right_arm_cooldown -= tick_rate
 	player.head_cooldown -= tick_rate
 	player.shell_cooldown -= tick_rate
 	player.legs_cooldown -= tick_rate
-	
+	if player.name_tag == NetworkManager.local_player_name:
+		hud.tick(player)
+		
 func use_item(player, body_part, name):
 	var players = get_tree().get_nodes_in_group("racing")
 	players.sort_custom(func(a,b):
