@@ -53,6 +53,7 @@ export class RaceMatch extends Room {
     id_name_list: Array<string>[] = [];
     name_list: string[] = [];
     seed: number = 0;
+    wins = new Map<string, number>();
 
     onCreate(options: any) {
         try{
@@ -84,6 +85,11 @@ export class RaceMatch extends Room {
             this.players[client.sessionId].ready = false;    
         });
         
+        this.onMessage("raceResults", (client, message) => {
+            console.log("Client thinks winner is: ", message.winner)
+
+        })
+
         this.onMessage("keepingServerUp", (client, message) => {
             void 0;
         });
@@ -182,4 +188,3 @@ export class RaceMatch extends Room {
             }
      }
 }
-

@@ -91,6 +91,13 @@ func _on_message_received(type, message):
 		"econ": {
 			"gold": 1000
 		},
+		"results": {
+			"first": 0,
+			"second": 0,
+			"third": 0,
+			"fourth": 0
+		},
+		
 		"name": local_player_name
 	}
 

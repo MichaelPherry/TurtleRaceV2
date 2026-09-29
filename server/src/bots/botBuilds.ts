@@ -27,6 +27,13 @@ type Turtle = {
         //stock2: Int16Array | 0;
         //stock3: Int16Array | 0;
         //stock4: Int16Array | 0;
+    },
+
+    results: {
+        first: number | 0;
+        second: number | 0;
+        third: number | 0;
+        fourth: number| 0;
     }
 };
 
@@ -63,6 +70,13 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
 
                 },

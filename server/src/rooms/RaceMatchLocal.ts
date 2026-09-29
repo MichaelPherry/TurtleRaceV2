@@ -28,6 +28,13 @@ type Turtle = {
         //stock2: Int16Array | 0;
         //stock3: Int16Array | 0;
         //stock4: Int16Array | 0;
+    },
+
+    results: {
+        first: number | 0;
+        second: number | 0;
+        third: number | 0;
+        fourth: number| 0;
     }
 };
 
@@ -104,6 +111,21 @@ export class RaceMatchLocal extends Room {
             this.players[client.sessionId].ready = false;    
         });
         
+        this.onMessage("raceResults", (client, message) => {
+            let num_to_word: "first" | "second" | "third" | "fourth" = "fourth";
+            for (var placement of Object.keys(message)){
+                if (Number(placement) == 1){num_to_word = "first"};
+                if (Number(placement) == 2){num_to_word = "second"};
+                if (Number(placement) == 3){num_to_word = "third"};
+                if (Number(placement) == 4){num_to_word = "fourth"};
+
+                var racer = message[placement];
+
+                this.players[racer].build.results[num_to_word] += 1;
+            }
+            console.log("Client thinks winner is: ", message)
+        })
+
         this.onMessage("keepingServerUp", (client, message) => {
             void 0;
         });
@@ -142,6 +164,13 @@ export class RaceMatchLocal extends Room {
 
                 econ: {
                     gold: 10
+                },
+
+                results: {
+                    first: 0,
+                    second: 0,
+                    third:  0,
+                    fourth: 0
                 }
             },
             slot: 1,
@@ -174,7 +203,15 @@ export class RaceMatchLocal extends Room {
 
                 econ: {
                     gold: 10
+                },
+
+                "results" : {
+                    "first": 0,
+                    "second": 0,
+                    "third": 0,
+                    "fourth": 0
                 }
+
             },
             slot: 2,
             finished: false,
@@ -204,6 +241,13 @@ export class RaceMatchLocal extends Room {
 
                 econ: {
                     gold: 10
+                },
+
+                "results" : {
+                    "first": 0,
+                    "second": 0,
+                    "third": 0,
+                    "fourth": 0
                 }
             },
             slot: 3,
@@ -234,6 +278,13 @@ export class RaceMatchLocal extends Room {
 
                 econ: {
                     gold: 10
+                },
+
+                "results" : {
+                    "first": 0,
+                    "second": 0,
+                    "third": 0,
+                    "fourth": 0
                 }
             },
             slot: 4,

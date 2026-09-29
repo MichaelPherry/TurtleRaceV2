@@ -66,16 +66,20 @@ func _on_finish_line_body_exited(body):
 			var time_label = Label.new()
 			time_list.add_child(time_label)
 		
+		var results = {1: [], 2: [], 3: [], 4: []}
 		for turt in get_tree().get_nodes_in_group("players"):
+			results[int(turt.place)].append(turt.name_tag)
 			var wanted_name_label = name_list.get_child(int(turt.place) - 1)
 			var wanted_time_label = time_list.get_child(int(turt.place) - 1)
-			wanted_name_label.text = turt.name_tag + "     " 
+			wanted_name_label.text = str(turt.place) + "     "  + turt.name_tag + "     " 
 			wanted_time_label.text = turt.finish_time #+ "     " + str(turt.curr_tick) 
 			wanted_name_label.add_theme_font_size_override("font_size", 34)
 			wanted_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 			wanted_time_label.add_theme_font_size_override("font_size", 34)
 			wanted_time_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		await get_tree().create_timer(0.1).timeout
+		
+		NetworkManager.send_message("raceResults", results)
 		$Results.visible = true
 		
 

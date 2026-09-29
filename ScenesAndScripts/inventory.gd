@@ -24,7 +24,13 @@ extends Node
 #			"turtle2_stock" : integer,
 #			"turtle3_stock" : integer,
 #			"turtle4_stock" : integer
-#		}
+#		},
+		#"results": {
+			#"first": 0,
+			#"second": 0,
+			#"third": 0,
+			#"fourth": 0
+		#}
 #	}
 
 var appendages = ["head", "shell", "legs", "leftArm", "rightArm"]
