@@ -68,7 +68,7 @@ func _on_finish_line_body_exited(body):
 		
 		var results = {1: [], 2: [], 3: [], 4: []}
 		for turt in get_tree().get_nodes_in_group("players"):
-			results[int(turt.place)].append(turt.name_tag)
+			results[int(turt.place)].append(turt.id)
 			var wanted_name_label = name_list.get_child(int(turt.place) - 1)
 			var wanted_time_label = time_list.get_child(int(turt.place) - 1)
 			wanted_name_label.text = str(turt.place) + "     "  + turt.name_tag + "     " 

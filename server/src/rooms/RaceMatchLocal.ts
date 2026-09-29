@@ -118,8 +118,12 @@ export class RaceMatchLocal extends Room {
                 if (Number(placement) == 2){num_to_word = "second"};
                 if (Number(placement) == 3){num_to_word = "third"};
                 if (Number(placement) == 4){num_to_word = "fourth"};
-
-                var racer = message[placement];
+                var racer = message[placement][0];
+                console.log("message: ", message);
+                console.log("placement:", placement);
+                console.log("racer:", racer);
+                console.log("players:", this.players);
+                console.log("players:", this.players[racer].build.results);
 
                 this.players[racer].build.results[num_to_word] += 1;
             }

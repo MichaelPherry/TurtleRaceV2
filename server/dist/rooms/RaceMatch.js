@@ -23,6 +23,7 @@ class RaceMatch extends colyseus_1.Room {
         this.id_name_list = [];
         this.name_list = [];
         this.seed = 0;
+        this.wins = new Map();
     }
     onCreate(options) {
         try {
@@ -48,6 +49,9 @@ class RaceMatch extends colyseus_1.Room {
             });
             this.onMessage("Unready", (client) => {
                 this.players[client.sessionId].ready = false;
+            });
+            this.onMessage("raceResults", (client, message) => {
+                console.log("Client thinks winner is: ", message.winner);
             });
             this.onMessage("keepingServerUp", (client, message) => {
                 void 0;

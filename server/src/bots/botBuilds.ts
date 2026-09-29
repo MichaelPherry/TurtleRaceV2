@@ -101,6 +101,13 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
 
                 },
@@ -125,6 +132,13 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
 
                 }
@@ -152,6 +166,13 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
 
                 },
@@ -176,7 +197,15 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
+
 
                 },
 
@@ -200,7 +229,15 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
+
                 }
             },
         
@@ -225,7 +262,15 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
+
 
                 },
 
@@ -249,7 +294,15 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
+
 
                 },
 
@@ -273,7 +326,15 @@ export class botBuilds extends Room {
 
                     "econ" : {
                         "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
                     }
+
                 }
             }
         }        
