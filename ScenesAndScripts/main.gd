@@ -67,7 +67,24 @@ func _on_finish_line_body_exited(body):
 			time_list.add_child(time_label)
 		
 		var results = {1: [], 2: [], 3: [], 4: []}
+		
+		var local_name = Inventory.local_turtle[NetworkManager.sessionID].name
+		var local_result
 		for turt in get_tree().get_nodes_in_group("players"):
+			for id in Inventory.id_name_list:
+				if local_name == turt.name_tag:
+					if id[1] == turt.name_tag:
+						match int(turt.place):
+							1:
+								local_result = "first"
+							2:
+								local_result = "second"
+							3:
+								local_result = "third"
+							4:
+								local_result = "fourth"
+						Inventory.local_turtle[NetworkManager.sessionID].results[local_result] += 1
+
 			results[int(turt.place)].append(turt.id)
 			var wanted_name_label = name_list.get_child(int(turt.place) - 1)
 			var wanted_time_label = time_list.get_child(int(turt.place) - 1)

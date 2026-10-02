@@ -36,6 +36,7 @@ extends Node
 var appendages = ["head", "shell", "legs", "leftArm", "rightArm"]
 var stats = ["acceleration", "resilience", "max_speed", "fire_rate", "projectile_speed", "luck"]
 var econ = ["gold"]
+var results = ["first", "second", "third", "fourth"]
 var what_pos = {}
 var race_order = []
 
@@ -78,6 +79,8 @@ func set_turtles(turtles):
 			server_turtles.get_or_add(id, {}).get_or_add("base_stats", {})[stat] = turtles[id]["build"]["base_stats"][stat]
 		for security in econ:
 			server_turtles.get_or_add(id, {}).get_or_add("econ", {})[security] = turtles[id]["build"]["econ"][security]
+		for place in results:
+			server_turtles.get_or_add(id, {}).get_or_add("results", {})[place] = turtles[id]["build"]["results"][place]
 		server_turtles[id]["slot"] = turtles[id]["slot"]
 	var temp = 2
 	

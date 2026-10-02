@@ -27,6 +27,13 @@ type Turtle = {
         //stock4: Int16Array | 0;
     },
 
+    results: {
+        first: number | 0;
+        second: number | 0;
+        third: number | 0;
+        fourth: number| 0;
+    },
+
     name : string;
 };
 
@@ -131,6 +138,13 @@ export class RaceMatch extends Room {
                     gold: 10
                 },
 
+                results: {
+                    first: 0,
+                    second: 0,
+                    third:  0,
+                    fourth: 0
+                },
+                
                 name: "error"
             },
             slot: race_slot,

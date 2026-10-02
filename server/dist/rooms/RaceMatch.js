@@ -89,6 +89,12 @@ class RaceMatch extends colyseus_1.Room {
                         econ: {
                             gold: 10
                         },
+                        results: {
+                            first: 0,
+                            second: 0,
+                            third: 0,
+                            fourth: 0
+                        },
                         name: "error"
                     },
                     slot: race_slot,

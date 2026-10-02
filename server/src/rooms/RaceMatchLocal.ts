@@ -209,7 +209,7 @@ export class RaceMatchLocal extends Room {
                     gold: 10
                 },
 
-                "results" : {
+                results : {
                     "first": 0,
                     "second": 0,
                     "third": 0,
@@ -247,7 +247,7 @@ export class RaceMatchLocal extends Room {
                     gold: 10
                 },
 
-                "results" : {
+                results: {
                     "first": 0,
                     "second": 0,
                     "third": 0,
@@ -284,7 +284,7 @@ export class RaceMatchLocal extends Room {
                     gold: 10
                 },
 
-                "results" : {
+                results : {
                     "first": 0,
                     "second": 0,
                     "third": 0,

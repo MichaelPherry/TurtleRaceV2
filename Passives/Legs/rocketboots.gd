@@ -12,4 +12,4 @@ func activate_effect():
 		user.acceleration *= 2
 		await Inventory.wait_ticks(user, active_time)
 		user.max_speed /= 2
-		user.head_cooldown = user.head.cooldown
+		user.legs_cooldown = user.legs.cooldown

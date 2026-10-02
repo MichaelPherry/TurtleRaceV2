@@ -169,7 +169,7 @@ class RaceMatchLocal extends colyseus_1.Room {
                         econ: {
                             gold: 10
                         },
-                        "results": {
+                        results: {
                             "first": 0,
                             "second": 0,
                             "third": 0,
@@ -202,7 +202,7 @@ class RaceMatchLocal extends colyseus_1.Room {
                         econ: {
                             gold: 10
                         },
-                        "results": {
+                        results: {
                             "first": 0,
                             "second": 0,
                             "third": 0,
@@ -235,7 +235,7 @@ class RaceMatchLocal extends colyseus_1.Room {
                         econ: {
                             gold: 10
                         },
-                        "results": {
+                        results: {
                             "first": 0,
                             "second": 0,
                             "third": 0,
