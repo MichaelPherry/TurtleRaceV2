@@ -51,15 +51,16 @@ func _process(delta):
 
 
 func _on_finish_line_body_exited(body):
-	if body.is_in_group("racing"):
+	if body.is_in_group("not_finished"):
 		body.add_to_group("finished")
 		body.finished = true
 		body.place = get_tree().get_nodes_in_group("finished").size()
 		var end_time = format_time(time_elapsed)
 		body.finish_time = end_time
+		body.remove_from_group("not_finished")
 		body.remove_from_group("racing")
 		
-	if get_tree().get_nodes_in_group("racing").size() == 0:
+	if get_tree().get_nodes_in_group("not_finished").size() == 0:
 		for num in range(len(Inventory.id_list)):
 			var name_label = Label.new()
 			name_list.add_child(name_label)

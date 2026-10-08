@@ -1,0 +1,54 @@
+extends CanvasLayer
+
+@onready var head = $Inventory/ItemContainer/Head
+@onready var shell = $Inventory/ItemContainer/Shell
+@onready var leftArm = $Inventory/ItemContainer/LeftArm
+@onready var rightArm = $Inventory/ItemContainer/RightArm
+@onready var legs = $Inventory/ItemContainer/Legs
+
+var invetory_item_scene = preload("res://ScenesAndScripts/inventory_item.tscn")
+var head_path
+var head_image
+var shell_path
+var shell_image
+var leftArm_path
+var leftArm_image
+var rightArm_path
+var rightArm_image
+var legs_path
+var legs_image
+var inventory_item
+
+var items = []
+
+func icon_setup():
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["head"] != null:
+		head_path = get_item_path("head", Inventory.local_turtle[NetworkManager.sessionID]["items"]["head"])
+		head.setup("head", head_path)
+		items.append("head")
+	
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["shell"] != null:
+		shell_path = get_item_path("shell", Inventory.local_turtle[NetworkManager.sessionID]["items"]["shell"])
+		shell.setup("shell", shell_path)
+		items.append("shell")
+		
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["leftArm"] != null:
+		leftArm_path = get_item_path("leftArm", Inventory.local_turtle[NetworkManager.sessionID]["items"]["leftArm"])
+		leftArm.setup("leftArm", leftArm_path)
+		items.append("leftArm")
+		
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["rightArm"] != null:
+		rightArm_path = get_item_path("rightArm", Inventory.local_turtle[NetworkManager.sessionID]["items"]["rightArm"])
+		rightArm.setup("rightArm", rightArm_path)
+		items.append("rightArm")
+		
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["legs"] != null:
+		legs_path = get_item_path("legs", Inventory.local_turtle[NetworkManager.sessionID]["items"]["legs"])
+		legs.setup("legs", legs_path)
+		items.append("legs")
+		
+func get_item_path(body_part, item_name):
+	if body_part == "leftArm" or body_part == "rightArm":
+		body_part = "arm"
+	var tres_instance = ItemPassivePool.call(body_part, item_name)
+	return tres_instance

@@ -24,6 +24,7 @@ class RaceMatch extends colyseus_1.Room {
         this.name_list = [];
         this.seed = 0;
         this.wins = new Map();
+        this.raceResults = new Map();
     }
     onCreate(options) {
         try {
@@ -51,7 +52,38 @@ class RaceMatch extends colyseus_1.Room {
                 this.players[client.sessionId].ready = false;
             });
             this.onMessage("raceResults", (client, message) => {
-                console.log("Client thinks winner is: ", message.winner);
+                this.raceResults.set(client.sessionId, message);
+                console.log("Race results are ", this.raceResults);
+                if (this.raceResults.size == this.maxClients) {
+                    var results = this.standardizeResults();
+                    let num_to_word = "fourth";
+                    for (var placement of Object.keys(results)) {
+                        if (Number(placement) == 1) {
+                            num_to_word = "first";
+                        }
+                        ;
+                        if (Number(placement) == 2) {
+                            num_to_word = "second";
+                        }
+                        ;
+                        if (Number(placement) == 3) {
+                            num_to_word = "third";
+                        }
+                        ;
+                        if (Number(placement) == 4) {
+                            num_to_word = "fourth";
+                        }
+                        ;
+                        var racer = message[placement][0];
+                        console.log("message: ", message);
+                        console.log("placement:", placement);
+                        console.log("racer:", racer);
+                        console.log("players:", this.players);
+                        console.log("players:", this.players[racer].build.results);
+                        this.players[racer].build.results[num_to_word] += 1;
+                    }
+                }
+                ;
             });
             this.onMessage("keepingServerUp", (client, message) => {
                 void 0;
@@ -146,6 +178,34 @@ class RaceMatch extends colyseus_1.Room {
             const startTime = Date.now() + 3000;
             this.broadcast("race_start", { startTime: startTime });
         }
+    }
+    standardizeResults() {
+        var _a;
+        const finalResults = [];
+        var returnResults = { 1: [], 2: [], 3: [], 4: [] };
+        for (let position = 0; position < this.maxClients; position++) {
+            const votes = {};
+            for (const result of this.raceResults.values()) {
+                const racer = result[position + 1];
+                votes[racer] = ((_a = votes[racer]) !== null && _a !== void 0 ? _a : 0) + 1;
+            }
+            let winningPlayer = "";
+            let highestVotes = 0;
+            for (const racer in votes) {
+                if (votes[racer] > highestVotes) {
+                    winningPlayer = racer;
+                    highestVotes = votes[racer];
+                }
+            }
+            finalResults[position] = winningPlayer;
+        }
+        console.log("FINAL RESULTS:", finalResults);
+        for (let i = 0; i < finalResults.length; i++) {
+            const placement = (i + 1);
+            returnResults[placement].push(finalResults[i]);
+        }
+        console.log("STANDARDIZED RESULTS:", returnResults);
+        return returnResults;
     }
 }
 exports.RaceMatch = RaceMatch;

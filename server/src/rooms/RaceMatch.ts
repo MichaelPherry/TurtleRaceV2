@@ -61,6 +61,7 @@ export class RaceMatch extends Room {
     name_list: string[] = [];
     seed: number = 0;
     wins = new Map<string, number>();
+    raceResults = new Map<string, string[]>();
 
     onCreate(options: any) {
         try{
@@ -93,8 +94,26 @@ export class RaceMatch extends Room {
         });
         
         this.onMessage("raceResults", (client, message) => {
-            console.log("Client thinks winner is: ", message.winner)
+            this.raceResults.set(client.sessionId, message);
+            console.log("Race results are ", this.raceResults);
+            if (this.raceResults.size == this.maxClients) {
+                var results = this.standardizeResults()
+                let num_to_word: "first" | "second" | "third" | "fourth" = "fourth";
+                for (var placement of Object.keys(results)){
+                    if (Number(placement) == 1){num_to_word = "first"};
+                    if (Number(placement) == 2){num_to_word = "second"};
+                    if (Number(placement) == 3){num_to_word = "third"};
+                    if (Number(placement) == 4){num_to_word = "fourth"};
+                    var racer = message[placement][0];
+                    console.log("message: ", message);
+                    console.log("placement:", placement);
+                    console.log("racer:", racer);
+                    console.log("players:", this.players);
+                    console.log("players:", this.players[racer].build.results);
 
+                    this.players[racer].build.results[num_to_word] += 1;
+                }
+            };
         })
 
         this.onMessage("keepingServerUp", (client, message) => {
@@ -201,4 +220,41 @@ export class RaceMatch extends Room {
                 this.broadcast("race_start", {startTime: startTime});
             }
      }
+
+     standardizeResults(){
+        const finalResults: string[] = [];
+        var returnResults: Record<1 | 2 | 3 | 4, string[]> = {1: [], 2: [], 3: [], 4: []};
+
+        for(let position = 0; position < this.maxClients; position++) {
+            const votes: Record<string, number> = {};
+            
+            for (const result of this.raceResults.values()) {
+                const racer = result[position + 1];
+                votes[racer] = (votes[racer] ?? 0) + 1;
+            }
+
+            let winningPlayer = "";
+            let highestVotes = 0;
+
+            for (const racer in votes) {
+                if (votes[racer] > highestVotes) {
+                    winningPlayer = racer;
+                    highestVotes = votes[racer];
+                }
+            }
+
+            finalResults[position] = winningPlayer;
+        }
+
+        console.log("FINAL RESULTS:", finalResults);
+        for (let i = 0; i < finalResults.length; i++) {
+            const placement = (i + 1) as 1 | 2 | 3 | 4;
+            returnResults[placement].push(finalResults[i]);
+        }
+
+        console.log("STANDARDIZED RESULTS:", returnResults);
+
+        return returnResults;
+    }
 }
+

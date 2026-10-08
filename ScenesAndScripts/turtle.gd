@@ -118,6 +118,7 @@ func _ready():
 	add_to_group(id)
 	add_to_group("players")
 	add_to_group("racing")
+	add_to_group("not_finished")
 
 	
 func _process(delta):

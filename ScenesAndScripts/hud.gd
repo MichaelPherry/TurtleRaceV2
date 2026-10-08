@@ -24,29 +24,27 @@ var items = []
 func _ready():
 	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["head"] != null:
 		head_path = get_item_path("head", Inventory.local_turtle[NetworkManager.sessionID]["items"]["head"])
-		head.setup(head_path)
+		head.setup("head", head_path)
 		items.append("head")
-		#head_image.mouse_entered.connect(_on_slot_hovered.bind(head_image))
-		#head_image.mouse_exited.connect(_on_slot_unhovered.bind(head_image))
 	
 	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["shell"] != null:
 		shell_path = get_item_path("shell", Inventory.local_turtle[NetworkManager.sessionID]["items"]["shell"])
-		shell.setup(shell_path)
+		shell.setup("shell", shell_path)
 		items.append("shell")
 		
 	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["leftArm"] != null:
 		leftArm_path = get_item_path("leftArm", Inventory.local_turtle[NetworkManager.sessionID]["items"]["leftArm"])
-		leftArm.setup(leftArm_path)
+		leftArm.setup("leftArm", leftArm_path)
 		items.append("leftArm")
 		
 	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["rightArm"] != null:
 		rightArm_path = get_item_path("rightArm", Inventory.local_turtle[NetworkManager.sessionID]["items"]["rightArm"])
-		rightArm.setup(rightArm_path)
+		rightArm.setup("rightArm", rightArm_path)
 		items.append("rightArm")
 		
 	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["legs"] != null:
 		legs_path = get_item_path("legs", Inventory.local_turtle[NetworkManager.sessionID]["items"]["legs"])
-		legs.setup(legs_path)
+		legs.setup("legs", legs_path)
 		items.append("legs")
 		
 func get_item_path(body_part, item_name):

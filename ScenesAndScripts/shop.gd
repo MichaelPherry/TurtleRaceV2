@@ -11,6 +11,12 @@ extends Node2D
 @onready var racc_slot1 = $RaccoonBackground/slot1
 @onready var racc_slot2 = $RaccoonBackground/slot2
 @onready var racc_slot3 = $RaccoonBackground/slot3
+@onready var hud = $RaccoonBackground/shopHUD
+@onready var head_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/Head
+@onready var shell_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/Shell
+@onready var leftArm_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/LeftArm
+@onready var rightArm_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/RightArm
+@onready var legs_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/Legs
 
 var head_path
 var shell_path
@@ -39,6 +45,12 @@ func _ready():
 	$rightArm.visible = false
 	$whichArm.visible = false
 	
+	head_hud.item_sold.connect(_on_item_sold)
+	shell_hud.item_sold.connect(_on_item_sold)
+	leftArm_hud.item_sold.connect(_on_item_sold)
+	rightArm_hud.item_sold.connect(_on_item_sold)
+	legs_hud.item_sold.connect(_on_item_sold)
+	
 	roll_counter = 1
 	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += 10
 	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
@@ -52,8 +64,10 @@ func _ready():
 	hover_button.mouse_entered.connect(_on_inventory_turtle_hovered)
 	hover_button.mouse_exited.connect(_on_inventory_turtle_unhovered)
 	
+	
 	inventory_items()
 	inventory_update()
+	hud.icon_setup()
 
 func _process(delta):
 	if done_shopping:
@@ -124,6 +138,7 @@ func _slot1():
 			Inventory.item_1[0] = "arm"
 		ItemPassivePool.total_pool[Inventory.item_1[0]].erase(Inventory.item_1[1])
 		racc_slot1.visible = false
+		hud.icon_setup()
 		inventory_items()
 	
 func _slot2():
@@ -150,6 +165,7 @@ func _slot2():
 			Inventory.item_2[0] = "arm"
 		ItemPassivePool.total_pool[Inventory.item_2[0]].erase(Inventory.item_2[1])
 		racc_slot2.visible = false
+		hud.icon_setup()
 		inventory_items()
 
 func _slot3(): 
@@ -177,6 +193,7 @@ func _slot3():
 			Inventory.item_3[0] = "arm"
 		ItemPassivePool.total_pool[Inventory.item_3[0]].erase(Inventory.item_3[1])
 		racc_slot3.visible = false
+		hud.icon_setup()
 		inventory_items()
 
 func rand_items():
@@ -340,3 +357,5 @@ func inventory_update():
 	$"InventoryPanel/StatsVBox/Projectile Speed".text = "Projectile Speed: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["projectile_speed"])
 	$InventoryPanel/StatsVBox/Luck.text = "Luck: " + str(Inventory.local_turtle[NetworkManager.sessionID]["base_stats"]["luck"])
 	
+func _on_item_sold():
+	$Gold.text = "Gold: " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
