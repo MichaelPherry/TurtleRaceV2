@@ -197,28 +197,28 @@ export class RaceMatch extends Room {
 
      raceStart(client: any){
         var counter = 0
+        for (const id of Object.keys(this.players)){
+            if (this.players[id].ready == true){
+                counter += 1
+            }
+        }
+
+        if (counter >= this.maxClients)
+        {
+            this.id_name_list = [];
             for (const id of Object.keys(this.players)){
-                if (this.players[id].ready == true){
-                    counter += 1
-                }
+                this.id_name_list.push([id, this.players[id].name])
             }
 
-         if (counter >= this.maxClients)
-            {
-                console.log("wooo")
-                for (const id of Object.keys(this.players)){
-                    this.id_name_list.push([id, this.players[id].name])
-                }
- 
-                this.seed = Math.floor(Math.random() * 1000000);
-                this.broadcast("seed", this.seed);
-                this.broadcast("id_list", this.id_list)
-                this.broadcast("id_with_name", this.id_name_list)
-                this.broadcast("send_turtles", this.players)
+            this.seed = Math.floor(Math.random() * 1000000);
+            this.broadcast("seed", this.seed);
+            this.broadcast("id_list", this.id_list)
+            this.broadcast("id_with_name", this.id_name_list)
+            this.broadcast("send_turtles", this.players)
 
-                const startTime = Date.now() + 3000;
-                this.broadcast("race_start", {startTime: startTime});
-            }
+            const startTime = Date.now() + 3000;
+            this.broadcast("race_start", {startTime: startTime});
+        }
      }
 
      standardizeResults(){

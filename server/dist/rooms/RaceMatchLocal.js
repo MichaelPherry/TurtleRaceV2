@@ -287,7 +287,7 @@ class RaceMatchLocal extends colyseus_1.Room {
             }
         }
         if (counter >= this.maxClients) {
-            console.log("wooo");
+            this.id_name_list = [];
             for (const id of Object.keys(this.players)) {
                 this.id_name_list.push([id, this.players[id].name]);
             }

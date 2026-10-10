@@ -8,6 +8,7 @@ var laser = preload("res://Items/projectiles/laser_sweep.tscn")
 var user_keywords = []
 
 func activate_effect():
+	user.head_active = true
 	var players = get_tree().get_nodes_in_group("racing")
 	players.sort_custom(func(a,b):
 		return a.id < b.id
@@ -23,6 +24,7 @@ func activate_effect():
 		gun_projectile.keyword_attributes = user_keywords
 		get_tree().current_scene.add_child(gun_projectile)
 		await Inventory.wait_ticks(user, 0.2)
+	user.head_active = false
 	
 func rand_shuffle(player, normal_array):
 	for i in range(normal_array.size() - 1, 0, -1):

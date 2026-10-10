@@ -15,13 +15,13 @@ var instruments = [organ, piano, trumpet, whistle]
 
 func _ready():
 	current_lead = null
-	#mainmenu.play()
-	#mainmenu.volume_db = 0
-	#bass.play()
-	#organ.play()
-	#piano.play()
-	#trumpet.play()
-	#whistle.play()
+	mainmenu.play()
+	mainmenu.volume_db = 0
+	bass.play()
+	organ.play()
+	piano.play()
+	trumpet.play()
+	whistle.play()
 	
 func switch(switch_lead):
 	organ.volume_db = -80.0

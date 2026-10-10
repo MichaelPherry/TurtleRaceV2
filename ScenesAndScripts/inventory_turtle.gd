@@ -20,12 +20,13 @@ var left_arm = null
 var right_arm = null
 var current_frame = 0
 
-var local_id = Inventory.local_turtle.keys()[0]
+var local_id = NetworkManager.sessionID
 
 func _ready():
-	equip()
+	local_equip()
 
-func equip():
+func local_equip():
+	reset()
 	for body_part in Inventory.appendages:
 		if Inventory.local_turtle[local_id]["items"][body_part] != null:
 			match body_part:
@@ -63,6 +64,81 @@ func equip():
 						legs_anim.play(legs.name)
 						legs_anim.frame = current_frame
 						legs_anim.pause()
+
+func equip(id):
+	reset()
+	for body_part in Inventory.appendages:
+		if Inventory.server_turtles[id]["items"][body_part] != null:
+			match body_part:
+				"leftArm":
+					left_arm = ItemPassivePool.arm(Inventory.server_turtles[id]["items"][body_part])
+					if leftArm_anim.sprite_frames.has_animation(left_arm.name):
+						leftArm_anim.play(left_arm.name)
+						leftArm_anim.frame = current_frame
+						leftArm_anim.pause()
+
+				"rightArm":
+					right_arm = ItemPassivePool.arm(Inventory.server_turtles[id]["items"][body_part])
+					if rightArm_anim.sprite_frames.has_animation(right_arm.name):
+						rightArm_anim.play(right_arm.name)
+						rightArm_anim.frame = current_frame
+						rightArm_anim.pause()
+
+				"head":
+					head = ItemPassivePool.head(Inventory.server_turtles[id]["items"][body_part])
+					if head_anim.sprite_frames.has_animation(head.name):
+						head_anim.play(head.name)
+						head_anim.frame = current_frame
+						head_anim.pause()
+
+				"shell":
+					shell = ItemPassivePool.shell(Inventory.server_turtles[id]["items"][body_part])
+					if belly_anim.sprite_frames.has_animation(shell.name):
+						belly_anim.play(shell.name)
+						belly_anim.frame = current_frame
+						belly_anim.pause()
+						
+				"legs":
+					legs = ItemPassivePool.legs(Inventory.server_turtles[id]["items"][body_part])
+					if legs_anim.sprite_frames.has_animation(legs.name):
+						legs_anim.play(legs.name)
+						legs_anim.frame = current_frame
+						legs_anim.pause()
+
+func reset():
+	shell = null
+	legs = null
+	belly = null
+	head = null
+	face = null
+	left_arm = null
+	right_arm = null
+	for body_part in Inventory.appendages:
+		match body_part:
+			"leftArm":
+				leftArm_anim.play("default")
+				leftArm_anim.frame = current_frame
+				leftArm_anim.pause()
+
+			"rightArm":
+				rightArm_anim.play("default")
+				rightArm_anim.frame = current_frame
+				rightArm_anim.pause()
+
+			"head":
+				head_anim.play("default")
+				head_anim.frame = current_frame
+				head_anim.pause()
+
+			"shell":
+				belly_anim.play("default")
+				belly_anim.frame = current_frame
+				belly_anim.pause()
+					
+			"legs":
+				legs_anim.play("default")
+				legs_anim.frame = current_frame
+				legs_anim.pause()
 
 func hover():
 	current_frame = shell_anim.frame

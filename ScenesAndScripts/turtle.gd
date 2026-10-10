@@ -21,26 +21,31 @@ var left_arm = null
 var left_arm_instance = null
 var left_arm_cooldown_max: float
 var left_arm_cooldown = 0
+var left_arm_active = false
 var left_arm_type = null
 var right_arm = null
 var right_arm_instance = null
 var right_arm_cooldown_max: float
 var right_arm_cooldown = 0
+var right_arm_active = false
 var right_arm_type = null
 var head = null
 var head_instance = null
 var head_cooldown_max: float
 var head_cooldown = 0
+var head_active = false
 var head_type = null
 var shell = null
 var shell_instance = null
 var shell_cooldown_max: float
 var shell_cooldown = 0
+var shell_active = false
 var shell_type = null
 var legs = null
 var legs_cooldown_max: float
 var legs_cooldown = 0
 var legs_instance = null
+var legs_active = false
 var legs_type = null
 
 var left_ready = false

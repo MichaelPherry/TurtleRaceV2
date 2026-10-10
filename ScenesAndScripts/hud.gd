@@ -57,26 +57,31 @@ func tick(player):
 	for appendage in items:
 		match appendage:
 			"head":
-				if head.cooldown_remaining == 0:
-					head.start_cooldown()
-				head.tick(player.head_cooldown)
+				if player.head_active == false:
+					if head.cooldown_remaining == 0:
+						head.start_cooldown()
+					head.tick(player.head_cooldown)
 			
 			"shell":
-				if shell.cooldown_remaining == 0:
-					shell.start_cooldown()
-				shell.tick(player.shell_cooldown)
+				if player.shell_active == false:
+					if shell.cooldown_remaining == 0:
+						shell.start_cooldown()
+					shell.tick(player.shell_cooldown)
 				
 			"leftArm":
-				if leftArm.cooldown_remaining == 0:
-					leftArm.start_cooldown()
-				leftArm.tick(player.left_arm_cooldown)
+				if player.left_arm_active == false:
+					if leftArm.cooldown_remaining == 0:
+						leftArm.start_cooldown()
+					leftArm.tick(player.left_arm_cooldown)
 
 			"rightArm":
-				if rightArm.cooldown_remaining == 0:
-					rightArm.start_cooldown()
-				rightArm.tick(player.right_arm_cooldown)
+				if player.right_arm_active == false:
+					if rightArm.cooldown_remaining == 0:
+						rightArm.start_cooldown()
+					rightArm.tick(player.right_arm_cooldown)
 			
 			"legs":
-				if legs.cooldown_remaining == 0:
-					legs.start_cooldown()
-				legs.tick(player.legs_cooldown)
+				if player.legs_active == false:
+					if legs.cooldown_remaining == 0:
+						legs.start_cooldown()
+					legs.tick(player.legs_cooldown)

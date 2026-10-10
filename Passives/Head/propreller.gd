@@ -11,6 +11,7 @@ func _process(delta):
 	pass
 
 func activate_effect():
+	user.head_active = true
 	orig_max_speed = user.max_speed
 	user.grounded = false
 	user.max_speed *= max_speed_mult
@@ -21,3 +22,4 @@ func activate_effect():
 	user.acceleration /= 1.5
 	user.head_cooldown = user.head.cooldown
 	user.grounded = true
+	user.head_active = false

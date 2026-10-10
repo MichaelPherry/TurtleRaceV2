@@ -81,15 +81,15 @@ func _on_message_received(type, message):
 			"slot" : null
 		},		
 		"base_stats": {
-			"acceleration": 5.0,
-			"resilience": 0,
+			"acceleration": 5.5,
+			"resilience": 1,
 			"max_speed": 500.0,
 			"fire_rate": 1.0,
 			"projectile_speed": 1.0,
-			"luck": 1.0
+			"luck": 1.2
 		},		
 		"econ": {
-			"gold": 1000
+			"gold": 0
 		},
 		"results": {
 			"first": 0,

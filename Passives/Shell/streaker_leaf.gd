@@ -3,7 +3,7 @@ extends Node
 var user
 var effect = false
 var active = false
-var mult = 3
+var mult = 2
 
 func _ready():
 	active = true

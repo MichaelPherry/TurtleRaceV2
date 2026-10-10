@@ -14,8 +14,10 @@ func _ready():
 	
 func activate_effect():
 	#Randomly picks -1 or 1 which then makes the turtle either go forward or backward
+	user.head_active = true
 	if last_dunce == -1:
 		last_dunce = 1
 	else:
 		last_dunce = dunce_list[user.rng.randi_range(0, dunce_list.size() - 1)]
 	user.direction = last_dunce
+	user.head_active = false

@@ -26,7 +26,7 @@ var throw_direction
 
 var z_axis = 0
 var is_launch = false
-var rotation_speed = PI * 3
+var rotation_speed = PI * 4
 @onready var sprite = $AnimatedSprite2D
 
 func _ready():

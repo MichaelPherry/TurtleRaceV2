@@ -1210,7 +1210,6 @@ sprite_frames = SubResource("SpriteFrames_vfv2l")
 
 [node name="Head" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_ablqi")
-animation = &"Kings Crown"
 
 [node name="Face" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_mufq1")

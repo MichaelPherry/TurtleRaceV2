@@ -7,9 +7,11 @@ var active_time = 2
 
 func activate_effect():
 	if user.grounded == false:
+		user.legs_active = true
 		last_state = "airborne"
 		user.max_speed *= 2
 		user.acceleration *= 2
 		await Inventory.wait_ticks(user, active_time)
 		user.max_speed /= 2
 		user.legs_cooldown = user.legs.cooldown
+		user.legs_active = false
