@@ -47,7 +47,9 @@ func join_match(data):
 	print(data)
 	await get_tree().create_timer(1.0).timeout
 	NetworkManager._on_room_joined(data)
-	get_tree().change_scene_to_file("res://ScenesAndScripts/shop.tscn")
+	var temp = get_tree()
+	if is_inside_tree():
+		get_tree().change_scene_to_file("res://ScenesAndScripts/shop.tscn")
 
 func _on_ready_pressed():
 	room.send_message("ready", "ready")

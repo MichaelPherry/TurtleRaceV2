@@ -7,7 +7,8 @@ var local_server_pid = -1
 var local_player_name = null
 var sessionID
 var current_scene = null
-var race_scene = preload("res://ScenesAndScripts/main.tscn") 
+var race_scene = preload("res://ScenesAndScripts/main.tscn")
+var boss_scene = preload("res://ScenesAndScripts/boss.tscn") 
 var lobby
 
 func _ready():
@@ -39,7 +40,8 @@ func _on_lobby_joined():
 	await get_tree().create_timer(1.0).timeout
 	
 func _on_room_joined(data):
-	await room.leave()
+	if room != null:
+		await room.leave()
 	room = null
 	await get_tree().process_frame
 	var new_room = await client.join_by_id(data.roomId)
@@ -68,7 +70,13 @@ func _on_message_received(type, message):
 		Inventory.id_name_list = message
 	elif type == "race_start":
 		print(message["startTime"])
-		Inventory.start_time = message["startTime"] 
+		Inventory.start_time = message["startTime"]
+	elif type == "send_boss_turtles":
+		Inventory.set_turtles(message[0])
+		Inventory.set_turtles(message[2])
+		Inventory.boss_id = message[2].keys()[0]
+		Inventory.boss_player_name = message[1]
+		get_tree().change_scene_to_packed(boss_scene)
 	elif type == "session_id":
 		sessionID = message
 		Inventory.local_turtle[sessionID] = {
@@ -89,7 +97,7 @@ func _on_message_received(type, message):
 			"luck": 1.2
 		},		
 		"econ": {
-			"gold": 0
+			"gold": 1000
 		},
 		"results": {
 			"first": 0,

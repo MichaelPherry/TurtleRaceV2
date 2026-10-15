@@ -1,10 +1,12 @@
 extends CanvasLayer
 
-@onready var head = $Inventory/ItemContainer/Head
-@onready var shell = $Inventory/ItemContainer/Shell
-@onready var leftArm = $Inventory/ItemContainer/LeftArm
-@onready var rightArm = $Inventory/ItemContainer/RightArm
-@onready var legs = $Inventory/ItemContainer/Legs
+@onready var head = $Inventory/ItemContainer/HeadSlot/Head
+@onready var shell = $Inventory/ItemContainer/ShellSlot/Shell
+@onready var leftArm = $Inventory/ItemContainer/LeftArmSlot/LeftArm
+@onready var rightArm = $Inventory/ItemContainer/RightArmSlot/RightArm
+@onready var legs = $Inventory/ItemContainer/LegsSlot/Legs
+@onready var hud_inventory = $Inventory
+@onready var hud_tog =  $ToggleHUD
 
 var invetory_item_scene = preload("res://ScenesAndScripts/inventory_item.tscn")
 var head_path
@@ -19,7 +21,28 @@ var legs_path
 var legs_image
 var inventory_item
 
+var tween
+var open_position
+var closed_position
+var open_tog_position
+var closed_tog_position
+
 var items = []
+
+func _ready() -> void:
+	open_position = hud_inventory.position
+	closed_position = open_position + Vector2(0, hud_inventory.size.y)
+	open_tog_position = hud_tog.position
+	closed_tog_position = open_tog_position + Vector2(0, hud_inventory.size.y - hud_tog.size.y)
+	
+	if Inventory.main_hud == true:
+		hud_tog.text = "-"
+		hud_inventory.position = open_position
+		hud_tog.position = open_tog_position
+	else:
+		hud_tog.text = "+"
+		hud_inventory.position = closed_position
+		hud_tog.position = closed_tog_position
 
 func icon_setup():
 	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["head"] != null:
@@ -52,3 +75,25 @@ func get_item_path(body_part, item_name):
 		body_part = "arm"
 	var tres_instance = ItemPassivePool.call(body_part, item_name)
 	return tres_instance
+
+
+func _on_toggle_hud_pressed() -> void:
+	if tween and tween.is_running():
+		tween.kill()
+	
+	tween = create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.set_parallel(true)
+	
+	if Inventory.main_hud == true:
+		tween.tween_property(hud_inventory, "position", closed_position, 0.3)
+		tween.tween_property(hud_tog, "position", closed_tog_position, 0.3)
+		hud_tog.text = "+"
+		Inventory.main_hud = false
+		
+	else:
+		tween.tween_property(hud_inventory, "position", open_position, 0.3)
+		tween.tween_property(hud_tog, "position", open_tog_position, 0.3)
+		hud_tog.text = "-"
+		Inventory.main_hud = true

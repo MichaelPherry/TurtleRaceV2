@@ -58,16 +58,16 @@ var legs_ready = false
 var max_stamina = 100
 var current_stamina = 100
 var stamina_broken = false
-var acceleration = 200
-var resilience = 10
-var max_speed = 300
+var acceleration
+var resilience
+var max_speed
 var current_speed = 200
 var normal_height = -50
 var height = -50
 var max_height = -500
-var fire_rate = 1
-var projectile_speed = 1
-var luck = 1
+var fire_rate
+var projectile_speed
+var luck
 var stun = 0
 
 #Turtle effects

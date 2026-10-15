@@ -1,9 +1,12 @@
 extends Node2D
 
 @onready var turtle_scene = preload("res://ScenesAndScripts/turtle.tscn")
+@onready var rabbit_scene = preload("res://ScenesAndScripts/rabbit.tscn")
+@onready var race_timer = get_parent().get_node("CanvasLayer")
 @onready var hud = get_parent().get_node("HUD")
 
 var start_pos = [Vector2(1600,820),Vector2(3600,820),Vector2(5600,820),Vector2(7600,820)]
+var boss_pos = [Vector2(2870,820), Vector2(6100,820)]
 
 var tick_rate = 0.05
 var accumulator = 0.0
@@ -13,34 +16,47 @@ var current_tick = 0
 var players = []
 var hit_radius = 200
 var appendages = ["leftArm", "rightArm", "head", "shell", "legs"]
+var parent_scene
 signal tick_sig
 
 func _ready():
+	parent_scene = get_parent().name
 	spawn_players()
 	Inventory.projectiles = []
 
 func spawn_players():
-	var counter = 0
-	for id in Inventory.id_list:
+	if parent_scene == "Main":
+		var counter = 0
+		for id in Inventory.id_list:
+			var player = turtle_scene.instantiate()
+			player.id = id
+			player.name_tag = Inventory.label_finder(player.id)
+			
+			player.global_position = start_pos[Inventory.server_turtles[id]["slot"] - 1]
+			player.seed = Inventory.seed + counter
+			add_child(player)
+			counter += 1
+			
+		players = get_tree().get_nodes_in_group("players")
+		players.sort_custom(func(a,b):
+			return a.id < b.id
+		)
+	elif parent_scene == "Boss":
 		var player = turtle_scene.instantiate()
-		player.id = id
-		
-		for id_name in Inventory.id_name_list:
-			if id_name[0] == id:
-				player.name_tag = id_name[1]
-
-		var temp = id
-		
-		player.global_position = start_pos[Inventory.server_turtles[id]["slot"] - 1]
-		player.seed = Inventory.seed + counter
+		player.name_tag = Inventory.boss_player_name
+		player.id = Inventory.sid_finder(player.name_tag)
+		player.global_position = boss_pos[0]
+		player.seed = Inventory.seed + 0
 		add_child(player)
-		counter += 1
 		
-	players = get_tree().get_nodes_in_group("players")
-	players.sort_custom(func(a,b):
-		return a.id < b.id
-	)
-	
+		var boss = rabbit_scene.instantiate()
+		boss.id = Inventory.boss_id
+		boss.name_tag = Inventory.boss_name_tag
+		boss.global_position = boss_pos[1]
+		boss.seed = Inventory.seed + 1
+		add_child(boss)
+		
+		players = get_tree().get_nodes_in_group("players")
 
 func _process(delta):
 	if Inventory.race_started == false:
@@ -65,7 +81,7 @@ func run_tick():
 		
 	#cooldowns
 	for turt in players:
-		if turt.kaput == false:
+		if turt.kaput == false and Inventory.race_complete == false:
 			cooldowns(turt)
 		
 	#spawn projectiles and activate passives
@@ -105,6 +121,9 @@ func run_tick():
 		var simy_with_height = projectile.target.sim_position.y + projectile.target.height
 		if projectile.sim_position.distance_to(Vector2(simx, simy_with_height)) < hit_radius:
 			projectile.hit(projectile.target)
+
+	#Time tick down
+	race_timer.tick(tick_rate)
 
 func cooldowns(player):
 	if Inventory.server_turtles[player.id]["items"]["leftArm"] != null:

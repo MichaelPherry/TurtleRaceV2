@@ -7,38 +7,82 @@
 script = ExtResource("1_yaji1")
 
 [node name="Inventory" type="PanelContainer" parent="."]
-offset_left = 115.0
+offset_left = 4.0
 offset_top = 802.0
-offset_right = 1815.0
-offset_bottom = 1061.0
+offset_right = 1921.0
+offset_bottom = 1080.0
 
 [node name="ItemContainer" type="HBoxContainer" parent="Inventory"]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Head" parent="Inventory/ItemContainer" instance=ExtResource("1_oe7mg")]
+[node name="HeadSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
 layout_mode = 2
 
-[node name="Shell" parent="Inventory/ItemContainer" instance=ExtResource("1_oe7mg")]
+[node name="Label" type="Label" parent="Inventory/ItemContainer/HeadSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Head"
+horizontal_alignment = 1
+
+[node name="Head" parent="Inventory/ItemContainer/HeadSlot" instance=ExtResource("1_oe7mg")]
 layout_mode = 2
 
-[node name="LeftArm" parent="Inventory/ItemContainer" instance=ExtResource("1_oe7mg")]
+[node name="ShellSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
 layout_mode = 2
 
-[node name="RightArm" parent="Inventory/ItemContainer" instance=ExtResource("1_oe7mg")]
+[node name="Label" type="Label" parent="Inventory/ItemContainer/ShellSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Shell"
+horizontal_alignment = 1
+
+[node name="Shell" parent="Inventory/ItemContainer/ShellSlot" instance=ExtResource("1_oe7mg")]
 layout_mode = 2
 
-[node name="Legs" parent="Inventory/ItemContainer" instance=ExtResource("1_oe7mg")]
+[node name="LeftArmSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
 layout_mode = 2
 
-[node name="DragLayer" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
+[node name="Label" type="Label" parent="Inventory/ItemContainer/LeftArmSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Left Arm"
+horizontal_alignment = 1
+
+[node name="LeftArm" parent="Inventory/ItemContainer/LeftArmSlot" instance=ExtResource("1_oe7mg")]
+layout_mode = 2
+
+[node name="RightArmSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/ItemContainer/RightArmSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Right Arm"
+horizontal_alignment = 1
+
+[node name="RightArm" parent="Inventory/ItemContainer/RightArmSlot" instance=ExtResource("1_oe7mg")]
+layout_mode = 2
+
+[node name="LegsSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/ItemContainer/LegsSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Legs"
+horizontal_alignment = 1
+
+[node name="Legs" parent="Inventory/ItemContainer/LegsSlot" instance=ExtResource("1_oe7mg")]
+layout_mode = 2
+
+[node name="ToggleHUD" type="Button" parent="."]
+offset_left = 886.0
+offset_top = 732.0
+offset_right = 1046.0
+offset_bottom = 802.0
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[connection signal="pressed" from="ToggleHUD" to="." method="_on_toggle_hud_pressed"]

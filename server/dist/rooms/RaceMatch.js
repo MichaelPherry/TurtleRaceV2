@@ -11,6 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RaceMatch = void 0;
 const colyseus_1 = require("colyseus");
+const botBuilds_js_1 = require("../bots/botBuilds.js");
+const bosses = new botBuilds_js_1.bossBuilds();
 class RaceMatch extends colyseus_1.Room {
     constructor() {
         super(...arguments);
@@ -23,8 +25,14 @@ class RaceMatch extends colyseus_1.Room {
         this.id_name_list = [];
         this.name_list = [];
         this.seed = 0;
+        this.seeds_boss = "";
         this.wins = new Map();
         this.raceResults = new Map();
+        this.lastResults = [];
+        this.bossRequests = new Set();
+        this.bossRaceActive = false;
+        this.bossRaceActiveCounter = 0;
+        this.bossQueue = [];
     }
     onCreate(options) {
         try {
@@ -35,6 +43,7 @@ class RaceMatch extends colyseus_1.Room {
             this.maxClients = options.maxClients;
             this.name_list = options.nameList.slice();
             this.perm_name_list = options.nameList.slice();
+            this.seeds_boss = options.end_boss;
             console.log("set up finished");
             console.log("NAME LIST ", this.name_list);
             this.initialize();
@@ -82,8 +91,29 @@ class RaceMatch extends colyseus_1.Room {
                         console.log("players:", this.players[racer].build.results);
                         this.players[racer].build.results[num_to_word] += 1;
                     }
+                    ;
                 }
                 ;
+            });
+            this.onMessage("request_boss_race", (client, message) => {
+                const player = this.players[client.sessionId];
+                if (this.bossRequests.has(client.sessionId))
+                    return;
+                this.bossRequests.add(client.sessionId);
+                this.updateBossQueue();
+                //this.broadcast("race_start", {startTime: startTime});
+            });
+            this.onMessage("boss_not_active", (client, message) => {
+                this.bossRaceActiveCounter += 1;
+                if (this.bossRaceActiveCounter >= this.maxClients) {
+                    this.bossRaceActive = false;
+                }
+                ;
+            });
+            this.onMessage("start_race_after_boss", (client, message) => {
+                this.players[client.sessionId].ready = true;
+                this.bossRaceActive = false;
+                this.raceStart(client);
             });
             this.onMessage("keepingServerUp", (client, message) => {
                 void 0;
@@ -174,8 +204,13 @@ class RaceMatch extends colyseus_1.Room {
             this.broadcast("seed", this.seed);
             this.broadcast("id_list", this.id_list);
             this.broadcast("id_with_name", this.id_name_list);
-            this.broadcast("send_turtles", this.players);
             const startTime = Date.now() + 3000;
+            if (this.bossRequests.size > 0) {
+                this.startNextBossRace();
+            }
+            else {
+                this.broadcast("send_turtles", this.players);
+            }
             this.broadcast("race_start", { startTime: startTime });
         }
     }
@@ -200,12 +235,53 @@ class RaceMatch extends colyseus_1.Room {
             finalResults[position] = winningPlayer;
         }
         console.log("FINAL RESULTS:", finalResults);
+        this.lastResults = finalResults;
         for (let i = 0; i < finalResults.length; i++) {
             const placement = (i + 1);
             returnResults[placement].push(finalResults[i]);
         }
         console.log("STANDARDIZED RESULTS:", returnResults);
         return returnResults;
+    }
+    updateBossQueue() {
+        this.bossQueue = [...this.bossRequests];
+        if (this.bossQueue.length <= 1) {
+            return;
+        }
+        ;
+        this.bossQueue.sort((a, b) => {
+            const playerA = this.players[a];
+            const playerB = this.players[b];
+            var placementA = 5;
+            var placementB = 5;
+            var counter = 1;
+            for (const player_id of this.lastResults) {
+                if (player_id == a) {
+                    placementA = counter;
+                }
+                ;
+                if (player_id == b) {
+                    placementB = counter;
+                }
+                ;
+                counter += 1;
+            }
+            return placementA - placementB;
+        });
+        this.broadcast("boss_queue_updated", { queue: this.bossQueue });
+    }
+    startNextBossRace() {
+        if (this.bossRaceActive || this.bossRequests.size == 0)
+            return;
+        this.updateBossQueue();
+        this.bossRaceActiveCounter = 0;
+        const challengerId = this.bossQueue[0];
+        this.bossRequests.delete(challengerId);
+        this.bossRaceActive = true;
+        for (const id of Object.keys(this.players)) {
+            this.players[id].ready = false;
+        }
+        this.broadcast("send_boss_turtles", [this.players, this.players[challengerId].name, { "Rabbit": bosses.bosses["Rabbit"] }]);
     }
 }
 exports.RaceMatch = RaceMatch;

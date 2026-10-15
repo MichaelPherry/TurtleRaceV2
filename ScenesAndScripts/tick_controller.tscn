@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfqg2jm234v1p"]
+
+[ext_resource type="Script" uid="uid://c8xpx0c5rhe72" path="res://ScenesAndScripts/tick_controller.gd" id="1_m85xj"]
+
+[node name="TickController" type="Node2D"]
+script = ExtResource("1_m85xj")

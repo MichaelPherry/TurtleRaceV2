@@ -20,6 +20,7 @@ class RaceLobby extends colyseus_1.Room {
         this.seed = 0;
         this.players = {};
         this.name_list = [];
+        this.bosses = ["Rabbit"];
     }
     onCreate(options) {
         try {
@@ -86,9 +87,10 @@ class RaceLobby extends colyseus_1.Room {
     }
     startRace() {
         return __awaiter(this, void 0, void 0, function* () {
+            var boss = this.bosses[Math.floor(Math.random() * this.bosses.length)];
             var room_location;
             room_location = "raceMatch";
-            const raceRoom = yield colyseus_2.matchMaker.createRoom(room_location, { maxClients: this.maxClients, nameList: this.name_list });
+            const raceRoom = yield colyseus_2.matchMaker.createRoom(room_location, { maxClients: this.maxClients, nameList: this.name_list, end_boss: boss });
             console.log(this.players);
             console.log(this.name_list);
             this.broadcast("load_race", { roomId: raceRoom.roomId });

@@ -1,0 +1,287 @@
+[gd_scene load_steps=55 format=3 uid="uid://dy3irp0js1vpi"]
+
+[ext_resource type="Texture2D" uid="uid://dx41bojvdtg3u" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0001.png" id="1_0as0m"]
+[ext_resource type="Texture2D" uid="uid://wi3itc05qplf" path="res://Art/ShaneArt/Rabbit/Rabbit_transpar0001.png" id="1_2s644"]
+[ext_resource type="Script" uid="uid://bdtd4jffhdqdo" path="res://ScenesAndScripts/rabbit.gd" id="1_wgiep"]
+[ext_resource type="Texture2D" uid="uid://n64lcdlyf782" path="res://Art/ShaneArt/Rabbit/Rabbit_transpar0002.png" id="2_g8ca2"]
+[ext_resource type="Texture2D" uid="uid://crl110fgdqmfa" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0002.png" id="2_wgiep"]
+[ext_resource type="Texture2D" uid="uid://da5x8a4w73dtr" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0003.png" id="3_fvais"]
+[ext_resource type="Texture2D" uid="uid://bnixk6vctovdb" path="res://Art/ShaneArt/Rabbit/Rabbit_transpar0003.png" id="3_i3odc"]
+[ext_resource type="Texture2D" uid="uid://yiux5msgyh1n" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0004.png" id="4_633u3"]
+[ext_resource type="Texture2D" uid="uid://d2hlsul71vwxa" path="res://Art/ShaneArt/Rabbit/Rabbit_transpar0004.png" id="4_fxx83"]
+[ext_resource type="Texture2D" uid="uid://w0t62xkklj13" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0005.png" id="5_r1xpv"]
+[ext_resource type="Texture2D" uid="uid://bojwit2oc3tmn" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0006.png" id="6_34aoj"]
+[ext_resource type="Texture2D" uid="uid://t43ucm0r2fvi" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0007.png" id="7_0m2mw"]
+[ext_resource type="Texture2D" uid="uid://dhadwbm70x0iu" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0008.png" id="8_el4pn"]
+[ext_resource type="Texture2D" uid="uid://d227yacdl1baw" path="res://Art/ShaneArt/Rabbit/Rabbit_Dig_transpar0009.png" id="9_vnqud"]
+[ext_resource type="Texture2D" uid="uid://tv1kryor23xd" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0001.png" id="10_we82q"]
+[ext_resource type="Texture2D" uid="uid://bs1ll26r1nyn1" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0002.png" id="11_qsq5d"]
+[ext_resource type="Texture2D" uid="uid://dpt6fdk70s7k6" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0003.png" id="12_2n058"]
+[ext_resource type="Texture2D" uid="uid://cg6rvvssvq8ct" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0004.png" id="13_mwgdq"]
+[ext_resource type="Texture2D" uid="uid://bjmj4lvtrjsot" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0005.png" id="14_rgvim"]
+[ext_resource type="Texture2D" uid="uid://ceb0n643xrpvb" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0006.png" id="15_phb1q"]
+[ext_resource type="Texture2D" uid="uid://c4co8y7wbjkbv" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0007.png" id="16_jafvk"]
+[ext_resource type="Texture2D" uid="uid://c4j8wfgbopy15" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0008.png" id="17_kn0de"]
+[ext_resource type="Texture2D" uid="uid://xhwrnem8otfs" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0009.png" id="18_tt502"]
+[ext_resource type="Texture2D" uid="uid://c1ifdrm8rmhg3" path="res://Art/ShaneArt/Rabbit/Rabbit_emerg_transpar0010.png" id="19_c0mr7"]
+[ext_resource type="Texture2D" uid="uid://cuv4ufqhg38an" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_transpar0001.png" id="20_5ky5p"]
+[ext_resource type="Texture2D" uid="uid://bi18fskvbu3ws" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_transpar0002.png" id="21_eo8hq"]
+[ext_resource type="Texture2D" uid="uid://b5n55mfyk3drt" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_transpar0003.png" id="22_0jrh6"]
+[ext_resource type="Texture2D" uid="uid://doejyk4s88js4" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_transpar0004.png" id="23_2w0is"]
+[ext_resource type="Texture2D" uid="uid://ct23edupl6872" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_2_transpar0001.png" id="28_ouvkx"]
+[ext_resource type="Texture2D" uid="uid://blu6nlvqs3p3u" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_2_transpar0002.png" id="29_dosgo"]
+[ext_resource type="Texture2D" uid="uid://bolq4d6tsgoph" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_2_transpar0003.png" id="30_t56q1"]
+[ext_resource type="Texture2D" uid="uid://7vaatn5bdax5" path="res://Art/ShaneArt/Rabbit/Rabbit_Dance_2_transpar0004.png" id="31_jyc77"]
+[ext_resource type="Texture2D" uid="uid://d3fmicy624d1h" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20001.png" id="33_0jrh6"]
+[ext_resource type="Texture2D" uid="uid://cnposvfusmt3d" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20002.png" id="34_2w0is"]
+[ext_resource type="Texture2D" uid="uid://bkwhvk165i3go" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20003.png" id="35_ouvkx"]
+[ext_resource type="Texture2D" uid="uid://c6lx8xswprp5g" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20004.png" id="36_dosgo"]
+[ext_resource type="Texture2D" uid="uid://bfk0vlvf2j547" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20005.png" id="37_t56q1"]
+[ext_resource type="Texture2D" uid="uid://bg0fty26hrw1b" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20006.png" id="38_jyc77"]
+[ext_resource type="Texture2D" uid="uid://bnlc65jdd7o3y" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20007.png" id="39_eqivh"]
+[ext_resource type="Texture2D" uid="uid://db56xiws07tia" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20008.png" id="40_ihlgt"]
+[ext_resource type="Texture2D" uid="uid://fhfqmyr0mu4i" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20009.png" id="41_x01wp"]
+[ext_resource type="Texture2D" uid="uid://bd8cf3pivem46" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20010.png" id="42_orq0k"]
+[ext_resource type="Texture2D" uid="uid://mgcpeghlsiax" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20011.png" id="43_nyq81"]
+[ext_resource type="Texture2D" uid="uid://ktggkerwqt2l" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20013.png" id="44_w66pl"]
+[ext_resource type="Texture2D" uid="uid://tcsxqxb7844" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20012.png" id="45_pymxa"]
+[ext_resource type="Texture2D" uid="uid://bid2yf4y6i6u5" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20014.png" id="46_ymjq5"]
+[ext_resource type="Texture2D" uid="uid://bctu01v0ohp8f" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20015.png" id="47_x8xrk"]
+[ext_resource type="Texture2D" uid="uid://xvv5d5mgadll" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20016.png" id="48_ovnti"]
+[ext_resource type="Texture2D" uid="uid://36plxuq6ykws" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20017.png" id="49_v1jyo"]
+[ext_resource type="Texture2D" uid="uid://bikivcsbj8xpb" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20019.png" id="50_4emo8"]
+[ext_resource type="Texture2D" uid="uid://bu7ldbubj4ked" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20018.png" id="51_eo0w7"]
+[ext_resource type="Texture2D" uid="uid://bmubkyi8arut7" path="res://Art/ShaneArt/Rabbit/Rabbit Sleep 20020.png" id="52_u4h34"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hje50"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0as0m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wgiep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fvais")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_633u3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r1xpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_34aoj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0m2mw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_el4pn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vnqud")
+}],
+"loop": false,
+"name": &"Digging",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_we82q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_qsq5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2n058")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mwgdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rgvim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_phb1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jafvk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_kn0de")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_tt502")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_c0mr7")
+}],
+"loop": false,
+"name": &"Emerging",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_5ky5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_eo8hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_0jrh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_2w0is")
+}],
+"loop": true,
+"name": &"Jig",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_2s644")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_g8ca2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i3odc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fxx83")
+}],
+"loop": true,
+"name": &"Running",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("28_ouvkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_dosgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_t56q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_jyc77")
+}],
+"loop": true,
+"name": &"Skipping",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_0jrh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_2w0is")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_ouvkx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_dosgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_t56q1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_jyc77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_eqivh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_ihlgt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_x01wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_orq0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_nyq81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_w66pl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_pymxa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_ymjq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_x8xrk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_ovnti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_v1jyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_4emo8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_eo0w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_u4h34")
+}],
+"loop": true,
+"name": &"Sleeping",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ipx8k"]
+radius = 299.0
+height = 818.0
+
+[node name="Rabbit" type="CharacterBody2D"]
+script = ExtResource("1_wgiep")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_hje50")
+animation = &"Emerging"
+frame = 9
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-30, 68)
+shape = SubResource("CapsuleShape2D_ipx8k")
+
+[node name="RabbitUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -110.0
+offset_bottom = 375.0
+size_flags_horizontal = 4
+
+[node name="StaminaBar" type="ProgressBar" parent="RabbitUI"]
+layout_mode = 2
+offset_left = -308.0
+offset_top = -410.0
+offset_right = 311.0
+offset_bottom = -383.0
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RabbitUI"]
+layout_mode = 0
+offset_left = -633.0
+offset_top = -503.0
+offset_right = 636.0
+offset_bottom = -336.0
+
+[node name="NameLabel" type="Label" parent="RabbitUI/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Rabbit"
+horizontal_alignment = 1

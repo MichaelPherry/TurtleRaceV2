@@ -14,6 +14,7 @@ const colyseus_1 = require("colyseus");
 const botBuilds_js_1 = require("../bots/botBuilds.js");
 const botBuilds_js_2 = require("../bots/botBuilds.js");
 const builds = new botBuilds_js_1.botBuilds();
+const bosses = new botBuilds_js_1.bossBuilds();
 class RaceMatchLocal extends colyseus_1.Room {
     constructor() {
         super(...arguments);
@@ -31,6 +32,7 @@ class RaceMatchLocal extends colyseus_1.Room {
         this.cpu1 = "";
         this.cpu2 = "";
         this.cpu3 = "";
+        this.boss_requested = false;
     }
     onCreate(options) {
         try {
@@ -99,6 +101,12 @@ class RaceMatchLocal extends colyseus_1.Room {
                     this.players[racer].build.results[num_to_word] += 1;
                 }
                 console.log("Client thinks winner is: ", message);
+            });
+            this.onMessage("request_boss_race", (client, message) => {
+                this.boss_requested = true;
+            });
+            this.onMessage("start_race_after_boss", (client, message) => {
+                this.raceStart(client);
             });
             this.onMessage("keepingServerUp", (client, message) => {
                 void 0;
@@ -295,8 +303,15 @@ class RaceMatchLocal extends colyseus_1.Room {
             this.broadcast("seed", this.seed);
             this.broadcast("id_list", this.id_list);
             this.broadcast("id_with_name", this.id_name_list);
-            this.broadcast("send_turtles", this.players);
             const startTime = Date.now() + 3000;
+            if (this.boss_requested == true) {
+                this.boss_requested = false;
+                this.broadcast("send_boss_turtles", [this.players, this.players[client.sessionId].name, { "Rabbit": bosses.bosses["Rabbit"] }]);
+            }
+            else {
+                this.broadcast("send_turtles", this.players);
+            }
+            ;
             this.broadcast("race_start", { startTime: startTime });
         }
     }

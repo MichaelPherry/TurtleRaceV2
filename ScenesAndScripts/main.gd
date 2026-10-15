@@ -4,15 +4,20 @@ extends Node2D
 @onready var name_list = $Results/Panel/HBoxContainer/Namelist
 @onready var time_list = $Results/Panel/HBoxContainer/Timelist
 @onready var tick_controller = $TickController
+@onready var race_timer = $CanvasLayer
 
 var finished_turts = []
 var turtles 
 var time_elapsed = 0.0
 var first_finish_time = 15
+var already_finished
 
 func _ready():
+	Inventory.race_complete = false
+	already_finished = false
 	Inventory.what_pos = {}
 	Inventory.rng_calls = 0
+	race_timer.race_ended_by_time.connect(end_race_by_time)
 	NetworkManager.send_message("Unready", NetworkManager.sessionID)
 	var finished = get_tree().get_nodes_in_group("finished")
 	for turt in finished:
@@ -26,13 +31,20 @@ func _process(delta):
 	time_elapsed += delta
 	turtles = get_tree().get_nodes_in_group("players")
 	turtles.sort_custom(func(a,b): return a.id < b.id)
-		
+
 	for turtle in turtles:
 		Inventory.what_pos[turtle.name_tag] = turtle.global_position.y
 	var order = Inventory.what_pos.keys().map(func(k): return [k, Inventory.what_pos[k]])
 	order.sort_custom(func(a, b): return a[1] > b[1])
 	Inventory.race_order = order
 	
+	if get_tree().get_nodes_in_group("finished").size() > 0:
+		var winner_name 
+		for turtle in get_tree().get_nodes_in_group("finished"):
+			if turtle.place == 1:
+				winner_name = turtle.name_tag
+		order[0][0] = winner_name
+		
 	if Inventory.start == false:
 		return
 		
@@ -48,9 +60,14 @@ func _process(delta):
 	elif str(order[0][0]) == turtles[3].name_tag:
 		if MusicManager.whistle.volume_db < 0:
 			MusicManager.switch(MusicManager.whistle)
+			
+			
 
 
 func _on_finish_line_body_exited(body):
+	if already_finished == true:
+		return
+
 	if body.is_in_group("not_finished"):
 		body.add_to_group("finished")
 		body.finished = true
@@ -60,46 +77,89 @@ func _on_finish_line_body_exited(body):
 		body.remove_from_group("not_finished")
 		body.remove_from_group("racing")
 		
+	if get_tree().get_nodes_in_group("not_finished").size() == 1:
+		if race_timer.race_time_remaining > 6:
+			race_timer.race_time_remaining = 6
+		
 	if get_tree().get_nodes_in_group("not_finished").size() == 0:
-		for num in range(len(Inventory.id_list)):
-			var name_label = Label.new()
-			name_list.add_child(name_label)
-			var time_label = Label.new()
-			time_list.add_child(time_label)
+		setting_up_results()
 		
-		var results = {1: [], 2: [], 3: [], 4: []}
-		
-		var local_name = Inventory.local_turtle[NetworkManager.sessionID].name
-		var local_result
-		for turt in get_tree().get_nodes_in_group("players"):
-			for id in Inventory.id_name_list:
-				if local_name == turt.name_tag:
-					if id[1] == turt.name_tag:
-						match int(turt.place):
-							1:
-								local_result = "first"
-							2:
-								local_result = "second"
-							3:
-								local_result = "third"
-							4:
-								local_result = "fourth"
-						Inventory.local_turtle[NetworkManager.sessionID].results[local_result] += 1
+func end_race_by_time():
+	if race_timer.race_time_remaining > 0.0 or already_finished == true:
+		return
 
-			results[int(turt.place)].append(turt.id)
-			var wanted_name_label = name_list.get_child(int(turt.place) - 1)
-			var wanted_time_label = time_list.get_child(int(turt.place) - 1)
-			wanted_name_label.text = str(turt.place) + "     "  + turt.name_tag + "     " 
-			wanted_time_label.text = turt.finish_time #+ "     " + str(turt.curr_tick) 
-			wanted_name_label.add_theme_font_size_override("font_size", 34)
-			wanted_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-			wanted_time_label.add_theme_font_size_override("font_size", 34)
-			wanted_time_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		await get_tree().create_timer(0.1).timeout
+	var placements = [1, 2, 3, 4]
+	
+	for turt in get_tree().get_nodes_in_group("finished"):
+		placements.erase(turt.place) 
+	
+	var turtles = get_tree().get_nodes_in_group("not_finished")
+	turtles.sort_custom(func(a, b): return a.global_position.y > b.global_position.y)
+	
+	for turt in turtles:
+		turt.place = placements.pop_front()
+		turt.finish_time = "N/A"
+		turt.remove_from_group("not_finished")
+		turt.remove_from_group("racing")
+
 		
-		NetworkManager.send_message("raceResults", results)
-		$Results.visible = true
+	setting_up_results()
+
+func setting_up_results():
+	Inventory.race_complete = true
+	already_finished = true
+	$CanvasLayer.visible = false
+	$HUD.visible = false
+	for num in range(len(Inventory.id_list)):
+		var name_label = Label.new()
+		name_list.add_child(name_label)
+		var time_label = Label.new()
+		time_list.add_child(time_label)
+
+	var results = {1: [], 2: [], 3: [], 4: []}
+
+	var local_name = Inventory.local_turtle[NetworkManager.sessionID].name
+	var local_result
+	for turt in get_tree().get_nodes_in_group("players"):
+		for id in Inventory.id_name_list:
+			if local_name == turt.name_tag:
+				if id[1] == turt.name_tag:
+					match int(turt.place):
+						1:
+							local_result = "first"
+						2:
+							local_result = "second"
+						3:
+							local_result = "third"
+						4:
+							local_result = "fourth"
+					Inventory.local_turtle[NetworkManager.sessionID].results[local_result] += 1
+		var place_in_word
+		match int(turt.place):
+			1:
+				place_in_word = "first"
+			2:
+				place_in_word = "second"
+			3:
+				place_in_word = "third"
+			4:
+				place_in_word = "fourth"
+		var sid = Inventory.sid_finder(turt.name_tag)
+		Inventory.server_turtles[sid]["results"][place_in_word] += 1
+		results[int(turt.place)].append(turt.id)
+		var wanted_name_label = name_list.get_child(int(turt.place) - 1)
+		var wanted_time_label = time_list.get_child(int(turt.place) - 1)
+		wanted_name_label.text = str(turt.place) + "     "  + turt.name_tag + "     " 
+		wanted_time_label.text = turt.finish_time + "     Wins: " + str(Inventory.server_turtles[sid]["results"]["first"])#+ str(turt.curr_tick) 
+		wanted_name_label.add_theme_font_size_override("font_size", 36)
+		wanted_name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		wanted_time_label.add_theme_font_size_override("font_size", 36)
+		wanted_time_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		
+	await get_tree().create_timer(0.1).timeout
+
+	NetworkManager.send_message("raceResults", results)
+	$Results.visible = true
 
 func format_time(time):
 	var minutes = floor(int(time) / 60)

@@ -135,9 +135,9 @@ size_flags_horizontal = 8
 process_mode = 3
 layout_mode = 0
 offset_left = 1645.0
-offset_top = 18.0
+offset_top = 12.0
 offset_right = 1896.0
-offset_bottom = 116.0
+offset_bottom = 110.0
 theme_override_font_sizes/font_size = 36
 text = "Settings
 "

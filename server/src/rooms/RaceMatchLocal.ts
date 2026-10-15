@@ -1,6 +1,6 @@
 import { Room } from "colyseus";
 import type { Client } from "colyseus";
-import { botBuilds } from "../bots/botBuilds.js";
+import { bossBuilds, botBuilds } from "../bots/botBuilds.js";
 import { bot_list } from "../bots/botBuilds.js";
 import { PassThrough } from "stream";
 
@@ -48,6 +48,7 @@ type Player = {
 };
 
 const builds = new botBuilds();
+const bosses = new bossBuilds();
 
 export class RaceMatchLocal extends Room {
 
@@ -68,6 +69,7 @@ export class RaceMatchLocal extends Room {
     cpu1: string = "";
     cpu2: string = "";
     cpu3: string = "";
+    boss_requested = false;
 
 
     onCreate(options: any) {
@@ -130,6 +132,14 @@ export class RaceMatchLocal extends Room {
             console.log("Client thinks winner is: ", message)
         })
 
+        this.onMessage("request_boss_race", (client, message) => {
+            this.boss_requested = true
+        })
+
+        this.onMessage("start_race_after_boss", (client, message) => {
+            this.raceStart(client);
+        })
+
         this.onMessage("keepingServerUp", (client, message) => {
             void 0;
         });
@@ -141,7 +151,7 @@ export class RaceMatchLocal extends Room {
         }
     }
 
-        async onJoin(client: any) {
+    async onJoin(client: any) {
         
             await this.initialized;
             try{
@@ -349,9 +359,13 @@ export class RaceMatchLocal extends Room {
             this.broadcast("seed", this.seed);
             this.broadcast("id_list", this.id_list)
             this.broadcast("id_with_name", this.id_name_list)
-            this.broadcast("send_turtles", this.players)
+            const startTime = Date.now() + 3000;    
 
-            const startTime = Date.now() + 3000;
+            if (this.boss_requested == true) {
+                this.boss_requested = false;
+                this.broadcast("send_boss_turtles", [this.players, this.players[client.sessionId].name, {"Rabbit": bosses.bosses["Rabbit"]}]);
+            }
+            else {this.broadcast("send_turtles", this.players)};
             this.broadcast("race_start", {startTime: startTime});
         }
      }

@@ -5,19 +5,19 @@
 [ext_resource type="PackedScene" uid="uid://dwysh2igy5tkf" path="res://ScenesAndScripts/hud.tscn" id="3_b20td"]
 [ext_resource type="Script" uid="uid://b4ha8dffp6v0q" path="res://ScenesAndScripts/main_camera.gd" id="3_txa5d"]
 [ext_resource type="PackedScene" uid="uid://e0ynki15iy0u" path="res://ScenesAndScripts/results.tscn" id="4_jx7lm"]
-[ext_resource type="Script" uid="uid://c8xpx0c5rhe72" path="res://ScenesAndScripts/tick_controller.gd" id="5_txa5d"]
 [ext_resource type="PackedScene" uid="uid://lkcedg5bm0e4" path="res://ScenesAndScripts/canvas_layer.tscn" id="6_gvcja"]
 [ext_resource type="Texture2D" uid="uid://bauj6oa5a8dg0" path="res://Art/AlexArt/Backgrounds/Tree 2.png" id="7_b20td"]
 [ext_resource type="Texture2D" uid="uid://dc1g30jx4k1ml" path="res://Art/AlexArt/Backgrounds/Race Path.png" id="8_ov0y5"]
 [ext_resource type="Texture2D" uid="uid://wogo3uvnoupi" path="res://Art/AlexArt/Backgrounds/Tree 1.png" id="8_sldy7"]
 [ext_resource type="Texture2D" uid="uid://ifha6t8ehq5r" path="res://Art/AlexArt/Backgrounds/Bush 3.png" id="9_4tk3y"]
+[ext_resource type="PackedScene" uid="uid://bfqg2jm234v1p" path="res://ScenesAndScripts/tick_controller.tscn" id="9_b20td"]
 [ext_resource type="Texture2D" uid="uid://1vipmt4aq0oi" path="res://Art/AlexArt/Backgrounds/Finish Line.png" id="9_w1pf6"]
 [ext_resource type="Texture2D" uid="uid://l0whvk7ipyre" path="res://Art/AlexArt/Backgrounds/Bush 2.png" id="10_x1tpn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f6nm2"]
 size = Vector2(8973, 274.25)
 
-[node name="main" type="Node2D"]
+[node name="Main" type="Node2D"]
 script = ExtResource("1_f6nm2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -400,8 +400,7 @@ texture = ExtResource("9_4tk3y")
 position = Vector2(4554.5, 7909)
 shape = SubResource("RectangleShape2D_f6nm2")
 
-[node name="TickController" type="Node2D" parent="."]
-script = ExtResource("5_txa5d")
+[node name="TickController" parent="." instance=ExtResource("9_b20td")]
 
 [node name="positionTester" type="Node2D" parent="."]
 position = Vector2(-1520, 1497)
@@ -411,21 +410,25 @@ position = Vector2(-1520, 1497)
 [node name="Results" parent="." instance=ExtResource("4_jx7lm")]
 
 [node name="FinishLine2" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(1521, 7853)
 scale = Vector2(0.75, 0.86)
 texture = ExtResource("9_w1pf6")
 
 [node name="FinishLine3" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(3537, 7853)
 scale = Vector2(0.75, 0.86)
 texture = ExtResource("9_w1pf6")
 
 [node name="FinishLine4" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(5540, 7853)
 scale = Vector2(0.75, 0.988)
 texture = ExtResource("9_w1pf6")
 
 [node name="FinishLine5" type="Sprite2D" parent="."]
+z_index = 1
 position = Vector2(7629, 7853)
 scale = Vector2(0.75, 0.988)
 texture = ExtResource("9_w1pf6")

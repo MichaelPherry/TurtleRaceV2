@@ -18,6 +18,7 @@ export class RaceLobby extends Room {
     seed = 0;
     players: Record<string, PlayerData> = {};
     name_list: string[] = [];
+    bosses = ["Rabbit"]
 
     onCreate(options: any) {
         try {
@@ -101,10 +102,10 @@ export class RaceLobby extends Room {
     }
 
     async startRace() {
-
+        var boss = this.bosses[Math.floor(Math.random() * this.bosses.length)];
         var room_location
         room_location = "raceMatch"
-        const raceRoom = await matchMaker.createRoom(room_location, {maxClients: this.maxClients, nameList: this.name_list});
+        const raceRoom = await matchMaker.createRoom(room_location, {maxClients: this.maxClients, nameList: this.name_list, end_boss: boss});
         console.log(this.players)
         console.log(this.name_list)
         this.broadcast("load_race", { roomId: raceRoom.roomId})

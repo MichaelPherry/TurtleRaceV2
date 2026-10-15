@@ -17,17 +17,73 @@ layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="Head" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+[node name="HeadSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
 layout_mode = 2
 
-[node name="Shell" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+[node name="Label" type="Label" parent="Inventory/ItemContainer/HeadSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Head"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Head" parent="Inventory/ItemContainer/HeadSlot" instance=ExtResource("2_y4mcb")]
 layout_mode = 2
 
-[node name="LeftArm" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+[node name="ShellSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
 layout_mode = 2
 
-[node name="RightArm" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+[node name="Label" type="Label" parent="Inventory/ItemContainer/ShellSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Shell"
+horizontal_alignment = 1
+
+[node name="Shell" parent="Inventory/ItemContainer/ShellSlot" instance=ExtResource("2_y4mcb")]
 layout_mode = 2
 
-[node name="Legs" parent="Inventory/ItemContainer" instance=ExtResource("2_y4mcb")]
+[node name="LeftArmSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/ItemContainer/LeftArmSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Left Arm"
+horizontal_alignment = 1
+
+[node name="LeftArm" parent="Inventory/ItemContainer/LeftArmSlot" instance=ExtResource("2_y4mcb")]
+layout_mode = 2
+
+[node name="RightArmSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/ItemContainer/RightArmSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Right Arm"
+horizontal_alignment = 1
+
+[node name="RightArm" parent="Inventory/ItemContainer/RightArmSlot" instance=ExtResource("2_y4mcb")]
+layout_mode = 2
+
+[node name="LegsSlot" type="VBoxContainer" parent="Inventory/ItemContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inventory/ItemContainer/LegsSlot"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Legs"
+horizontal_alignment = 1
+
+[node name="Legs" parent="Inventory/ItemContainer/LegsSlot" instance=ExtResource("2_y4mcb")]
+layout_mode = 2
+
+[node name="ToggleHUD" type="Button" parent="."]
+offset_left = 886.0
+offset_top = 732.0
+offset_right = 1046.0
+offset_bottom = 802.0
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[connection signal="pressed" from="ToggleHUD" to="." method="_on_toggle_hud_pressed"]

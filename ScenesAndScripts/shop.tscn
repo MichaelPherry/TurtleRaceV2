@@ -1,6 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://croetv5l82fpm"]
+[gd_scene load_steps=13 format=3 uid="uid://croetv5l82fpm"]
 
 [ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
+[ext_resource type="Texture2D" uid="uid://hieoki3sge0q" path="res://Art/ShaneArt/Shop/Shop_Zoom_Out_no_Graf0000.png" id="2_8vvo5"]
+[ext_resource type="Texture2D" uid="uid://dfevigyvutgd3" path="res://Art/ShaneArt/Shop/Shop_Zoom_Out_Graf0000.png" id="3_86hpo"]
 [ext_resource type="Texture2D" uid="uid://b7ekdlhrhvi0o" path="res://Art/AlexArt/Items/BunnyEars/Shop _Bunny Ear.png" id="3_gyq1v"]
 [ext_resource type="PackedScene" uid="uid://eshxbd5dnmih" path="res://ScenesAndScripts/shop_hud.tscn" id="3_im1wo"]
 [ext_resource type="Texture2D" uid="uid://fbdyocmgr51i" path="res://Art/TempArt/Test 30000.png" id="3_uw2qy"]
@@ -13,11 +15,19 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_uw2qy")
+"texture": ExtResource("2_8vvo5")
 }],
 "loop": true,
 "name": &"default",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_86hpo")
+}],
+"loop": true,
+"name": &"graf",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -41,10 +51,10 @@ sprite_frames = SubResource("SpriteFrames_r850d")
 [node name="shopHUD" parent="RaccoonBackground" instance=ExtResource("3_im1wo")]
 
 [node name="slot1" type="TextureButton" parent="RaccoonBackground"]
-offset_left = -935.0
-offset_top = 87.0
-offset_right = -297.0
-offset_bottom = 468.0
+offset_left = -1340.0
+offset_top = 16.0
+offset_right = -702.0
+offset_bottom = 397.0
 texture_normal = ExtResource("3_gyq1v")
 ignore_texture_size = true
 stretch_mode = 3
@@ -52,20 +62,20 @@ stretch_mode = 3
 [node name="slot1_cost" type="Label" parent="RaccoonBackground/slot1"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 196.0
-offset_top = 326.0
-offset_right = 456.0
-offset_bottom = 423.0
+offset_left = 489.0
+offset_top = 323.0
+offset_right = 749.0
+offset_bottom = 420.0
 theme_override_font_sizes/font_size = 30
 text = "slot1 price
 "
 horizontal_alignment = 1
 
 [node name="slot2" type="TextureButton" parent="RaccoonBackground"]
-offset_left = -296.0
-offset_top = 7.0
-offset_right = 322.0
-offset_bottom = 431.0
+offset_left = -510.0
+offset_top = -11.0
+offset_right = 105.0
+offset_bottom = 330.0
 texture_normal = ExtResource("4_tawjt")
 ignore_texture_size = true
 stretch_mode = 3
@@ -73,19 +83,19 @@ stretch_mode = 3
 [node name="slot2_cost" type="Label" parent="RaccoonBackground/slot2"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 168.526
-offset_top = 401.677
-offset_right = 401.526
-offset_bottom = 486.677
+offset_left = 406.0
+offset_top = 319.0
+offset_right = 639.0
+offset_bottom = 404.0
 theme_override_font_sizes/font_size = 30
 text = "slot2 price"
 horizontal_alignment = 1
 
 [node name="slot3" type="TextureButton" parent="RaccoonBackground"]
-offset_left = 242.0
-offset_top = 141.0
-offset_right = 898.0
-offset_bottom = 531.0
+offset_left = 166.0
+offset_top = 32.0
+offset_right = 822.0
+offset_bottom = 422.0
 texture_normal = ExtResource("5_fnmc7")
 ignore_texture_size = true
 stretch_mode = 3
@@ -93,86 +103,80 @@ stretch_mode = 3
 [node name="slot3_cost" type="Label" parent="RaccoonBackground/slot3"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_left = 173.342
-offset_top = 337.046
-offset_right = 408.341
-offset_bottom = 411.046
+offset_left = 477.0
+offset_top = 227.0
+offset_right = 711.999
+offset_bottom = 301.0
 theme_override_font_sizes/font_size = 30
 text = "slot3_price"
 horizontal_alignment = 1
 
 [node name="Gold" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = -816.0
-offset_top = -837.0
-offset_right = -381.0
-offset_bottom = -719.0
+offset_left = -1575.0
+offset_top = -309.0
+offset_right = -1140.0
+offset_bottom = -191.0
 theme_override_font_sizes/font_size = 64
 text = "Gold: "
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="."]
-offset_left = -1533.0
-offset_top = -384.0
-offset_right = -968.0
-offset_bottom = -176.0
-theme_override_font_sizes/font_size = 50
-text = "Ready
-"
-
-[node name="leftArm" type="Button" parent="."]
-offset_left = -1493.0
-offset_top = -681.0
-offset_right = -979.0
-offset_bottom = -555.0
-theme_override_font_sizes/font_size = 40
-text = "Left Arm"
-
-[node name="rightArm" type="Button" parent="."]
-offset_left = -1495.0
-offset_top = -538.0
-offset_right = -972.0
-offset_bottom = -416.0
-theme_override_font_sizes/font_size = 40
-text = "Right Arm"
-
 [node name="Label" type="Label" parent="."]
 modulate = Color(0, 0, 0, 1)
-offset_left = -496.0
-offset_top = -849.0
-offset_right = 374.0
-offset_bottom = -759.667
+offset_left = -1562.0
+offset_top = -483.0
+offset_right = -1158.0
+offset_bottom = -366.0
 theme_override_font_sizes/font_size = 64
 text = "shop"
-horizontal_alignment = 1
-
-[node name="whichArm" type="Label" parent="."]
-offset_left = -1475.0
-offset_top = -745.0
-offset_right = -1015.0
-offset_bottom = -684.0
-theme_override_font_sizes/font_size = 40
-text = "Which arm?"
 horizontal_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.6, 0.6)
 
 [node name="InventoryButton" type="Button" parent="."]
-offset_left = 1144.0
-offset_top = -623.0
-offset_right = 1523.0
-offset_bottom = -438.0
+offset_left = 1147.0
+offset_top = -272.0
+offset_right = 1526.0
+offset_bottom = -87.0
 theme_override_font_sizes/font_size = 40
 text = "Inventory"
 
+[node name="Boss" type="Button" parent="."]
+offset_left = -387.0
+offset_top = -138.0
+offset_right = -12.0
+offset_bottom = 58.0
+theme_override_font_sizes/font_size = 40
+text = "Boss"
+
 [node name="Roll" type="Button" parent="."]
 offset_left = 1146.0
-offset_top = -433.0
+offset_top = 226.0
 offset_right = 1526.0
-offset_bottom = -246.0
+offset_bottom = 413.0
 theme_override_font_sizes/font_size = 40
 text = "Roll"
+
+[node name="Ready" type="Button" parent="."]
+offset_left = -409.0
+offset_top = -394.0
+offset_right = 18.0
+offset_bottom = -196.0
+theme_override_font_sizes/font_size = 50
+text = "Ready
+"
+
+[node name="InventoryFull" type="Label" parent="."]
+visible = false
+offset_left = -1279.0
+offset_top = 425.0
+offset_right = 1284.0
+offset_bottom = 842.0
+theme_override_font_sizes/font_size = 324
+text = "Slot Taken!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="InventoryPanel" type="Panel" parent="."]
 visible = false
@@ -376,11 +380,10 @@ visible = false
 [connection signal="button_down" from="RaccoonBackground/slot1" to="." method="_slot1"]
 [connection signal="button_down" from="RaccoonBackground/slot2" to="." method="_slot2"]
 [connection signal="button_down" from="RaccoonBackground/slot3" to="." method="_slot3"]
-[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
-[connection signal="button_down" from="leftArm" to="." method="_on_left_arm"]
-[connection signal="button_down" from="rightArm" to="." method="_on_right_arm"]
 [connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]
+[connection signal="pressed" from="Boss" to="." method="_on_boss_pressed"]
 [connection signal="pressed" from="Roll" to="." method="_on_roll_pressed"]
+[connection signal="pressed" from="Ready" to="." method="_on_ready_pressed"]
 [connection signal="pressed" from="InventoryPanel/HideInventory" to="." method="_on_hide_inventory_pressed"]
 [connection signal="pressed" from="InventoryPanel/SelfInventory" to="." method="_on_self_inventory_pressed"]
 [connection signal="pressed" from="InventoryPanel/Opponent1" to="." method="_on_opponent_1_pressed"]

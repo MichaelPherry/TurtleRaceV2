@@ -12,11 +12,11 @@ extends Node2D
 @onready var racc_slot2 = $RaccoonBackground/slot2
 @onready var racc_slot3 = $RaccoonBackground/slot3
 @onready var hud = $RaccoonBackground/shopHUD
-@onready var head_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/Head
-@onready var shell_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/Shell
-@onready var leftArm_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/LeftArm
-@onready var rightArm_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/RightArm
-@onready var legs_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/Legs
+@onready var head_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/HeadSlot/Head
+@onready var shell_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/ShellSlot/Shell
+@onready var leftArm_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/LeftArmSlot/LeftArm
+@onready var rightArm_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/RightArmSlot/RightArm
+@onready var legs_hud = $RaccoonBackground/shopHUD/Inventory/ItemContainer/LegsSlot/Legs
 @onready var self_inven = $InventoryPanel/SelfInventory
 @onready var opp1_inven = $InventoryPanel/Opponent1
 @onready var opp2_inven = $InventoryPanel/Opponent2
@@ -50,9 +50,17 @@ var opp1_label
 var opp2_label
 var opp3_label
 
+var shake_tween
+var gold_tween
+var message_tween
+
 func _ready():
+	$Boss.visible = false
 	if Inventory.server_turtles.size() == 0:
-		$InventoryButton.visible = false
+		opp1_inven.visible = false
+		opp2_inven.visible = false
+		opp3_inven.visible = false
+		self_inven.visible = false
 	else:
 		head_image.size = Vector2(32, 32)
 		head_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
@@ -72,29 +80,43 @@ func _ready():
 		player_ids = Inventory.id_list.duplicate()
 		player_ids.erase(NetworkManager.local_player_name)
 		self_label = NetworkManager.local_player_name
-		self_sid = sid_finder(self_label)
+		self_sid = Inventory.sid_finder(self_label)
 		player_ids.erase(self_sid)
-		opp1_sid = player_ids.pop_front()
-		opp1_label = label_finder(opp1_sid)
-		opp2_sid = player_ids.pop_front()
-		opp2_label = label_finder(opp2_sid)
-		opp3_sid = player_ids.pop_front()
-		opp3_label = label_finder(opp3_sid)
+		if Inventory.server_turtles.keys().size() > 1:
+			opp1_sid = player_ids.pop_front()
+			opp1_label = Inventory.label_finder(opp1_sid)
+			opp1_inven.text = opp1_label
+			opp1_inven.visible = true
+		else:
+			opp1_inven.visible = false
+		if Inventory.server_turtles.keys().size() > 2:
+			opp2_sid = player_ids.pop_front()
+			opp2_label = Inventory.label_finder(opp2_sid)
+			opp2_inven.text = opp2_label
+			opp2_inven.visible = true
+		else:
+			opp2_inven.visible = false
+		if Inventory.server_turtles.keys().size() > 3:
+			opp3_sid = player_ids.pop_front()
+			opp3_label = Inventory.label_finder(opp3_sid)
+			opp3_inven.text = opp3_label
+			opp3_inven.visible = true
+		else:
+			opp3_inven.visible = false
 		self_inven.text = self_label
-		opp1_inven.text = opp1_label
-		opp2_inven.text = opp2_label
-		opp3_inven.text = opp3_label
-		$InventoryButton.visible = true
-
+		self_inven.visible = true
+		if Inventory.server_turtles[self_sid]["results"]["first"] >= Inventory.wins_needed_for_boss:
+			$Boss.visible = true
+	
 	Inventory.start = false
 	MusicManager.mainmenu.stop()
 	MusicManager.fade_in()
 	done_shopping = false
 	temp_pool = ItemPassivePool.total_pool.duplicate(true)
-	$leftArm.visible = false
-	$rightArm.visible = false
-	$whichArm.visible = false
 	$Roll.visible = true
+	$Gold.modulate = Color.WHITE
+	$Label.modulate = Color.WHITE
+	
 	
 	head_hud.item_sold.connect(_on_item_sold)
 	shell_hud.item_sold.connect(_on_item_sold)
@@ -165,92 +187,123 @@ func item_roll():
 	racc_slot2.mouse_exited.connect(_on_slot_unhovered.bind(racc_slot2))
 	racc_slot3.mouse_entered.connect(_on_slot_hovered.bind(racc_slot3))
 	racc_slot3.mouse_exited.connect(_on_slot_unhovered.bind(racc_slot3))
-
-func _on_button_button_down():
-	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
-	done_shopping = true
 	
 func _slot1():
 	if done_shopping:
 		return
-	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= shop_item1.price:
-		if Inventory.item_1[0] == "arm":
-			Inventory.item_1[0] = await which_arm()
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] < shop_item1.price:
+		shake_gold()
+		shake(racc_slot1)
+		return
 		
-		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= shop_item1.price
-		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
-		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] != null:
-			var old_item = get_item_path(Inventory.item_1[0], Inventory.item_1[1])
-			if Inventory.item_1[0] == "leftArm" or Inventory.item_1[0] == "rightArm":
-				return_to_item_pool("arm", Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]])
-			else:
-				return_to_item_pool(Inventory.item_1[0], Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]])
-			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
-			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = null
-			
-		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = Inventory.item_1[1]
-		#inventoryTurt.equip()
+	if Inventory.item_1[0] == "arm":
+		if typeof(has_arm_space()) == TYPE_BOOL:
+			inventory_full()
+			return
+		else:
+			Inventory.item_1[0] = has_arm_space()
+	else: 
+		if has_space(Inventory.item_1[0]) == false:
+			inventory_full()
+			return
+	
+	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= shop_item1.price
+	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] != null:
+		var old_item = get_item_path(Inventory.item_1[0], Inventory.item_1[1])
 		if Inventory.item_1[0] == "leftArm" or Inventory.item_1[0] == "rightArm":
-			Inventory.item_1[0] = "arm"
-		ItemPassivePool.total_pool[Inventory.item_1[0]].erase(Inventory.item_1[1])
-		racc_slot1.visible = false
-		hud.icon_setup()
-		inventory_items()
+			return_to_item_pool("arm", Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]])
+		else:
+			return_to_item_pool(Inventory.item_1[0], Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]])
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
+		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = null
+		
+	Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_1[0]] = Inventory.item_1[1]
+	#inventoryTurt.equip()
+	if Inventory.item_1[0] == "leftArm" or Inventory.item_1[0] == "rightArm":
+		Inventory.item_1[0] = "arm"
+	ItemPassivePool.total_pool[Inventory.item_1[0]].erase(Inventory.item_1[1])
+	racc_slot1.visible = false
+	hud.icon_setup()
+	inventory_items()
 	
 func _slot2():
 	if done_shopping:
 		return
-	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= shop_item2.price:
-		if Inventory.item_2[0] == "arm":
-			Inventory.item_2[0] = await which_arm()
-			
-		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= shop_item2.price
-		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
-		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] != null:
-			var old_item = get_item_path(Inventory.item_2[0], Inventory.item_2[1])
-			if Inventory.item_2[0] == "leftArm" or Inventory.item_2[0] == "rightArm":
-				return_to_item_pool("arm", Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]])
-			else:
-				return_to_item_pool(Inventory.item_2[0], Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]])
-			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
-			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = null
-			
-		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = Inventory.item_2[1]
-		#inventoryTurt.equip()
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] < shop_item2.price:
+		shake_gold()
+		shake(racc_slot2)
+		return
+		
+	if Inventory.item_2[0] == "arm":
+		if typeof(has_arm_space()) == TYPE_BOOL:
+			inventory_full()
+			return
+		else:
+			Inventory.item_2[0] = has_arm_space()
+	else: 
+		if has_space(Inventory.item_2[0]) == false:
+			inventory_full()
+			return
+		
+	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= shop_item2.price
+	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] != null:
+		var old_item = get_item_path(Inventory.item_2[0], Inventory.item_2[1])
 		if Inventory.item_2[0] == "leftArm" or Inventory.item_2[0] == "rightArm":
-			Inventory.item_2[0] = "arm"
-		ItemPassivePool.total_pool[Inventory.item_2[0]].erase(Inventory.item_2[1])
-		racc_slot2.visible = false
-		hud.icon_setup()
-		inventory_items()
+			return_to_item_pool("arm", Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]])
+		else:
+			return_to_item_pool(Inventory.item_2[0], Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]])
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
+		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = null
+		
+	Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_2[0]] = Inventory.item_2[1]
+	#inventoryTurt.equip()
+	if Inventory.item_2[0] == "leftArm" or Inventory.item_2[0] == "rightArm":
+		Inventory.item_2[0] = "arm"
+	ItemPassivePool.total_pool[Inventory.item_2[0]].erase(Inventory.item_2[1])
+	racc_slot2.visible = false
+	hud.icon_setup()
+	inventory_items()
 
 func _slot3(): 
 	if done_shopping:
 		return
-	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= shop_item3.price:
-		if Inventory.item_3[0] == "arm":
-			Inventory.item_3[0] = await which_arm()
-			
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] < shop_item3.price:
+		shake_gold()
+		shake(racc_slot3)
+		return
+		
+	if Inventory.item_3[0] == "arm":
+		if typeof(has_arm_space()) == TYPE_BOOL:
+			inventory_full()
+			return
+		else:
+			Inventory.item_3[0] = has_arm_space()
+	else: 
+		if has_space(Inventory.item_3[0]) == false:
+			inventory_full()
+			return
 
-		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= shop_item3.price
-		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
-		if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] != null:
-			var old_item = get_item_path(Inventory.item_3[0], Inventory.item_3[1])
-			if Inventory.item_3[0] == "leftArm" or Inventory.item_3[0] == "rightArm":
-				return_to_item_pool("arm", Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]])
-			else:
-				return_to_item_pool(Inventory.item_3[0], Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]])
-			Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
-			Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = null
-			
-		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = Inventory.item_3[1]
-		#inventoryTurt.equip()
+	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= shop_item3.price
+	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] != null:
+		var old_item = get_item_path(Inventory.item_3[0], Inventory.item_3[1])
 		if Inventory.item_3[0] == "leftArm" or Inventory.item_3[0] == "rightArm":
-			Inventory.item_3[0] = "arm"
-		ItemPassivePool.total_pool[Inventory.item_3[0]].erase(Inventory.item_3[1])
-		racc_slot3.visible = false
-		hud.icon_setup()
-		inventory_items()
+			return_to_item_pool("arm", Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]])
+		else:
+			return_to_item_pool(Inventory.item_3[0], Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]])
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += (old_item.price / 2)
+		Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = null
+		
+	Inventory.local_turtle[NetworkManager.sessionID]["items"][Inventory.item_3[0]] = Inventory.item_3[1]
+	#inventoryTurt.equip()
+	if Inventory.item_3[0] == "leftArm" or Inventory.item_3[0] == "rightArm":
+		Inventory.item_3[0] = "arm"
+	ItemPassivePool.total_pool[Inventory.item_3[0]].erase(Inventory.item_3[1])
+	racc_slot3.visible = false
+	hud.icon_setup()
+	inventory_items()
 
 func rand_items():
 	#$while body_part_list.size() == 0:
@@ -267,40 +320,6 @@ func rand_items():
 	temp_pool[body_part].erase(item)
 	
 	return [body_part, item]
-
-func which_arm():
-	$Button.disabled = true
-	racc_slot1.disabled = true
-	racc_slot2.disabled = true
-	racc_slot3.disabled = true
-	
-	$leftArm.visible = true
-	$rightArm.visible = true
-	$whichArm.visible = true
-	var arm = await button_selected
-	return arm
-	
-func _on_left_arm():
-	$Button.disabled = false
-	racc_slot1.disabled = false
-	racc_slot2.disabled = false
-	racc_slot3.disabled = false
-	
-	$leftArm.visible = false
-	$rightArm.visible = false
-	$whichArm.visible = false
-	button_selected.emit("leftArm")
-	
-func _on_right_arm():
-	$Button.disabled = false
-	racc_slot1.disabled = false
-	racc_slot2.disabled = false
-	racc_slot3.disabled = false
-		
-	$leftArm.visible = false
-	$rightArm.visible = false
-	$whichArm.visible = false
-	button_selected.emit("rightArm")
 
 func get_item_path(body_part, item_name):
 	if body_part == "leftArm" or body_part == "rightArm":
@@ -340,6 +359,20 @@ func _on_slot_unhovered(button):
 	button.modulate = Color.WHITE
 	$Tooltop.hide_tooltip()
 
+func has_space(appendage):
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"][appendage] == null:
+		return true
+	else:
+		return false
+
+func has_arm_space():
+	if Inventory.local_turtle[NetworkManager.sessionID]["items"]["leftArm"] == null:
+		return "leftArm"
+	elif Inventory.local_turtle[NetworkManager.sessionID]["items"]["rightArm"] == null:
+		return "rightArm"
+	else:
+		return false
+
 func _on_inventory_button_pressed() -> void:
 	inventoryTurt.local_equip()
 	inventory_items()
@@ -361,11 +394,15 @@ func _on_inventory_turtle_unhovered():
 func _on_roll_pressed() -> void:
 	if done_shopping:
 		return
-	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= roll_cost:
-		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= roll_cost
-		temp_pool = ItemPassivePool.total_pool.duplicate(true)
-		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
-		item_roll()
+
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] < roll_cost:
+		shake_gold()
+		return
+		
+	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= roll_cost
+	temp_pool = ItemPassivePool.total_pool.duplicate(true)
+	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	item_roll()
 
 func inventory_items():
 	head_image.texture = null
@@ -490,18 +527,61 @@ func image_disconnect():
 	legs_image.mouse_entered.disconnect(_on_slot_hovered.bind(legs_image))
 	legs_image.mouse_exited.disconnect(_on_slot_unhovered.bind(legs_image))
 
-func label_finder(server_id):
-	var gamer_tag = null
-	for sid in Inventory.id_name_list:
-		if server_id == sid[0]:
-			gamer_tag = sid[1]
-			break
-	return gamer_tag
+func shake(item_slot):
+	if shake_tween and shake_tween.is_running():
+		shake_tween.kill()
+	
+	var original_position = item_slot.position
+	shake_tween = create_tween()
+	shake_tween.tween_property(item_slot, "position:x", original_position.x + 8, 0.04)
+	shake_tween.tween_property(item_slot, "position:x", original_position.x - 8, 0.04)
+	shake_tween.tween_property(item_slot, "position:x", original_position.x + 5, 0.04)
+	shake_tween.tween_property(item_slot, "position:x", original_position.x - 5, 0.04)
+	shake_tween.tween_property(item_slot, "position:x", original_position.x, 0.04)
 
-func sid_finder(gamer_tag):
-	var sid = null
-	for tag in Inventory.id_name_list:
-		if gamer_tag == tag[1]:
-			sid = tag[0]
-			break
-	return sid
+func shake_gold():
+	if gold_tween and gold_tween.is_running():
+		gold_tween.kill()
+
+	var original_position = $Gold.position
+	var original_color = $Gold.modulate
+	
+	gold_tween = create_tween()
+	gold_tween.set_parallel()
+	
+	gold_tween.tween_property($Gold, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_QUAD)
+	gold_tween.tween_property($Gold, "position:x", original_position.x + 10, 0.04).set_delay(0.0)
+	gold_tween.chain().tween_property($Gold, "position:x", original_position.x - 6, 0.04)
+	gold_tween.chain().tween_property($Gold, "position:x", original_position.x + 4, 0.04)
+	gold_tween.chain().tween_property($Gold, "position:x", original_position.x, 0.04)
+	gold_tween.tween_property($Gold, "modulate", original_color, 0.2).set_delay(0.15)
+
+func inventory_full():
+	if message_tween and message_tween.is_running():
+		message_tween.kill()
+
+	if Inventory.main_hud == true:
+		$RaccoonBackground/shopHUD._on_toggle_hud_pressed()
+	
+	$InventoryFull.show()
+	$InventoryFull.modulate = Color.WHITE
+
+	message_tween = create_tween()
+	message_tween.tween_interval(0.6)
+	message_tween.tween_property($InventoryFull, "modulate:a", 0.0, 0.3)
+	message_tween.tween_callback($InventoryFull.hide)
+	
+	await get_tree().create_timer(0.7).timeout
+	
+	if Inventory.main_hud == false:
+		$RaccoonBackground/shopHUD._on_toggle_hud_pressed()
+
+func _on_ready_pressed() -> void:
+	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
+	done_shopping = true
+
+
+func _on_boss_pressed() -> void:
+	NetworkManager.send_message("request_boss_race", "request_boss_race")
+	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
+	done_shopping = true

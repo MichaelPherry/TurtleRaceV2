@@ -37,6 +37,53 @@ type Turtle = {
     }
 };
 
+export class bossBuilds extends Room {
+    bosses: Record<string, Record<string, Turtle>> = {};
+    rabbit_acceleration: number = 10
+    rabbit_resilience: number = 0
+    rabbit_max_speed: number = 750
+    rabbit_fire_rate: number = 1
+    rabbit_projectile_speed: number = 1
+    rabbit_luck: number = 2
+
+    constructor() {
+       super();
+       this.bosses = {
+            "Rabbit": {
+                "build": {
+                    "items": { 
+                        "leftArm" : null,
+                        "rightArm" : null,
+                        "head" : "bunny_ears",
+                        "shell" : null,
+                        "legs" : null
+                    },
+
+                    "base_stats" : {
+                        "acceleration" : this.rabbit_acceleration,
+                        "resilience" : this.rabbit_resilience,
+                        "max_speed" : this.rabbit_max_speed,
+                        "fire_rate" : this.rabbit_fire_rate,
+                        "projectile_speed" : this.rabbit_projectile_speed,
+                        "luck" : this.rabbit_luck
+                    },
+
+                    "econ" : {
+                        "gold" : 0
+                    },
+
+                    "results" : {
+                        "first": 0,
+                        "second": 0,
+                        "third": 0,
+                        "fourth": 0
+                    }
+                }
+            }
+        }
+    }
+}
+
 export class botBuilds extends Room {
     turtles: Record<string, Record<string, Turtle>> = {};
     acceleration: number = 5
@@ -334,7 +381,6 @@ export class botBuilds extends Room {
                         "third": 0,
                         "fourth": 0
                     }
-
                 }
             }
         }        
