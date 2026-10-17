@@ -1,0 +1,82 @@
+[gd_scene load_steps=2 format=3 uid="uid://covttivjalf1a"]
+
+[ext_resource type="Script" uid="uid://b8sxhale7oeqi" path="res://ScenesAndScripts/stocks.gd" id="1_4ijur"]
+
+[node name="Stocks" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4ijur")
+
+[node name="GraphArea" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 160.0
+offset_top = 140.0
+offset_right = 1760.0
+offset_bottom = 940.0
+
+[node name="ColorRect" type="ColorRect" parent="GraphArea"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -34.0
+offset_right = 40.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stock1Line" type="Line2D" parent="GraphArea"]
+position = Vector2(-3, 0)
+default_color = Color(0.665614, 0, 0, 1)
+
+[node name="Stock2Line" type="Line2D" parent="GraphArea"]
+default_color = Color(0.435294, 0.658824, 0.862745, 1)
+
+[node name="Stock3Line" type="Line2D" parent="GraphArea"]
+default_color = Color(0.403922, 0.305882, 0.654902, 1)
+
+[node name="Stock4Line" type="Line2D" parent="GraphArea"]
+default_color = Color(0.192157, 0.431373, 0.0862745, 1)
+
+[node name="XAxis" type="Line2D" parent="."]
+position = Vector2(-11.0557, 0)
+scale = Vector2(1.00681, 1)
+points = PackedVector2Array(165, 940, 1760, 940)
+default_color = Color(0, 0, 0, 1)
+
+[node name="YAxis" type="Line2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1, 1)
+points = PackedVector2Array(160, 140, 160, 940)
+default_color = Color(0, 0, 0, 1)
+
+[node name="AxisLabels" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1076.0
+
+[node name="Legend" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Shop" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1769.0
+offset_top = 357.0
+offset_right = 1908.0
+offset_bottom = 559.0
+theme_override_font_sizes/font_size = 36
+text = "Shop
+"
+
+[node name="Axis" type="Control" parent="."]
+anchors_preset = 0
+offset_top = -2.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]

@@ -32,7 +32,11 @@ class bossBuilds extends colyseus_1.Room {
                         "luck": this.rabbit_luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -75,7 +79,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -101,7 +109,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -127,7 +139,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -155,7 +171,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -181,7 +201,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -207,7 +231,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -235,7 +263,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -261,7 +293,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,
@@ -287,7 +323,11 @@ class botBuilds extends colyseus_1.Room {
                         "luck": this.luck
                     },
                     "econ": {
-                        "gold": 0
+                        "gold": 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0
                     },
                     "results": {
                         "first": 0,

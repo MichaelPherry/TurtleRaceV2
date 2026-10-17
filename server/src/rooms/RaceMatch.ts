@@ -24,10 +24,10 @@ type Turtle = {
 
     econ : {
         gold: Int16Array | 10;
-        //stock1: Int16Array | 0;
-        //stock2: Int16Array | 0;
-        //stock3: Int16Array | 0;
-        //stock4: Int16Array | 0;
+        stock1: Int16Array | 0;
+        stock2: Int16Array | 0;
+        stock3: Int16Array | 0;
+        stock4: Int16Array | 0;
     },
 
     results: {
@@ -60,6 +60,8 @@ export class RaceMatch extends Room {
     placements: string[] = [];
     maxClients: number = 4;
     availableRaceStarts = [1, 2, 3, 4];
+    round: number = 0;
+    roundResults: Record<number, string[]> = {};
     id_list: string[] = [];
     perm_name_list: string[] = [];
     id_name_list: Array<string>[] = [];
@@ -125,6 +127,7 @@ export class RaceMatch extends Room {
 
                     this.players[racer].build.results[num_to_word] += 1;
                 };
+                this.broadcast("round_results", [this.round, this.roundResults]);
             };
         })
 
@@ -185,7 +188,11 @@ export class RaceMatch extends Room {
                 },
 
                 econ: {
-                    gold: 10
+                    gold: 10,
+                    stock1: 0,
+                    stock2: 0,
+                    stock3: 0,
+                    stock4: 0
                 },
 
                 results: {
@@ -236,6 +243,18 @@ export class RaceMatch extends Room {
 
         if (counter >= this.maxClients)
         {
+
+            if (this.round <= 1){
+                var companies = ["Inc", "Corp", "Co", "LLC"];
+                var id_stock_list = [];
+                var counter = 0;
+                for (const id of Object.keys(this.players)){
+                    id_stock_list.push([id, this.players[id].name + " " + companies[counter]])
+                    counter += 1
+                }
+                this.broadcast("id_with_stock", id_stock_list)
+            }
+
             this.id_name_list = [];
             for (const id of Object.keys(this.players)){
                 this.id_name_list.push([id, this.players[id].name])
@@ -279,7 +298,9 @@ export class RaceMatch extends Room {
         }
 
         console.log("FINAL RESULTS:", finalResults);
-        this.lastResults = finalResults
+        this.lastResults = finalResults;
+        this.round += 1;
+        this.roundResults[this.round] = finalResults;
         for (let i = 0; i < finalResults.length; i++) {
             const placement = (i + 1) as 1 | 2 | 3 | 4;
             returnResults[placement].push(finalResults[i]);

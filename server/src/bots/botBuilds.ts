@@ -23,10 +23,10 @@ type Turtle = {
 
     econ : {
         gold: number | 10;
-        //stock1: Int16Array | 0;
-        //stock2: Int16Array | 0;
-        //stock3: Int16Array | 0;
-        //stock4: Int16Array | 0;
+        stock1: Int16Array | 0;
+        stock2: Int16Array | 0;
+        stock3: Int16Array | 0;
+        stock4: Int16Array | 0;
     },
 
     results: {
@@ -69,7 +69,11 @@ export class bossBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -116,7 +120,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -147,7 +155,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -178,7 +190,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -212,7 +228,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -243,7 +263,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -275,7 +299,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -308,7 +336,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -340,7 +372,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {
@@ -372,7 +408,11 @@ export class botBuilds extends Room {
                     },
 
                     "econ" : {
-                        "gold" : 0
+                        "gold" : 0,
+                        stock1: 0,
+                        stock2: 0,
+                        stock3: 0,
+                        stock4: 0    
                     },
 
                     "results" : {

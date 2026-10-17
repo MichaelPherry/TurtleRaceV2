@@ -24,10 +24,10 @@ type Turtle = {
 
     econ : {
         gold: number | 10;
-        //stock1: Int16Array | 0;
-        //stock2: Int16Array | 0;
-        //stock3: Int16Array | 0;
-        //stock4: Int16Array | 0;
+        stock1: Int16Array | 0;
+        stock2: Int16Array | 0;
+        stock3: Int16Array | 0;
+        stock4: Int16Array | 0;
     },
 
     results: {
@@ -65,6 +65,7 @@ export class RaceMatchLocal extends Room {
     name_list: string[] = [];
     seed: number = 0;
     round: number = 0;
+    roundResults: Record<number, string[]> = {};
     availableBots = [...bot_list]
     cpu1: string = "";
     cpu2: string = "";
@@ -89,22 +90,23 @@ export class RaceMatchLocal extends Room {
             this.players[client.sessionId].build.econ = turtle_build["econ"];
 
             this.round += 1;
-            if (this.round > 3) {this.round = 3;};
+            var fake_round = this.round
+            if (fake_round > 3) {fake_round = 3;};
 
             console.log(this.players[client.sessionId].name + " " + turtle_build);
             this.players[client.sessionId].ready = true;
 
-            this.players["CPU1"].build.items = builds.turtles[this.round][this.cpu1]["items"];
-            this.players["CPU1"].build.base_stats = builds.turtles[this.round][this.cpu1]["base_stats"];
-            this.players["CPU1"].build.econ = builds.turtles[this.round][this.cpu1]["econ"];
+            this.players["CPU1"].build.items = builds.turtles[fake_round][this.cpu1]["items"];
+            this.players["CPU1"].build.base_stats = builds.turtles[fake_round][this.cpu1]["base_stats"];
+            this.players["CPU1"].build.econ = builds.turtles[fake_round][this.cpu1]["econ"];
             this.players["CPU1"].ready = true;
-            this.players["CPU2"].build.items = builds.turtles[this.round][this.cpu2]["items"];
-            this.players["CPU2"].build.base_stats = builds.turtles[this.round][this.cpu2]["base_stats"];
-            this.players["CPU2"].build.econ = builds.turtles[this.round][this.cpu2]["econ"];
+            this.players["CPU2"].build.items = builds.turtles[fake_round][this.cpu2]["items"];
+            this.players["CPU2"].build.base_stats = builds.turtles[fake_round][this.cpu2]["base_stats"];
+            this.players["CPU2"].build.econ = builds.turtles[fake_round][this.cpu2]["econ"];
             this.players["CPU2"].ready = true;
-            this.players["CPU3"].build.items = builds.turtles[this.round][this.cpu3]["items"];
-            this.players["CPU3"].build.base_stats = builds.turtles[this.round][this.cpu3]["base_stats"];
-            this.players["CPU3"].build.econ = builds.turtles[this.round][this.cpu3]["econ"];
+            this.players["CPU3"].build.items = builds.turtles[fake_round][this.cpu3]["items"];
+            this.players["CPU3"].build.base_stats = builds.turtles[fake_round][this.cpu3]["base_stats"];
+            this.players["CPU3"].build.econ = builds.turtles[fake_round][this.cpu3]["econ"];
             this.players["CPU3"].ready = true;
             this.raceStart(client);
         });
@@ -121,15 +123,10 @@ export class RaceMatchLocal extends Room {
                 if (Number(placement) == 3){num_to_word = "third"};
                 if (Number(placement) == 4){num_to_word = "fourth"};
                 var racer = message[placement][0];
-                console.log("message: ", message);
-                console.log("placement:", placement);
-                console.log("racer:", racer);
-                console.log("players:", this.players);
-                console.log("players:", this.players[racer].build.results);
-
                 this.players[racer].build.results[num_to_word] += 1;
             }
-            console.log("Client thinks winner is: ", message)
+            this.roundResults[this.round] = [message['1'][0], message['2'][0], message['3'][0], message['4'][0]];
+            this.broadcast("round_results", [this.round, this.roundResults]);
         })
 
         this.onMessage("request_boss_race", (client, message) => {
@@ -177,7 +174,11 @@ export class RaceMatchLocal extends Room {
                 },
 
                 econ: {
-                    gold: 10
+                    gold: 10,
+                    stock1: 0,
+                    stock2: 0,
+                    stock3: 0,
+                    stock4: 0
                 },
 
                 results: {
@@ -216,7 +217,11 @@ export class RaceMatchLocal extends Room {
                 },
 
                 econ: {
-                    gold: 10
+                    gold: 10,
+                    stock1: 0,
+                    stock2: 0,
+                    stock3: 0,
+                    stock4: 0
                 },
 
                 results : {
@@ -254,7 +259,11 @@ export class RaceMatchLocal extends Room {
                 },
 
                 econ: {
-                    gold: 10
+                    gold: 10,
+                    stock1: 0,
+                    stock2: 0,
+                    stock3: 0,
+                    stock4: 0
                 },
 
                 results: {
@@ -291,7 +300,11 @@ export class RaceMatchLocal extends Room {
                 },
 
                 econ: {
-                    gold: 10
+                    gold: 10,
+                    stock1: 0,
+                    stock2: 0,
+                    stock3: 0,
+                    stock4: 0
                 },
 
                 results : {
@@ -350,6 +363,16 @@ export class RaceMatchLocal extends Room {
 
         if (counter >= this.maxClients)
         {
+            if (this.round <= 1){
+                var companies = ["Inc", "Corp", "Co", "LLC"];
+                var id_stock_list = [];
+                var counter = 0;
+                for (const id of Object.keys(this.players)){
+                    id_stock_list.push([id, this.players[id].name + " " + companies[counter]])
+                    counter += 1
+                }
+                this.broadcast("id_with_stock", id_stock_list)
+            }
             this.id_name_list = [];
             for (const id of Object.keys(this.players)){
                 this.id_name_list.push([id, this.players[id].name])

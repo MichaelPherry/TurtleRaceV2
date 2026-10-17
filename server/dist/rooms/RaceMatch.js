@@ -20,6 +20,8 @@ class RaceMatch extends colyseus_1.Room {
         this.placements = [];
         this.maxClients = 4;
         this.availableRaceStarts = [1, 2, 3, 4];
+        this.round = 0;
+        this.roundResults = {};
         this.id_list = [];
         this.perm_name_list = [];
         this.id_name_list = [];
@@ -92,6 +94,7 @@ class RaceMatch extends colyseus_1.Room {
                         this.players[racer].build.results[num_to_word] += 1;
                     }
                     ;
+                    this.broadcast("round_results", [this.round, this.roundResults]);
                 }
                 ;
             });
@@ -149,7 +152,11 @@ class RaceMatch extends colyseus_1.Room {
                             luck: 1.0
                         },
                         econ: {
-                            gold: 10
+                            gold: 10,
+                            stock1: 0,
+                            stock2: 0,
+                            stock3: 0,
+                            stock4: 0
                         },
                         results: {
                             first: 0,
@@ -196,6 +203,16 @@ class RaceMatch extends colyseus_1.Room {
             }
         }
         if (counter >= this.maxClients) {
+            if (this.round <= 1) {
+                var companies = ["Inc", "Corp", "Co", "LLC"];
+                var id_stock_list = [];
+                var counter = 0;
+                for (const id of Object.keys(this.players)) {
+                    id_stock_list.push([id, this.players[id].name + " " + companies[counter]]);
+                    counter += 1;
+                }
+                this.broadcast("id_with_stock", id_stock_list);
+            }
             this.id_name_list = [];
             for (const id of Object.keys(this.players)) {
                 this.id_name_list.push([id, this.players[id].name]);
@@ -236,6 +253,8 @@ class RaceMatch extends colyseus_1.Room {
         }
         console.log("FINAL RESULTS:", finalResults);
         this.lastResults = finalResults;
+        this.round += 1;
+        this.roundResults[this.round] = finalResults;
         for (let i = 0; i < finalResults.length; i++) {
             const placement = (i + 1);
             returnResults[placement].push(finalResults[i]);

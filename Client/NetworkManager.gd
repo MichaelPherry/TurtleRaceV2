@@ -26,10 +26,9 @@ func connect_to_lobby():
 	if get_tree().current_scene != null:
 		if get_tree().current_scene.scene_file_path == "res://Client/mainmenu.tscn":
 			lobby.message_received.connect(get_tree().current_scene._on_lobby_message)
-			print("Lobby connect: ", Time.get_ticks_msec())
+			#print("Lobby connect: ", Time.get_ticks_msec())
 
 func connect_to_matchmaking():
-	print("Connecting...")
 	#room = await client.join_or_create("raceLobby", {"player_name": local_player_name})
 	get_tree().current_scene.setup(room)
 	room.joined.connect(_on_lobby_joined)
@@ -47,9 +46,9 @@ func _on_room_joined(data):
 	var new_room = await client.join_by_id(data.roomId)
 	room = new_room
 	
-	print("Joined room: ", room.get_id())
-	print("Session ID: ", room.get_session_id())
-	print("Room name: ", room.get_name())
+	#print("Joined room: ", room.get_id())
+	#print("Session ID: ", room.get_session_id())
+	#print("Room name: ", room.get_name())
 	room.message_received.connect(_on_message_received)
 	await get_tree().create_timer(1.0).timeout
 	
@@ -57,7 +56,7 @@ func send_message(code_text, message):
 	room.send_message(code_text, message)
 
 func _on_message_received(type, message):
-	print("messages ", type, message)
+	#print("messages ", type, message)
 	if type == "send_turtles":
 		Inventory.set_turtles(message)
 		get_tree().change_scene_to_packed(race_scene)
@@ -68,6 +67,15 @@ func _on_message_received(type, message):
 		Inventory.id_list = message
 	elif type == "id_with_name":
 		Inventory.id_name_list = message
+	elif type == "id_with_stock":
+		Inventory.id_stock_list = message
+		Inventory.stock1_turt = message[0][0]
+		Inventory.stock2_turt = message[1][0]
+		Inventory.stock3_turt = message[2][0]
+		Inventory.stock4_turt = message[3][0]
+	elif type == "round_results":
+		Inventory.rounds = message[0]
+		Inventory.round_results = message[1]
 	elif type == "race_start":
 		print(message["startTime"])
 		Inventory.start_time = message["startTime"]
@@ -97,7 +105,11 @@ func _on_message_received(type, message):
 			"luck": 1.2
 		},		
 		"econ": {
-			"gold": 1000
+			"gold": 1000,
+			"stock1": 0,
+			"stock2": 0,
+			"stock3": 0,
+			"stock4": 0
 		},
 		"results": {
 			"first": 0,

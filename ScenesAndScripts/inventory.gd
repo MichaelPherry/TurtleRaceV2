@@ -3,12 +3,12 @@ extends Node
 #Format grabbed from server
 #	"id" : {
 #		"items" : {
-#		"leftArm" : null,
-#		"rightArm" : null,
-#		"head" : null,
-#		"shell" : null,
-#		"legs" : null,
-#		"slot" : integer
+#			"leftArm" : null,
+#			"rightArm" : null,
+#			"head" : null,
+#			"shell" : null,
+#			"legs" : null,
+#			"slot" : integer
 #		},
 #		"base_stats" : {
 #			"acceleration" : integer,
@@ -20,10 +20,10 @@ extends Node
 #		},
 #		"econ" : {
 #			"gold" : integer,
-#			"turtle1_stock" : integer,
-#			"turtle2_stock" : integer,
-#			"turtle3_stock" : integer,
-#			"turtle4_stock" : integer
+#			"stock1" : integer,
+#			"stock2" : integer,
+#			"stock3" : integer,
+#			"stock4" : integer
 #		},
 		#"results": {
 			#"first": 0,
@@ -35,7 +35,7 @@ extends Node
 
 var appendages = ["head", "shell", "legs", "leftArm", "rightArm"]
 var stats = ["acceleration", "resilience", "max_speed", "fire_rate", "projectile_speed", "luck"]
-var econ = ["gold"]
+var econ = ["gold", "stock1", "stock2", "stock3", "stock4"]
 var results = ["first", "second", "third", "fourth"]
 var what_pos = {}
 var race_order = []
@@ -46,6 +46,7 @@ var rng_calls = 0
 var mode
 var id_list
 var id_name_list
+var id_stock_list
 var local_turtle = {}
 var server_turtles = {}
 var start_time
@@ -63,6 +64,13 @@ var item_3
 var buff_1
 var buff_2
 var buff_3
+
+var stock1_turt
+var stock2_turt
+var stock3_turt
+var stock4_turt
+var rounds
+var round_results
 
 var boss_player_name
 var boss_id 
@@ -123,3 +131,11 @@ func sid_finder(gamer_tag):
 			sid = tag[0]
 			break
 	return sid
+
+func stock_finder(server_id):
+	var company_name = null
+	for sid in Inventory.id_stock_list:
+		if server_id == sid[0]:
+			company_name = sid[1]
+			break
+	return company_name
