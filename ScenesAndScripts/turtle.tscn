@@ -1,4 +1,4 @@
-[gd_scene load_steps=272 format=3 uid="uid://csjw8kp18folb"]
+[gd_scene load_steps=292 format=3 uid="uid://csjw8kp18folb"]
 
 [ext_resource type="Script" uid="uid://cvj77qbfyswks" path="res://ScenesAndScripts/turtle.gd" id="1_fhre7"]
 [ext_resource type="Texture2D" uid="uid://c2un4qtctk4ec" path="res://Art/AlexArt/Shadow0011.png" id="2_cyk58"]
@@ -66,33 +66,43 @@
 [ext_resource type="Texture2D" uid="uid://de6spqgekc86b" path="res://Art/AlexArt/Items/Battery/Battery0001.png" id="32_w2rp4"]
 [ext_resource type="Texture2D" uid="uid://bfpednckjbyh6" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0001.png" id="32_xbqds"]
 [ext_resource type="Texture2D" uid="uid://bxlp1hhmm6hda" path="res://Art/AlexArt/Items/Battery/Battery0002.png" id="33_4rdug"]
+[ext_resource type="Texture2D" uid="uid://b3mbsf1fiw7f6" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0001.png" id="33_6w42v"]
 [ext_resource type="Texture2D" uid="uid://blm3qvethji6m" path="res://Art/AlexArt/green_turt/head/Head0002.png" id="33_8x56r"]
 [ext_resource type="Texture2D" uid="uid://1nrxe1w7r8tg" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0002.png" id="33_cc72s"]
 [ext_resource type="Texture2D" uid="uid://wxdyjtq4froy" path="res://Art/AlexArt/green_turt/head/Head0003.png" id="34_3uwie"]
 [ext_resource type="Texture2D" uid="uid://cqpkjly2xmmqu" path="res://Art/AlexArt/Items/Battery/Battery0003.png" id="34_86jgg"]
 [ext_resource type="Texture2D" uid="uid://dcfiusjcrshfh" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0003.png" id="34_hlu1o"]
+[ext_resource type="Texture2D" uid="uid://dmcs4rj47vklu" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0002.png" id="34_hphnm"]
 [ext_resource type="Texture2D" uid="uid://d0y24q8dasxiw" path="res://Art/AlexArt/green_turt/head/Head0004.png" id="35_g4mdj"]
 [ext_resource type="Texture2D" uid="uid://bqxuc1kabeova" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0004.png" id="35_msil5"]
+[ext_resource type="Texture2D" uid="uid://ounyvgtgdcax" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0003.png" id="35_rnwwk"]
 [ext_resource type="Texture2D" uid="uid://c1rpy4xw6ijal" path="res://Art/AlexArt/Items/Battery/Battery0004.png" id="35_twaqs"]
+[ext_resource type="Texture2D" uid="uid://t36pd6yhqelv" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0004.png" id="36_4eujk"]
 [ext_resource type="Texture2D" uid="uid://seg41dn15bh7" path="res://Art/AlexArt/Items/Battery/Battery0005.png" id="36_42euj"]
 [ext_resource type="Texture2D" uid="uid://dl74jks0m0uga" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0005.png" id="36_hojnx"]
 [ext_resource type="Texture2D" uid="uid://bgh6hlwad8e2" path="res://Art/AlexArt/green_turt/head/Head0005.png" id="36_sn64e"]
 [ext_resource type="Texture2D" uid="uid://bwhaar2m3onar" path="res://Art/AlexArt/Items/Battery/Battery0006.png" id="37_1s8pe"]
 [ext_resource type="Texture2D" uid="uid://2n8iucflc4dm" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0006.png" id="37_13taa"]
 [ext_resource type="Texture2D" uid="uid://bfihi4vj5eprs" path="res://Art/AlexArt/green_turt/head/Head0006.png" id="37_n45tt"]
+[ext_resource type="Texture2D" uid="uid://bgfa5vmbspkvv" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0005.png" id="37_tma6q"]
 [ext_resource type="Texture2D" uid="uid://bo02yibuqsnda" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0007.png" id="38_dwlai"]
 [ext_resource type="Texture2D" uid="uid://df5dxlm7rskuh" path="res://Art/AlexArt/Items/Battery/Battery0007.png" id="38_fnspu"]
+[ext_resource type="Texture2D" uid="uid://b1lexqfbela8g" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0006.png" id="38_ogpm1"]
 [ext_resource type="Texture2D" uid="uid://c7bb2uh42ivw3" path="res://Art/AlexArt/green_turt/head/Head0007.png" id="38_s4tlv"]
 [ext_resource type="Texture2D" uid="uid://frsgphoegkta" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0008.png" id="39_15bg4"]
+[ext_resource type="Texture2D" uid="uid://ds18hgonpi3q7" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0007.png" id="39_ny4cq"]
 [ext_resource type="Texture2D" uid="uid://bhxv72sabxcwo" path="res://Art/AlexArt/green_turt/head/Head0008.png" id="39_osj62"]
 [ext_resource type="Texture2D" uid="uid://bja4uxvbfgbsf" path="res://Art/AlexArt/Items/Battery/Battery0008.png" id="39_p8hmd"]
 [ext_resource type="Texture2D" uid="uid://crw450algsess" path="res://Art/AlexArt/Items/Battery/Battery0009.png" id="40_f8gvt"]
+[ext_resource type="Texture2D" uid="uid://c2e4tmxp0pmb5" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0008.png" id="40_jjx2u"]
 [ext_resource type="Texture2D" uid="uid://douc5aypldy2u" path="res://Art/AlexArt/green_turt/head/Head0009.png" id="40_vlyox"]
 [ext_resource type="Texture2D" uid="uid://b5pqwgtwh0cn6" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0009.png" id="40_xfpl5"]
 [ext_resource type="Texture2D" uid="uid://cq7trmd41wc73" path="res://Art/AlexArt/green_turt/head/Head0010.png" id="41_51lk1"]
 [ext_resource type="Texture2D" uid="uid://dycqup70iimgn" path="res://Art/AlexArt/Items/Battery/Battery0010.png" id="41_ej5p6"]
+[ext_resource type="Texture2D" uid="uid://cr10eyq7vbgqk" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0009.png" id="41_lw5eh"]
 [ext_resource type="Texture2D" uid="uid://xkr5cl7ngv4b" path="res://Art/AlexArt/Items/BunnyEars/Bunny Ears0010.png" id="41_p8c34"]
 [ext_resource type="Texture2D" uid="uid://cku21rwh6ia4u" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20001.png" id="42_bo1t0"]
+[ext_resource type="Texture2D" uid="uid://c5dnnihwlysaj" path="res://Art/AlexArt/Items/RocketBoots/Rocket Boots0010.png" id="42_ddtqv"]
 [ext_resource type="Texture2D" uid="uid://tod0w1tu30jh" path="res://Art/AlexArt/green_turt/face/Face0001.png" id="42_w2rp4"]
 [ext_resource type="Texture2D" uid="uid://xc63b73x2dct" path="res://Art/AlexArt/green_turt/face/Face0002.png" id="43_4rdug"]
 [ext_resource type="Texture2D" uid="uid://b163sx3fyioau" path="res://Art/AlexArt/Items/AmmoBelt/Ammo Belt v20002.png" id="43_smqxi"]
@@ -203,6 +213,16 @@
 [ext_resource type="Texture2D" uid="uid://eg3q6dvwfbli" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0009.png" id="122_18i77"]
 [ext_resource type="Texture2D" uid="uid://d317ardpycp5p" path="res://Art/AlexArt/Items/SecondHead/Second Head0010.png" id="122_yt0lj"]
 [ext_resource type="Texture2D" uid="uid://c4mfpgs8wfg82" path="res://Art/AlexArt/Items/M1Helmet/M1 Helmet0010.png" id="123_cb2ib"]
+[ext_resource type="Texture2D" uid="uid://7qyc8cvvwome" path="res://Art/AlexArt/Items/Halo/Halo0001.png" id="134_1culg"]
+[ext_resource type="Texture2D" uid="uid://odbmequc4073" path="res://Art/AlexArt/Items/Halo/Halo0002.png" id="135_8mvrc"]
+[ext_resource type="Texture2D" uid="uid://domv7dwd45t2f" path="res://Art/AlexArt/Items/Halo/Halo0003.png" id="136_o4by6"]
+[ext_resource type="Texture2D" uid="uid://bg2a7jm8227ej" path="res://Art/AlexArt/Items/Halo/Halo0004.png" id="137_c2b00"]
+[ext_resource type="Texture2D" uid="uid://b6vv32hlxqoc1" path="res://Art/AlexArt/Items/Halo/Halo0005.png" id="138_4nl1b"]
+[ext_resource type="Texture2D" uid="uid://clq7gcv5ojndo" path="res://Art/AlexArt/Items/Halo/Halo0006.png" id="139_e50km"]
+[ext_resource type="Texture2D" uid="uid://cd7706k8p40sg" path="res://Art/AlexArt/Items/Halo/Halo0007.png" id="140_l2h7m"]
+[ext_resource type="Texture2D" uid="uid://d2hjwm5wsfbx1" path="res://Art/AlexArt/Items/Halo/Halo0008.png" id="141_vnr8b"]
+[ext_resource type="Texture2D" uid="uid://ddcpy6f8upwsl" path="res://Art/AlexArt/Items/Halo/Halo0009.png" id="142_qivml"]
+[ext_resource type="Texture2D" uid="uid://dykvceb7uwdr7" path="res://Art/AlexArt/Items/Halo/Halo0010.png" id="143_ht6fo"]
 [ext_resource type="Texture2D" uid="uid://cmwhsfvyp6jut" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0001.png" id="163_cyk58"]
 [ext_resource type="Texture2D" uid="uid://dso2vr6fh5pks" path="res://Art/AlexArt/Items/newFissile/L Fissile0001.png" id="164_2dfkh"]
 [ext_resource type="Texture2D" uid="uid://cje8eddwy1ncb" path="res://Art/AlexArt/Items/BearTrap/L Bear Trap0002.png" id="164_8l4xm"]
@@ -376,6 +396,41 @@ animations = [{
 }],
 "loop": true,
 "name": &"Dress Shoes",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_6w42v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_hphnm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_rnwwk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_4eujk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_tma6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_ogpm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_ny4cq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_jjx2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_lw5eh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ddtqv")
+}],
+"loop": true,
+"name": &"Rocket Boots",
 "speed": 10.0
 }, {
 "frames": [{
@@ -700,6 +755,41 @@ animations = [{
 }],
 "loop": true,
 "name": &"Dunce Hat",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("134_1culg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("135_8mvrc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("136_o4by6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("137_c2b00")
+}, {
+"duration": 1.0,
+"texture": ExtResource("138_4nl1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("139_e50km")
+}, {
+"duration": 1.0,
+"texture": ExtResource("140_l2h7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("141_vnr8b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("142_qivml")
+}, {
+"duration": 1.0,
+"texture": ExtResource("143_ht6fo")
+}],
+"loop": true,
+"name": &"Halo",
 "speed": 10.0
 }, {
 "frames": [{
@@ -1223,14 +1313,14 @@ sprite_frames = SubResource("SpriteFrames_jwvlw")
 
 [node name="Legs" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_thiku")
-animation = &"Dress Shoes"
+animation = &"Rocket Boots"
 
 [node name="Belly" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_6ivxv")
 
 [node name="Head" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_5fc6w")
-animation = &"Kings Crown"
+animation = &"Halo"
 
 [node name="Face" type="AnimatedSprite2D" parent="Visuals"]
 sprite_frames = SubResource("SpriteFrames_mqv1x")

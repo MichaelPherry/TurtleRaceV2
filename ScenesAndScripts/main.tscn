@@ -165,6 +165,11 @@ z_index = -8
 position = Vector2(192, -1422)
 texture = ExtResource("7_b20td")
 
+[node name="Tree20" type="Sprite2D" parent="visualcover"]
+z_index = -8
+position = Vector2(13114, 970)
+texture = ExtResource("8_sldy7")
+
 [node name="Tree1" type="Sprite2D" parent="visualcover"]
 z_index = -8
 position = Vector2(9250, 2673)
@@ -280,6 +285,26 @@ z_index = -8
 position = Vector2(9274, 4287)
 texture = ExtResource("9_4tk3y")
 
+[node name="Tree25" type="Sprite2D" parent="visualcover"]
+z_index = -8
+position = Vector2(14498, 5251)
+texture = ExtResource("7_b20td")
+
+[node name="Tree24" type="Sprite2D" parent="visualcover"]
+z_index = -8
+position = Vector2(12713, 11404)
+texture = ExtResource("7_b20td")
+
+[node name="Tree23" type="Sprite2D" parent="visualcover"]
+z_index = -8
+position = Vector2(-5081, 1325)
+texture = ExtResource("7_b20td")
+
+[node name="Tree22" type="Sprite2D" parent="visualcover"]
+z_index = -8
+position = Vector2(-6305, 9536)
+texture = ExtResource("7_b20td")
+
 [node name="Bush18" type="Sprite2D" parent="visualcover"]
 z_index = -8
 position = Vector2(9274, 7307)
@@ -307,7 +332,7 @@ texture = ExtResource("7_b20td")
 
 [node name="Tree12" type="Sprite2D" parent="visualcover"]
 z_index = -8
-position = Vector2(12167, 13230)
+position = Vector2(14823, 13567)
 texture = ExtResource("8_sldy7")
 
 [node name="RacePath6" type="Sprite2D" parent="visualcover"]
@@ -393,6 +418,11 @@ texture = ExtResource("9_4tk3y")
 z_index = -8
 position = Vector2(11349, -787)
 texture = ExtResource("9_4tk3y")
+
+[node name="Tree21" type="Sprite2D" parent="visualcover"]
+z_index = -8
+position = Vector2(-5696, 5591)
+texture = ExtResource("7_b20td")
 
 [node name="FinishLine" type="Area2D" parent="."]
 

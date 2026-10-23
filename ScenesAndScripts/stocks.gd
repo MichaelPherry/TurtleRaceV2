@@ -2,17 +2,29 @@ extends Control
 
 #var rounds = 2
 #var round_results = {1: ["playa_id", "cpu1_id", "cpu2_id", "cpu3_id"], 2: ["cpu1_id", "playa_id", "cpu3_id", "cpu2_id"]}
-@export var draw_speed: float = 0.5
+@export var draw_speed: float = 3.0
 
 @onready var axis = $Axis
+@onready var graph_tooltip = $GraphToolTip
 @onready var graph_area = $GraphArea
-@onready var line1 = $GraphArea/Stock1Line
-@onready var line2 = $GraphArea/Stock2Line
-@onready var line3 = $GraphArea/Stock3Line
-@onready var line4 = $GraphArea/Stock4Line
+@onready var line1 = $Stock1Line
+@onready var line2 = $Stock2Line
+@onready var line3 = $Stock3Line
+@onready var line4 = $Stock4Line
+
+var yaxis_start = -1200
+var yaxis_max = 239
+var xaxis_start = 500
+var xaxis_max = -500
+
+var player_lines
+
+var vert_line_amt = 6
+var horiz_line_amt = 8
 
 var draw_progress = 0.0
 var is_drawing = false
+var line_width_value
 var max_stock_value
 var point_height
 var point_width
@@ -32,30 +44,42 @@ var pre_pre_fourth
 
 var stock1_value
 var stock1_history
+var stock1_adj_history
+var stock1_grid_points
 var stock2_value
 var stock2_history
+var stock2_adj_history
+var stock2_grid_points
 var stock3_value
 var stock3_history
+var stock3_adj_history
+var stock3_grid_points
 var stock4_value
 var stock4_history
+var stock4_adj_history
+var stock4_grid_points
+var all_grid_points
+
+var axi
+var animation_progress = 0.0
+var is_animating
+var hover_distance = 30.0
+var points_drawn
+var player_circles = [[], [], [], []]
 
 func _ready():
-	#var line = $GraphArea/work
-	#line.default_color = Color.YELLOW
-	#line.width = 6.0
-	#line.points = PackedVector2Array([
-	#Vector2(50, 50),
-	#Vector2(250, 150)
-	#])
+	points_drawn = false
+	graph_tooltip.visible = false
 	stock1_value = 4
-	stock1_history = []
+	stock1_history = [stock1_value]
 	stock2_value = 4
-	stock2_history = []
+	stock2_history = [stock2_value]
 	stock3_value = 4
-	stock3_history = []
+	stock3_history = [stock3_value]
 	stock4_value = 4
-	stock4_history = []
+	stock4_history = [stock4_value]
 
+	line_width_value = 1
 	max_stock_value = 0
 	
 	curr_first = null
@@ -70,11 +94,36 @@ func _ready():
 	pre_pre_second = null
 	pre_pre_third = null
 	pre_pre_fourth = null
+	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 	
 	stock_value_calc()
 
 func _process(delta):
 	var temp = axis.get_children()
+	if animation_progress >= 1.0:
+		update_graph_tooltip()
+	if not is_animating:
+		return
+
+	animation_progress = min(animation_progress + delta / draw_speed, 1.0)
+
+	for i in range(player_lines.size()):
+		var points = all_grid_points[i]
+		var visible_count = int(animation_progress * points.size())
+		for j in range(player_circles[i].size()):
+			player_circles[i][j].visible = j < visible_count
+		player_lines[i].clear_points()
+		for j in range(visible_count):
+			player_lines[i].add_point(points[j])
+
+		if visible_count < points.size() and visible_count > 0:
+			var next_point = points[visible_count]
+			var last_point = points[visible_count - 1]
+			var partial_point = last_point.lerp(next_point, (animation_progress * points.size()) - visible_count)
+			player_lines[i].add_point(partial_point)
+
+	if animation_progress >= 1.0:
+		is_animating = false
 	
 
 func stock_value_calc():
@@ -103,7 +152,7 @@ func stock_value_calc():
 			if curr_fourth == pre_fourth and pre_fourth == pre_pre_fourth:
 				stock_evaluation(curr_fourth, -2)
 			else:
-				stock_evaluation(curr_second, -1)
+				stock_evaluation(curr_fourth, -1)
 		else:
 			stock_evaluation(curr_first, 2)
 			stock_evaluation(curr_second, 1)
@@ -135,23 +184,37 @@ func stock_value_calc():
 		
 	draw_x_lines()
 	draw_y_lines()
-	draw_graph(stock1_value, stock1_history, line1)
-	draw_graph(stock2_value, stock2_history, line2)
-	draw_graph(stock3_value, stock3_history, line3)
-	draw_graph(stock4_value, stock4_history, line4)
+	stock1_adj_history = grid_points(stock1_history)
+	stock1_grid_points = calc_graph_points(stock1_value, stock1_adj_history, line1)
+	stock2_adj_history = grid_points(stock2_history)
+	stock2_grid_points = calc_graph_points(stock2_value, stock2_adj_history, line2)
+	stock3_adj_history = grid_points(stock3_history)
+	stock3_grid_points = calc_graph_points(stock3_value, stock3_adj_history, line3)
+	stock4_adj_history = grid_points(stock4_history)
+	stock4_grid_points = calc_graph_points(stock4_value, stock4_adj_history, line4)
 
-func draw_graph(stock, history, stock_line):
-	var graph_size = graph_area.size
-	#var point_width = 160
-	#var point_height = 800
+	all_grid_points = [stock1_grid_points, stock2_grid_points, stock3_grid_points, stock4_grid_points]
+	player_lines = [line1, line2, line3, line4]
+	$buy_stock1/Label.text = str(Inventory.stock_finder(Inventory.id_list[0])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"]) + "\n Value: $" + str(stock1_value)
+	$buy_stock2/Label.text = str(Inventory.stock_finder(Inventory.id_list[1])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"]) + "\n Value: $" + str(stock2_value)
+	$buy_stock3/Label.text = str(Inventory.stock_finder(Inventory.id_list[2])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"]) + "\n Value: $" + str(stock3_value)
+	$buy_stock4/Label.text = str(Inventory.stock_finder(Inventory.id_list[3])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"]) + "\n Value: $" + str(stock4_value)
+
+	draw_hover_points()
 	
-	var points = PackedVector2Array()
+	animation_progress = 0.0
+	is_animating = true
+	
+func calc_graph_points(stock, history, stock_line):
+	var graph_size = graph_area.size
+	var points = stock_line.points
+	
 	for round in range(history.size()):
-		var x = point_width * round
-		var y = 840 - ((point_height / 4) * history[round])
-		points.append(Vector2(x,y))
-	stock_line.points = points
-	var temp = 0
+		var x = yaxis_start + (point_width * round)
+		var y = xaxis_start - ((float(history[round]) / float(line_width_value)) * point_height)
+		points.append(stock_line.to_local(Vector2(x,y)))
+	#stock_line.points = points
+	return points
 	
 
 func stock_evaluation(sid, value_chage):
@@ -175,43 +238,176 @@ func stock_evaluation(sid, value_chage):
 
 
 func draw_x_lines():
-	point_height = min(100, graph_area.size.y / max_stock_value)
+	while max_stock_value > line_width_value * horiz_line_amt:
+		line_width_value += 1
+	
+	point_height = graph_area.size.y / horiz_line_amt #min(100, graph_area.size.y / max_stock_value)
 	
 	var counter = 1
-	while counter * point_height < graph_area.size.y:
+	while counter * point_height <= graph_area.size.y:
 		var horiz_line = Line2D.new()
 		var price_label = Label.new()
-		horiz_line.width = 2
+		horiz_line.width = 5
 		horiz_line.default_color = Color.BLACK
-		horiz_line.points = PackedVector2Array([Vector2(160, 940 - (counter * point_height)), Vector2(1740, 940 - (counter * point_height))])
-		price_label.text = str(counter * 5)
-		price_label.add_theme_font_size_override("font_size", 36)
+		#horiz_line.position = Vector2(0,0)
+		horiz_line.points = PackedVector2Array([Vector2(yaxis_start, xaxis_start - (counter * point_height)), Vector2(yaxis_max, xaxis_start - (counter * point_height))])
+		price_label.text = str(counter * line_width_value)
+		price_label.add_theme_font_size_override("font_size", 46)
 		price_label.add_theme_color_override("font_color", Color.BLACK)
-		price_label.position = Vector2(100, 940 - (counter * point_height) - 20)
+		price_label.position = Vector2(yaxis_start - 100, xaxis_start - (counter * point_height) - 20)
 		axis.add_child(horiz_line)
 		axis.add_child(price_label)
 		counter += 1 
 
 func draw_y_lines():
-	point_width = min(200, graph_area.size.x / Inventory.rounds)
+	if (Inventory.rounds + 1) > vert_line_amt:
+		point_width = graph_area.size.x / vert_line_amt
+		Inventory.stock_y_label_adj += 1
+	else:
+		point_width = graph_area.size.x / (Inventory.rounds + 1)
 	
-	var counter = 1
+	var counter = 0
+	var line_adjust = 0
 	while counter * point_width <= graph_area.size.x:
 		var vert_line = Line2D.new()
 		var round_label = Label.new()
-		vert_line.width = 2
+		vert_line.width = 5
 		vert_line.default_color = Color.BLACK
-		vert_line.points = PackedVector2Array([Vector2((counter * point_width) - 40, 140), Vector2((counter * point_width) - 40, 940)])
-		round_label.text = str(counter)
-		round_label.add_theme_font_size_override("font_size", 36)
+		#vert_line.position = Vector2(0,0)
+		vert_line.points = PackedVector2Array([Vector2(yaxis_start + (counter * point_width) - line_adjust, xaxis_start), Vector2(yaxis_start + (counter * point_width) - line_adjust, xaxis_max)])
+		round_label.text = str(counter + Inventory.stock_y_label_adj)
+		round_label.add_theme_font_size_override("font_size", 46)
 		round_label.add_theme_color_override("font_color", Color.BLACK)
-		round_label.position = Vector2((counter * point_width) - 40 - 10, 960)
+		round_label.position = Vector2(yaxis_start + (counter * point_width) - line_adjust - 10, 20 + xaxis_start)
 		axis.add_child(vert_line)
 		axis.add_child(round_label)
 		counter += 1
-	var temp = 0
+
+func grid_points(history):
+	var adj_history = history.duplicate()
+	var sieze = history.size()
+	if history.size() > vert_line_amt:
+		adj_history = adj_history.slice(Inventory.stock_y_label_adj, history.size())
+	else:
+		adj_history = adj_history.slice(0, history.size())
+	return adj_history
+
+func draw_hover_points():
+	#var all_grid_points = [stock1_grid_points, stock2_grid_points, stock3_grid_points, stock4_grid_points]
+	var colors = [line1.default_color, line2.default_color, line3.default_color, line4.default_color]
+
+	for child in axis.get_children():
+		if child.is_in_group("hover_circles"):
+			child.queue_free()
+
+	for i in range(all_grid_points.size()):
+		for point in all_grid_points[i]:
+			var circle = Polygon2D.new()
+			var circle_points = PackedVector2Array()
+			for angle in range(24):
+				var a = angle * TAU / 24
+				circle_points.append(Vector2(cos(a), sin(a)) * 20.0)
+			circle.polygon = circle_points
+			circle.color = colors[i]
+			circle.add_to_group("hover_circles")
+			circle.z_index = 1
+			circle.visible = false
+			player_circles[i].append(circle)
+			axis.add_child(circle)
+			circle.position = line1.to_global(point)# + Vector2(0, 100)
+			
+	points_drawn = true
+
+func update_graph_tooltip():
+	graph_tooltip.hide()
+	var mouse_pos = get_global_mouse_position()
+	var histories = [stock1_adj_history, stock2_adj_history, stock3_adj_history, stock4_adj_history]
+	var grid_points = [stock1_grid_points, stock2_grid_points, stock3_grid_points, stock4_grid_points]
+	var stock_names = [str(Inventory.stock_finder(Inventory.stock1_turt)), str(Inventory.stock_finder(Inventory.stock2_turt)), str(Inventory.stock_finder(Inventory.stock3_turt)), str(Inventory.stock_finder(Inventory.stock4_turt))]
+	var best_distance = hover_distance
+	var best_player = -1
+	var best_point = -1
+
+	for i in range(player_lines.size()):
+		for j in range(min(player_lines[i].points.size(), grid_points[i].size())):
+			var point_pos = player_lines[i].to_global(player_lines[i].points[j])
+			var distance = mouse_pos.distance_to(point_pos)
+			if distance < best_distance:
+				best_distance = distance
+				best_player = i
+				best_point = j
+
+	if best_player == -1:
+		return
+
+	var history = histories[best_player]
+	var round_number
+	if int(Inventory.rounds) < vert_line_amt:
+		round_number = best_point
+	else:
+		round_number = best_point + Inventory.stock_y_label_adj #(int(Inventory.rounds) - (Inventory.stock_y_label_adj) + 1)
+	var stock_value = history[best_point] if best_point < history.size() else "?"
+	graph_tooltip.text = "Stock: %s\nValue: %s\nRound: %s" % [stock_names[best_player], stock_value, round_number]
+	graph_tooltip.global_position = mouse_pos + Vector2(15, 15)
+	graph_tooltip.show()
 
 func _on_shop_pressed() -> void:
 	for child in axis.get_children():
 		child.queue_free()
 	get_tree().change_scene_to_file("res://ScenesAndScripts/shop.tscn")
+
+func _on_buy_stock_1_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock1_value:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock1_value
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"] += 1
+		$buy_stock1/Label.text = str(Inventory.stock_finder(Inventory.id_list[0])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"]) + "\n Value: $" + str(stock1_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+
+func _on_sell_stock_1_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"] > 0:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"] -= 1
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock1_value
+		$buy_stock1/Label.text = str(Inventory.stock_finder(Inventory.id_list[0])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"]) + "\n Value: $" + str(stock1_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+
+func _on_buy_stock_2_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock2_value:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock2_value
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"] += 1
+		$buy_stock2/Label.text = str(Inventory.stock_finder(Inventory.id_list[1])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"]) + "\n Value: $" + str(stock2_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+
+func _on_sell_stock_2_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"] > 0:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"] -= 1
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock2_value
+		$buy_stock2/Label.text = str(Inventory.stock_finder(Inventory.id_list[1])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"]) + "\n Value: $" + str(stock2_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+
+func _on_buy_stock_3_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock3_value:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock3_value
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"] += 1
+		$buy_stock3/Label.text = str(Inventory.stock_finder(Inventory.id_list[2])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"]) + "\n Value: $" + str(stock3_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+
+func _on_sell_stock_3_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"] > 0:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"] -= 1
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock3_value
+		$buy_stock3/Label.text = str(Inventory.stock_finder(Inventory.id_list[2])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"]) + "\n Value: $" + str(stock3_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+
+func _on_buy_stock_4_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock4_value:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock4_value
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"] += 1
+		$buy_stock4/Label.text = str(Inventory.stock_finder(Inventory.id_list[3])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"]) + "\n Value: $" + str(stock4_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+
+func _on_sell_stock_4_pressed() -> void:
+	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"] > 0:
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"] -= 1
+		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock4_value
+		$buy_stock4/Label.text = str(Inventory.stock_finder(Inventory.id_list[3])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"]) + "\n Value: $" + str(stock4_value)
+		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])

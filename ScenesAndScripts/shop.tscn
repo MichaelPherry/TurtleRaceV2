@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://croetv5l82fpm"]
+[gd_scene load_steps=12 format=3 uid="uid://croetv5l82fpm"]
 
 [ext_resource type="Script" uid="uid://cbj30sr6jgb1v" path="res://ScenesAndScripts/shop.gd" id="1_u13sh"]
 [ext_resource type="Texture2D" uid="uid://hieoki3sge0q" path="res://Art/ShaneArt/Shop/Shop_Zoom_Out_no_Graf0000.png" id="2_8vvo5"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://uee036w3k2ey" path="res://Art/AlexArt/Items/SecondHead/Second Headshop.png" id="4_tawjt"]
 [ext_resource type="Texture2D" uid="uid://dcqr3gqsrviah" path="res://Art/AlexArt/Items/DunceHat/DunceShop.png" id="5_fnmc7"]
 [ext_resource type="PackedScene" uid="uid://uxls16xddw38" path="res://Client/tooltop.tscn" id="6_fnmc7"]
-[ext_resource type="PackedScene" uid="uid://1usxicevamun" path="res://ScenesAndScripts/inventory_turtle.tscn" id="6_tawjt"]
+[ext_resource type="PackedScene" uid="uid://mca4a2j6enku" path="res://ScenesAndScripts/inventory_panel.tscn" id="9_8vvo5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r850d"]
 animations = [{
@@ -37,9 +37,6 @@ animations = [{
 "name": &"temp",
 "speed": 5.0
 }]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnmc7"]
-bg_color = Color(0.211765, 0.239216, 0.290196, 1)
 
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_u13sh")
@@ -134,14 +131,6 @@ horizontal_alignment = 1
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.6, 0.6)
 
-[node name="InventoryButton" type="Button" parent="."]
-offset_left = 1147.0
-offset_top = -272.0
-offset_right = 1526.0
-offset_bottom = -87.0
-theme_override_font_sizes/font_size = 40
-text = "Inventory"
-
 [node name="Boss" type="Button" parent="."]
 offset_left = -387.0
 offset_top = -138.0
@@ -178,201 +167,7 @@ text = "Slot Taken!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="InventoryPanel" type="Panel" parent="."]
-visible = false
-offset_left = -1606.0
-offset_top = -904.0
-offset_right = 1600.0
-offset_bottom = 909.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_fnmc7")
-
-[node name="HoverButton" type="TextureButton" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 1288.0
-offset_top = 161.0
-offset_right = 1842.0
-offset_bottom = 682.0
-
-[node name="InventoryTurtle" parent="InventoryPanel" instance=ExtResource("6_tawjt")]
-position = Vector2(1567, 615)
-
-[node name="HideInventory" type="Button" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 2772.0
-offset_top = 251.0
-offset_right = 3088.0
-offset_bottom = 378.0
-theme_override_font_sizes/font_size = 40
-text = "Hide Inventory"
-
-[node name="SelfInventory" type="Button" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 2774.0
-offset_top = 389.0
-offset_right = 3090.0
-offset_bottom = 516.0
-theme_override_font_sizes/font_size = 40
-text = "Self"
-
-[node name="Opponent1" type="Button" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 2773.0
-offset_top = 532.0
-offset_right = 3089.0
-offset_bottom = 659.0
-theme_override_font_sizes/font_size = 40
-text = "Opponent1"
-
-[node name="Opponent2" type="Button" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 2773.0
-offset_top = 676.0
-offset_right = 3089.0
-offset_bottom = 803.0
-theme_override_font_sizes/font_size = 40
-text = "Opponent2"
-
-[node name="Opponent3" type="Button" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 2773.0
-offset_top = 817.0
-offset_right = 3089.0
-offset_bottom = 944.0
-theme_override_font_sizes/font_size = 40
-text = "Opponent3"
-
-[node name="PlayerName" type="Label" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 1370.0
-offset_top = 60.0
-offset_right = 1747.0
-offset_bottom = 168.0
-theme_override_font_sizes/font_size = 40
-text = "Filler"
-horizontal_alignment = 1
-
-[node name="StatsVBox" type="VBoxContainer" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 49.0
-offset_top = 103.0
-offset_right = 724.0
-offset_bottom = 644.0
-theme_override_constants/separation = 40
-
-[node name="Acceleration" type="Label" parent="InventoryPanel/StatsVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Acceleration:"
-
-[node name="Top Speed" type="Label" parent="InventoryPanel/StatsVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Top Speed:"
-
-[node name="Resilience" type="Label" parent="InventoryPanel/StatsVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Resilience"
-
-[node name="Fire Rate" type="Label" parent="InventoryPanel/StatsVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Fire Rate:"
-
-[node name="Projectile Speed" type="Label" parent="InventoryPanel/StatsVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Projectile Speed:"
-
-[node name="Luck" type="Label" parent="InventoryPanel/StatsVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Luck:"
-
-[node name="Gold" type="Label" parent="InventoryPanel/StatsVBox"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Gold:"
-
-[node name="ItemsVBox" type="VBoxContainer" parent="InventoryPanel"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 954.0
-offset_right = 3086.0
-offset_bottom = 1673.0
-
-[node name="Names" type="HBoxContainer" parent="InventoryPanel/ItemsVBox"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-alignment = 2
-
-[node name="Head" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 50
-text = "Head"
-horizontal_alignment = 1
-
-[node name="Shell" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 50
-text = "Shell"
-horizontal_alignment = 1
-
-[node name="LeftArm" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 50
-text = "Left Arm"
-horizontal_alignment = 1
-
-[node name="RightArm" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 50
-text = "Right Arm"
-horizontal_alignment = 1
-
-[node name="Legs" type="Label" parent="InventoryPanel/ItemsVBox/Names"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 50
-text = "Legs"
-horizontal_alignment = 1
-
-[node name="Items" type="HBoxContainer" parent="InventoryPanel/ItemsVBox"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="Head" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Shell" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="LeftArm" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="RightArm" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Legs" type="TextureRect" parent="InventoryPanel/ItemsVBox/Items"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 2
-size_flags_horizontal = 3
+[node name="InventoryPanel" parent="." instance=ExtResource("9_8vvo5")]
 
 [node name="Tooltop" parent="." instance=ExtResource("6_fnmc7")]
 visible = false
@@ -380,12 +175,6 @@ visible = false
 [connection signal="button_down" from="RaccoonBackground/slot1" to="." method="_slot1"]
 [connection signal="button_down" from="RaccoonBackground/slot2" to="." method="_slot2"]
 [connection signal="button_down" from="RaccoonBackground/slot3" to="." method="_slot3"]
-[connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]
 [connection signal="pressed" from="Boss" to="." method="_on_boss_pressed"]
 [connection signal="pressed" from="Roll" to="." method="_on_roll_pressed"]
 [connection signal="pressed" from="Ready" to="." method="_on_ready_pressed"]
-[connection signal="pressed" from="InventoryPanel/HideInventory" to="." method="_on_hide_inventory_pressed"]
-[connection signal="pressed" from="InventoryPanel/SelfInventory" to="." method="_on_self_inventory_pressed"]
-[connection signal="pressed" from="InventoryPanel/Opponent1" to="." method="_on_opponent_1_pressed"]
-[connection signal="pressed" from="InventoryPanel/Opponent2" to="." method="_on_opponent_2_pressed"]
-[connection signal="pressed" from="InventoryPanel/Opponent3" to="." method="_on_opponent_3_pressed"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjji8m5ur87bo"]
+[gd_scene load_steps=7 format=3 uid="uid://bjji8m5ur87bo"]
 
 [ext_resource type="Script" uid="uid://bxgl87tcilgmv" path="res://ScenesAndScripts/gym.gd" id="1_p110f"]
 [ext_resource type="Texture2D" uid="uid://bsspdauuayvk3" path="res://Art/ShaneArt/Gym/barbell/frame0000.png" id="2_j85im"]
 [ext_resource type="Texture2D" uid="uid://wvxk1lye7tqv" path="res://Art/TempArt/Coffee Mug 001 16x161.png" id="3_ai3kp"]
+[ext_resource type="PackedScene" uid="uid://uxls16xddw38" path="res://Client/tooltop.tscn" id="4_ai3kp"]
+[ext_resource type="PackedScene" uid="uid://mca4a2j6enku" path="res://ScenesAndScripts/inventory_panel.tscn" id="5_2x6u7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2x6u7"]
 animations = [{
@@ -38,9 +40,14 @@ animations = [{
 [node name="Gym" type="Node2D"]
 script = ExtResource("1_p110f")
 
+[node name="InventoryPanel" parent="." instance=ExtResource("5_2x6u7")]
+offset_left = -1285.0
+offset_top = -64.0
+offset_right = 1921.0
+offset_bottom = 1749.0
+
 [node name="RatBackground" type="AnimatedSprite2D" parent="."]
-position = Vector2(-0.500032, -0.999937)
-scale = Vector2(1.66615, 1.66481)
+position = Vector2(960, 540)
 sprite_frames = SubResource("SpriteFrames_2x6u7")
 
 [node name="gymslot1" type="TextureButton" parent="RatBackground"]
@@ -51,7 +58,6 @@ offset_bottom = 210.285
 texture_normal = ExtResource("3_ai3kp")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="slot1_cost" type="Label" parent="RatBackground/gymslot1"]
 modulate = Color(0, 0, 0, 1)
@@ -61,7 +67,6 @@ offset_top = 138.754
 offset_right = 209.616
 offset_bottom = 189.754
 text = "slot1 price"
-metadata/_edit_use_anchors_ = true
 
 [node name="gymslot2" type="TextureButton" parent="RatBackground"]
 offset_left = -164.751
@@ -71,7 +76,6 @@ offset_bottom = 237.315
 texture_normal = ExtResource("3_ai3kp")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="slot2_cost" type="Label" parent="RatBackground/gymslot2"]
 modulate = Color(0, 0, 0, 1)
@@ -81,7 +85,6 @@ offset_top = 120.432
 offset_right = 191.042
 offset_bottom = 171.432
 text = "slot1 price"
-metadata/_edit_use_anchors_ = true
 
 [node name="gymslot3" type="TextureButton" parent="RatBackground"]
 offset_left = 269.184
@@ -91,7 +94,6 @@ offset_bottom = 207.281
 texture_normal = ExtResource("3_ai3kp")
 ignore_texture_size = true
 stretch_mode = 3
-metadata/_edit_use_anchors_ = true
 
 [node name="slot3_cost" type="Label" parent="RatBackground/gymslot3"]
 modulate = Color(0, 0, 0, 1)
@@ -101,4 +103,16 @@ offset_top = 134.897
 offset_right = 258.07
 offset_bottom = 185.897
 text = "slot1 price"
-metadata/_edit_use_anchors_ = true
+
+[node name="Tooltop" parent="." instance=ExtResource("4_ai3kp")]
+visible = false
+
+[node name="Shop" type="Button" parent="."]
+offset_left = 1470.0
+offset_top = 426.0
+offset_right = 1886.0
+offset_bottom = 583.0
+theme_override_font_sizes/font_size = 40
+text = "Shop"
+
+[connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]

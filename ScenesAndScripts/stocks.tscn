@@ -1,18 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://covttivjalf1a"]
+[gd_scene load_steps=3 format=3 uid="uid://covttivjalf1a"]
 
 [ext_resource type="Script" uid="uid://b8sxhale7oeqi" path="res://ScenesAndScripts/stocks.gd" id="1_4ijur"]
+[ext_resource type="PackedScene" uid="uid://mca4a2j6enku" path="res://ScenesAndScripts/inventory_panel.tscn" id="2_a4uvv"]
 
 [node name="Stocks" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 8
 script = ExtResource("1_4ijur")
 
 [node name="GraphArea" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 0
-offset_left = 160.0
-offset_top = 140.0
-offset_right = 1760.0
-offset_bottom = 940.0
+offset_left = -1200.0
+offset_top = -501.0
+offset_right = 239.0
+offset_bottom = 499.0
 
 [node name="ColorRect" type="ColorRect" parent="GraphArea"]
 visible = false
@@ -27,35 +31,16 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Stock1Line" type="Line2D" parent="GraphArea"]
-position = Vector2(-3, 0)
-default_color = Color(0.665614, 0, 0, 1)
-
-[node name="Stock2Line" type="Line2D" parent="GraphArea"]
-default_color = Color(0.435294, 0.658824, 0.862745, 1)
-
-[node name="Stock3Line" type="Line2D" parent="GraphArea"]
-default_color = Color(0.403922, 0.305882, 0.654902, 1)
-
-[node name="Stock4Line" type="Line2D" parent="GraphArea"]
-default_color = Color(0.192157, 0.431373, 0.0862745, 1)
-
 [node name="XAxis" type="Line2D" parent="."]
-position = Vector2(-11.0557, 0)
-scale = Vector2(1.00681, 1)
-points = PackedVector2Array(165, 940, 1760, 940)
+position = Vector2(-9.35039, -1)
+scale = Vector2(0.996405, 1)
+points = PackedVector2Array(-1200, 500, 250, 500)
 default_color = Color(0, 0, 0, 1)
 
 [node name="YAxis" type="Line2D" parent="."]
 position = Vector2(0, -1)
-scale = Vector2(1, 1)
-points = PackedVector2Array(160, 140, 160, 940)
+points = PackedVector2Array(-1200, 500, -1200, -500)
 default_color = Color(0, 0, 0, 1)
-
-[node name="AxisLabels" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 1920.0
-offset_bottom = 1076.0
 
 [node name="Legend" type="HBoxContainer" parent="."]
 layout_mode = 0
@@ -64,19 +49,323 @@ offset_bottom = 40.0
 
 [node name="Shop" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1769.0
-offset_top = 357.0
-offset_right = 1908.0
-offset_bottom = 559.0
-theme_override_font_sizes/font_size = 36
+offset_left = 1148.0
+offset_top = -404.0
+offset_right = 1563.0
+offset_bottom = -258.0
+theme_override_font_sizes/font_size = 46
 text = "Shop
 "
 
 [node name="Axis" type="Control" parent="."]
 anchors_preset = 0
-offset_top = -2.0
-offset_right = 1920.0
-offset_bottom = 1080.0
+offset_right = 3199.0
+offset_bottom = 1800.0
 mouse_filter = 2
 
+[node name="Label" type="Label" parent="Axis"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -2120.5
+offset_top = -704.0
+offset_right = -1732.5
+offset_bottom = -668.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 36
+text = "Stock Value vs Round "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PosChecker" type="Node2D" parent="."]
+position = Vector2(-2060, 654)
+
+[node name="Stock1Line" type="Line2D" parent="."]
+position = Vector2(160, 140)
+width = 20.0
+default_color = Color(0.666667, 0, 0, 1)
+
+[node name="Stock2Line" type="Line2D" parent="."]
+position = Vector2(160, 140)
+width = 20.0
+default_color = Color(0.435294, 0.658824, 0.862745, 1)
+
+[node name="Stock3Line" type="Line2D" parent="."]
+position = Vector2(160, 140)
+width = 20.0
+default_color = Color(0.403922, 0.305882, 0.654902, 1)
+
+[node name="Stock4Line" type="Line2D" parent="."]
+position = Vector2(160, 140)
+width = 20.0
+default_color = Color(0.192157, 0.431373, 0.0862745, 1)
+
+[node name="GraphToolTip" type="Label" parent="."]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = 1204.0
+offset_top = 713.0
+offset_right = 1760.0
+offset_bottom = 940.0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 36
+text = "Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buy_stock1" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 517.0
+offset_top = -281.0
+offset_right = 940.0
+offset_bottom = -165.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="buy_stock1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="buy_stock1/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.666667, 0, 0, 1)
+
+[node name="Label" type="Label" parent="buy_stock1"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -211.5
+offset_top = -57.0
+offset_right = 212.5
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 46
+text = "Stock 1: Value
+Quantity: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Add" type="Button" parent="buy_stock1"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = -70.0
+offset_right = 193.0
+theme_override_font_sizes/font_size = 64
+text = "+"
+
+[node name="Minus" type="Button" parent="buy_stock1"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = -70.0
+offset_right = 380.0
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[node name="buy_stock2" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 529.0
+offset_top = -67.0
+offset_right = 929.0
+offset_bottom = 49.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="buy_stock2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="buy_stock2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.435294, 0.658824, 0.862745, 1)
+
+[node name="Label" type="Label" parent="buy_stock2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -58.0
+offset_right = 200.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 46
+text = "Stock 2: Value
+Quantity: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Add" type="Button" parent="buy_stock2"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = -70.0
+offset_right = 184.0
+theme_override_font_sizes/font_size = 64
+text = "+"
+
+[node name="Minus" type="Button" parent="buy_stock2"]
+layout_mode = 0
+offset_left = 223.0
+offset_top = -70.0
+offset_right = 371.0
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[node name="buy_stock3" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 529.0
+offset_top = 153.0
+offset_right = 929.0
+offset_bottom = 269.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="buy_stock3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="buy_stock3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.403922, 0.305882, 0.654902, 1)
+
+[node name="Label" type="Label" parent="buy_stock3"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -56.0
+offset_right = 200.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 46
+text = "Stock 3: Value
+Quantity: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Add" type="Button" parent="buy_stock3"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = -70.0
+offset_right = 183.0
+theme_override_font_sizes/font_size = 64
+text = "+"
+
+[node name="Minus" type="Button" parent="buy_stock3"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = -70.0
+offset_right = 370.0
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[node name="buy_stock4" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 536.0
+offset_top = 388.0
+offset_right = 936.0
+offset_bottom = 504.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="buy_stock4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="buy_stock4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.192157, 0.431373, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="buy_stock4"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -59.0
+offset_right = 199.0
+offset_bottom = 58.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 46
+text = "Stock 4: Value
+Quantity: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Add" type="Button" parent="buy_stock4"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = -70.0
+offset_right = 180.0
+theme_override_font_sizes/font_size = 64
+text = "+"
+
+[node name="Minus" type="Button" parent="buy_stock4"]
+layout_mode = 0
+offset_left = 219.0
+offset_top = -70.0
+offset_right = 367.0
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[node name="Gold" type="Label" parent="."]
+layout_mode = 0
+offset_left = -1503.0
+offset_top = -750.0
+offset_right = -1240.0
+offset_bottom = -667.0
+theme_override_font_sizes/font_size = 36
+text = "Gold:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+
+[node name="InventoryPanel" parent="." instance=ExtResource("2_a4uvv")]
+z_index = 2
+offset_left = -1605.0
+offset_top = -894.0
+offset_right = 1601.0
+offset_bottom = 919.0
+
 [connection signal="pressed" from="Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="buy_stock1/Add" to="." method="_on_buy_stock_1_pressed"]
+[connection signal="pressed" from="buy_stock1/Minus" to="." method="_on_sell_stock_1_pressed"]
+[connection signal="pressed" from="buy_stock2/Add" to="." method="_on_buy_stock_2_pressed"]
+[connection signal="pressed" from="buy_stock2/Minus" to="." method="_on_sell_stock_2_pressed"]
+[connection signal="pressed" from="buy_stock3/Add" to="." method="_on_buy_stock_3_pressed"]
+[connection signal="pressed" from="buy_stock3/Minus" to="." method="_on_sell_stock_3_pressed"]
+[connection signal="pressed" from="buy_stock4/Add" to="." method="_on_buy_stock_4_pressed"]
+[connection signal="pressed" from="buy_stock4/Minus" to="." method="_on_sell_stock_4_pressed"]

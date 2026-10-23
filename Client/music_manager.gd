@@ -14,7 +14,7 @@ var lead_vol = 0
 var instruments = [organ, piano, trumpet, whistle]
 
 func _ready():
-	current_lead = null
+	current_lead = organ
 	mainmenu.play()
 	mainmenu.volume_db = 0
 	bass.play()

@@ -37,16 +37,19 @@ var appendages = ["head", "shell", "legs", "leftArm", "rightArm"]
 var stats = ["acceleration", "resilience", "max_speed", "fire_rate", "projectile_speed", "luck"]
 var econ = ["gold", "stock1", "stock2", "stock3", "stock4"]
 var results = ["first", "second", "third", "fourth"]
+var instruments = ["organ", "piano", "trumpet", "whistle"]
 var what_pos = {}
 var race_order = []
 var race_complete = false
 
+var stock_y_label_adj = 0
 var main_hud = true
 var rng_calls = 0
 var mode
 var id_list
 var id_name_list
 var id_stock_list
+var id_instrument_list
 var local_turtle = {}
 var server_turtles = {}
 var start_time
@@ -116,6 +119,11 @@ func dupe_remover(duped_list):
 			unique_list.append(element)
 	return unique_list
 
+func instrument_volume(player, player_in_first):
+	var distance_behind = maxf(0.0, float(player_in_first) - float(player))
+	var volume_percent = clampf(1.0 - (distance_behind / 500.0), 0.0, 1.0)
+	return lerpf(-50.0, 0.0, volume_percent)
+
 func label_finder(server_id):
 	var gamer_tag = null
 	for sid in Inventory.id_name_list:
@@ -139,3 +147,11 @@ func stock_finder(server_id):
 			company_name = sid[1]
 			break
 	return company_name
+
+func instrument_finder(server_id):
+	var instrument = null
+	for sid in Inventory.id_instrument_list:
+		if server_id == sid[0]:
+			instrument = sid[1]
+			break
+	return instrument

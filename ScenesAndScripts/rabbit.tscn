@@ -249,9 +249,7 @@ script = ExtResource("1_wgiep")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_hje50")
-animation = &"Emerging"
-frame = 9
-frame_progress = 1.0
+animation = &"Digging"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

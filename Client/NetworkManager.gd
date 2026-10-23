@@ -65,6 +65,11 @@ func _on_message_received(type, message):
 		#Inventory.rng.seed = message
 	elif type == "id_list":
 		Inventory.id_list = message
+		Inventory.id_instrument_list = []
+		var counter = 0
+		for id in message:
+			Inventory.id_instrument_list.append([id, Inventory.instruments[counter]])
+			counter += 1
 	elif type == "id_with_name":
 		Inventory.id_name_list = message
 	elif type == "id_with_stock":
@@ -105,7 +110,7 @@ func _on_message_received(type, message):
 			"luck": 1.2
 		},		
 		"econ": {
-			"gold": 1000,
+			"gold": 15,
 			"stock1": 0,
 			"stock2": 0,
 			"stock3": 0,

@@ -1,0 +1,269 @@
+[gd_scene load_steps=5 format=3 uid="uid://mca4a2j6enku"]
+
+[ext_resource type="Script" uid="uid://bcujxc7607grf" path="res://ScenesAndScripts/inventory_panel.gd" id="1_d15ck"]
+[ext_resource type="PackedScene" uid="uid://1usxicevamun" path="res://ScenesAndScripts/inventory_turtle.tscn" id="1_vv485"]
+[ext_resource type="PackedScene" uid="uid://uxls16xddw38" path="res://Client/tooltop.tscn" id="3_bcc0k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcc0k"]
+bg_color = Color(0.292427, 0.327, 0.391171, 1)
+
+[node name="InventoryPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1606.0
+offset_top = -904.0
+offset_right = 1600.0
+offset_bottom = 909.0
+mouse_filter = 2
+script = ExtResource("1_d15ck")
+
+[node name="InPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bcc0k")
+
+[node name="HoverButton" type="TextureButton" parent="InPanel"]
+layout_mode = 2
+anchor_left = 0.411
+anchor_top = 0.146
+anchor_right = 0.581
+anchor_bottom = 0.452
+offset_left = 1.33398
+offset_top = -0.698029
+offset_right = 1.31384
+offset_bottom = 0.523987
+
+[node name="InventoryTurtle" parent="InPanel" instance=ExtResource("1_vv485")]
+position = Vector2(1567, 615)
+
+[node name="HideInventory" type="Button" parent="InPanel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2773.0
+offset_top = 254.0
+offset_right = -117.0
+offset_bottom = -1429.0
+theme_override_font_sizes/font_size = 40
+text = "Hide Inventory"
+
+[node name="SelfInventory" type="Button" parent="InPanel"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2773.0
+offset_top = 400.0
+offset_right = -118.0
+offset_bottom = -1302.0
+theme_override_font_sizes/font_size = 40
+text = "Self"
+
+[node name="Opponent1" type="Button" parent="InPanel"]
+layout_mode = 2
+offset_left = 2773.0
+offset_top = 532.0
+offset_right = 3089.0
+offset_bottom = 659.0
+theme_override_font_sizes/font_size = 40
+text = "Opponent1"
+
+[node name="Opponent2" type="Button" parent="InPanel"]
+layout_mode = 2
+offset_left = 2773.0
+offset_top = 676.0
+offset_right = 3089.0
+offset_bottom = 803.0
+theme_override_font_sizes/font_size = 40
+text = "Opponent2"
+
+[node name="Opponent3" type="Button" parent="InPanel"]
+layout_mode = 2
+offset_left = 2773.0
+offset_top = 817.0
+offset_right = 3089.0
+offset_bottom = 944.0
+theme_override_font_sizes/font_size = 40
+text = "Opponent3"
+
+[node name="PlayerName" type="Label" parent="InPanel"]
+layout_mode = 2
+offset_left = 1370.0
+offset_top = 60.0
+offset_right = 1747.0
+offset_bottom = 168.0
+theme_override_font_sizes/font_size = 40
+text = "Filler"
+horizontal_alignment = 1
+
+[node name="StatsVBox" type="VBoxContainer" parent="InPanel"]
+layout_mode = 2
+offset_left = 47.0
+offset_top = 62.0
+offset_right = 722.0
+offset_bottom = 891.0
+theme_override_constants/separation = 40
+
+[node name="Acceleration" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Acceleration:"
+
+[node name="Top Speed" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Top Speed:"
+
+[node name="Resilience" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Resilience"
+
+[node name="Fire Rate" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Fire Rate:"
+
+[node name="Projectile Speed" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Projectile Speed:"
+
+[node name="Luck" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Luck:"
+
+[node name="Gold" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Gold:"
+
+[node name="Stock1" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stock1:"
+
+[node name="Stock2" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stock2:"
+
+[node name="Stock3" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stock3:"
+
+[node name="Stock4" type="Label" parent="InPanel/StatsVBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stock4:"
+
+[node name="ItemsVBox" type="VBoxContainer" parent="InPanel"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 954.0
+offset_right = 3086.0
+offset_bottom = 1673.0
+
+[node name="Names" type="HBoxContainer" parent="InPanel/ItemsVBox"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+alignment = 2
+
+[node name="Head" type="Label" parent="InPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Head"
+horizontal_alignment = 1
+
+[node name="Shell" type="Label" parent="InPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Shell"
+horizontal_alignment = 1
+
+[node name="LeftArm" type="Label" parent="InPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Left Arm"
+horizontal_alignment = 1
+
+[node name="RightArm" type="Label" parent="InPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Right Arm"
+horizontal_alignment = 1
+
+[node name="Legs" type="Label" parent="InPanel/ItemsVBox/Names"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+text = "Legs"
+horizontal_alignment = 1
+
+[node name="Items" type="HBoxContainer" parent="InPanel/ItemsVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Head" type="TextureRect" parent="InPanel/ItemsVBox/Items"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Shell" type="TextureRect" parent="InPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LeftArm" type="TextureRect" parent="InPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RightArm" type="TextureRect" parent="InPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Legs" type="TextureRect" parent="InPanel/ItemsVBox/Items"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tooltop" parent="InPanel" instance=ExtResource("3_bcc0k")]
+visible = false
+layout_mode = 2
+anchors_preset = 0
+offset_left = -347.931
+offset_right = 419.069
+
+[node name="InventoryButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 2748.0
+offset_top = 301.0
+offset_right = 3168.0
+offset_bottom = 456.0
+theme_override_font_sizes/font_size = 46
+text = "Inventory"
+
+[connection signal="mouse_entered" from="InPanel/HoverButton" to="." method="_on_inventory_turtle_hovered"]
+[connection signal="mouse_exited" from="InPanel/HoverButton" to="." method="_on_inventory_turtle_unhovered"]
+[connection signal="pressed" from="InPanel/HideInventory" to="." method="_on_hide_inventory_pressed"]
+[connection signal="pressed" from="InPanel/SelfInventory" to="." method="_on_self_inventory_pressed"]
+[connection signal="pressed" from="InPanel/Opponent1" to="." method="_on_opponent_1_pressed"]
+[connection signal="pressed" from="InPanel/Opponent2" to="." method="_on_opponent_2_pressed"]
+[connection signal="pressed" from="InPanel/Opponent3" to="." method="_on_opponent_3_pressed"]
+[connection signal="pressed" from="InventoryButton" to="." method="_on_inventory_button_pressed"]

@@ -37,32 +37,25 @@ func _process(delta):
 	var order = Inventory.what_pos.keys().map(func(k): return [k, Inventory.what_pos[k]])
 	order.sort_custom(func(a, b): return a[1] > b[1])
 	Inventory.race_order = order
-	
+
+	if Inventory.start == false:
+		return
+
 	if get_tree().get_nodes_in_group("finished").size() > 0:
 		var winner_name 
 		for turtle in get_tree().get_nodes_in_group("finished"):
 			if turtle.place == 1:
 				winner_name = turtle.name_tag
-		order[0][0] = winner_name
-		
-	if Inventory.start == false:
-		return
-		
-	if str(order[0][0]) == turtles[0].name_tag:
-		if MusicManager.organ.volume_db < 0:
-			MusicManager.switch(MusicManager.organ)
-	elif str(order[0][0]) == turtles[1].name_tag:
-		if MusicManager.piano.volume_db < 0:
-			MusicManager.switch(MusicManager.piano)
-	elif str(order[0][0]) == turtles[2].name_tag:
-		if MusicManager.trumpet.volume_db < 0:
-			MusicManager.switch(MusicManager.trumpet)
-	elif str(order[0][0]) == turtles[3].name_tag:
-		if MusicManager.whistle.volume_db < 0:
-			MusicManager.switch(MusicManager.whistle)
-			
-			
-
+		var sid = Inventory.sid_finder(winner_name)
+		var instrument = Inventory.instrument_finder(sid)
+		MusicManager.switch(MusicManager.get(instrument))
+	
+	else:
+		for player in order:
+			var volume = Inventory.instrument_volume(player[1], order[0][1])
+			var sid = Inventory.sid_finder(player[0])
+			var instrument = Inventory.instrument_finder(sid)
+			MusicManager.get(instrument).volume_db = volume
 
 func _on_finish_line_body_exited(body):
 	if already_finished == true:
@@ -76,10 +69,11 @@ func _on_finish_line_body_exited(body):
 		body.finish_time = end_time
 		body.remove_from_group("not_finished")
 		body.remove_from_group("racing")
+		race_timer.race_time_remaining -= 5
 		
 	if get_tree().get_nodes_in_group("not_finished").size() == 1:
-		if race_timer.race_time_remaining > 6:
-			race_timer.race_time_remaining = 6
+		if race_timer.race_time_remaining > 4:
+			race_timer.race_time_remaining = 4
 		
 	if get_tree().get_nodes_in_group("not_finished").size() == 0:
 		setting_up_results()
