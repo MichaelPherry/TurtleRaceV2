@@ -3,6 +3,8 @@ extends Control
 @onready var master_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer/MusicVolumeSlider
 @onready var background_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer3/BackgoundVolumeSlider
 @onready var lead_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer2/LeadVolumeSlider
+@onready var soundeffect_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer4/SoundEffectVolume
+
 func _ready():
 	master_slider.value = 25
 	master_slider.value_changed.connect(music_volume_changed.bind("Master"))
@@ -10,6 +12,8 @@ func _ready():
 	background_slider.value_changed.connect(music_volume_changed.bind("Background"))
 	lead_slider.value = 25
 	lead_slider.value_changed.connect(music_volume_changed.bind("Lead"))
+	soundeffect_slider.value = 25
+	soundeffect_slider.value_changed.connect(music_volume_changed.bind("SoundEffects"))
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	process_mode = Node.PROCESS_MODE_PAUSABLE
 
@@ -39,10 +43,18 @@ func _on_lead_volume_slider_value_changed(value: float) -> void:
 	var volume_db = linear_to_db(value / 100.0)
 	AudioServer.set_bus_volume_db(bus_index, volume_db)
 
+func _on_sound_effect_volume_value_changed(value: float) -> void:
+	$Panel/MarginContainer/VBoxContainer/HBoxContainer4/Percent.text = str(int(value)) + "%"
+	var bus_index = AudioServer.get_bus_index("SoundEffects")
+	var volume_db = linear_to_db(value / 100.0)
+	AudioServer.set_bus_volume_db(bus_index, volume_db)
 
 func _on_global_button_pressed() -> void:
 	if $Panel.visible == false:
 		$Panel.visible = true
+		MusicManager.play_effect("button_click")
+		
+		
 		mouse_filter = Control.MOUSE_FILTER_STOP
 	else:
 		$Panel.visible = false

@@ -3,11 +3,17 @@ extends Node
 var appendages = ["arm", "head", "shell", "legs"]
 var all_buffs = ["ankle_weights", "barbell", "dumbell", "kettlebell", "punching_bag", "resistance_band"]
 var all_items = {
-	"arm": ["fissile_cannon", "bear_trap", "machine_gun"],
+	"arm": ["fissile_cannon", "bear_trap", "machine_gun", "boomerang", "eel"],
 	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet", "kings_crown", "halo", "cyborg_eye", "clown_wig"],
 	"shell": ["ammo_belt", "battery", "streaker_leaf", "suit", "angel_wings"],
-	"legs": ["rollerskates", "cinderblocks", "rocketboots"]
+	"legs": ["rollerskates", "cinderblocks", "rocketboots", "dress_shoes"]
 }
+
+var mud = ["propreller", "kings_crown", "cinderblocks", "rocketboots"]
+var pond = ["suit", "ammo_belt", "dunce_hat", "machine_gun", "roller_skates"]
+var river = ["m1_helmet", "fissible_cannon", "angel_wings", "bunny_ears"]
+var sea = ["halo", "bear_trap", "streaker_leaf"]
+var deep_sea = ["cyborg_eye"]
 
 var total_pool
 
@@ -18,8 +24,6 @@ func arm(item):
 	match item:
 		"fissile_cannon":
 			return load("res://Items/fissile_cannon.tres")
-		"eel_spit":
-			return load("res://Items/eel_spit.tres")
 		"mystery_item":
 			return load("res://Items/mystery_item.tres")
 		"bear_trap":
@@ -28,6 +32,8 @@ func arm(item):
 			return load("res://Items/machine_gun.tres")
 		"boomerang":
 			return load("res://Items/boomerang.tres")
+		"eel":
+			return load("res://Items/eel.tres")
 
 func head(item):
 	match item:
@@ -69,6 +75,8 @@ func legs(item):
 			return load("res://Passives/Legs/cinderblocks.tres")
 		"rocketboots":
 			return load("res://Passives/Legs/rocketboots.tres")
+		"dress_shoes":
+			return load("res://Passives/Legs/dress_shoes.tres")
 
 func stat_buff(buff):
 	match buff:

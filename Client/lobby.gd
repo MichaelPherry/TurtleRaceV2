@@ -52,8 +52,11 @@ func join_match(data):
 		get_tree().change_scene_to_file("res://ScenesAndScripts/shop.tscn")
 
 func _on_ready_pressed():
+	MusicManager.play_effect("button_click")
 	room.send_message("ready", "ready")
 
 func _on_leave_button_down():
+	var click = MusicManager.effect_dict["button_click"]
+	MusicManager.play_effect(click)
 	room.leave()
 	get_tree().change_scene_to_file("res://Client/mainmenu.tscn")

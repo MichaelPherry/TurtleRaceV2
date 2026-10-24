@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bii48pdwsmffq"]
+
+[ext_resource type="Script" uid="uid://bw6rjvp8200cw" path="res://Passives/Legs/dress_shoes.gd" id="1_m8f1q"]
+
+[node name="Dress_shoes" type="Node2D"]
+script = ExtResource("1_m8f1q")

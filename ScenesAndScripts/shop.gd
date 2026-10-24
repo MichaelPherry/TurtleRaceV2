@@ -36,6 +36,7 @@ var opp3_label
 var shake_tween
 var gold_tween
 var message_tween
+var text_color = Color.WHITE
 
 func _ready():
 	$Boss.visible = false
@@ -152,6 +153,7 @@ func _slot1():
 		Inventory.item_1[0] = "arm"
 	ItemPassivePool.total_pool[Inventory.item_1[0]].erase(Inventory.item_1[1])
 	racc_slot1.visible = false
+	MusicManager.play_effect("button_click")
 	hud.icon_setup()
 	
 func _slot2():
@@ -190,6 +192,7 @@ func _slot2():
 		Inventory.item_2[0] = "arm"
 	ItemPassivePool.total_pool[Inventory.item_2[0]].erase(Inventory.item_2[1])
 	racc_slot2.visible = false
+	MusicManager.play_effect("button_click")
 	hud.icon_setup()
 
 func _slot3(): 
@@ -228,10 +231,10 @@ func _slot3():
 		Inventory.item_3[0] = "arm"
 	ItemPassivePool.total_pool[Inventory.item_3[0]].erase(Inventory.item_3[1])
 	racc_slot3.visible = false
+	MusicManager.play_effect("button_click")
 	hud.icon_setup()
 
 func rand_items():
-	#$while body_part_list.size() == 0:
 	var check_again = true
 	var body_part = null
 	while check_again:
@@ -297,7 +300,8 @@ func _on_roll_pressed() -> void:
 		
 	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= roll_cost
 	temp_pool = ItemPassivePool.total_pool.duplicate(true)
-	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	MusicManager.play_effect("button_click")
+	$Gold.text = "Gold: " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 	item_roll()
 
 func _on_item_sold():
@@ -308,6 +312,7 @@ func shake(item_slot):
 		shake_tween.kill()
 	
 	var original_position = item_slot.position
+	MusicManager.play_effect("button_error")
 	shake_tween = create_tween()
 	shake_tween.tween_property(item_slot, "position:x", original_position.x + 8, 0.04)
 	shake_tween.tween_property(item_slot, "position:x", original_position.x - 8, 0.04)
@@ -320,11 +325,10 @@ func shake_gold():
 		gold_tween.kill()
 
 	var original_position = $Gold.position
-	var original_color = $Gold.modulate
+	var original_color = text_color
 	
 	gold_tween = create_tween()
 	gold_tween.set_parallel()
-	
 	gold_tween.tween_property($Gold, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_QUAD)
 	gold_tween.tween_property($Gold, "position:x", original_position.x + 10, 0.04).set_delay(0.0)
 	gold_tween.chain().tween_property($Gold, "position:x", original_position.x - 6, 0.04)
@@ -341,7 +345,7 @@ func inventory_full():
 	
 	$InventoryFull.show()
 	$InventoryFull.modulate = Color.WHITE
-
+	MusicManager.play_effect("button_error")
 	message_tween = create_tween()
 	message_tween.tween_interval(0.6)
 	message_tween.tween_property($InventoryFull, "modulate:a", 0.0, 0.3)
@@ -353,11 +357,13 @@ func inventory_full():
 		$RaccoonBackground/shopHUD._on_toggle_hud_pressed()
 
 func _on_ready_pressed() -> void:
+	MusicManager.play_effect("button_click")
 	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
 	done_shopping = true
 
 
 func _on_boss_pressed() -> void:
+	MusicManager.play_effect("button_click")
 	NetworkManager.send_message("request_boss_race", "request_boss_race")
 	NetworkManager.send_message("submit_turtle", Inventory.local_turtle[NetworkManager.sessionID])
 	done_shopping = true

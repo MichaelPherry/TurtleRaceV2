@@ -66,6 +66,9 @@ var is_animating
 var hover_distance = 30.0
 var points_drawn
 var player_circles = [[], [], [], []]
+var gold_tween
+var label_tween
+var text_color = Color.WHITE
 
 func _ready():
 	points_drawn = false
@@ -354,60 +357,119 @@ func update_graph_tooltip():
 func _on_shop_pressed() -> void:
 	for child in axis.get_children():
 		child.queue_free()
+	MusicManager.play_effect("button_click")
 	get_tree().change_scene_to_file("res://ScenesAndScripts/shop.tscn")
 
 func _on_buy_stock_1_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock1_value:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock1_value
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"] += 1
 		$buy_stock1/Label.text = str(Inventory.stock_finder(Inventory.id_list[0])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"]) + "\n Value: $" + str(stock1_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_gold()
 
 func _on_sell_stock_1_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"] > 0:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"] -= 1
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock1_value
 		$buy_stock1/Label.text = str(Inventory.stock_finder(Inventory.id_list[0])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock1"]) + "\n Value: $" + str(stock1_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_stock($buy_stock1/Label)
 
 func _on_buy_stock_2_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock2_value:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock2_value
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"] += 1
 		$buy_stock2/Label.text = str(Inventory.stock_finder(Inventory.id_list[1])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"]) + "\n Value: $" + str(stock2_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_gold()
 
 func _on_sell_stock_2_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"] > 0:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"] -= 1
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock2_value
 		$buy_stock2/Label.text = str(Inventory.stock_finder(Inventory.id_list[1])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock2"]) + "\n Value: $" + str(stock2_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_stock($buy_stock2/Label)
 
 func _on_buy_stock_3_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock3_value:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock3_value
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"] += 1
 		$buy_stock3/Label.text = str(Inventory.stock_finder(Inventory.id_list[2])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"]) + "\n Value: $" + str(stock3_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_gold()
 
 func _on_sell_stock_3_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"] > 0:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"] -= 1
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock3_value
 		$buy_stock3/Label.text = str(Inventory.stock_finder(Inventory.id_list[2])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock3"]) + "\n Value: $" + str(stock3_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_stock($buy_stock3/Label)
 
 func _on_buy_stock_4_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] >= stock4_value:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] -= stock4_value
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"] += 1
 		$buy_stock4/Label.text = str(Inventory.stock_finder(Inventory.id_list[3])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"]) + "\n Value: $" + str(stock4_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_gold()
 
 func _on_sell_stock_4_pressed() -> void:
 	if Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"] > 0:
+		MusicManager.play_effect("button_click")
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"] -= 1
 		Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += stock4_value
 		$buy_stock4/Label.text = str(Inventory.stock_finder(Inventory.id_list[3])) + ": " + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["stock4"]) + "\n Value: $" + str(stock4_value)
 		$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
+	else:
+		shake_stock($buy_stock4/Label)
+
+func shake_gold():
+	if gold_tween and gold_tween.is_running():
+		gold_tween.kill()
+
+	var original_position = $Gold.position
+	var original_color = text_color
+	MusicManager.play_effect("button_error")
+	
+	gold_tween = create_tween()
+	gold_tween.set_parallel()
+	gold_tween.tween_property($Gold, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_QUAD)
+	gold_tween.tween_property($Gold, "position:x", original_position.x + 10, 0.04).set_delay(0.0)
+	gold_tween.chain().tween_property($Gold, "position:x", original_position.x - 6, 0.04)
+	gold_tween.chain().tween_property($Gold, "position:x", original_position.x + 4, 0.04)
+	gold_tween.chain().tween_property($Gold, "position:x", original_position.x, 0.04)
+	gold_tween.tween_property($Gold, "modulate", original_color, 0.2).set_delay(0.15)
+
+func shake_stock(label):
+	if label_tween and label_tween.is_running():
+		label_tween.kill()
+	
+	var original_position = label.position
+	var original_color = text_color
+	MusicManager.play_effect("button_error")
+	
+	gold_tween = create_tween()
+	gold_tween.set_parallel()
+	gold_tween.tween_property(label, "modulate", Color.RED, 0.1).set_trans(Tween.TRANS_QUAD)
+	gold_tween.tween_property(label, "position:x", original_position.x + 10, 0.04).set_delay(0.0)
+	gold_tween.chain().tween_property(label, "position:x", original_position.x - 6, 0.04)
+	gold_tween.chain().tween_property(label, "position:x", original_position.x + 4, 0.04)
+	gold_tween.chain().tween_property(label, "position:x", original_position.x, 0.04)
+	gold_tween.tween_property(label, "modulate", original_color, 0.2).set_delay(0.15)

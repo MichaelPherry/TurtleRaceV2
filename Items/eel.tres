@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://k33qyg8sf8xc"]
+
+[ext_resource type="Script" uid="uid://cqkhn8ptyrps3" path="res://Items/item.gd" id="1_6g3wr"]
+[ext_resource type="PackedScene" uid="uid://c0ra45mkdym7k" path="res://Items/eel_launcher.tscn" id="1_fgtlh"]
+
+[resource]
+script = ExtResource("1_6g3wr")
+name = "Eel"
+description = "Arm: Fires a slow eel that causes incresed stun on hit"
+price = 10
+body_part = "Arm"
+cooldown = 8
+item_scene = ExtResource("1_fgtlh")
+ground_trap = false
+active = false
+animation = true
+type = ""
+stay_in_hand = true
+keywords = Array[int]([])
+metadata/_custom_type_script = "uid://cqkhn8ptyrps3"

@@ -121,6 +121,12 @@ func run_tick():
 		var simy_with_height = projectile.target.sim_position.y + projectile.target.height
 		if projectile.sim_position.distance_to(Vector2(simx, simy_with_height)) < hit_radius:
 			projectile.hit(projectile.target)
+		else:
+			for turtle in players:
+				var turt_simx = turtle.sim_position.x
+				var turt_simy = turtle.sim_position.y + turtle.height
+				if projectile.sim_position.distance_to(Vector2(turt_simx, turt_simy)) < hit_radius:
+					projectile.hit(turtle)
 
 	#Time tick down
 	race_timer.tick(tick_rate)

@@ -53,11 +53,13 @@ func _on_line_edit_text_changed(new_text):
 
 func _on_name_submit_pressed():
 	NetworkManager.connect_to_lobby()
+	MusicManager.play_effect("button_click")
 	name_input.visible = false
 	name_submit.visible = false
 	$ColorRect.visible = true
 
 func _on_create_button_down() -> void:
+	MusicManager.play_effect("button_click")
 	$ColorRect.visible = false
 	$Panel.visible = true
 
@@ -95,6 +97,7 @@ func _on_lobby_message(type, message):
 
 
 func _on_online_pressed() -> void:
+	MusicManager.play_effect("button_click")
 	$ColorRect.visible = true
 	$Panel.visible = false
 	NetworkManager.room = await NetworkManager.client.create("raceLobby", {"player_name": NetworkManager.local_player_name})
@@ -102,6 +105,7 @@ func _on_online_pressed() -> void:
 
 
 func _on_cpu_pressed() -> void:
+	MusicManager.play_effect("button_click")
 	$ColorRect.visible = true
 	$Panel.visible = false
 	NetworkManager.room = await NetworkManager.client.create("botLobby", {"player_name": NetworkManager.local_player_name})

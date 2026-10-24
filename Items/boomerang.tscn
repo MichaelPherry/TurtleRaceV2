@@ -56,3 +56,5 @@ sprite_frames = SubResource("SpriteFrames_k0iwj")
 visible = false
 position = Vector2(22, 11)
 shape = SubResource("CapsuleShape2D_6oldk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

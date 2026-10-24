@@ -71,6 +71,10 @@ func tick(curr_tick, tick_rat):
 
 	
 func hit(body):
+	pass
+
+
+func _on_body_entered(body: Node2D) -> void:
 	if body == target:
 		if active == true:
 			if body.grounded == true and body.height == -50:

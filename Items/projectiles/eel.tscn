@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://bg83ksxi487k3"]
+
+[ext_resource type="Script" uid="uid://ku3dpo4iompv" path="res://Items/projectiles/eel.gd" id="1_getmx"]
+[ext_resource type="Texture2D" uid="uid://bfjvq4yu8vo00" path="res://Art/AlexArt/Items/Eel/Eel Projectile0001.png" id="2_7u3o8"]
+[ext_resource type="Texture2D" uid="uid://dw0fohsalv6hd" path="res://Art/AlexArt/Items/Eel/Eel Projectile0002.png" id="3_ig42q"]
+[ext_resource type="Texture2D" uid="uid://bugn2jvehm4hj" path="res://Art/AlexArt/Items/Eel/Eel Projectile0003.png" id="4_163nc"]
+[ext_resource type="Texture2D" uid="uid://gyfc8v5sabxh" path="res://Art/AlexArt/Items/Eel/Eel Projectile0004.png" id="5_dqfpe"]
+[ext_resource type="Texture2D" uid="uid://dwlyljffn6ddi" path="res://Art/AlexArt/Items/Eel/Eel Projectile0005.png" id="6_8ft11"]
+[ext_resource type="Texture2D" uid="uid://7o1dc8k0un5w" path="res://Art/AlexArt/Items/Eel/Eel Projectile0006.png" id="7_eujjb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5uctu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7u3o8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ig42q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_163nc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dqfpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8ft11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_eujjb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v37iu"]
+radius = 68.0812
+height = 452.379
+
+[node name="Eel" type="Area2D"]
+script = ExtResource("1_getmx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5uctu")
+frame_progress = 0.0926932
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(18, 18)
+rotation = 1.64934
+shape = SubResource("CapsuleShape2D_v37iu")

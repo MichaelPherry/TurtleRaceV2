@@ -90,10 +90,12 @@ func _on_toggle_hud_pressed() -> void:
 		tween.tween_property(hud_inventory, "position", closed_position, 0.3)
 		tween.tween_property(hud_tog, "position", closed_tog_position, 0.3)
 		hud_tog.text = "+"
+		MusicManager.play_effect("close_hud")
 		Inventory.main_hud = false
 		
 	else:
 		tween.tween_property(hud_inventory, "position", open_position, 0.3)
 		tween.tween_property(hud_tog, "position", open_tog_position, 0.3)
 		hud_tog.text = "-"
+		MusicManager.play_effect("open_hud")
 		Inventory.main_hud = true

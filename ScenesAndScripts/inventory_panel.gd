@@ -132,6 +132,7 @@ func _on_slot_unhovered(button):
 	tooltip.hide_tooltip()
 
 func _on_inventory_button_pressed() -> void:
+	MusicManager.play_effect("button_click")
 	inventoryTurt.local_equip()
 	inventory_items()
 	inventory_update()
@@ -140,6 +141,7 @@ func _on_inventory_button_pressed() -> void:
 	$InventoryButton.visible = false
 
 func _on_hide_inventory_pressed() -> void:
+	MusicManager.play_effect("button_click")
 	$InPanel.visible = false
 	$InventoryButton.visible = true
 	#hud.visible = true
@@ -219,21 +221,25 @@ func inventory_opponent_items(sid):
 		legs_image.mouse_exited.connect(_on_slot_unhovered.bind(legs_image))
 
 func _on_self_inventory_pressed():
+	MusicManager.play_effect("button_click")
 	inventoryTurt.local_equip()
 	inventory_items()
 	inventory_update()
 
 func _on_opponent_1_pressed():
+	MusicManager.play_effect("button_click")
 	inventoryTurt.equip(opp1_sid)
 	inventory_opponent_items(opp1_sid)
 	inventory_opponent_update(opp1_sid)
 
 func _on_opponent_2_pressed():
+	MusicManager.play_effect("button_click")
 	inventoryTurt.equip(opp2_sid)
 	inventory_opponent_items(opp2_sid)
 	inventory_opponent_update(opp2_sid)
 
 func _on_opponent_3_pressed():
+	MusicManager.play_effect("button_click")
 	inventoryTurt.equip(opp3_sid)
 	inventory_opponent_items(opp3_sid)
 	inventory_opponent_update(opp3_sid)

@@ -299,6 +299,7 @@ func invin_frames(stamina_damage = 0, projectile_keywords = null):
 	invincible = true
 	hit = true
 	var temp_effects = turtle_effects.duplicate()
+	var extra_hit_stun = false
 	if projectile_keywords != null:
 		projectile_keywords.append_array(temp_effects)
 	elif temp_effects.size() > 0:
@@ -311,6 +312,8 @@ func invin_frames(stamina_damage = 0, projectile_keywords = null):
 				stamina_damage *= 2
 			if word == "Divine":
 				resilience = resilience * 1.5
+			if word == "Stun":
+				extra_hit_stun = true
 
 	current_stamina -= stamina_damage
 	update_stamina_bar()
@@ -328,6 +331,13 @@ func invin_frames(stamina_damage = 0, projectile_keywords = null):
 	await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 0.2)
 	await get_tree().create_timer(0.1).timeout
+	if extra_hit_stun == true:
+		sprite.modulate = Color(1, 1, 1, 0.2)
+		await get_tree().create_timer(0.1).timeout
+		sprite.modulate = Color(1, 1, 1, 1) 
+		await get_tree().create_timer(0.1).timeout
+		sprite.modulate = Color(1, 1, 1, 0.2)
+		await get_tree().create_timer(0.1).timeout
 	sprite.modulate = Color(1, 1, 1, 1) 
 	sim_position.y = sped
 	hit = false
@@ -356,7 +366,7 @@ func stamina_replenish():
 		if current_stamina < 100:
 			if self.is_in_group("racing"):
 				self.remove_from_group("racing")
-			current_stamina += max((resilience / 2) * tick_rat, 10 * tick_rat)
+			current_stamina += max((resilience * tick_rat), 20 * tick_rat)
 			current_stamina = min(current_stamina, max_stamina)
 		else:
 			add_to_group("racing")

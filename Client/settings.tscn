@@ -131,6 +131,25 @@ custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Soundeffect Volume" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Sound Effect Volume
+"
+
+[node name="SoundEffectVolume" type="HSlider" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Percent" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
 [node name="GlobalButton" type="Button" parent="."]
 process_mode = 3
 layout_mode = 0
@@ -146,4 +165,5 @@ text = "Settings
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer/MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer3/BackgoundVolumeSlider" to="." method="_on_backgound_volume_slider_value_changed"]
 [connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer2/LeadVolumeSlider" to="." method="_on_lead_volume_slider_value_changed"]
+[connection signal="value_changed" from="Panel/MarginContainer/VBoxContainer/HBoxContainer4/SoundEffectVolume" to="." method="_on_sound_effect_volume_value_changed"]
 [connection signal="pressed" from="GlobalButton" to="." method="_on_global_button_pressed"]
