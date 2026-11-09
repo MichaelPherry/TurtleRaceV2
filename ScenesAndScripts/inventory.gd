@@ -79,6 +79,7 @@ var boss_player_name
 var boss_id 
 var boss_name_tag = "Rabbit"
 var seed
+var round_result_signal
 
 #currently not in use
 func reset_turtles():

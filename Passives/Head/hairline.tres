@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Passive" load_steps=4 format=3 uid="uid://cqolopf8if2pv"]
+
+[ext_resource type="Texture2D" uid="uid://cyyw3xynm6jqt" path="res://Art/AlexArt/Items/Hairline/R Hair.png" id="1_n8cp3"]
+[ext_resource type="Script" uid="uid://dvp4uqxmdbnm5" path="res://Passives/passive.gd" id="1_sgyfv"]
+[ext_resource type="PackedScene" uid="uid://dhnu43gstdxe1" path="res://Passives/Head/hairline.tscn" id="2_x32b2"]
+
+[resource]
+script = ExtResource("1_sgyfv")
+name = "Hairline"
+description = "Head: Max speed of player is increased by double the amount of stocks owned"
+price = 10
+icon = ExtResource("1_n8cp3")
+passive_scene = ExtResource("2_x32b2")
+cooldown = 0
+type = ""
+metadata/_custom_type_script = "uid://dvp4uqxmdbnm5"

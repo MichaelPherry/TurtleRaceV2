@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://covttivjalf1a"]
+[gd_scene load_steps=4 format=3 uid="uid://covttivjalf1a"]
 
 [ext_resource type="Script" uid="uid://b8sxhale7oeqi" path="res://ScenesAndScripts/stocks.gd" id="1_4ijur"]
 [ext_resource type="PackedScene" uid="uid://mca4a2j6enku" path="res://ScenesAndScripts/inventory_panel.tscn" id="2_a4uvv"]
+[ext_resource type="Texture2D" uid="uid://cuj0hqtxw8e5i" path="res://Art/AlexArt/UI/Snake-with-Background-v3.jpg" id="2_dsnm8"]
 
 [node name="Stocks" type="Control"]
 layout_mode = 3
@@ -10,36 +11,27 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 script = ExtResource("1_4ijur")
 
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(114, 86)
+texture = ExtResource("2_dsnm8")
+
 [node name="GraphArea" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -1200.0
-offset_top = -501.0
-offset_right = 239.0
-offset_bottom = 499.0
-
-[node name="ColorRect" type="ColorRect" parent="GraphArea"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = -34.0
-offset_right = 40.0
-offset_bottom = 36.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -1175.0
+offset_top = -413.0
+offset_right = 264.0
+offset_bottom = 470.0
 
 [node name="XAxis" type="Line2D" parent="."]
-position = Vector2(-9.35039, -1)
+position = Vector2(-7.34998, -1)
 scale = Vector2(0.996405, 1)
 points = PackedVector2Array(-1200, 500, 250, 500)
 default_color = Color(0, 0, 0, 1)
 
 [node name="YAxis" type="Line2D" parent="."]
-position = Vector2(0, -1)
-points = PackedVector2Array(-1200, 500, -1200, -500)
+position = Vector2(2.00037, 3)
+points = PackedVector2Array(-1200, 500, -1200, -387)
 default_color = Color(0, 0, 0, 1)
 
 [node name="Legend" type="HBoxContainer" parent="."]
@@ -49,10 +41,10 @@ offset_bottom = 40.0
 
 [node name="Shop" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1148.0
-offset_top = -404.0
-offset_right = 1563.0
-offset_bottom = -258.0
+offset_left = 1338.0
+offset_top = -541.0
+offset_right = 1655.0
+offset_bottom = -433.0
 theme_override_font_sizes/font_size = 46
 text = "Shop
 "
@@ -68,12 +60,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -2120.5
-offset_top = -704.0
-offset_right = -1732.5
-offset_bottom = -668.0
+offset_left = -2404.5
+offset_top = -507.0
+offset_right = -1715.5
+offset_bottom = -445.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 36
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
 text = "Stock Value vs Round "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -110,6 +103,7 @@ offset_top = 713.0
 offset_right = 1760.0
 offset_bottom = 940.0
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 36
 text = "Label"
 horizontal_alignment = 1
@@ -117,10 +111,10 @@ vertical_alignment = 1
 
 [node name="buy_stock1" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 517.0
-offset_top = -281.0
-offset_right = 940.0
-offset_bottom = -165.0
+offset_left = 758.0
+offset_top = -359.0
+offset_right = 1181.0
+offset_bottom = -243.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="buy_stock1"]
 layout_mode = 1
@@ -173,10 +167,10 @@ text = "-"
 
 [node name="buy_stock2" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 529.0
-offset_top = -67.0
-offset_right = 929.0
-offset_bottom = 49.0
+offset_left = 768.0
+offset_top = -138.0
+offset_right = 1168.0
+offset_bottom = -22.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="buy_stock2"]
 layout_mode = 1
@@ -216,6 +210,7 @@ layout_mode = 0
 offset_left = 34.0
 offset_top = -70.0
 offset_right = 184.0
+theme_override_colors/icon_normal_color = Color(0.352941, 1, 1, 1)
 theme_override_font_sizes/font_size = 64
 text = "+"
 
@@ -229,10 +224,10 @@ text = "-"
 
 [node name="buy_stock3" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 529.0
-offset_top = 153.0
-offset_right = 929.0
-offset_bottom = 269.0
+offset_left = 639.0
+offset_top = 271.0
+offset_right = 1039.0
+offset_bottom = 387.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="buy_stock3"]
 layout_mode = 1
@@ -285,10 +280,10 @@ text = "-"
 
 [node name="buy_stock4" type="Control" parent="."]
 anchors_preset = 0
-offset_left = 536.0
-offset_top = 388.0
-offset_right = 936.0
-offset_bottom = 504.0
+offset_left = 646.0
+offset_top = 506.0
+offset_right = 1046.0
+offset_bottom = 622.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="buy_stock4"]
 layout_mode = 1
@@ -341,19 +336,21 @@ text = "-"
 
 [node name="Gold" type="Label" parent="."]
 layout_mode = 0
-offset_left = -1503.0
-offset_top = -750.0
-offset_right = -1240.0
-offset_bottom = -667.0
-theme_override_font_sizes/font_size = 46
+offset_left = 1387.0
+offset_top = 33.0
+offset_right = 1650.0
+offset_bottom = 116.0
+theme_override_font_sizes/font_size = 64
 text = "Gold:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(100, 0)
 zoom = Vector2(0.6, 0.6)
 
 [node name="InventoryPanel" parent="." instance=ExtResource("2_a4uvv")]
+visible = false
 z_index = 2
 offset_left = -1605.0
 offset_top = -894.0

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhnu43gstdxe1"]
+
+[ext_resource type="Script" uid="uid://c6sfurantg6vs" path="res://Passives/Head/hairline.gd" id="1_urugy"]
+
+[node name="Hairline" type="Node2D"]
+script = ExtResource("1_urugy")

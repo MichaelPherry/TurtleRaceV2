@@ -20,6 +20,8 @@ func setup(_room):
 	room = _room
 	print(room)
 	connect_room()
+	await get_tree().create_timer(3).timeout
+	room.send_message("ready", "ready")
 	
 func connect_room():
 	var callbacks = Colyseus.Callbacks.of(room)
@@ -56,7 +58,6 @@ func _on_ready_pressed():
 	room.send_message("ready", "ready")
 
 func _on_leave_button_down():
-	var click = MusicManager.effect_dict["button_click"]
-	MusicManager.play_effect(click)
+	MusicManager.play_effect("button_click")
 	room.leave()
 	get_tree().change_scene_to_file("res://Client/mainmenu.tscn")

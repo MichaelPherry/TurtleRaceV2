@@ -10,6 +10,7 @@ var current_scene = null
 var race_scene = preload("res://ScenesAndScripts/main.tscn")
 var boss_scene = preload("res://ScenesAndScripts/boss.tscn") 
 var lobby
+var on_or_offline = null
 
 func _ready():
 	pass
@@ -39,16 +40,22 @@ func _on_lobby_joined():
 	await get_tree().create_timer(1.0).timeout
 	
 func _on_room_joined(data):
-	if room != null:
-		await room.leave()
+	var queue_room = room
 	room = null
-	await get_tree().process_frame
-	var new_room = await client.join_by_id(data.roomId)
-	room = new_room
-	
-	#print("Joined room: ", room.get_id())
-	#print("Session ID: ", room.get_session_id())
-	#print("Room name: ", room.get_name())
+
+	if queue_room != null:
+		#print("Leaving matchmaking room: ", queue_room.room_id)
+		await queue_room.leave()
+
+	print("Joining match room: ", data.roomId)
+	room = await client.join_by_id(data.roomId)
+	print("Joined match room: ", room)
+
+	if room == null:
+		print("Failed to join race room: ", data.roomId)
+		return
+
+	callbacks = Colyseus.Callbacks.of(room)
 	room.message_received.connect(_on_message_received)
 	await get_tree().create_timer(1.0).timeout
 	
@@ -81,6 +88,7 @@ func _on_message_received(type, message):
 	elif type == "round_results":
 		Inventory.rounds = message[0]
 		Inventory.round_results = message[1]
+		Inventory.round_result_signal = true
 	elif type == "race_start":
 		print(message["startTime"])
 		Inventory.start_time = message["startTime"]
@@ -90,6 +98,8 @@ func _on_message_received(type, message):
 		Inventory.boss_id = message[2].keys()[0]
 		Inventory.boss_player_name = message[1]
 		get_tree().change_scene_to_packed(boss_scene)
+	elif type == "next_race_countdown":
+		get_tree().current_scene.results.server_move()
 	elif type == "session_id":
 		sessionID = message
 		Inventory.local_turtle[sessionID] = {
@@ -110,7 +120,7 @@ func _on_message_received(type, message):
 			"luck": 1.2
 		},		
 		"econ": {
-			"gold": 1000,
+			"gold": 20,
 			"stock1": 0,
 			"stock2": 0,
 			"stock3": 0,

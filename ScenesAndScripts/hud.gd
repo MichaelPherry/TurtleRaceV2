@@ -7,6 +7,12 @@ extends CanvasLayer
 @onready var legs = $Inventory/ItemContainer/LegsSlot/Legs
 @onready var hud_inventory = $Inventory
 @onready var hud_tog =  $ToggleHUD
+@onready var current_speed = $Inventory/ItemContainer/PlayerStats/currentSpeed
+@onready var acceleration = $Inventory/ItemContainer/PlayerStats/acceleration
+@onready var max_speed = $Inventory/ItemContainer/PlayerStats/maxSpeed
+@onready var fire_rate = $Inventory/ItemContainer/FireStats/fireRate
+@onready var projectile_speed = $Inventory/ItemContainer/FireStats/projectileSpeed
+@onready var luck = $Inventory/ItemContainer/FireStats/luck
 
 var invetory_item_scene = preload("res://ScenesAndScripts/inventory_item.tscn")
 var head_path
@@ -67,6 +73,7 @@ func get_item_path(body_part, item_name):
 	return tres_instance
 
 func tick(player):
+	label_adjustments()
 	for appendage in items:
 		match appendage:
 			"head":
@@ -121,3 +128,19 @@ func _on_toggle_hud_pressed() -> void:
 		hud_tog.text = "-"
 		MusicManager.play_effect("open_hud")
 		Inventory.main_hud = true
+
+func label_adjustments():
+	var user = null
+	var temp = get_tree().get_nodes_in_group("players")
+	for player in get_tree().get_nodes_in_group("players"):
+		if player.name_tag == NetworkManager.local_player_name:
+			user = player
+			break
+	
+	if user != null:
+		current_speed.text = "Current Speed: " + str(int(user.current_speed))
+		acceleration.text = "Acceleration: " + str(user.acceleration)
+		max_speed.text = "Max Speed: " + str(user.max_speed)
+		fire_rate.text = "Fire Rate: " + str(user.fire_rate)
+		projectile_speed.text = "Projectile Speed: " + str(user.projectile_speed)
+		luck.text = "Luck: " + str(user.luck)

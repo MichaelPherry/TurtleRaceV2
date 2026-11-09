@@ -19,7 +19,7 @@ const gameServer = new Server({
 });
 
 console.log("REGISTERING ROOM");
-gameServer.define("lobby", LobbyRoom);
+//gameServer.define("lobby", LobbyRoom);
 gameServer.define("raceLobby", RaceLobby).enableRealtimeListing();
 gameServer.define("botLobby", BotLobby);
 gameServer.define("raceMatch", RaceMatch);

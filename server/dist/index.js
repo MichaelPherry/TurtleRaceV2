@@ -22,7 +22,7 @@ const gameServer = new core_1.Server({
     driver: undefined
 });
 console.log("REGISTERING ROOM");
-gameServer.define("lobby", core_1.LobbyRoom);
+//gameServer.define("lobby", LobbyRoom);
 gameServer.define("raceLobby", RaceLobby_js_1.RaceLobby).enableRealtimeListing();
 gameServer.define("botLobby", BotLobby_js_1.BotLobby);
 gameServer.define("raceMatch", RaceMatch_js_1.RaceMatch);

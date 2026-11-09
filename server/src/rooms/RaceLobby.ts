@@ -1,116 +1,152 @@
-import { Room, LobbyRoom } from "colyseus";
+import { Room, matchMaker } from "colyseus";
 import type { Client } from "colyseus";
-import { matchMaker } from "colyseus";
-
-import { PassThrough } from "node:stream";
-
 
 type PlayerData = {
     ready: boolean;
     race_order: number;
-    name: string
+    name: string;
 };
 
 export class RaceLobby extends Room {
+    maxClients = 1000;
 
-    maxClients = 4;
-    availableRaceStarts = [1, 2, 3, 4]
-    seed = 0;
+    private readonly MATCH_SIZE = 4;
+    private queue: string[] = [];
     players: Record<string, PlayerData> = {};
-    name_list: string[] = [];
-    bosses = ["Rabbit"]
+    bosses = ["Rabbit"];
+    private matchmaking = false;
 
     onCreate(options: any) {
-        try {
-            console.log("RaceLobby created");
-
-            this.onMessage("ready", (client) => {
-                this.players[client.sessionId].ready = true;
-                console.log(client.sessionId, " is ready in the lobby!")
-                this.setMetadata({
-                    roomName : String(options.player_name) + "'s lobby"
-                });
-
-                this.sendLobbyUpdate();
-                this.checkStart();
-    
-            });
-        }
-
-        catch (e) {
-            console.log("ROOM FAILED TO CREATE in Race Lobby:", e);
-        }
+        console.log("Matchmaking queue created ", this.roomId);
     }
 
-    onJoin(client: any, options: any) {
-        if (this.availableRaceStarts.length == 0) {
-            client.leave();
-            return
+    onJoin(client: Client, options: any) {
+        console.log("JOIN: ", client.sessionId, " Room: ", this.roomId);
+        let playerName = String(options.player_name || "Player");
+
+        if (Object.values(this.players).some(p => p.name === playerName)) {
+            playerName += `_${client.sessionId.slice(0, 4)}`;
         }
 
-        for (const player in this.players){
-            if (this.players[player].name == options.player_name)
-                options.player_name = client.sessionId
-                }
-                
-        var slot = Number(this.availableRaceStarts.shift())
-
-        //client.sessionId = options.player_name
         this.players[client.sessionId] = {
             ready: false,
-            race_order: slot,
-            name: options.player_name
+            race_order: 0,
+            name: playerName
         };
-        client.send("session_id", client.sessionId)
-        this.name_list.push(this.players[client.sessionId].name);
-        this.sendLobbyUpdate();
+
+        this.queue.push(client.sessionId);
+
+        client.send("session_id", client.sessionId);
+        client.send("queue_status", { searching: true });
+
+        console.log(`${playerName} joined queue ${this.roomId}. Queue size: ${this.queue.length}`);
+
+        void this.checkStart();
     }
 
-    onLeave(client: any, code: number) {
-        console.log(client.sessionId, "left race ", " code: ", code, " clients remaining: ", this.name_list.length);
-        if (this.players[client.sessionId]) {
-            this.availableRaceStarts.push(this.players[client.sessionId].race_order)
-        }
+    onLeave(client: Client, code: number) {
+        console.log("LEAVE:", client.sessionId, "Room:", this.roomId, "Code:", code);
 
-        var index = this.name_list.indexOf(this.players[client.sessionId].name)
+        this.queue = this.queue.filter(id => id !== client.sessionId);
+        console.log("Queue size after leave:", this.queue.length);
+        const index = this.queue.indexOf(client.sessionId);
+
         if (index !== -1) {
-            this.name_list.splice(index, 1);
+            this.queue.splice(index, 1);
+            console.log(`${client.sessionId} left the queue.`);
         }
 
         delete this.players[client.sessionId];
-        this.sendLobbyUpdate();
     }
 
-    checkStart() {
+   private async checkStart() {
+    if (this.matchmaking) return;
+    this.matchmaking = true;
 
-        const allReady =
-            Object.keys(this.players).length === this.maxClients &&
-            Object.values(this.players).every(p => p.ready);
+    try {
+        while (this.queue.length >= this.MATCH_SIZE) {
+            const sessionIds = this.queue.splice(0, this.MATCH_SIZE);
+            const group = sessionIds
+                .map(id => ({ id, player: this.players[id] }))
+                .filter(entry => entry.player);
 
-        if (!allReady) return;
+            if (group.length !== this.MATCH_SIZE) {
+                for (const entry of group.reverse()) {
+                    if (this.clients.some(c => c.sessionId === entry.id)) {
+                        this.queue.unshift(entry.id);
+                    }
+                }
+                continue;
+            }
 
-        this.startRace();
-    }
+            const nameList = group.map(entry => entry.player.name);
+            const seed = Math.floor(Math.random() * 1000000);
+            const boss = this.bosses[Math.floor(Math.random() * this.bosses.length)];
 
-    sendLobbyUpdate() {
-        const lobby = []
-        for (const id in this.players){
-            lobby.push({ready: this.players[id].ready, slot: this.players[id].race_order, name: this.players[id].name});
+            try {
+                const raceRoom = await matchMaker.createRoom("raceMatch", {
+                    maxClients: this.MATCH_SIZE,
+                    nameList,
+                    end_boss: boss,
+                    seed
+                });
+
+                // Recheck connections after the asynchronous room creation.
+                const connectedGroup = group.filter(entry =>
+                    this.clients.some(c => c.sessionId === entry.id) &&
+                    this.players[entry.id] !== undefined
+                );
+
+                if (connectedGroup.length !== this.MATCH_SIZE) {
+                    console.log("Match cancelled: a player disconnected during creation.");
+
+                    // Restore connected players to the front of the queue.
+                    for (const entry of connectedGroup.reverse()) {
+                        this.queue.unshift(entry.id);
+                    }
+
+                    // Players who disconnected are already removed by onLeave().
+                    // Retry if enough players remain queued.
+                    continue;
+                }
+
+                // All four players are still connected; assign the match.
+                for (let i = 0; i < group.length; i++) {
+                    const entry = group[i];
+                    const client = this.clients.find(c => c.sessionId === entry.id);
+
+                    if (!client) continue;
+
+                    entry.player.race_order = i + 1;
+                    delete this.players[entry.id];
+
+                    client.send("load_race", { roomId: raceRoom.roomId });
+                    client.send("seed", seed);
+                    client.send("queue_status", { searching: false });
+                }
+
+                console.log("Match created:", raceRoom.roomId);
+                console.log("Players:", nameList);
+                console.log("Seed:", seed);
+            } catch (error) {
+                console.error("Failed to create race match:", error);
+
+                for (const entry of group.reverse()) {
+                    if (this.clients.some(c => c.sessionId === entry.id)) {
+                        this.players[entry.id] = entry.player;
+                        this.queue.unshift(entry.id);
+                    }
+                }
+
+                break;
+            }
+        }
+        } finally {
+            this.matchmaking = false;
         }
 
-        this.broadcast("lobby_update", lobby)
-    }
-
-    async startRace() {
-        var boss = this.bosses[Math.floor(Math.random() * this.bosses.length)];
-        var room_location
-        room_location = "raceMatch"
-        const raceRoom = await matchMaker.createRoom(room_location, {maxClients: this.maxClients, nameList: this.name_list, end_boss: boss});
-        console.log(this.players)
-        console.log(this.name_list)
-        this.broadcast("load_race", { roomId: raceRoom.roomId})
-        this.seed = Math.floor(Math.random() * 1000000);
-        console.log("Starting race with seed:", this.seed);
-        this.broadcast("seed", this.seed);
+        if (this.queue.length >= this.MATCH_SIZE) {
+            void this.checkStart();
+        }
     }
 }

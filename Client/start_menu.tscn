@@ -1,0 +1,239 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxieedhofmfq"]
+
+[ext_resource type="Script" uid="uid://djm7824fjj7fv" path="res://Client/start_menu.gd" id="1_fe2r1"]
+[ext_resource type="Texture2D" uid="uid://b2c7pkc2717e1" path="res://Art/AlexArt/UI/Main-Menu.jpg" id="1_ldyw5"]
+[ext_resource type="Texture2D" uid="uid://ov6ef5xy6dub" path="res://Art/AlexArt/UI/Menu Button0001.png" id="2_fe2r1"]
+[ext_resource type="Texture2D" uid="uid://84yp4krba4ck" path="res://Art/AlexArt/UI/Menu Button0002.png" id="3_xvvpy"]
+[ext_resource type="Script" uid="uid://d3jc3ugvqnhsf" path="res://Client/grow_highlight.gd" id="5_xvvpy"]
+[ext_resource type="Script" uid="uid://bmid7nfmjoln1" path="res://Client/search_timer.gd" id="6_jqrok"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fe2r1")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_ldyw5")
+
+[node name="Play" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 100.0
+offset_right = 1351.0
+offset_bottom = 285.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="Play"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HowToPlay" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 600.0
+offset_top = 350.0
+offset_right = 1351.0
+offset_bottom = 535.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="HowToPlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = 4.0
+offset_right = -6.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Temp"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 600.0
+offset_right = 1351.0
+offset_bottom = 785.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="Exit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Exit "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 596.0
+offset_top = 103.0
+offset_right = 1356.0
+offset_bottom = 275.0
+theme_override_font_sizes/font_size = 64
+placeholder_text = "Enter name here"
+
+[node name="NameSubmit" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 596.0
+offset_top = 300.0
+offset_right = 1347.0
+offset_bottom = 485.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="NameSubmit"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Submit Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Online" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 600.0
+offset_top = 100.0
+offset_right = 1351.0
+offset_bottom = 285.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="Online"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Online"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Offline" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 600.0
+offset_top = 350.0
+offset_right = 1351.0
+offset_bottom = 535.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="Offline"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Offline"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Back" type="TextureButton" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 600.0
+offset_top = 600.0
+offset_right = 1351.0
+offset_bottom = 785.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SearchTimer" type="Label" parent="."]
+visible = false
+layout_mode = 0
+offset_left = 645.0
+offset_top = 17.0
+offset_right = 1315.0
+offset_bottom = 88.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Timer"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_jqrok")
+
+[node name="CancelSearch" type="TextureButton" parent="."]
+visible = false
+offset_left = 600.0
+offset_top = 100.0
+offset_right = 1351.0
+offset_bottom = 285.0
+texture_normal = ExtResource("2_fe2r1")
+texture_pressed = ExtResource("3_xvvpy")
+script = ExtResource("5_xvvpy")
+
+[node name="Label" type="Label" parent="CancelSearch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+text = "Cancel Search"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="pressed" from="NameSubmit" to="." method="_on_name_submit_pressed"]
+[connection signal="pressed" from="Online" to="." method="_on_online_pressed"]
+[connection signal="pressed" from="Offline" to="." method="_on_offline_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="CancelSearch" to="." method="_on_cancel_search_pressed"]

@@ -3,6 +3,7 @@ import type { Client } from "colyseus";
 import { bossBuilds, botBuilds } from "../bots/botBuilds.js";
 import { bot_list } from "../bots/botBuilds.js";
 import { PassThrough } from "node:stream";
+import { start } from "node:repl";
 
 type Turtle = {
     items : {
@@ -56,6 +57,15 @@ export class RaceMatch extends Room {
     private initialized!: Promise<void>;
     private initialize!: () => void;
 
+    private nextRaceTimer: ReturnType<typeof setTimeout> | null = null;
+    private readonly NEXT_RACE_DELAY = 80_000;
+    private readonly RACE_BUFFER_DELAY = 10_000;
+    private firstRaceStarted = false;
+    private resultsTimeout: ReturnType<typeof setTimeout> | null = null;
+    private resultsProcessed = false;
+    private startResultsCheck = false;
+
+
     players: Record<string, Player> = {};
     placements: string[] = [];
     maxClients: number = 4;
@@ -107,29 +117,46 @@ export class RaceMatch extends Room {
             this.players[client.sessionId].ready = false;    
         });
         
-        this.onMessage("raceResults", (client, message) => {
-            this.raceResults.set(client.sessionId, message);
-            console.log("Race results are ", this.raceResults);
-            if (this.raceResults.size == this.maxClients) {
-                var results = this.standardizeResults();
-                let num_to_word: "first" | "second" | "third" | "fourth" = "fourth";
-                for (var placement of Object.keys(results)){
-                    if (Number(placement) == 1){num_to_word = "first"};
-                    if (Number(placement) == 2){num_to_word = "second"};
-                    if (Number(placement) == 3){num_to_word = "third"};
-                    if (Number(placement) == 4){num_to_word = "fourth"};
-                    var racer = message[placement][0];
-                    console.log("message: ", message);
-                    console.log("placement:", placement);
-                    console.log("racer:", racer);
-                    console.log("players:", this.players);
-                    console.log("players:", this.players[racer].build.results);
+        this.onMessage("raceResults", async (client, message) => {
+            if (this.nextRaceTimer !== null) return;
 
-                    this.players[racer].build.results[num_to_word] += 1;
+
+            this.raceResults.set(client.sessionId, message);
+            //if (this.resultsTimeout === null) {this.resultsTimeout = setTimeout(() => {this.processResults();}, this.RACE_BUFFER_DELAY);}
+            console.log("Race results are ", this.raceResults);
+            
+            if (this.raceResults.size === this.maxClients) {this.startResultsCheck = true}
+            else{
+                const startTime = Date.now();
+                while (Date.now() - startTime < this.RACE_BUFFER_DELAY && this.raceResults.size < this.maxClients){
+                    await new Promise(resolve => setTimeout(resolve, 100));
                 };
+                this.startResultsCheck = true; 
+                };
+
+            if (this.startResultsCheck == true && this.resultsProcessed == false){
+                this.resultsProcessed = true
+                const results = this.standardizeResults();
+
+                for (const placement of Object.keys(results)) {
+                    const num_to_word: "first" | "second" | "third" | "fourth" =
+                        Number(placement) === 1 ? "first" :
+                        Number(placement) === 2 ? "second" :
+                        Number(placement) === 3 ? "third" : "fourth";
+
+                    const racer = results[Number(placement) as 1 | 2 | 3 | 4][0];
+                    if (racer && this.players[racer]) {
+                        this.players[racer].build.results[num_to_word] += 1;
+                    }
+                }
+
                 this.broadcast("round_results", [this.round, this.roundResults]);
-            };
-        })
+
+                // All results are in. Start the 80-second countdown.
+                this.raceResults.clear();
+                this.startNextRaceTimer(client);
+            }
+        });
 
         this.onMessage("request_boss_race", (client, message) => {
             const player = this.players[client.sessionId];
@@ -233,6 +260,25 @@ export class RaceMatch extends Room {
         this.raceStart(client);
      }
 
+    private startNextRaceTimer(client: any) {
+        if (this.nextRaceTimer !== null) return;
+
+        console.log("All results received. Next race starts in 80 seconds.");
+        this.broadcast("next_race_countdown", { seconds: 80 });
+
+        this.nextRaceTimer = setTimeout(() => {
+            this.nextRaceTimer = null;
+
+            console.log("80 seconds elapsed. Starting next race.");
+
+            for (const id of Object.keys(this.players)) {
+                this.players[id].ready = true;
+            }
+
+            this.raceStart(client);
+        }, this.NEXT_RACE_DELAY);
+    }
+
      raceStart(client: any){
         var counter = 0
         for (const id of Object.keys(this.players)){
@@ -269,6 +315,13 @@ export class RaceMatch extends Room {
             if (this.bossRequests.size > 0) {this.startNextBossRace()}
             else {this.broadcast("send_turtles", this.players);}
             this.broadcast("race_start", {startTime: startTime});
+            this.firstRaceStarted = true;
+            this.resultsProcessed = false;
+            this.startResultsCheck = false;
+
+            for (const id of Object.keys(this.players)) {
+                this.players[id].ready = false;
+            }
         }
      }
 
@@ -276,7 +329,7 @@ export class RaceMatch extends Room {
         const finalResults: string[] = [];
         var returnResults: Record<1 | 2 | 3 | 4, string[]> = {1: [], 2: [], 3: [], 4: []};
 
-        for(let position = 0; position < this.maxClients; position++) {
+        for(let position = 0; position < this.raceResults.size; position++) {
             const votes: Record<string, number> = {};
             
             for (const result of this.raceResults.values()) {
@@ -346,5 +399,12 @@ export class RaceMatch extends Room {
             this.players[id].ready = false;
         }
         this.broadcast("send_boss_turtles", [this.players, this.players[challengerId].name, {"Rabbit": bosses.bosses["Rabbit"]}]);
+    }
+
+    onDispose() {
+        if (this.nextRaceTimer !== null) {
+            clearTimeout(this.nextRaceTimer);
+            this.nextRaceTimer = null;
+        }
     }
 }

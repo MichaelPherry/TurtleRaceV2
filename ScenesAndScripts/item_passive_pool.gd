@@ -4,7 +4,7 @@ var appendages = ["arm", "head", "shell", "legs"]
 var all_buffs = ["ankle_weights", "barbell", "dumbell", "kettlebell", "punching_bag", "resistance_band"]
 var all_items = {
 	"arm": ["fissile_cannon", "bear_trap", "machine_gun", "boomerang", "eel"],
-	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet", "kings_crown", "halo", "cyborg_eye", "clown_wig"],
+	"head": ["propreller", "bunny_ears", "dunce_hat", "m1_helmet", "kings_crown", "halo", "cyborg_eye", "hairline"],
 	"shell": ["ammo_belt", "battery", "streaker_leaf", "suit", "angel_wings"],
 	"legs": ["rollerskates", "cinderblocks", "rocketboots", "dress_shoes"]
 }
@@ -53,6 +53,8 @@ func head(item):
 			return load("res://Passives/Head/cyborg_eye.tres")
 		"clown_wig":
 			return load("res://Passives/Head/clown_wig.tres")
+		"hairline":
+			return load("res://Passives/Head/hairline.tres")
 
 func shell(item):
 	match item:

@@ -169,8 +169,9 @@ func tick(current_tick, tick_rate):
 
 	#visuals.position.y = height
 	collision.position.y = height 
-	
-	current_speed = min(current_speed + acceleration, max_speed)
+	if (current_tick % 2) == 0 and asleep == false:
+		current_speed = min(current_speed + acceleration, max_speed)
+
 	if (sim_position.y < 50 and direction == -1) or asleep:
 		sim_position.y += 0
 	else:
@@ -259,17 +260,8 @@ func left_arm_item(user, target, scene):
 		instance.target = target
 		instance.user = user
 		instance.global_position = user.global_position + Vector2(0, height)
-		current_speed = 0
 		if instance.ground_trap == true:
 			instance.final_position = target_final_position(instance.target)
-		#if user.sim_position.x > target.sim_position.x:
-			##user.sprite.flip_h = true
-			#await get_tree().create_timer(0.5).timeout
-			##user.sprite.flip_h = false
-		#else:
-			#await get_tree().create_timer(0.5).timeout
-		current_speed = max_speed
-		#moving_animations()
 		get_tree().current_scene.add_child(instance)
 	
 func right_arm_item(user, target, scene):
@@ -280,17 +272,8 @@ func right_arm_item(user, target, scene):
 		instance.target = target
 		instance.user = user
 		instance.global_position = user.global_position + Vector2(0, height)
-		current_speed = 0
 		if instance.ground_trap == true:
 			instance.final_position = target_final_position(instance.target)
-		#if user.sim_position.x > target.sim_position.x:
-			##user.sprite.flip_h = true
-			#await get_tree().create_timer(0.5).timeout
-			##user.sprite.flip_h = false
-		#else:
-			#await get_tree().create_timer(0.5).timeout
-		current_speed = max_speed
-		#moving_animations()
 		get_tree().current_scene.add_child(instance)
 	
 func invin_frames(stamina_damage = 0, projectile_keywords = null):

@@ -5,14 +5,16 @@ extends Control
 @onready var lead_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer2/LeadVolumeSlider
 @onready var soundeffect_slider = $Panel/MarginContainer/VBoxContainer/HBoxContainer4/SoundEffectVolume
 
+var start_vol = 0
+
 func _ready():
-	master_slider.value = 25
+	master_slider.value = start_vol
 	master_slider.value_changed.connect(music_volume_changed.bind("Master"))
-	background_slider.value = 25
+	background_slider.value = start_vol
 	background_slider.value_changed.connect(music_volume_changed.bind("Background"))
-	lead_slider.value = 25
+	lead_slider.value = start_vol
 	lead_slider.value_changed.connect(music_volume_changed.bind("Lead"))
-	soundeffect_slider.value = 25
+	soundeffect_slider.value = start_vol
 	soundeffect_slider.value_changed.connect(music_volume_changed.bind("SoundEffects"))
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	process_mode = Node.PROCESS_MODE_PAUSABLE

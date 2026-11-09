@@ -40,6 +40,8 @@ var text_color = Color.WHITE
 
 func _ready():
 	$Boss.visible = false
+	if NetworkManager.on_or_offline == "online":
+		pass
 	if Inventory.server_turtles.size() > 0:
 		var self_label = NetworkManager.local_player_name
 		var self_sid = Inventory.sid_finder(self_label)
@@ -63,7 +65,6 @@ func _ready():
 	legs_hud.item_sold.connect(_on_item_sold)
 	
 	roll_counter = -1
-	Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"] += 10
 	$Gold.text = "Gold: $" + str(Inventory.local_turtle[NetworkManager.sessionID]["econ"]["gold"])
 	background.play("default")
 
@@ -73,6 +74,7 @@ func _ready():
 	hud.icon_setup()
 
 func _process(delta):
+	NetworkManager.send_message("keepingServerUp", "keepingServerUp")
 	if done_shopping:
 		$Label.text = "Starting Race!"
 		return

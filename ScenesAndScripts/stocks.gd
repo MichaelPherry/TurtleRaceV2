@@ -15,7 +15,7 @@ extends Control
 var yaxis_start = -1200
 var yaxis_max = 239
 var xaxis_start = 500
-var xaxis_max = -500
+var xaxis_max = -385
 
 var player_lines
 
@@ -102,6 +102,7 @@ func _ready():
 	stock_value_calc()
 
 func _process(delta):
+	NetworkManager.send_message("keepingServerUp", "keepingServerUp")
 	var temp = axis.get_children()
 	if animation_progress >= 1.0:
 		update_graph_tooltip()

@@ -1,112 +1,104 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MatchmakingRoom = exports.RaceLobby = void 0;
-exports.shuffle = shuffle;
+exports.RaceLobby = void 0;
 const colyseus_1 = require("colyseus");
+const colyseus_2 = require("colyseus");
 class RaceLobby extends colyseus_1.Room {
     constructor() {
         super(...arguments);
+        this.maxClients = 4;
+        this.availableRaceStarts = [1, 2, 3, 4];
+        this.seed = 0;
         this.players = {};
+        this.name_list = [];
+        this.bosses = ["Rabbit"];
     }
-    onJoin(client) {
-        //this.players[client.sessionId] = {team: null, ready: false}
-        this.broadcast("player_count", this.clients.length);
-    }
-}
-exports.RaceLobby = RaceLobby;
-function shuffle(t) {
-    let currentIndex = t.length, randomIndex;
-    while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [t[currentIndex], t[randomIndex]] = [t[randomIndex], t[currentIndex]];
-    }
-    return t;
-}
-class MatchmakingRoom extends colyseus_1.Room {
-    constructor() {
-        super();
-        this.turtles = {};
-        this.turtles = {
-            "abcdef": { "leftArm": "fissile",
-                "rightArm": "bear_trap",
-                "head": null,
-                "shell": null,
-                "legs": null
-            },
-            "ghijkl": { "leftArm": "bear_trap",
-                "rightArm": "fissile",
-                "head": null,
-                "shell": null,
-                "legs": null
-            },
-            "mnopqr": { "leftArm": "mystery_item",
-                "rightArm": "bear_trap",
-                "head": null,
-                "shell": null,
-                "legs": null
-            },
-            "stuvwx": { "leftArm": "bear_trap",
-                "rightArm": "bear_trap",
-                "head": null,
-                "shell": null,
-                "legs": null
-            },
-            "yz1234": { "leftArm": null,
-                "rightArm": null,
-                "head": "propreller",
-                "shell": null,
-                "legs": null
-            }
-        };
-    }
-    ;
-    onCreate() {
+    onCreate(options) {
         try {
-            console.log("Matchmaking room created");
-            this.onMessage("save_turt", (client, message) => {
-                console.log("Saving turt: ", message);
-                this.turtles = Object.assign({}, message, this.turtles);
-                //this.turtles[client.sessionId] = message;
-                //#timeStamp: Date.now()
-                var key_list = Object.keys(this.turtles);
-                key_list = shuffle(key_list);
-                key_list = key_list.slice(0, 4);
-                console.log(key_list);
-                var turtle_export = {
-                    [key_list[0]]: this.turtles[key_list[0]],
-                    [key_list[1]]: this.turtles[key_list[1]],
-                    [key_list[2]]: this.turtles[key_list[2]],
-                    [key_list[3]]: this.turtles[key_list[3]]
-                };
-                client.send("turt_saved  ", turtle_export);
-                console.log("sent!");
-            });
-            this.onMessage("find_match", (client) => {
-                if (Object.keys(this.turtles).length == 0) {
-                    client.send("match_found", null);
-                    return;
-                }
-                const randomIndex = Math.floor(Math.random() * Object.keys(this.turtles).length);
-                const opponent = this.turtles[randomIndex];
-                client.send("match_found", opponent);
-            });
-            this.onMessage("battle_result", (client, message) => {
-                console.log("Result: ", message.result);
+            console.log("RaceLobby created");
+            this.onMessage("ready", (client) => {
+                this.players[client.sessionId].ready = true;
+                console.log(client.sessionId, " is ready in the lobby!");
+                this.setMetadata({
+                    roomName: String(options.player_name) + "'s lobby"
+                });
+                this.sendLobbyUpdate();
+                this.checkStart();
             });
         }
         catch (e) {
-            console.log("ROOM FAILED TO CREATE:", e);
+            console.log("ROOM FAILED TO CREATE in Race Lobby:", e);
         }
     }
-    onJoin(client) {
-        console.log(client.sessionId, "joined");
+    onJoin(client, options) {
+        if (this.availableRaceStarts.length == 0) {
+            client.leave();
+            return;
+        }
+        for (const player in this.players) {
+            if (this.players[player].name == options.player_name)
+                options.player_name = client.sessionId;
+        }
+        var slot = Number(this.availableRaceStarts.shift());
+        //client.sessionId = options.player_name
+        this.players[client.sessionId] = {
+            ready: false,
+            race_order: slot,
+            name: options.player_name
+        };
+        client.send("session_id", client.sessionId);
+        this.name_list.push(this.players[client.sessionId].name);
+        this.sendLobbyUpdate();
     }
-    onLeave(client) {
-        console.log(client.sessionId, "left");
+    onLeave(client, code) {
+        console.log(client.sessionId, "left race ", " code: ", code, " clients remaining: ", this.name_list.length);
+        if (this.players[client.sessionId]) {
+            this.availableRaceStarts.push(this.players[client.sessionId].race_order);
+        }
+        var index = this.name_list.indexOf(this.players[client.sessionId].name);
+        if (index !== -1) {
+            this.name_list.splice(index, 1);
+        }
+        delete this.players[client.sessionId];
+        this.sendLobbyUpdate();
+    }
+    checkStart() {
+        const allReady = Object.keys(this.players).length === this.maxClients &&
+            Object.values(this.players).every(p => p.ready);
+        if (!allReady)
+            return;
+        this.startRace();
+    }
+    sendLobbyUpdate() {
+        const lobby = [];
+        for (const id in this.players) {
+            lobby.push({ ready: this.players[id].ready, slot: this.players[id].race_order, name: this.players[id].name });
+        }
+        this.broadcast("lobby_update", lobby);
+    }
+    startRace() {
+        return __awaiter(this, void 0, void 0, function* () {
+            var boss = this.bosses[Math.floor(Math.random() * this.bosses.length)];
+            var room_location;
+            room_location = "raceMatch";
+            const raceRoom = yield colyseus_2.matchMaker.createRoom(room_location, { maxClients: this.maxClients, nameList: this.name_list, end_boss: boss });
+            console.log(this.players);
+            console.log(this.name_list);
+            this.broadcast("load_race", { roomId: raceRoom.roomId });
+            this.seed = Math.floor(Math.random() * 1000000);
+            console.log("Starting race with seed:", this.seed);
+            this.broadcast("seed", this.seed);
+        });
     }
 }
-exports.MatchmakingRoom = MatchmakingRoom;
-//# sourceMappingURL=MatchmakingRoom.js.map
-//oh
+exports.RaceLobby = RaceLobby;
 //# sourceMappingURL=MatchmakingRoom.js.map

@@ -132,26 +132,36 @@ horizontal_alignment = 1
 zoom = Vector2(0.6, 0.6)
 
 [node name="Boss" type="Button" parent="."]
-offset_left = -387.0
-offset_top = -138.0
-offset_right = -12.0
-offset_bottom = 58.0
+offset_left = 1215.0
+offset_top = -29.0
+offset_right = 1590.0
+offset_bottom = 167.0
 theme_override_font_sizes/font_size = 40
 text = "Boss"
 
+[node name="Roll_cost" type="Label" parent="."]
+offset_left = 1265.0
+offset_top = -354.0
+offset_right = 1609.0
+offset_bottom = -247.0
+theme_override_font_sizes/font_size = 44
+text = "5$ to Roll"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Roll" type="Button" parent="."]
-offset_left = 1146.0
-offset_top = 226.0
-offset_right = 1526.0
-offset_bottom = 413.0
+offset_left = 1217.0
+offset_top = -219.0
+offset_right = 1597.0
+offset_bottom = -69.0
 theme_override_font_sizes/font_size = 40
 text = "Roll"
 
 [node name="Ready" type="Button" parent="."]
-offset_left = -409.0
-offset_top = -394.0
-offset_right = 18.0
-offset_bottom = -196.0
+offset_left = -432.0
+offset_top = -369.0
+offset_right = -5.0
+offset_bottom = -171.0
 theme_override_font_sizes/font_size = 50
 text = "Ready
 "
@@ -168,6 +178,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InventoryPanel" parent="." instance=ExtResource("9_8vvo5")]
+visible = false
 
 [node name="Tooltop" parent="." instance=ExtResource("6_fnmc7")]
 visible = false

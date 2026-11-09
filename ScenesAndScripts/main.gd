@@ -5,6 +5,7 @@ extends Node2D
 @onready var time_list = $Results/Panel/HBoxContainer/Timelist
 @onready var tick_controller = $TickController
 @onready var race_timer = $CanvasLayer
+@onready var results = $Results
 
 var finished_turts = []
 var turtles 
@@ -159,5 +160,5 @@ func format_time(time):
 	var minutes = floor(int(time) / 60)
 	var seconds = int(time) % 60
 	var mi_seconds = int((time - int(time)) * 100)
-	var ret_time = "%02d:%02d.%02d" % [minutes, seconds, mi_seconds]
+	var ret_time = "%02d.%02d" % [seconds, mi_seconds]
 	return ret_time

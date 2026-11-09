@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="ShellShocked"
-run/main_scene="uid://bn5uiyv8boev4"
+run/main_scene="uid://cxieedhofmfq"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
