@@ -43,3 +43,8 @@ enabled=PackedStringArray()
 
 theme/custom_font="uid://33acvxbgd0fq"
 theme/default_font_multichannel_signed_distance_field=true
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

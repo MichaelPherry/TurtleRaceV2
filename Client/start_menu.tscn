@@ -209,6 +209,7 @@ script = ExtResource("6_jqrok")
 
 [node name="CancelSearch" type="TextureButton" parent="."]
 visible = false
+layout_mode = 0
 offset_left = 600.0
 offset_top = 100.0
 offset_right = 1351.0

@@ -20,41 +20,11 @@ export class BotLobby extends Room {
 
     onCreate() {
         try {
-            console.log("RaceLobby created");
-
-            this.onMessage("ready", (client) => {
-                this.players[client.sessionId].ready = true;
-                console.log(client.sessionId, " is ready!");
-                var slot = Number(this.availableRaceStarts.shift())
-                this.players["CPU1"] = {
-                    ready: true,
-                    race_order: slot,
-                    name: "CPU1"
-                };
-
-                slot = Number(this.availableRaceStarts.shift())
-                this.players["CPU2"] = {
-                    ready: true,
-                    race_order: slot,
-                    name: "CPU2"
-                };
-
-                slot = Number(this.availableRaceStarts.shift())
-                this.players["CPU3"] = {
-                    ready: true,
-                    race_order: slot,
-                    name: "CPU3"
-                };
-
-
-                this.sendLobbyUpdate();
-                this.checkStart();
-    
-            });
+            console.log("BotLobby created");
         }
 
         catch (e) {
-            console.log("ROOM FAILED TO CREATE in Race Lobby:", e);
+            console.log("ROOM FAILED TO CREATE in Bot Lobby:", e);
         }
     }
 
@@ -82,7 +52,8 @@ export class BotLobby extends Room {
         };
         client.send("session_id", client.sessionId)
         this.name_list.push(this.players[client.sessionId].name);
-        this.sendLobbyUpdate();
+        this.ready_up(client);
+        //this.sendLobbyUpdate();
     }
 
     onLeave(client: any) {
@@ -97,7 +68,37 @@ export class BotLobby extends Room {
         };
 
         delete this.players[client.sessionId];
-        this.sendLobbyUpdate();
+        //this.sendLobbyUpdate();
+    }
+
+    ready_up(client: any) {
+        this.players[client.sessionId].ready = true;
+        console.log(client.sessionId, " is ready!");
+        var slot = Number(this.availableRaceStarts.shift())
+        this.players["CPU1"] = {
+            ready: true,
+            race_order: slot,
+            name: "CPU1"
+        };
+
+        slot = Number(this.availableRaceStarts.shift())
+        this.players["CPU2"] = {
+            ready: true,
+            race_order: slot,
+            name: "CPU2"
+        };
+
+        slot = Number(this.availableRaceStarts.shift())
+        this.players["CPU3"] = {
+            ready: true,
+            race_order: slot,
+            name: "CPU3"
+        };
+
+
+        //this.sendLobbyUpdate();
+        this.checkStart();
+
     }
 
     checkStart() {
@@ -109,15 +110,6 @@ export class BotLobby extends Room {
         if (!allReady) return;
 
         this.startRace();
-    }
-
-    sendLobbyUpdate() {
-        const lobby = []
-        for (const id in this.players){
-            lobby.push({ready: this.players[id].ready, slot: this.players[id].race_order, name: this.players[id].name});
-        }
-
-        this.broadcast("lobby_update", lobby);
     }
 
     async startRace() {
